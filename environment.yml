@@ -1,0 +1,33 @@
+name: eval_frame
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.8
+  - pip
+
+  - pip:
+    # Data processing
+    - pandas==1.4.3
+    - numpy==1.24.4
+    - scipy==1.10.1
+
+    # Graph / KG analysis
+    - networkx==3.1
+
+    # Visualization
+    - matplotlib==3.7.5
+    - seaborn==0.13.2
+
+    # Configuration & utilities
+    - pyyaml==6.0.3
+    - easydict==1.13
+    - tqdm==4.67.3
+
+    # Optional: PyTorch + PyG for GNN metrics
+    # Uncomment after installing PyTorch (match your CUDA version):
+    # - torch==1.10.1
+    # - torch-geometric==2.0.4
+    # - torch-scatter==2.0.9
+    # - torch-sparse==0.6.12

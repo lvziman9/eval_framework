@@ -1,0 +1,30 @@
+# Explainability Benchmark Framework - Requirements
+# Python 3.8 | Tested in eval_frame conda env
+#
+# Quick start:
+#   conda env create -f environment.yml      # create from YAML
+#   conda activate eval_frame
+#   pip install -r requirements.txt          # or install manually
+
+# ── Data processing ───────────────────────────────────────────
+pandas==1.4.3
+numpy==1.24.4
+scipy==1.10.1
+
+# ── Graph / KG analysis ───────────────────────────────────────
+networkx==3.1
+
+# ── Visualization ─────────────────────────────────────────────
+matplotlib==3.7.5
+seaborn==0.13.2
+
+# ── Configuration & utilities ─────────────────────────────────
+pyyaml==6.0.3
+easydict==1.13
+tqdm==4.67.3
+
+# ── Optional: PyTorch + PyG for GNN metrics ───────────────────
+# Install PyTorch first (match your CUDA version), then:
+# pip install torch==1.10.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+# pip install torch-geometric==2.0.4
+# pip install torch-scatter==2.0.9 torch-sparse==0.6.12 -f https://data.pyg.org/whl/torch-1.10.1+cu113.html

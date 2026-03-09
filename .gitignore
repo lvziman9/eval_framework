@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 大文件 / 二进制
+*.pkl
+*.npy
+*.pth
+*.ckpt
+*.pt
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# 数据集
+xrecsys/datasets/train.txt
+xrecsys/datasets/test.txt
+xrecsys/datasets/lastfm/
+xrecsys/datasets/ml1m/
+
+# 模型 checkpoint / 临时文件
+xrecsys/models/PGPR/tmp/
+
+# 推理路径缓存
+xrecsys/paths/
+adapters/vrkg_lookups/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 日志 (可选保留 log/，已暂存)
+# xrecsys/log/
