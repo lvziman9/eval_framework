@@ -1,13 +1,35 @@
 --- Baseline---
-Recommandation quality:
-Average ndcg Male noOfUsers 10993: 0.087  | Average ndcg Female noOfUsers 3548: 0.082  | Average ndcg Overall noOfUsers 14541: 0.086  | 
-Average hr Male noOfUsers 10993: 0.183  | Average hr Female noOfUsers 3548: 0.178  | Average hr Overall noOfUsers 14541: 0.182  | 
-Average precision Male noOfUsers 10993: 0.027  | Average precision Female noOfUsers 3548: 0.026  | Average precision Overall noOfUsers 14541: 0.027  | 
-Average recall Male noOfUsers 10993: 0.010  | Average recall Female noOfUsers 3548: 0.011  | Average recall Overall noOfUsers 14541: 0.010  | 
 
-Explanation Quality:
-Average time relevance after Male: 0.596 | Female: 0.602 | Overall: 0.597
-Average explanation serendipity after Male: 0.342 | Female: 0.336 | Overall: 0.341
-Average diversity after Male: 0.130 | Female: 0.131 | Overall: 0.130
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.161 | hr: 0.251 | recall: 0.018 | precision: 0.047 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.161 | hr: 0.253 | recall: 0.018 | precision: 0.048 | 
+Female group ndcg: 0.161 | hr: 0.254 | recall: 0.018 | precision: 0.047 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.161 | hr: 0.255 | recall: 0.019 | precision: 0.049 | 
+18-24 group ndcg: 0.160 | hr: 0.250 | recall: 0.017 | precision: 0.048 | 
+25-34 group ndcg: 0.161 | hr: 0.255 | recall: 0.018 | precision: 0.046 | 
+35-44 group ndcg: 0.176 | hr: 0.278 | recall: 0.019 | precision: 0.050 | 
+45-49 group ndcg: 0.158 | hr: 0.233 | recall: 0.020 | precision: 0.051 | 
+50-55 group ndcg: 0.115 | hr: 0.200 | recall: 0.013 | precision: 0.042 | 
+56+ group ndcg: 0.151 | hr: 0.210 | recall: 0.015 | precision: 0.037 | 
 
 
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.047 | SEP: 0.925 | ETD: 0.220 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.050 | SEP: 0.923 | ETD: 0.221 | 
+Female group LIR: 0.037 | SEP: 0.927 | ETD: 0.218 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.041 | SEP: 0.928 | ETD: 0.220 | 
+18-24 group LIR: 0.052 | SEP: 0.923 | ETD: 0.222 | 
+25-34 group LIR: 0.047 | SEP: 0.924 | ETD: 0.218 | 
+35-44 group LIR: 0.028 | SEP: 0.925 | ETD: 0.217 | 
+45-49 group LIR: 0.034 | SEP: 0.940 | ETD: 0.208 | 
+50-55 group LIR: 0.036 | SEP: 0.885 | ETD: 0.232 | 
+56+ group LIR: 0.029 | SEP: 0.929 | ETD: 0.219 | 
