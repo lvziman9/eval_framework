@@ -116,8 +116,8 @@ class _DeprecatedBaseAdapter:
         print(f"  - uid_topk: {len(uid_topk)} users")
         print(f"  - uid_pid_explanation: {len(uid_pid_explanation)} explanations")
     
-    def _validate_outputs(self, pred_paths: pd.DataFrame, uid_topk: pd.DataFrame, 
-                         uid_pid_explanation: pd.DataFrame) -> None:
+    def _validate_outputs(self, pred_paths, uid_topk,
+                         uid_pid_explanation) -> None:
         """Validate that outputs have correct schema"""
         # Check pred_paths
         required_cols = ['uid', 'pid', 'path_score', 'path_prob', 'path']

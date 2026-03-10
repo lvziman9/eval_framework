@@ -199,8 +199,9 @@ def optimize_LIR_SEP(path_data, alpha):
         scores_list = [candidate[0] for candidate in candidates]
         min_score = min(scores_list)
         max_score = max(scores_list)
+        score_range = max_score - min_score
         for candidate in candidates:
-            candidate[0] = (candidate[0] - min_score) / (max_score - min_score)
+            candidate[0] = (candidate[0] - min_score) / score_range if score_range != 0 else 0.0
 
         candidates.sort(key=lambda x: (x[0] * (1-alpha)) + ((LIR_single(path_data, x[-1]) + SEP_single(path_data, x[-1])) * alpha),
                         reverse=True)
