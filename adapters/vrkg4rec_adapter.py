@@ -488,8 +488,9 @@ def main():
     raw_results = {}      # vrkg_uid → [(pid, score, path_nodes), ...]
 
     for i, vrkg_uid in enumerate(test_vrkg_uids):
-        if i % 1000 == 0:
-            print(f"  [{i}/{len(test_vrkg_uids)}] users processed ...")
+        if i % 100 == 0:
+            print(f"  [{i}/{len(test_vrkg_uids)}] users processed ...", flush=True)
+        xuid = vrkg_to_xuid.get(vrkg_uid)
         if xuid is None:
             continue
 
