@@ -1,0 +1,736 @@
+Performing Alpha-Optimization...
+--- AFTER LIRopt optimization with alpha=0---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.122 | hr: 0.198 | recall: 0.011 | precision: 0.030 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.119 | hr: 0.196 | recall: 0.010 | precision: 0.030 | 
+Female group ndcg: 0.121 | hr: 0.197 | recall: 0.011 | precision: 0.028 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.123 | hr: 0.195 | recall: 0.010 | precision: 0.030 | 
+18-24 group ndcg: 0.117 | hr: 0.195 | recall: 0.010 | precision: 0.029 | 
+25-34 group ndcg: 0.123 | hr: 0.203 | recall: 0.011 | precision: 0.031 | 
+35-44 group ndcg: 0.119 | hr: 0.195 | recall: 0.009 | precision: 0.029 | 
+45-49 group ndcg: 0.126 | hr: 0.218 | recall: 0.013 | precision: 0.044 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.034 | hr: 0.059 | recall: 0.004 | precision: 0.007 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.086 | SEP: 0.738 | ETD: 0.134 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.087 | SEP: 0.738 | ETD: 0.135 | 
+Female group LIR: 0.081 | SEP: 0.738 | ETD: 0.133 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.080 | SEP: 0.736 | ETD: 0.133 | 
+18-24 group LIR: 0.090 | SEP: 0.738 | ETD: 0.134 | 
+25-34 group LIR: 0.088 | SEP: 0.738 | ETD: 0.135 | 
+35-44 group LIR: 0.066 | SEP: 0.737 | ETD: 0.139 | 
+45-49 group LIR: 0.078 | SEP: 0.736 | ETD: 0.131 | 
+50-55 group LIR: 0.039 | SEP: 0.735 | ETD: 0.125 | 
+56+ group LIR: 0.100 | SEP: 0.744 | ETD: 0.141 | 
+--- AFTER LIRopt optimization with alpha=0.05---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.122 | hr: 0.198 | recall: 0.011 | precision: 0.029 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.120 | hr: 0.196 | recall: 0.010 | precision: 0.030 | 
+Female group ndcg: 0.121 | hr: 0.197 | recall: 0.011 | precision: 0.028 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.124 | hr: 0.196 | recall: 0.010 | precision: 0.030 | 
+18-24 group ndcg: 0.117 | hr: 0.194 | recall: 0.010 | precision: 0.029 | 
+25-34 group ndcg: 0.124 | hr: 0.203 | recall: 0.011 | precision: 0.031 | 
+35-44 group ndcg: 0.120 | hr: 0.197 | recall: 0.009 | precision: 0.030 | 
+45-49 group ndcg: 0.130 | hr: 0.231 | recall: 0.015 | precision: 0.045 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.034 | hr: 0.059 | recall: 0.004 | precision: 0.007 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.154 | SEP: 0.740 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.157 | SEP: 0.741 | ETD: 0.132 | 
+Female group LIR: 0.145 | SEP: 0.741 | ETD: 0.130 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.140 | SEP: 0.740 | ETD: 0.131 | 
+18-24 group LIR: 0.165 | SEP: 0.742 | ETD: 0.131 | 
+25-34 group LIR: 0.154 | SEP: 0.742 | ETD: 0.134 | 
+35-44 group LIR: 0.137 | SEP: 0.740 | ETD: 0.136 | 
+45-49 group LIR: 0.132 | SEP: 0.740 | ETD: 0.125 | 
+50-55 group LIR: 0.085 | SEP: 0.740 | ETD: 0.127 | 
+56+ group LIR: 0.122 | SEP: 0.751 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.1---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.121 | hr: 0.197 | recall: 0.011 | precision: 0.029 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.119 | hr: 0.194 | recall: 0.010 | precision: 0.029 | 
+Female group ndcg: 0.120 | hr: 0.196 | recall: 0.011 | precision: 0.028 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.123 | hr: 0.195 | recall: 0.010 | precision: 0.029 | 
+18-24 group ndcg: 0.117 | hr: 0.194 | recall: 0.010 | precision: 0.028 | 
+25-34 group ndcg: 0.122 | hr: 0.200 | recall: 0.011 | precision: 0.031 | 
+35-44 group ndcg: 0.119 | hr: 0.195 | recall: 0.009 | precision: 0.029 | 
+45-49 group ndcg: 0.121 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.034 | hr: 0.059 | recall: 0.004 | precision: 0.007 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.156 | SEP: 0.742 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.159 | SEP: 0.745 | ETD: 0.132 | 
+Female group LIR: 0.146 | SEP: 0.744 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.142 | SEP: 0.743 | ETD: 0.131 | 
+18-24 group LIR: 0.167 | SEP: 0.746 | ETD: 0.131 | 
+25-34 group LIR: 0.156 | SEP: 0.746 | ETD: 0.134 | 
+35-44 group LIR: 0.138 | SEP: 0.743 | ETD: 0.136 | 
+45-49 group LIR: 0.132 | SEP: 0.741 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.741 | ETD: 0.127 | 
+56+ group LIR: 0.122 | SEP: 0.752 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.15---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.120 | hr: 0.195 | recall: 0.010 | precision: 0.029 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.118 | hr: 0.192 | recall: 0.010 | precision: 0.029 | 
+Female group ndcg: 0.119 | hr: 0.192 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.121 | hr: 0.192 | recall: 0.010 | precision: 0.029 | 
+18-24 group ndcg: 0.116 | hr: 0.191 | recall: 0.010 | precision: 0.028 | 
+25-34 group ndcg: 0.122 | hr: 0.198 | recall: 0.010 | precision: 0.030 | 
+35-44 group ndcg: 0.120 | hr: 0.195 | recall: 0.009 | precision: 0.028 | 
+45-49 group ndcg: 0.121 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.034 | hr: 0.059 | recall: 0.004 | precision: 0.007 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.157 | SEP: 0.744 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.160 | SEP: 0.748 | ETD: 0.132 | 
+Female group LIR: 0.147 | SEP: 0.747 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.143 | SEP: 0.746 | ETD: 0.131 | 
+18-24 group LIR: 0.168 | SEP: 0.749 | ETD: 0.131 | 
+25-34 group LIR: 0.158 | SEP: 0.749 | ETD: 0.134 | 
+35-44 group LIR: 0.139 | SEP: 0.745 | ETD: 0.136 | 
+45-49 group LIR: 0.133 | SEP: 0.746 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.743 | ETD: 0.127 | 
+56+ group LIR: 0.123 | SEP: 0.754 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.2---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.119 | hr: 0.193 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.116 | hr: 0.189 | recall: 0.010 | precision: 0.028 | 
+Female group ndcg: 0.117 | hr: 0.188 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.119 | hr: 0.190 | recall: 0.010 | precision: 0.029 | 
+18-24 group ndcg: 0.114 | hr: 0.187 | recall: 0.009 | precision: 0.027 | 
+25-34 group ndcg: 0.118 | hr: 0.193 | recall: 0.010 | precision: 0.029 | 
+35-44 group ndcg: 0.120 | hr: 0.193 | recall: 0.008 | precision: 0.028 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.034 | hr: 0.059 | recall: 0.004 | precision: 0.007 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.158 | SEP: 0.746 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.161 | SEP: 0.751 | ETD: 0.132 | 
+Female group LIR: 0.148 | SEP: 0.749 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.143 | SEP: 0.748 | ETD: 0.131 | 
+18-24 group LIR: 0.169 | SEP: 0.752 | ETD: 0.132 | 
+25-34 group LIR: 0.159 | SEP: 0.751 | ETD: 0.134 | 
+35-44 group LIR: 0.139 | SEP: 0.748 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.746 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.746 | ETD: 0.127 | 
+56+ group LIR: 0.124 | SEP: 0.755 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.25---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.119 | hr: 0.192 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.116 | hr: 0.188 | recall: 0.010 | precision: 0.028 | 
+Female group ndcg: 0.115 | hr: 0.184 | recall: 0.009 | precision: 0.026 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.120 | hr: 0.190 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.113 | hr: 0.185 | recall: 0.009 | precision: 0.027 | 
+25-34 group ndcg: 0.116 | hr: 0.190 | recall: 0.010 | precision: 0.029 | 
+35-44 group ndcg: 0.122 | hr: 0.193 | recall: 0.008 | precision: 0.028 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.158 | SEP: 0.747 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.161 | SEP: 0.753 | ETD: 0.133 | 
+Female group LIR: 0.149 | SEP: 0.751 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.144 | SEP: 0.750 | ETD: 0.131 | 
+18-24 group LIR: 0.169 | SEP: 0.754 | ETD: 0.132 | 
+25-34 group LIR: 0.160 | SEP: 0.753 | ETD: 0.134 | 
+35-44 group LIR: 0.140 | SEP: 0.749 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.747 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.747 | ETD: 0.127 | 
+56+ group LIR: 0.124 | SEP: 0.756 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.3---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.118 | hr: 0.191 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.115 | hr: 0.187 | recall: 0.009 | precision: 0.028 | 
+Female group ndcg: 0.114 | hr: 0.182 | recall: 0.009 | precision: 0.026 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.120 | hr: 0.190 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.112 | hr: 0.183 | recall: 0.009 | precision: 0.027 | 
+25-34 group ndcg: 0.115 | hr: 0.189 | recall: 0.010 | precision: 0.028 | 
+35-44 group ndcg: 0.123 | hr: 0.195 | recall: 0.008 | precision: 0.028 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.159 | SEP: 0.748 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.162 | SEP: 0.754 | ETD: 0.133 | 
+Female group LIR: 0.149 | SEP: 0.752 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.144 | SEP: 0.751 | ETD: 0.131 | 
+18-24 group LIR: 0.170 | SEP: 0.755 | ETD: 0.132 | 
+25-34 group LIR: 0.161 | SEP: 0.755 | ETD: 0.134 | 
+35-44 group LIR: 0.141 | SEP: 0.750 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.748 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.748 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.756 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.35---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.190 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.114 | hr: 0.186 | recall: 0.009 | precision: 0.028 | 
+Female group ndcg: 0.112 | hr: 0.179 | recall: 0.009 | precision: 0.026 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.187 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.112 | hr: 0.182 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.114 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+35-44 group ndcg: 0.123 | hr: 0.195 | recall: 0.008 | precision: 0.028 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.159 | SEP: 0.749 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.162 | SEP: 0.755 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.752 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.751 | ETD: 0.131 | 
+18-24 group LIR: 0.170 | SEP: 0.756 | ETD: 0.132 | 
+25-34 group LIR: 0.161 | SEP: 0.756 | ETD: 0.134 | 
+35-44 group LIR: 0.141 | SEP: 0.751 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.749 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.749 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.756 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.4---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.190 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.114 | hr: 0.185 | recall: 0.009 | precision: 0.028 | 
+Female group ndcg: 0.112 | hr: 0.178 | recall: 0.009 | precision: 0.026 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.187 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.111 | hr: 0.182 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.185 | recall: 0.009 | precision: 0.028 | 
+35-44 group ndcg: 0.120 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.749 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.163 | SEP: 0.755 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.753 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.752 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.756 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.756 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.751 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.750 | ETD: 0.128 | 
+50-55 group LIR: 0.086 | SEP: 0.750 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.756 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.45---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.189 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.114 | hr: 0.185 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.112 | hr: 0.178 | recall: 0.009 | precision: 0.026 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.111 | hr: 0.181 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.185 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.121 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.749 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.163 | SEP: 0.756 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.753 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.752 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.756 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.757 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.752 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.752 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.751 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.137 | 
+--- AFTER LIRopt optimization with alpha=0.5---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.189 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.111 | hr: 0.177 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.110 | hr: 0.180 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.120 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.122 | hr: 0.205 | recall: 0.014 | precision: 0.042 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.750 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.163 | SEP: 0.756 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.753 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.753 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.757 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.757 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.752 | ETD: 0.136 | 
+45-49 group LIR: 0.134 | SEP: 0.752 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.751 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.55---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.189 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.111 | hr: 0.177 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.118 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.110 | hr: 0.180 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.121 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.126 | hr: 0.205 | recall: 0.014 | precision: 0.041 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.750 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.163 | SEP: 0.757 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.754 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.753 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.757 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.757 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.753 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.6---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.188 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.111 | hr: 0.177 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.118 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.110 | hr: 0.179 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.121 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.126 | hr: 0.205 | recall: 0.014 | precision: 0.041 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.750 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.163 | SEP: 0.757 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.754 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.753 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.757 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.758 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.753 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.65---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.117 | hr: 0.188 | recall: 0.010 | precision: 0.028 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.110 | hr: 0.176 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.118 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.109 | hr: 0.178 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.184 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.121 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.126 | hr: 0.205 | recall: 0.014 | precision: 0.041 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.750 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.163 | SEP: 0.757 | ETD: 0.133 | 
+Female group LIR: 0.150 | SEP: 0.754 | ETD: 0.131 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.753 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.758 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.758 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.754 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.7---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.116 | hr: 0.188 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.113 | hr: 0.183 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.110 | hr: 0.176 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.186 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.109 | hr: 0.177 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.112 | hr: 0.183 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.121 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.126 | hr: 0.205 | recall: 0.014 | precision: 0.041 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.750 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.757 | ETD: 0.133 | 
+Female group LIR: 0.151 | SEP: 0.754 | ETD: 0.132 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.145 | SEP: 0.754 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.758 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.758 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.754 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.75---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.116 | hr: 0.187 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.112 | hr: 0.182 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.110 | hr: 0.175 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.185 | recall: 0.010 | precision: 0.028 | 
+18-24 group ndcg: 0.109 | hr: 0.177 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.112 | hr: 0.183 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.121 | hr: 0.193 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.113 | hr: 0.192 | recall: 0.013 | precision: 0.040 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.751 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.758 | ETD: 0.133 | 
+Female group LIR: 0.151 | SEP: 0.755 | ETD: 0.132 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.146 | SEP: 0.754 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.758 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.758 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.754 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.8---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.116 | hr: 0.187 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.112 | hr: 0.182 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.110 | hr: 0.175 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.184 | recall: 0.010 | precision: 0.027 | 
+18-24 group ndcg: 0.108 | hr: 0.176 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.112 | hr: 0.183 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.120 | hr: 0.191 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.113 | hr: 0.192 | recall: 0.013 | precision: 0.040 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.751 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.758 | ETD: 0.133 | 
+Female group LIR: 0.151 | SEP: 0.755 | ETD: 0.132 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.146 | SEP: 0.754 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.758 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.759 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.755 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.85---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.116 | hr: 0.187 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.112 | hr: 0.181 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.109 | hr: 0.174 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.184 | recall: 0.010 | precision: 0.027 | 
+18-24 group ndcg: 0.108 | hr: 0.176 | recall: 0.009 | precision: 0.026 | 
+25-34 group ndcg: 0.113 | hr: 0.183 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.120 | hr: 0.191 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.113 | hr: 0.192 | recall: 0.013 | precision: 0.040 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.751 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.758 | ETD: 0.133 | 
+Female group LIR: 0.151 | SEP: 0.755 | ETD: 0.132 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.146 | SEP: 0.754 | ETD: 0.131 | 
+18-24 group LIR: 0.171 | SEP: 0.759 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.759 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.755 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.9---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.116 | hr: 0.186 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.112 | hr: 0.181 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.109 | hr: 0.174 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.184 | recall: 0.010 | precision: 0.027 | 
+18-24 group ndcg: 0.107 | hr: 0.175 | recall: 0.009 | precision: 0.025 | 
+25-34 group ndcg: 0.112 | hr: 0.182 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.120 | hr: 0.191 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.113 | hr: 0.192 | recall: 0.013 | precision: 0.040 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.160 | SEP: 0.751 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.758 | ETD: 0.133 | 
+Female group LIR: 0.151 | SEP: 0.755 | ETD: 0.132 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.146 | SEP: 0.755 | ETD: 0.131 | 
+18-24 group LIR: 0.172 | SEP: 0.759 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.759 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.755 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=0.95---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.115 | hr: 0.186 | recall: 0.010 | precision: 0.027 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.111 | hr: 0.180 | recall: 0.009 | precision: 0.027 | 
+Female group ndcg: 0.108 | hr: 0.173 | recall: 0.009 | precision: 0.025 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.117 | hr: 0.184 | recall: 0.010 | precision: 0.027 | 
+18-24 group ndcg: 0.107 | hr: 0.174 | recall: 0.009 | precision: 0.025 | 
+25-34 group ndcg: 0.112 | hr: 0.181 | recall: 0.009 | precision: 0.027 | 
+35-44 group ndcg: 0.118 | hr: 0.189 | recall: 0.008 | precision: 0.027 | 
+45-49 group ndcg: 0.113 | hr: 0.192 | recall: 0.013 | precision: 0.040 | 
+50-55 group ndcg: 0.110 | hr: 0.164 | recall: 0.006 | precision: 0.020 | 
+56+ group ndcg: 0.039 | hr: 0.074 | recall: 0.004 | precision: 0.009 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.161 | SEP: 0.751 | ETD: 0.133 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.759 | ETD: 0.133 | 
+Female group LIR: 0.151 | SEP: 0.756 | ETD: 0.132 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.146 | SEP: 0.755 | ETD: 0.131 | 
+18-24 group LIR: 0.172 | SEP: 0.759 | ETD: 0.132 | 
+25-34 group LIR: 0.162 | SEP: 0.759 | ETD: 0.134 | 
+35-44 group LIR: 0.142 | SEP: 0.756 | ETD: 0.136 | 
+45-49 group LIR: 0.135 | SEP: 0.753 | ETD: 0.129 | 
+50-55 group LIR: 0.086 | SEP: 0.752 | ETD: 0.127 | 
+56+ group LIR: 0.125 | SEP: 0.757 | ETD: 0.139 | 
+--- AFTER LIRopt optimization with alpha=1.0---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.066 | hr: 0.091 | recall: 0.005 | precision: 0.011 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.068 | hr: 0.093 | recall: 0.004 | precision: 0.011 | 
+Female group ndcg: 0.062 | hr: 0.082 | recall: 0.005 | precision: 0.010 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.068 | hr: 0.092 | recall: 0.004 | precision: 0.011 | 
+18-24 group ndcg: 0.065 | hr: 0.090 | recall: 0.005 | precision: 0.011 | 
+25-34 group ndcg: 0.067 | hr: 0.090 | recall: 0.004 | precision: 0.011 | 
+35-44 group ndcg: 0.070 | hr: 0.100 | recall: 0.003 | precision: 0.012 | 
+45-49 group ndcg: 0.093 | hr: 0.115 | recall: 0.012 | precision: 0.015 | 
+50-55 group ndcg: 0.049 | hr: 0.055 | recall: 0.002 | precision: 0.009 | 
+56+ group ndcg: 0.005 | hr: 0.015 | recall: 0.000 | precision: 0.003 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.161 | SEP: 0.853 | ETD: 0.168 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.164 | SEP: 0.854 | ETD: 0.165 | 
+Female group LIR: 0.151 | SEP: 0.855 | ETD: 0.163 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.146 | SEP: 0.855 | ETD: 0.166 | 
+18-24 group LIR: 0.172 | SEP: 0.855 | ETD: 0.164 | 
+25-34 group LIR: 0.162 | SEP: 0.854 | ETD: 0.166 | 
+35-44 group LIR: 0.142 | SEP: 0.856 | ETD: 0.164 | 
+45-49 group LIR: 0.135 | SEP: 0.847 | ETD: 0.163 | 
+50-55 group LIR: 0.086 | SEP: 0.859 | ETD: 0.153 | 
+56+ group LIR: 0.125 | SEP: 0.846 | ETD: 0.160 | 

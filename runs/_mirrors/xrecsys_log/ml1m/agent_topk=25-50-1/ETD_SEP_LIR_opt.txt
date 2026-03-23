@@ -1,0 +1,1702 @@
+Performing Alpha-Optimization...
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.320 | hr: 0.536 | recall: 0.046 | precision: 0.097 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.317 | hr: 0.530 | recall: 0.045 | precision: 0.095 | 
+Female group ndcg: 0.326 | hr: 0.552 | recall: 0.051 | precision: 0.100 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.283 | hr: 0.475 | recall: 0.036 | precision: 0.076 | 
+18-24 group ndcg: 0.325 | hr: 0.549 | recall: 0.047 | precision: 0.101 | 
+25-34 group ndcg: 0.315 | hr: 0.535 | recall: 0.046 | precision: 0.094 | 
+35-44 group ndcg: 0.332 | hr: 0.540 | recall: 0.048 | precision: 0.101 | 
+45-49 group ndcg: 0.299 | hr: 0.518 | recall: 0.046 | precision: 0.093 | 
+50-55 group ndcg: 0.315 | hr: 0.522 | recall: 0.048 | precision: 0.096 | 
+56+ group ndcg: 0.350 | hr: 0.576 | recall: 0.048 | precision: 0.102 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.282 | hr: 0.494 | recall: 0.045 | precision: 0.085 | 
+academic/educator group ndcg: 0.313 | hr: 0.540 | recall: 0.046 | precision: 0.099 | 
+artist group ndcg: 0.314 | hr: 0.517 | recall: 0.045 | precision: 0.098 | 
+clerical/admin group ndcg: 0.283 | hr: 0.468 | recall: 0.046 | precision: 0.088 | 
+college/grad student group ndcg: 0.321 | hr: 0.532 | recall: 0.051 | precision: 0.095 | 
+customer service group ndcg: 0.293 | hr: 0.509 | recall: 0.049 | precision: 0.105 | 
+doctor/health care group ndcg: 0.341 | hr: 0.551 | recall: 0.044 | precision: 0.096 | 
+executive/managerial group ndcg: 0.343 | hr: 0.563 | recall: 0.045 | precision: 0.099 | 
+farmer group ndcg: 0.353 | hr: 0.529 | recall: 0.048 | precision: 0.094 | 
+homemaker group ndcg: 0.389 | hr: 0.630 | recall: 0.053 | precision: 0.120 | 
+K-12 student group ndcg: 0.289 | hr: 0.490 | recall: 0.037 | precision: 0.078 | 
+lawyer group ndcg: 0.299 | hr: 0.519 | recall: 0.048 | precision: 0.078 | 
+programmer group ndcg: 0.309 | hr: 0.503 | recall: 0.043 | precision: 0.090 | 
+retired group ndcg: 0.353 | hr: 0.592 | recall: 0.048 | precision: 0.108 | 
+sales/marketing group ndcg: 0.317 | hr: 0.553 | recall: 0.044 | precision: 0.100 | 
+scientist group ndcg: 0.320 | hr: 0.556 | recall: 0.048 | precision: 0.107 | 
+self-employed group ndcg: 0.321 | hr: 0.544 | recall: 0.047 | precision: 0.100 | 
+technician/engineer group ndcg: 0.368 | hr: 0.600 | recall: 0.051 | precision: 0.110 | 
+tradesman/craftsman group ndcg: 0.287 | hr: 0.471 | recall: 0.043 | precision: 0.093 | 
+unemployed group ndcg: 0.344 | hr: 0.542 | recall: 0.047 | precision: 0.100 | 
+writer group ndcg: 0.313 | hr: 0.537 | recall: 0.047 | precision: 0.101 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.165 | SEP: 0.478 | ETD: 0.146 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.168 | SEP: 0.478 | ETD: 0.146 | 
+Female group LIR: 0.157 | SEP: 0.479 | ETD: 0.147 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.118 | SEP: 0.481 | ETD: 0.144 | 
+18-24 group LIR: 0.158 | SEP: 0.484 | ETD: 0.146 | 
+25-34 group LIR: 0.180 | SEP: 0.475 | ETD: 0.146 | 
+35-44 group LIR: 0.169 | SEP: 0.479 | ETD: 0.146 | 
+45-49 group LIR: 0.155 | SEP: 0.476 | ETD: 0.147 | 
+50-55 group LIR: 0.167 | SEP: 0.482 | ETD: 0.152 | 
+56+ group LIR: 0.130 | SEP: 0.477 | ETD: 0.143 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.169 | SEP: 0.471 | ETD: 0.145 | 
+academic/educator group LIR: 0.182 | SEP: 0.484 | ETD: 0.148 | 
+artist group LIR: 0.186 | SEP: 0.475 | ETD: 0.155 | 
+clerical/admin group LIR: 0.179 | SEP: 0.483 | ETD: 0.135 | 
+college/grad student group LIR: 0.166 | SEP: 0.478 | ETD: 0.144 | 
+customer service group LIR: 0.224 | SEP: 0.473 | ETD: 0.147 | 
+doctor/health care group LIR: 0.141 | SEP: 0.483 | ETD: 0.146 | 
+executive/managerial group LIR: 0.154 | SEP: 0.487 | ETD: 0.149 | 
+farmer group LIR: 0.122 | SEP: 0.489 | ETD: 0.129 | 
+homemaker group LIR: 0.154 | SEP: 0.491 | ETD: 0.148 | 
+K-12 student group LIR: 0.129 | SEP: 0.477 | ETD: 0.143 | 
+lawyer group LIR: 0.178 | SEP: 0.477 | ETD: 0.143 | 
+programmer group LIR: 0.171 | SEP: 0.466 | ETD: 0.143 | 
+retired group LIR: 0.129 | SEP: 0.484 | ETD: 0.144 | 
+sales/marketing group LIR: 0.130 | SEP: 0.481 | ETD: 0.149 | 
+scientist group LIR: 0.158 | SEP: 0.479 | ETD: 0.147 | 
+self-employed group LIR: 0.155 | SEP: 0.475 | ETD: 0.142 | 
+technician/engineer group LIR: 0.165 | SEP: 0.482 | ETD: 0.152 | 
+tradesman/craftsman group LIR: 0.177 | SEP: 0.481 | ETD: 0.144 | 
+unemployed group LIR: 0.242 | SEP: 0.465 | ETD: 0.147 | 
+writer group LIR: 0.180 | SEP: 0.473 | ETD: 0.145 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.05---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.318 | hr: 0.531 | recall: 0.046 | precision: 0.096 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.315 | hr: 0.523 | recall: 0.044 | precision: 0.095 | 
+Female group ndcg: 0.325 | hr: 0.550 | recall: 0.049 | precision: 0.099 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.278 | hr: 0.480 | recall: 0.039 | precision: 0.079 | 
+18-24 group ndcg: 0.321 | hr: 0.540 | recall: 0.046 | precision: 0.099 | 
+25-34 group ndcg: 0.315 | hr: 0.531 | recall: 0.045 | precision: 0.094 | 
+35-44 group ndcg: 0.323 | hr: 0.524 | recall: 0.046 | precision: 0.100 | 
+45-49 group ndcg: 0.303 | hr: 0.518 | recall: 0.045 | precision: 0.093 | 
+50-55 group ndcg: 0.318 | hr: 0.530 | recall: 0.046 | precision: 0.094 | 
+56+ group ndcg: 0.349 | hr: 0.568 | recall: 0.047 | precision: 0.102 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.288 | hr: 0.509 | recall: 0.046 | precision: 0.087 | 
+academic/educator group ndcg: 0.302 | hr: 0.508 | recall: 0.041 | precision: 0.092 | 
+artist group ndcg: 0.310 | hr: 0.517 | recall: 0.044 | precision: 0.098 | 
+clerical/admin group ndcg: 0.272 | hr: 0.451 | recall: 0.045 | precision: 0.088 | 
+college/grad student group ndcg: 0.322 | hr: 0.530 | recall: 0.050 | precision: 0.095 | 
+customer service group ndcg: 0.293 | hr: 0.500 | recall: 0.045 | precision: 0.104 | 
+doctor/health care group ndcg: 0.341 | hr: 0.547 | recall: 0.043 | precision: 0.093 | 
+executive/managerial group ndcg: 0.333 | hr: 0.551 | recall: 0.045 | precision: 0.099 | 
+farmer group ndcg: 0.426 | hr: 0.706 | recall: 0.067 | precision: 0.112 | 
+homemaker group ndcg: 0.385 | hr: 0.609 | recall: 0.051 | precision: 0.115 | 
+K-12 student group ndcg: 0.285 | hr: 0.500 | recall: 0.040 | precision: 0.081 | 
+lawyer group ndcg: 0.288 | hr: 0.488 | recall: 0.047 | precision: 0.079 | 
+programmer group ndcg: 0.309 | hr: 0.505 | recall: 0.042 | precision: 0.091 | 
+retired group ndcg: 0.365 | hr: 0.606 | recall: 0.051 | precision: 0.109 | 
+sales/marketing group ndcg: 0.309 | hr: 0.533 | recall: 0.042 | precision: 0.099 | 
+scientist group ndcg: 0.319 | hr: 0.535 | recall: 0.044 | precision: 0.101 | 
+self-employed group ndcg: 0.311 | hr: 0.535 | recall: 0.045 | precision: 0.100 | 
+technician/engineer group ndcg: 0.367 | hr: 0.588 | recall: 0.048 | precision: 0.107 | 
+tradesman/craftsman group ndcg: 0.287 | hr: 0.457 | recall: 0.043 | precision: 0.093 | 
+unemployed group ndcg: 0.349 | hr: 0.556 | recall: 0.049 | precision: 0.101 | 
+writer group ndcg: 0.323 | hr: 0.548 | recall: 0.048 | precision: 0.102 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.314 | SEP: 0.695 | ETD: 0.218 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.320 | SEP: 0.694 | ETD: 0.218 | 
+Female group LIR: 0.300 | SEP: 0.696 | ETD: 0.218 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.273 | SEP: 0.696 | ETD: 0.221 | 
+18-24 group LIR: 0.311 | SEP: 0.700 | ETD: 0.219 | 
+25-34 group LIR: 0.343 | SEP: 0.693 | ETD: 0.216 | 
+35-44 group LIR: 0.321 | SEP: 0.693 | ETD: 0.218 | 
+45-49 group LIR: 0.297 | SEP: 0.693 | ETD: 0.221 | 
+50-55 group LIR: 0.287 | SEP: 0.694 | ETD: 0.221 | 
+56+ group LIR: 0.226 | SEP: 0.698 | ETD: 0.213 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.331 | SEP: 0.691 | ETD: 0.219 | 
+academic/educator group LIR: 0.321 | SEP: 0.696 | ETD: 0.216 | 
+artist group LIR: 0.327 | SEP: 0.697 | ETD: 0.230 | 
+clerical/admin group LIR: 0.343 | SEP: 0.696 | ETD: 0.209 | 
+college/grad student group LIR: 0.330 | SEP: 0.693 | ETD: 0.219 | 
+customer service group LIR: 0.391 | SEP: 0.692 | ETD: 0.212 | 
+doctor/health care group LIR: 0.272 | SEP: 0.700 | ETD: 0.217 | 
+executive/managerial group LIR: 0.286 | SEP: 0.702 | ETD: 0.219 | 
+farmer group LIR: 0.319 | SEP: 0.719 | ETD: 0.224 | 
+homemaker group LIR: 0.290 | SEP: 0.697 | ETD: 0.218 | 
+K-12 student group LIR: 0.260 | SEP: 0.698 | ETD: 0.218 | 
+lawyer group LIR: 0.295 | SEP: 0.693 | ETD: 0.221 | 
+programmer group LIR: 0.342 | SEP: 0.693 | ETD: 0.215 | 
+retired group LIR: 0.237 | SEP: 0.692 | ETD: 0.215 | 
+sales/marketing group LIR: 0.294 | SEP: 0.702 | ETD: 0.216 | 
+scientist group LIR: 0.331 | SEP: 0.686 | ETD: 0.216 | 
+self-employed group LIR: 0.307 | SEP: 0.690 | ETD: 0.213 | 
+technician/engineer group LIR: 0.307 | SEP: 0.696 | ETD: 0.218 | 
+tradesman/craftsman group LIR: 0.309 | SEP: 0.708 | ETD: 0.224 | 
+unemployed group LIR: 0.353 | SEP: 0.670 | ETD: 0.225 | 
+writer group LIR: 0.335 | SEP: 0.690 | ETD: 0.215 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.1---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.314 | hr: 0.525 | recall: 0.044 | precision: 0.094 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.312 | hr: 0.519 | recall: 0.043 | precision: 0.093 | 
+Female group ndcg: 0.320 | hr: 0.540 | recall: 0.046 | precision: 0.096 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.265 | hr: 0.457 | recall: 0.037 | precision: 0.078 | 
+18-24 group ndcg: 0.320 | hr: 0.534 | recall: 0.045 | precision: 0.096 | 
+25-34 group ndcg: 0.310 | hr: 0.523 | recall: 0.043 | precision: 0.091 | 
+35-44 group ndcg: 0.320 | hr: 0.519 | recall: 0.045 | precision: 0.099 | 
+45-49 group ndcg: 0.302 | hr: 0.524 | recall: 0.044 | precision: 0.094 | 
+50-55 group ndcg: 0.308 | hr: 0.514 | recall: 0.044 | precision: 0.092 | 
+56+ group ndcg: 0.357 | hr: 0.582 | recall: 0.047 | precision: 0.102 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.291 | hr: 0.515 | recall: 0.045 | precision: 0.086 | 
+academic/educator group ndcg: 0.296 | hr: 0.498 | recall: 0.038 | precision: 0.088 | 
+artist group ndcg: 0.322 | hr: 0.524 | recall: 0.043 | precision: 0.097 | 
+clerical/admin group ndcg: 0.272 | hr: 0.439 | recall: 0.042 | precision: 0.086 | 
+college/grad student group ndcg: 0.323 | hr: 0.532 | recall: 0.049 | precision: 0.093 | 
+customer service group ndcg: 0.293 | hr: 0.491 | recall: 0.041 | precision: 0.098 | 
+doctor/health care group ndcg: 0.308 | hr: 0.500 | recall: 0.043 | precision: 0.091 | 
+executive/managerial group ndcg: 0.326 | hr: 0.536 | recall: 0.042 | precision: 0.095 | 
+farmer group ndcg: 0.439 | hr: 0.706 | recall: 0.071 | precision: 0.124 | 
+homemaker group ndcg: 0.395 | hr: 0.641 | recall: 0.055 | precision: 0.121 | 
+K-12 student group ndcg: 0.271 | hr: 0.479 | recall: 0.038 | precision: 0.079 | 
+lawyer group ndcg: 0.283 | hr: 0.481 | recall: 0.043 | precision: 0.076 | 
+programmer group ndcg: 0.317 | hr: 0.518 | recall: 0.042 | precision: 0.089 | 
+retired group ndcg: 0.363 | hr: 0.606 | recall: 0.047 | precision: 0.106 | 
+sales/marketing group ndcg: 0.296 | hr: 0.520 | recall: 0.040 | precision: 0.097 | 
+scientist group ndcg: 0.311 | hr: 0.514 | recall: 0.041 | precision: 0.103 | 
+self-employed group ndcg: 0.290 | hr: 0.502 | recall: 0.039 | precision: 0.096 | 
+technician/engineer group ndcg: 0.361 | hr: 0.578 | recall: 0.047 | precision: 0.107 | 
+tradesman/craftsman group ndcg: 0.294 | hr: 0.471 | recall: 0.042 | precision: 0.090 | 
+unemployed group ndcg: 0.324 | hr: 0.514 | recall: 0.047 | precision: 0.104 | 
+writer group ndcg: 0.330 | hr: 0.562 | recall: 0.049 | precision: 0.102 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.325 | SEP: 0.740 | ETD: 0.248 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.332 | SEP: 0.740 | ETD: 0.248 | 
+Female group LIR: 0.307 | SEP: 0.741 | ETD: 0.246 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.277 | SEP: 0.744 | ETD: 0.251 | 
+18-24 group LIR: 0.321 | SEP: 0.743 | ETD: 0.247 | 
+25-34 group LIR: 0.354 | SEP: 0.740 | ETD: 0.248 | 
+35-44 group LIR: 0.334 | SEP: 0.738 | ETD: 0.249 | 
+45-49 group LIR: 0.311 | SEP: 0.741 | ETD: 0.246 | 
+50-55 group LIR: 0.302 | SEP: 0.737 | ETD: 0.247 | 
+56+ group LIR: 0.229 | SEP: 0.742 | ETD: 0.242 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.345 | SEP: 0.736 | ETD: 0.248 | 
+academic/educator group LIR: 0.331 | SEP: 0.742 | ETD: 0.247 | 
+artist group LIR: 0.339 | SEP: 0.737 | ETD: 0.256 | 
+clerical/admin group LIR: 0.353 | SEP: 0.745 | ETD: 0.235 | 
+college/grad student group LIR: 0.342 | SEP: 0.736 | ETD: 0.249 | 
+customer service group LIR: 0.404 | SEP: 0.738 | ETD: 0.247 | 
+doctor/health care group LIR: 0.287 | SEP: 0.743 | ETD: 0.243 | 
+executive/managerial group LIR: 0.293 | SEP: 0.745 | ETD: 0.249 | 
+farmer group LIR: 0.327 | SEP: 0.764 | ETD: 0.241 | 
+homemaker group LIR: 0.288 | SEP: 0.738 | ETD: 0.249 | 
+K-12 student group LIR: 0.265 | SEP: 0.747 | ETD: 0.246 | 
+lawyer group LIR: 0.316 | SEP: 0.744 | ETD: 0.253 | 
+programmer group LIR: 0.349 | SEP: 0.742 | ETD: 0.248 | 
+retired group LIR: 0.238 | SEP: 0.743 | ETD: 0.246 | 
+sales/marketing group LIR: 0.302 | SEP: 0.747 | ETD: 0.247 | 
+scientist group LIR: 0.346 | SEP: 0.731 | ETD: 0.245 | 
+self-employed group LIR: 0.326 | SEP: 0.736 | ETD: 0.246 | 
+technician/engineer group LIR: 0.321 | SEP: 0.741 | ETD: 0.245 | 
+tradesman/craftsman group LIR: 0.315 | SEP: 0.748 | ETD: 0.261 | 
+unemployed group LIR: 0.378 | SEP: 0.727 | ETD: 0.265 | 
+writer group LIR: 0.348 | SEP: 0.736 | ETD: 0.243 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.15---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.313 | hr: 0.519 | recall: 0.042 | precision: 0.091 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.312 | hr: 0.516 | recall: 0.041 | precision: 0.090 | 
+Female group ndcg: 0.314 | hr: 0.527 | recall: 0.044 | precision: 0.093 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.269 | hr: 0.466 | recall: 0.036 | precision: 0.076 | 
+18-24 group ndcg: 0.322 | hr: 0.529 | recall: 0.043 | precision: 0.092 | 
+25-34 group ndcg: 0.306 | hr: 0.513 | recall: 0.041 | precision: 0.087 | 
+35-44 group ndcg: 0.310 | hr: 0.506 | recall: 0.043 | precision: 0.095 | 
+45-49 group ndcg: 0.311 | hr: 0.529 | recall: 0.043 | precision: 0.092 | 
+50-55 group ndcg: 0.313 | hr: 0.526 | recall: 0.044 | precision: 0.092 | 
+56+ group ndcg: 0.357 | hr: 0.568 | recall: 0.044 | precision: 0.099 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.300 | hr: 0.526 | recall: 0.047 | precision: 0.086 | 
+academic/educator group ndcg: 0.282 | hr: 0.487 | recall: 0.036 | precision: 0.084 | 
+artist group ndcg: 0.306 | hr: 0.498 | recall: 0.042 | precision: 0.094 | 
+clerical/admin group ndcg: 0.273 | hr: 0.434 | recall: 0.036 | precision: 0.085 | 
+college/grad student group ndcg: 0.324 | hr: 0.526 | recall: 0.046 | precision: 0.089 | 
+customer service group ndcg: 0.287 | hr: 0.482 | recall: 0.040 | precision: 0.097 | 
+doctor/health care group ndcg: 0.306 | hr: 0.487 | recall: 0.040 | precision: 0.087 | 
+executive/managerial group ndcg: 0.317 | hr: 0.527 | recall: 0.040 | precision: 0.092 | 
+farmer group ndcg: 0.452 | hr: 0.706 | recall: 0.075 | precision: 0.129 | 
+homemaker group ndcg: 0.376 | hr: 0.630 | recall: 0.050 | precision: 0.109 | 
+K-12 student group ndcg: 0.271 | hr: 0.490 | recall: 0.038 | precision: 0.079 | 
+lawyer group ndcg: 0.293 | hr: 0.488 | recall: 0.044 | precision: 0.075 | 
+programmer group ndcg: 0.316 | hr: 0.526 | recall: 0.043 | precision: 0.088 | 
+retired group ndcg: 0.353 | hr: 0.585 | recall: 0.046 | precision: 0.106 | 
+sales/marketing group ndcg: 0.300 | hr: 0.513 | recall: 0.038 | precision: 0.094 | 
+scientist group ndcg: 0.300 | hr: 0.500 | recall: 0.037 | precision: 0.093 | 
+self-employed group ndcg: 0.300 | hr: 0.485 | recall: 0.035 | precision: 0.091 | 
+technician/engineer group ndcg: 0.367 | hr: 0.570 | recall: 0.045 | precision: 0.102 | 
+tradesman/craftsman group ndcg: 0.277 | hr: 0.443 | recall: 0.036 | precision: 0.080 | 
+unemployed group ndcg: 0.328 | hr: 0.500 | recall: 0.042 | precision: 0.096 | 
+writer group ndcg: 0.328 | hr: 0.559 | recall: 0.048 | precision: 0.101 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.333 | SEP: 0.781 | ETD: 0.280 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.340 | SEP: 0.781 | ETD: 0.281 | 
+Female group LIR: 0.313 | SEP: 0.782 | ETD: 0.277 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.284 | SEP: 0.785 | ETD: 0.284 | 
+18-24 group LIR: 0.327 | SEP: 0.785 | ETD: 0.279 | 
+25-34 group LIR: 0.362 | SEP: 0.780 | ETD: 0.280 | 
+35-44 group LIR: 0.340 | SEP: 0.781 | ETD: 0.283 | 
+45-49 group LIR: 0.316 | SEP: 0.779 | ETD: 0.278 | 
+50-55 group LIR: 0.316 | SEP: 0.779 | ETD: 0.279 | 
+56+ group LIR: 0.238 | SEP: 0.783 | ETD: 0.274 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.351 | SEP: 0.777 | ETD: 0.279 | 
+academic/educator group LIR: 0.336 | SEP: 0.781 | ETD: 0.278 | 
+artist group LIR: 0.347 | SEP: 0.779 | ETD: 0.289 | 
+clerical/admin group LIR: 0.365 | SEP: 0.783 | ETD: 0.268 | 
+college/grad student group LIR: 0.348 | SEP: 0.779 | ETD: 0.279 | 
+customer service group LIR: 0.410 | SEP: 0.778 | ETD: 0.284 | 
+doctor/health care group LIR: 0.297 | SEP: 0.783 | ETD: 0.273 | 
+executive/managerial group LIR: 0.302 | SEP: 0.786 | ETD: 0.280 | 
+farmer group LIR: 0.327 | SEP: 0.801 | ETD: 0.259 | 
+homemaker group LIR: 0.297 | SEP: 0.786 | ETD: 0.279 | 
+K-12 student group LIR: 0.270 | SEP: 0.786 | ETD: 0.276 | 
+lawyer group LIR: 0.328 | SEP: 0.780 | ETD: 0.286 | 
+programmer group LIR: 0.357 | SEP: 0.780 | ETD: 0.285 | 
+retired group LIR: 0.252 | SEP: 0.782 | ETD: 0.275 | 
+sales/marketing group LIR: 0.311 | SEP: 0.788 | ETD: 0.278 | 
+scientist group LIR: 0.349 | SEP: 0.780 | ETD: 0.275 | 
+self-employed group LIR: 0.334 | SEP: 0.782 | ETD: 0.288 | 
+technician/engineer group LIR: 0.327 | SEP: 0.784 | ETD: 0.278 | 
+tradesman/craftsman group LIR: 0.316 | SEP: 0.788 | ETD: 0.293 | 
+unemployed group LIR: 0.388 | SEP: 0.770 | ETD: 0.304 | 
+writer group LIR: 0.354 | SEP: 0.774 | ETD: 0.280 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.2---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.303 | hr: 0.500 | recall: 0.039 | precision: 0.086 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.302 | hr: 0.495 | recall: 0.038 | precision: 0.085 | 
+Female group ndcg: 0.307 | hr: 0.512 | recall: 0.041 | precision: 0.089 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.270 | hr: 0.471 | recall: 0.035 | precision: 0.074 | 
+18-24 group ndcg: 0.311 | hr: 0.507 | recall: 0.041 | precision: 0.089 | 
+25-34 group ndcg: 0.300 | hr: 0.494 | recall: 0.037 | precision: 0.082 | 
+35-44 group ndcg: 0.303 | hr: 0.490 | recall: 0.040 | precision: 0.089 | 
+45-49 group ndcg: 0.294 | hr: 0.496 | recall: 0.039 | precision: 0.087 | 
+50-55 group ndcg: 0.301 | hr: 0.516 | recall: 0.041 | precision: 0.090 | 
+56+ group ndcg: 0.335 | hr: 0.539 | recall: 0.040 | precision: 0.092 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.298 | hr: 0.511 | recall: 0.043 | precision: 0.082 | 
+academic/educator group ndcg: 0.268 | hr: 0.468 | recall: 0.034 | precision: 0.081 | 
+artist group ndcg: 0.298 | hr: 0.479 | recall: 0.039 | precision: 0.090 | 
+clerical/admin group ndcg: 0.271 | hr: 0.439 | recall: 0.033 | precision: 0.079 | 
+college/grad student group ndcg: 0.309 | hr: 0.499 | recall: 0.044 | precision: 0.087 | 
+customer service group ndcg: 0.261 | hr: 0.446 | recall: 0.037 | precision: 0.088 | 
+doctor/health care group ndcg: 0.288 | hr: 0.462 | recall: 0.037 | precision: 0.081 | 
+executive/managerial group ndcg: 0.295 | hr: 0.495 | recall: 0.035 | precision: 0.084 | 
+farmer group ndcg: 0.477 | hr: 0.706 | recall: 0.074 | precision: 0.124 | 
+homemaker group ndcg: 0.384 | hr: 0.652 | recall: 0.051 | precision: 0.114 | 
+K-12 student group ndcg: 0.265 | hr: 0.474 | recall: 0.036 | precision: 0.078 | 
+lawyer group ndcg: 0.276 | hr: 0.442 | recall: 0.038 | precision: 0.067 | 
+programmer group ndcg: 0.308 | hr: 0.508 | recall: 0.038 | precision: 0.081 | 
+retired group ndcg: 0.331 | hr: 0.556 | recall: 0.041 | precision: 0.098 | 
+sales/marketing group ndcg: 0.308 | hr: 0.510 | recall: 0.037 | precision: 0.092 | 
+scientist group ndcg: 0.289 | hr: 0.493 | recall: 0.036 | precision: 0.092 | 
+self-employed group ndcg: 0.300 | hr: 0.481 | recall: 0.032 | precision: 0.084 | 
+technician/engineer group ndcg: 0.360 | hr: 0.556 | recall: 0.044 | precision: 0.099 | 
+tradesman/craftsman group ndcg: 0.271 | hr: 0.429 | recall: 0.032 | precision: 0.073 | 
+unemployed group ndcg: 0.364 | hr: 0.528 | recall: 0.042 | precision: 0.092 | 
+writer group ndcg: 0.318 | hr: 0.516 | recall: 0.043 | precision: 0.091 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.338 | SEP: 0.814 | ETD: 0.315 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.346 | SEP: 0.814 | ETD: 0.316 | 
+Female group LIR: 0.318 | SEP: 0.815 | ETD: 0.313 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.289 | SEP: 0.820 | ETD: 0.319 | 
+18-24 group LIR: 0.330 | SEP: 0.815 | ETD: 0.311 | 
+25-34 group LIR: 0.370 | SEP: 0.814 | ETD: 0.314 | 
+35-44 group LIR: 0.344 | SEP: 0.811 | ETD: 0.319 | 
+45-49 group LIR: 0.324 | SEP: 0.815 | ETD: 0.320 | 
+50-55 group LIR: 0.320 | SEP: 0.815 | ETD: 0.318 | 
+56+ group LIR: 0.243 | SEP: 0.817 | ETD: 0.314 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.360 | SEP: 0.812 | ETD: 0.314 | 
+academic/educator group LIR: 0.341 | SEP: 0.814 | ETD: 0.311 | 
+artist group LIR: 0.353 | SEP: 0.812 | ETD: 0.321 | 
+clerical/admin group LIR: 0.367 | SEP: 0.818 | ETD: 0.309 | 
+college/grad student group LIR: 0.353 | SEP: 0.811 | ETD: 0.311 | 
+customer service group LIR: 0.411 | SEP: 0.805 | ETD: 0.324 | 
+doctor/health care group LIR: 0.298 | SEP: 0.819 | ETD: 0.313 | 
+executive/managerial group LIR: 0.308 | SEP: 0.817 | ETD: 0.316 | 
+farmer group LIR: 0.328 | SEP: 0.830 | ETD: 0.306 | 
+homemaker group LIR: 0.300 | SEP: 0.820 | ETD: 0.312 | 
+K-12 student group LIR: 0.274 | SEP: 0.821 | ETD: 0.316 | 
+lawyer group LIR: 0.332 | SEP: 0.815 | ETD: 0.326 | 
+programmer group LIR: 0.364 | SEP: 0.811 | ETD: 0.326 | 
+retired group LIR: 0.256 | SEP: 0.817 | ETD: 0.312 | 
+sales/marketing group LIR: 0.318 | SEP: 0.820 | ETD: 0.311 | 
+scientist group LIR: 0.355 | SEP: 0.814 | ETD: 0.314 | 
+self-employed group LIR: 0.336 | SEP: 0.813 | ETD: 0.328 | 
+technician/engineer group LIR: 0.333 | SEP: 0.817 | ETD: 0.313 | 
+tradesman/craftsman group LIR: 0.330 | SEP: 0.822 | ETD: 0.319 | 
+unemployed group LIR: 0.399 | SEP: 0.791 | ETD: 0.339 | 
+writer group LIR: 0.361 | SEP: 0.810 | ETD: 0.311 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.25---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.297 | hr: 0.483 | recall: 0.037 | precision: 0.082 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.295 | hr: 0.477 | recall: 0.036 | precision: 0.080 | 
+Female group ndcg: 0.303 | hr: 0.499 | recall: 0.039 | precision: 0.085 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.265 | hr: 0.457 | recall: 0.032 | precision: 0.070 | 
+18-24 group ndcg: 0.305 | hr: 0.491 | recall: 0.038 | precision: 0.084 | 
+25-34 group ndcg: 0.294 | hr: 0.475 | recall: 0.035 | precision: 0.079 | 
+35-44 group ndcg: 0.298 | hr: 0.487 | recall: 0.039 | precision: 0.086 | 
+45-49 group ndcg: 0.283 | hr: 0.475 | recall: 0.035 | precision: 0.080 | 
+50-55 group ndcg: 0.284 | hr: 0.484 | recall: 0.037 | precision: 0.085 | 
+56+ group ndcg: 0.337 | hr: 0.518 | recall: 0.038 | precision: 0.087 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.295 | hr: 0.494 | recall: 0.041 | precision: 0.078 | 
+academic/educator group ndcg: 0.261 | hr: 0.445 | recall: 0.032 | precision: 0.077 | 
+artist group ndcg: 0.291 | hr: 0.464 | recall: 0.035 | precision: 0.084 | 
+clerical/admin group ndcg: 0.261 | hr: 0.434 | recall: 0.031 | precision: 0.074 | 
+college/grad student group ndcg: 0.304 | hr: 0.490 | recall: 0.040 | precision: 0.082 | 
+customer service group ndcg: 0.267 | hr: 0.429 | recall: 0.034 | precision: 0.084 | 
+doctor/health care group ndcg: 0.292 | hr: 0.462 | recall: 0.036 | precision: 0.080 | 
+executive/managerial group ndcg: 0.289 | hr: 0.473 | recall: 0.033 | precision: 0.080 | 
+farmer group ndcg: 0.492 | hr: 0.706 | recall: 0.071 | precision: 0.112 | 
+homemaker group ndcg: 0.367 | hr: 0.587 | recall: 0.047 | precision: 0.104 | 
+K-12 student group ndcg: 0.262 | hr: 0.464 | recall: 0.033 | precision: 0.075 | 
+lawyer group ndcg: 0.258 | hr: 0.434 | recall: 0.036 | precision: 0.071 | 
+programmer group ndcg: 0.294 | hr: 0.490 | recall: 0.037 | precision: 0.075 | 
+retired group ndcg: 0.339 | hr: 0.563 | recall: 0.041 | precision: 0.098 | 
+sales/marketing group ndcg: 0.314 | hr: 0.513 | recall: 0.035 | precision: 0.089 | 
+scientist group ndcg: 0.287 | hr: 0.493 | recall: 0.036 | precision: 0.090 | 
+self-employed group ndcg: 0.299 | hr: 0.465 | recall: 0.030 | precision: 0.078 | 
+technician/engineer group ndcg: 0.345 | hr: 0.532 | recall: 0.040 | precision: 0.093 | 
+tradesman/craftsman group ndcg: 0.252 | hr: 0.386 | recall: 0.028 | precision: 0.064 | 
+unemployed group ndcg: 0.323 | hr: 0.472 | recall: 0.037 | precision: 0.083 | 
+writer group ndcg: 0.302 | hr: 0.477 | recall: 0.040 | precision: 0.084 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.342 | SEP: 0.840 | ETD: 0.350 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.350 | SEP: 0.839 | ETD: 0.351 | 
+Female group LIR: 0.321 | SEP: 0.841 | ETD: 0.348 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.293 | SEP: 0.844 | ETD: 0.363 | 
+18-24 group LIR: 0.333 | SEP: 0.841 | ETD: 0.342 | 
+25-34 group LIR: 0.374 | SEP: 0.839 | ETD: 0.349 | 
+35-44 group LIR: 0.348 | SEP: 0.835 | ETD: 0.352 | 
+45-49 group LIR: 0.328 | SEP: 0.840 | ETD: 0.355 | 
+50-55 group LIR: 0.323 | SEP: 0.841 | ETD: 0.356 | 
+56+ group LIR: 0.245 | SEP: 0.846 | ETD: 0.349 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.363 | SEP: 0.839 | ETD: 0.351 | 
+academic/educator group LIR: 0.343 | SEP: 0.842 | ETD: 0.345 | 
+artist group LIR: 0.357 | SEP: 0.836 | ETD: 0.353 | 
+clerical/admin group LIR: 0.370 | SEP: 0.840 | ETD: 0.343 | 
+college/grad student group LIR: 0.357 | SEP: 0.837 | ETD: 0.344 | 
+customer service group LIR: 0.414 | SEP: 0.834 | ETD: 0.361 | 
+doctor/health care group LIR: 0.302 | SEP: 0.848 | ETD: 0.343 | 
+executive/managerial group LIR: 0.311 | SEP: 0.840 | ETD: 0.351 | 
+farmer group LIR: 0.328 | SEP: 0.855 | ETD: 0.335 | 
+homemaker group LIR: 0.304 | SEP: 0.846 | ETD: 0.343 | 
+K-12 student group LIR: 0.278 | SEP: 0.843 | ETD: 0.359 | 
+lawyer group LIR: 0.329 | SEP: 0.836 | ETD: 0.361 | 
+programmer group LIR: 0.368 | SEP: 0.835 | ETD: 0.359 | 
+retired group LIR: 0.259 | SEP: 0.844 | ETD: 0.344 | 
+sales/marketing group LIR: 0.324 | SEP: 0.842 | ETD: 0.344 | 
+scientist group LIR: 0.360 | SEP: 0.835 | ETD: 0.357 | 
+self-employed group LIR: 0.341 | SEP: 0.842 | ETD: 0.359 | 
+technician/engineer group LIR: 0.338 | SEP: 0.842 | ETD: 0.348 | 
+tradesman/craftsman group LIR: 0.330 | SEP: 0.847 | ETD: 0.354 | 
+unemployed group LIR: 0.403 | SEP: 0.828 | ETD: 0.381 | 
+writer group LIR: 0.367 | SEP: 0.835 | ETD: 0.346 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.3---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.293 | hr: 0.469 | recall: 0.035 | precision: 0.077 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.292 | hr: 0.466 | recall: 0.034 | precision: 0.077 | 
+Female group ndcg: 0.295 | hr: 0.478 | recall: 0.036 | precision: 0.080 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.258 | hr: 0.434 | recall: 0.029 | precision: 0.066 | 
+18-24 group ndcg: 0.308 | hr: 0.487 | recall: 0.037 | precision: 0.081 | 
+25-34 group ndcg: 0.288 | hr: 0.457 | recall: 0.033 | precision: 0.074 | 
+35-44 group ndcg: 0.297 | hr: 0.476 | recall: 0.036 | precision: 0.081 | 
+45-49 group ndcg: 0.287 | hr: 0.469 | recall: 0.033 | precision: 0.075 | 
+50-55 group ndcg: 0.274 | hr: 0.462 | recall: 0.034 | precision: 0.079 | 
+56+ group ndcg: 0.319 | hr: 0.497 | recall: 0.035 | precision: 0.082 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.284 | hr: 0.467 | recall: 0.037 | precision: 0.073 | 
+academic/educator group ndcg: 0.263 | hr: 0.439 | recall: 0.031 | precision: 0.073 | 
+artist group ndcg: 0.287 | hr: 0.453 | recall: 0.032 | precision: 0.076 | 
+clerical/admin group ndcg: 0.281 | hr: 0.439 | recall: 0.031 | precision: 0.068 | 
+college/grad student group ndcg: 0.308 | hr: 0.495 | recall: 0.040 | precision: 0.081 | 
+customer service group ndcg: 0.249 | hr: 0.393 | recall: 0.028 | precision: 0.076 | 
+doctor/health care group ndcg: 0.274 | hr: 0.453 | recall: 0.031 | precision: 0.076 | 
+executive/managerial group ndcg: 0.283 | hr: 0.457 | recall: 0.031 | precision: 0.077 | 
+farmer group ndcg: 0.424 | hr: 0.647 | recall: 0.066 | precision: 0.100 | 
+homemaker group ndcg: 0.322 | hr: 0.533 | recall: 0.040 | precision: 0.091 | 
+K-12 student group ndcg: 0.252 | hr: 0.428 | recall: 0.029 | precision: 0.069 | 
+lawyer group ndcg: 0.263 | hr: 0.442 | recall: 0.035 | precision: 0.071 | 
+programmer group ndcg: 0.293 | hr: 0.472 | recall: 0.034 | precision: 0.072 | 
+retired group ndcg: 0.317 | hr: 0.535 | recall: 0.038 | precision: 0.090 | 
+sales/marketing group ndcg: 0.312 | hr: 0.500 | recall: 0.035 | precision: 0.087 | 
+scientist group ndcg: 0.299 | hr: 0.486 | recall: 0.036 | precision: 0.087 | 
+self-employed group ndcg: 0.294 | hr: 0.436 | recall: 0.028 | precision: 0.069 | 
+technician/engineer group ndcg: 0.340 | hr: 0.516 | recall: 0.038 | precision: 0.087 | 
+tradesman/craftsman group ndcg: 0.273 | hr: 0.414 | recall: 0.029 | precision: 0.064 | 
+unemployed group ndcg: 0.334 | hr: 0.472 | recall: 0.034 | precision: 0.079 | 
+writer group ndcg: 0.297 | hr: 0.459 | recall: 0.036 | precision: 0.077 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.344 | SEP: 0.859 | ETD: 0.382 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.352 | SEP: 0.858 | ETD: 0.382 | 
+Female group LIR: 0.323 | SEP: 0.861 | ETD: 0.381 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.297 | SEP: 0.865 | ETD: 0.394 | 
+18-24 group LIR: 0.335 | SEP: 0.859 | ETD: 0.374 | 
+25-34 group LIR: 0.377 | SEP: 0.858 | ETD: 0.381 | 
+35-44 group LIR: 0.349 | SEP: 0.856 | ETD: 0.384 | 
+45-49 group LIR: 0.329 | SEP: 0.861 | ETD: 0.388 | 
+50-55 group LIR: 0.325 | SEP: 0.859 | ETD: 0.383 | 
+56+ group LIR: 0.248 | SEP: 0.867 | ETD: 0.380 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.365 | SEP: 0.859 | ETD: 0.382 | 
+academic/educator group LIR: 0.345 | SEP: 0.861 | ETD: 0.379 | 
+artist group LIR: 0.359 | SEP: 0.854 | ETD: 0.386 | 
+clerical/admin group LIR: 0.371 | SEP: 0.857 | ETD: 0.371 | 
+college/grad student group LIR: 0.359 | SEP: 0.856 | ETD: 0.376 | 
+customer service group LIR: 0.415 | SEP: 0.853 | ETD: 0.393 | 
+doctor/health care group LIR: 0.305 | SEP: 0.868 | ETD: 0.374 | 
+executive/managerial group LIR: 0.312 | SEP: 0.861 | ETD: 0.378 | 
+farmer group LIR: 0.331 | SEP: 0.866 | ETD: 0.371 | 
+homemaker group LIR: 0.307 | SEP: 0.863 | ETD: 0.384 | 
+K-12 student group LIR: 0.283 | SEP: 0.863 | ETD: 0.392 | 
+lawyer group LIR: 0.331 | SEP: 0.857 | ETD: 0.397 | 
+programmer group LIR: 0.372 | SEP: 0.854 | ETD: 0.387 | 
+retired group LIR: 0.261 | SEP: 0.861 | ETD: 0.374 | 
+sales/marketing group LIR: 0.326 | SEP: 0.864 | ETD: 0.381 | 
+scientist group LIR: 0.365 | SEP: 0.853 | ETD: 0.380 | 
+self-employed group LIR: 0.345 | SEP: 0.862 | ETD: 0.392 | 
+technician/engineer group LIR: 0.338 | SEP: 0.860 | ETD: 0.384 | 
+tradesman/craftsman group LIR: 0.331 | SEP: 0.864 | ETD: 0.389 | 
+unemployed group LIR: 0.408 | SEP: 0.852 | ETD: 0.407 | 
+writer group LIR: 0.367 | SEP: 0.855 | ETD: 0.375 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.35---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.286 | hr: 0.453 | recall: 0.032 | precision: 0.073 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.284 | hr: 0.447 | recall: 0.031 | precision: 0.072 | 
+Female group ndcg: 0.292 | hr: 0.470 | recall: 0.034 | precision: 0.076 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.250 | hr: 0.430 | recall: 0.026 | precision: 0.064 | 
+18-24 group ndcg: 0.300 | hr: 0.471 | recall: 0.035 | precision: 0.077 | 
+25-34 group ndcg: 0.284 | hr: 0.445 | recall: 0.031 | precision: 0.070 | 
+35-44 group ndcg: 0.290 | hr: 0.455 | recall: 0.033 | precision: 0.076 | 
+45-49 group ndcg: 0.270 | hr: 0.442 | recall: 0.031 | precision: 0.071 | 
+50-55 group ndcg: 0.279 | hr: 0.464 | recall: 0.032 | precision: 0.076 | 
+56+ group ndcg: 0.295 | hr: 0.458 | recall: 0.033 | precision: 0.075 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.277 | hr: 0.453 | recall: 0.035 | precision: 0.070 | 
+academic/educator group ndcg: 0.260 | hr: 0.422 | recall: 0.029 | precision: 0.070 | 
+artist group ndcg: 0.281 | hr: 0.442 | recall: 0.030 | precision: 0.071 | 
+clerical/admin group ndcg: 0.290 | hr: 0.445 | recall: 0.028 | precision: 0.064 | 
+college/grad student group ndcg: 0.305 | hr: 0.486 | recall: 0.038 | precision: 0.077 | 
+customer service group ndcg: 0.251 | hr: 0.393 | recall: 0.026 | precision: 0.071 | 
+doctor/health care group ndcg: 0.276 | hr: 0.441 | recall: 0.028 | precision: 0.073 | 
+executive/managerial group ndcg: 0.269 | hr: 0.424 | recall: 0.028 | precision: 0.071 | 
+farmer group ndcg: 0.452 | hr: 0.706 | recall: 0.069 | precision: 0.106 | 
+homemaker group ndcg: 0.334 | hr: 0.533 | recall: 0.038 | precision: 0.089 | 
+K-12 student group ndcg: 0.250 | hr: 0.418 | recall: 0.025 | precision: 0.066 | 
+lawyer group ndcg: 0.248 | hr: 0.419 | recall: 0.031 | precision: 0.063 | 
+programmer group ndcg: 0.275 | hr: 0.446 | recall: 0.031 | precision: 0.068 | 
+retired group ndcg: 0.308 | hr: 0.521 | recall: 0.033 | precision: 0.083 | 
+sales/marketing group ndcg: 0.316 | hr: 0.497 | recall: 0.034 | precision: 0.084 | 
+scientist group ndcg: 0.295 | hr: 0.458 | recall: 0.030 | precision: 0.083 | 
+self-employed group ndcg: 0.277 | hr: 0.419 | recall: 0.027 | precision: 0.066 | 
+technician/engineer group ndcg: 0.336 | hr: 0.502 | recall: 0.035 | precision: 0.080 | 
+tradesman/craftsman group ndcg: 0.258 | hr: 0.386 | recall: 0.029 | precision: 0.063 | 
+unemployed group ndcg: 0.352 | hr: 0.500 | recall: 0.036 | precision: 0.085 | 
+writer group ndcg: 0.262 | hr: 0.420 | recall: 0.031 | precision: 0.069 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.345 | SEP: 0.874 | ETD: 0.410 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.354 | SEP: 0.874 | ETD: 0.410 | 
+Female group LIR: 0.324 | SEP: 0.875 | ETD: 0.409 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.298 | SEP: 0.881 | ETD: 0.419 | 
+18-24 group LIR: 0.337 | SEP: 0.874 | ETD: 0.401 | 
+25-34 group LIR: 0.378 | SEP: 0.874 | ETD: 0.410 | 
+35-44 group LIR: 0.350 | SEP: 0.869 | ETD: 0.411 | 
+45-49 group LIR: 0.330 | SEP: 0.875 | ETD: 0.420 | 
+50-55 group LIR: 0.325 | SEP: 0.874 | ETD: 0.412 | 
+56+ group LIR: 0.248 | SEP: 0.882 | ETD: 0.412 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.366 | SEP: 0.874 | ETD: 0.409 | 
+academic/educator group LIR: 0.348 | SEP: 0.873 | ETD: 0.408 | 
+artist group LIR: 0.360 | SEP: 0.869 | ETD: 0.422 | 
+clerical/admin group LIR: 0.372 | SEP: 0.872 | ETD: 0.397 | 
+college/grad student group LIR: 0.360 | SEP: 0.872 | ETD: 0.402 | 
+customer service group LIR: 0.418 | SEP: 0.866 | ETD: 0.420 | 
+doctor/health care group LIR: 0.305 | SEP: 0.884 | ETD: 0.401 | 
+executive/managerial group LIR: 0.314 | SEP: 0.876 | ETD: 0.407 | 
+farmer group LIR: 0.331 | SEP: 0.867 | ETD: 0.424 | 
+homemaker group LIR: 0.309 | SEP: 0.874 | ETD: 0.417 | 
+K-12 student group LIR: 0.284 | SEP: 0.879 | ETD: 0.420 | 
+lawyer group LIR: 0.333 | SEP: 0.871 | ETD: 0.431 | 
+programmer group LIR: 0.373 | SEP: 0.872 | ETD: 0.415 | 
+retired group LIR: 0.259 | SEP: 0.878 | ETD: 0.406 | 
+sales/marketing group LIR: 0.328 | SEP: 0.877 | ETD: 0.406 | 
+scientist group LIR: 0.367 | SEP: 0.873 | ETD: 0.406 | 
+self-employed group LIR: 0.344 | SEP: 0.877 | ETD: 0.420 | 
+technician/engineer group LIR: 0.338 | SEP: 0.873 | ETD: 0.414 | 
+tradesman/craftsman group LIR: 0.333 | SEP: 0.874 | ETD: 0.419 | 
+unemployed group LIR: 0.408 | SEP: 0.869 | ETD: 0.432 | 
+writer group LIR: 0.371 | SEP: 0.874 | ETD: 0.405 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.4---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.280 | hr: 0.440 | recall: 0.030 | precision: 0.069 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.277 | hr: 0.434 | recall: 0.029 | precision: 0.068 | 
+Female group ndcg: 0.287 | hr: 0.454 | recall: 0.032 | precision: 0.072 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.247 | hr: 0.416 | recall: 0.025 | precision: 0.061 | 
+18-24 group ndcg: 0.288 | hr: 0.451 | recall: 0.032 | precision: 0.071 | 
+25-34 group ndcg: 0.284 | hr: 0.438 | recall: 0.029 | precision: 0.067 | 
+35-44 group ndcg: 0.284 | hr: 0.441 | recall: 0.031 | precision: 0.072 | 
+45-49 group ndcg: 0.271 | hr: 0.442 | recall: 0.030 | precision: 0.070 | 
+50-55 group ndcg: 0.263 | hr: 0.433 | recall: 0.029 | precision: 0.070 | 
+56+ group ndcg: 0.283 | hr: 0.429 | recall: 0.030 | precision: 0.069 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.276 | hr: 0.444 | recall: 0.033 | precision: 0.067 | 
+academic/educator group ndcg: 0.266 | hr: 0.422 | recall: 0.029 | precision: 0.068 | 
+artist group ndcg: 0.275 | hr: 0.419 | recall: 0.028 | precision: 0.068 | 
+clerical/admin group ndcg: 0.248 | hr: 0.376 | recall: 0.021 | precision: 0.053 | 
+college/grad student group ndcg: 0.296 | hr: 0.473 | recall: 0.035 | precision: 0.072 | 
+customer service group ndcg: 0.249 | hr: 0.393 | recall: 0.025 | precision: 0.063 | 
+doctor/health care group ndcg: 0.282 | hr: 0.449 | recall: 0.026 | precision: 0.069 | 
+executive/managerial group ndcg: 0.266 | hr: 0.418 | recall: 0.028 | precision: 0.069 | 
+farmer group ndcg: 0.433 | hr: 0.647 | recall: 0.066 | precision: 0.100 | 
+homemaker group ndcg: 0.329 | hr: 0.511 | recall: 0.035 | precision: 0.084 | 
+K-12 student group ndcg: 0.252 | hr: 0.418 | recall: 0.024 | precision: 0.063 | 
+lawyer group ndcg: 0.231 | hr: 0.395 | recall: 0.025 | precision: 0.056 | 
+programmer group ndcg: 0.275 | hr: 0.430 | recall: 0.029 | precision: 0.065 | 
+retired group ndcg: 0.300 | hr: 0.486 | recall: 0.029 | precision: 0.075 | 
+sales/marketing group ndcg: 0.303 | hr: 0.474 | recall: 0.032 | precision: 0.082 | 
+scientist group ndcg: 0.291 | hr: 0.451 | recall: 0.028 | precision: 0.077 | 
+self-employed group ndcg: 0.275 | hr: 0.407 | recall: 0.025 | precision: 0.063 | 
+technician/engineer group ndcg: 0.327 | hr: 0.486 | recall: 0.034 | precision: 0.076 | 
+tradesman/craftsman group ndcg: 0.260 | hr: 0.386 | recall: 0.029 | precision: 0.061 | 
+unemployed group ndcg: 0.322 | hr: 0.444 | recall: 0.033 | precision: 0.078 | 
+writer group ndcg: 0.244 | hr: 0.395 | recall: 0.030 | precision: 0.065 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.346 | SEP: 0.885 | ETD: 0.433 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.354 | SEP: 0.884 | ETD: 0.432 | 
+Female group LIR: 0.325 | SEP: 0.887 | ETD: 0.434 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.297 | SEP: 0.892 | ETD: 0.444 | 
+18-24 group LIR: 0.338 | SEP: 0.884 | ETD: 0.425 | 
+25-34 group LIR: 0.379 | SEP: 0.885 | ETD: 0.433 | 
+35-44 group LIR: 0.351 | SEP: 0.881 | ETD: 0.434 | 
+45-49 group LIR: 0.330 | SEP: 0.886 | ETD: 0.439 | 
+50-55 group LIR: 0.326 | SEP: 0.885 | ETD: 0.430 | 
+56+ group LIR: 0.248 | SEP: 0.892 | ETD: 0.434 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.366 | SEP: 0.886 | ETD: 0.430 | 
+academic/educator group LIR: 0.350 | SEP: 0.882 | ETD: 0.429 | 
+artist group LIR: 0.361 | SEP: 0.878 | ETD: 0.446 | 
+clerical/admin group LIR: 0.373 | SEP: 0.887 | ETD: 0.421 | 
+college/grad student group LIR: 0.362 | SEP: 0.884 | ETD: 0.428 | 
+customer service group LIR: 0.415 | SEP: 0.880 | ETD: 0.446 | 
+doctor/health care group LIR: 0.306 | SEP: 0.893 | ETD: 0.431 | 
+executive/managerial group LIR: 0.315 | SEP: 0.887 | ETD: 0.427 | 
+farmer group LIR: 0.331 | SEP: 0.873 | ETD: 0.447 | 
+homemaker group LIR: 0.310 | SEP: 0.885 | ETD: 0.448 | 
+K-12 student group LIR: 0.285 | SEP: 0.888 | ETD: 0.444 | 
+lawyer group LIR: 0.333 | SEP: 0.881 | ETD: 0.455 | 
+programmer group LIR: 0.374 | SEP: 0.882 | ETD: 0.437 | 
+retired group LIR: 0.258 | SEP: 0.889 | ETD: 0.427 | 
+sales/marketing group LIR: 0.329 | SEP: 0.887 | ETD: 0.425 | 
+scientist group LIR: 0.367 | SEP: 0.885 | ETD: 0.419 | 
+self-employed group LIR: 0.344 | SEP: 0.890 | ETD: 0.443 | 
+technician/engineer group LIR: 0.339 | SEP: 0.886 | ETD: 0.437 | 
+tradesman/craftsman group LIR: 0.332 | SEP: 0.881 | ETD: 0.446 | 
+unemployed group LIR: 0.409 | SEP: 0.879 | ETD: 0.461 | 
+writer group LIR: 0.371 | SEP: 0.884 | ETD: 0.424 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.45---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.272 | hr: 0.424 | recall: 0.029 | precision: 0.067 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.271 | hr: 0.420 | recall: 0.028 | precision: 0.065 | 
+Female group ndcg: 0.275 | hr: 0.433 | recall: 0.030 | precision: 0.069 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.243 | hr: 0.407 | recall: 0.024 | precision: 0.059 | 
+18-24 group ndcg: 0.286 | hr: 0.442 | recall: 0.030 | precision: 0.069 | 
+25-34 group ndcg: 0.271 | hr: 0.422 | recall: 0.028 | precision: 0.065 | 
+35-44 group ndcg: 0.274 | hr: 0.418 | recall: 0.029 | precision: 0.068 | 
+45-49 group ndcg: 0.264 | hr: 0.424 | recall: 0.028 | precision: 0.066 | 
+50-55 group ndcg: 0.262 | hr: 0.421 | recall: 0.028 | precision: 0.068 | 
+56+ group ndcg: 0.275 | hr: 0.413 | recall: 0.028 | precision: 0.067 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.272 | hr: 0.425 | recall: 0.031 | precision: 0.062 | 
+academic/educator group ndcg: 0.255 | hr: 0.400 | recall: 0.027 | precision: 0.066 | 
+artist group ndcg: 0.259 | hr: 0.412 | recall: 0.028 | precision: 0.067 | 
+clerical/admin group ndcg: 0.230 | hr: 0.341 | recall: 0.018 | precision: 0.047 | 
+college/grad student group ndcg: 0.290 | hr: 0.460 | recall: 0.034 | precision: 0.070 | 
+customer service group ndcg: 0.261 | hr: 0.420 | recall: 0.027 | precision: 0.065 | 
+doctor/health care group ndcg: 0.273 | hr: 0.432 | recall: 0.026 | precision: 0.068 | 
+executive/managerial group ndcg: 0.253 | hr: 0.399 | recall: 0.025 | precision: 0.066 | 
+farmer group ndcg: 0.460 | hr: 0.706 | recall: 0.068 | precision: 0.100 | 
+homemaker group ndcg: 0.313 | hr: 0.489 | recall: 0.037 | precision: 0.082 | 
+K-12 student group ndcg: 0.251 | hr: 0.418 | recall: 0.024 | precision: 0.063 | 
+lawyer group ndcg: 0.211 | hr: 0.349 | recall: 0.021 | precision: 0.051 | 
+programmer group ndcg: 0.272 | hr: 0.418 | recall: 0.028 | precision: 0.063 | 
+retired group ndcg: 0.295 | hr: 0.472 | recall: 0.029 | precision: 0.073 | 
+sales/marketing group ndcg: 0.311 | hr: 0.474 | recall: 0.033 | precision: 0.082 | 
+scientist group ndcg: 0.290 | hr: 0.451 | recall: 0.026 | precision: 0.074 | 
+self-employed group ndcg: 0.257 | hr: 0.382 | recall: 0.022 | precision: 0.059 | 
+technician/engineer group ndcg: 0.308 | hr: 0.464 | recall: 0.031 | precision: 0.072 | 
+tradesman/craftsman group ndcg: 0.242 | hr: 0.357 | recall: 0.030 | precision: 0.060 | 
+unemployed group ndcg: 0.322 | hr: 0.444 | recall: 0.033 | precision: 0.078 | 
+writer group ndcg: 0.243 | hr: 0.381 | recall: 0.027 | precision: 0.063 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.893 | ETD: 0.450 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.892 | ETD: 0.450 | 
+Female group LIR: 0.326 | SEP: 0.895 | ETD: 0.450 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.297 | SEP: 0.900 | ETD: 0.463 | 
+18-24 group LIR: 0.339 | SEP: 0.893 | ETD: 0.445 | 
+25-34 group LIR: 0.379 | SEP: 0.892 | ETD: 0.450 | 
+35-44 group LIR: 0.354 | SEP: 0.891 | ETD: 0.449 | 
+45-49 group LIR: 0.329 | SEP: 0.894 | ETD: 0.456 | 
+50-55 group LIR: 0.327 | SEP: 0.893 | ETD: 0.446 | 
+56+ group LIR: 0.248 | SEP: 0.899 | ETD: 0.448 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.894 | ETD: 0.450 | 
+academic/educator group LIR: 0.350 | SEP: 0.890 | ETD: 0.450 | 
+artist group LIR: 0.362 | SEP: 0.886 | ETD: 0.461 | 
+clerical/admin group LIR: 0.372 | SEP: 0.895 | ETD: 0.434 | 
+college/grad student group LIR: 0.363 | SEP: 0.891 | ETD: 0.445 | 
+customer service group LIR: 0.415 | SEP: 0.888 | ETD: 0.459 | 
+doctor/health care group LIR: 0.307 | SEP: 0.901 | ETD: 0.440 | 
+executive/managerial group LIR: 0.316 | SEP: 0.896 | ETD: 0.445 | 
+farmer group LIR: 0.331 | SEP: 0.880 | ETD: 0.465 | 
+homemaker group LIR: 0.310 | SEP: 0.891 | ETD: 0.462 | 
+K-12 student group LIR: 0.285 | SEP: 0.896 | ETD: 0.463 | 
+lawyer group LIR: 0.335 | SEP: 0.885 | ETD: 0.472 | 
+programmer group LIR: 0.374 | SEP: 0.891 | ETD: 0.452 | 
+retired group LIR: 0.258 | SEP: 0.897 | ETD: 0.442 | 
+sales/marketing group LIR: 0.332 | SEP: 0.897 | ETD: 0.441 | 
+scientist group LIR: 0.369 | SEP: 0.895 | ETD: 0.435 | 
+self-employed group LIR: 0.345 | SEP: 0.896 | ETD: 0.460 | 
+technician/engineer group LIR: 0.340 | SEP: 0.895 | ETD: 0.456 | 
+tradesman/craftsman group LIR: 0.334 | SEP: 0.889 | ETD: 0.466 | 
+unemployed group LIR: 0.409 | SEP: 0.887 | ETD: 0.472 | 
+writer group LIR: 0.371 | SEP: 0.892 | ETD: 0.441 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.5---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.266 | hr: 0.413 | recall: 0.027 | precision: 0.064 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.263 | hr: 0.406 | recall: 0.026 | precision: 0.062 | 
+Female group ndcg: 0.274 | hr: 0.428 | recall: 0.028 | precision: 0.067 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.253 | hr: 0.416 | recall: 0.024 | precision: 0.058 | 
+18-24 group ndcg: 0.283 | hr: 0.436 | recall: 0.029 | precision: 0.067 | 
+25-34 group ndcg: 0.264 | hr: 0.406 | recall: 0.026 | precision: 0.061 | 
+35-44 group ndcg: 0.263 | hr: 0.404 | recall: 0.027 | precision: 0.065 | 
+45-49 group ndcg: 0.261 | hr: 0.413 | recall: 0.027 | precision: 0.064 | 
+50-55 group ndcg: 0.250 | hr: 0.409 | recall: 0.026 | precision: 0.067 | 
+56+ group ndcg: 0.272 | hr: 0.411 | recall: 0.027 | precision: 0.065 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.262 | hr: 0.404 | recall: 0.029 | precision: 0.058 | 
+academic/educator group ndcg: 0.259 | hr: 0.405 | recall: 0.026 | precision: 0.063 | 
+artist group ndcg: 0.258 | hr: 0.404 | recall: 0.027 | precision: 0.065 | 
+clerical/admin group ndcg: 0.233 | hr: 0.341 | recall: 0.017 | precision: 0.045 | 
+college/grad student group ndcg: 0.281 | hr: 0.443 | recall: 0.032 | precision: 0.067 | 
+customer service group ndcg: 0.228 | hr: 0.384 | recall: 0.025 | precision: 0.060 | 
+doctor/health care group ndcg: 0.266 | hr: 0.419 | recall: 0.025 | precision: 0.066 | 
+executive/managerial group ndcg: 0.249 | hr: 0.392 | recall: 0.024 | precision: 0.063 | 
+farmer group ndcg: 0.438 | hr: 0.647 | recall: 0.056 | precision: 0.088 | 
+homemaker group ndcg: 0.315 | hr: 0.489 | recall: 0.036 | precision: 0.080 | 
+K-12 student group ndcg: 0.267 | hr: 0.433 | recall: 0.024 | precision: 0.062 | 
+lawyer group ndcg: 0.199 | hr: 0.318 | recall: 0.020 | precision: 0.048 | 
+programmer group ndcg: 0.266 | hr: 0.410 | recall: 0.027 | precision: 0.062 | 
+retired group ndcg: 0.279 | hr: 0.451 | recall: 0.027 | precision: 0.070 | 
+sales/marketing group ndcg: 0.302 | hr: 0.457 | recall: 0.032 | precision: 0.077 | 
+scientist group ndcg: 0.277 | hr: 0.444 | recall: 0.026 | precision: 0.071 | 
+self-employed group ndcg: 0.242 | hr: 0.361 | recall: 0.021 | precision: 0.057 | 
+technician/engineer group ndcg: 0.294 | hr: 0.442 | recall: 0.028 | precision: 0.069 | 
+tradesman/craftsman group ndcg: 0.230 | hr: 0.343 | recall: 0.025 | precision: 0.056 | 
+unemployed group ndcg: 0.327 | hr: 0.458 | recall: 0.032 | precision: 0.075 | 
+writer group ndcg: 0.249 | hr: 0.381 | recall: 0.026 | precision: 0.061 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.900 | ETD: 0.464 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.899 | ETD: 0.463 | 
+Female group LIR: 0.326 | SEP: 0.901 | ETD: 0.467 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.298 | SEP: 0.906 | ETD: 0.479 | 
+18-24 group LIR: 0.340 | SEP: 0.899 | ETD: 0.459 | 
+25-34 group LIR: 0.380 | SEP: 0.899 | ETD: 0.466 | 
+35-44 group LIR: 0.353 | SEP: 0.897 | ETD: 0.465 | 
+45-49 group LIR: 0.330 | SEP: 0.900 | ETD: 0.469 | 
+50-55 group LIR: 0.326 | SEP: 0.901 | ETD: 0.459 | 
+56+ group LIR: 0.248 | SEP: 0.906 | ETD: 0.462 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.900 | ETD: 0.464 | 
+academic/educator group LIR: 0.352 | SEP: 0.897 | ETD: 0.464 | 
+artist group LIR: 0.362 | SEP: 0.892 | ETD: 0.474 | 
+clerical/admin group LIR: 0.373 | SEP: 0.902 | ETD: 0.444 | 
+college/grad student group LIR: 0.363 | SEP: 0.897 | ETD: 0.458 | 
+customer service group LIR: 0.409 | SEP: 0.893 | ETD: 0.471 | 
+doctor/health care group LIR: 0.307 | SEP: 0.907 | ETD: 0.456 | 
+executive/managerial group LIR: 0.316 | SEP: 0.902 | ETD: 0.461 | 
+farmer group LIR: 0.331 | SEP: 0.895 | ETD: 0.459 | 
+homemaker group LIR: 0.309 | SEP: 0.897 | ETD: 0.484 | 
+K-12 student group LIR: 0.285 | SEP: 0.902 | ETD: 0.478 | 
+lawyer group LIR: 0.333 | SEP: 0.891 | ETD: 0.490 | 
+programmer group LIR: 0.374 | SEP: 0.899 | ETD: 0.465 | 
+retired group LIR: 0.256 | SEP: 0.904 | ETD: 0.461 | 
+sales/marketing group LIR: 0.332 | SEP: 0.903 | ETD: 0.459 | 
+scientist group LIR: 0.369 | SEP: 0.902 | ETD: 0.452 | 
+self-employed group LIR: 0.344 | SEP: 0.901 | ETD: 0.473 | 
+technician/engineer group LIR: 0.341 | SEP: 0.901 | ETD: 0.469 | 
+tradesman/craftsman group LIR: 0.334 | SEP: 0.901 | ETD: 0.477 | 
+unemployed group LIR: 0.409 | SEP: 0.893 | ETD: 0.494 | 
+writer group LIR: 0.370 | SEP: 0.898 | ETD: 0.459 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.55---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.262 | hr: 0.402 | recall: 0.025 | precision: 0.061 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.259 | hr: 0.396 | recall: 0.025 | precision: 0.060 | 
+Female group ndcg: 0.271 | hr: 0.417 | recall: 0.027 | precision: 0.064 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.258 | hr: 0.416 | recall: 0.023 | precision: 0.058 | 
+18-24 group ndcg: 0.274 | hr: 0.420 | recall: 0.028 | precision: 0.064 | 
+25-34 group ndcg: 0.262 | hr: 0.397 | recall: 0.025 | precision: 0.059 | 
+35-44 group ndcg: 0.261 | hr: 0.395 | recall: 0.025 | precision: 0.063 | 
+45-49 group ndcg: 0.257 | hr: 0.396 | recall: 0.026 | precision: 0.060 | 
+50-55 group ndcg: 0.245 | hr: 0.403 | recall: 0.023 | precision: 0.064 | 
+56+ group ndcg: 0.268 | hr: 0.400 | recall: 0.024 | precision: 0.062 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.265 | hr: 0.399 | recall: 0.027 | precision: 0.056 | 
+academic/educator group ndcg: 0.255 | hr: 0.398 | recall: 0.024 | precision: 0.062 | 
+artist group ndcg: 0.239 | hr: 0.375 | recall: 0.023 | precision: 0.060 | 
+clerical/admin group ndcg: 0.226 | hr: 0.329 | recall: 0.016 | precision: 0.043 | 
+college/grad student group ndcg: 0.277 | hr: 0.428 | recall: 0.030 | precision: 0.065 | 
+customer service group ndcg: 0.202 | hr: 0.348 | recall: 0.023 | precision: 0.057 | 
+doctor/health care group ndcg: 0.276 | hr: 0.419 | recall: 0.025 | precision: 0.066 | 
+executive/managerial group ndcg: 0.247 | hr: 0.378 | recall: 0.022 | precision: 0.060 | 
+farmer group ndcg: 0.435 | hr: 0.647 | recall: 0.052 | precision: 0.082 | 
+homemaker group ndcg: 0.322 | hr: 0.500 | recall: 0.036 | precision: 0.080 | 
+K-12 student group ndcg: 0.263 | hr: 0.423 | recall: 0.023 | precision: 0.061 | 
+lawyer group ndcg: 0.190 | hr: 0.295 | recall: 0.018 | precision: 0.043 | 
+programmer group ndcg: 0.266 | hr: 0.405 | recall: 0.025 | precision: 0.059 | 
+retired group ndcg: 0.277 | hr: 0.444 | recall: 0.025 | precision: 0.068 | 
+sales/marketing group ndcg: 0.292 | hr: 0.437 | recall: 0.027 | precision: 0.071 | 
+scientist group ndcg: 0.285 | hr: 0.444 | recall: 0.027 | precision: 0.070 | 
+self-employed group ndcg: 0.235 | hr: 0.353 | recall: 0.020 | precision: 0.056 | 
+technician/engineer group ndcg: 0.286 | hr: 0.432 | recall: 0.026 | precision: 0.066 | 
+tradesman/craftsman group ndcg: 0.208 | hr: 0.314 | recall: 0.024 | precision: 0.053 | 
+unemployed group ndcg: 0.294 | hr: 0.431 | recall: 0.029 | precision: 0.069 | 
+writer group ndcg: 0.253 | hr: 0.388 | recall: 0.025 | precision: 0.060 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.904 | ETD: 0.476 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.904 | ETD: 0.475 | 
+Female group LIR: 0.327 | SEP: 0.906 | ETD: 0.478 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.298 | SEP: 0.912 | ETD: 0.489 | 
+18-24 group LIR: 0.340 | SEP: 0.903 | ETD: 0.471 | 
+25-34 group LIR: 0.380 | SEP: 0.904 | ETD: 0.478 | 
+35-44 group LIR: 0.353 | SEP: 0.902 | ETD: 0.476 | 
+45-49 group LIR: 0.330 | SEP: 0.905 | ETD: 0.481 | 
+50-55 group LIR: 0.327 | SEP: 0.905 | ETD: 0.470 | 
+56+ group LIR: 0.249 | SEP: 0.910 | ETD: 0.473 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.904 | ETD: 0.475 | 
+academic/educator group LIR: 0.354 | SEP: 0.903 | ETD: 0.473 | 
+artist group LIR: 0.362 | SEP: 0.899 | ETD: 0.483 | 
+clerical/admin group LIR: 0.373 | SEP: 0.906 | ETD: 0.458 | 
+college/grad student group LIR: 0.363 | SEP: 0.902 | ETD: 0.472 | 
+customer service group LIR: 0.410 | SEP: 0.897 | ETD: 0.486 | 
+doctor/health care group LIR: 0.307 | SEP: 0.909 | ETD: 0.472 | 
+executive/managerial group LIR: 0.316 | SEP: 0.908 | ETD: 0.472 | 
+farmer group LIR: 0.334 | SEP: 0.897 | ETD: 0.465 | 
+homemaker group LIR: 0.310 | SEP: 0.900 | ETD: 0.488 | 
+K-12 student group LIR: 0.285 | SEP: 0.908 | ETD: 0.489 | 
+lawyer group LIR: 0.331 | SEP: 0.895 | ETD: 0.506 | 
+programmer group LIR: 0.374 | SEP: 0.904 | ETD: 0.478 | 
+retired group LIR: 0.257 | SEP: 0.905 | ETD: 0.476 | 
+sales/marketing group LIR: 0.333 | SEP: 0.909 | ETD: 0.469 | 
+scientist group LIR: 0.369 | SEP: 0.906 | ETD: 0.469 | 
+self-employed group LIR: 0.346 | SEP: 0.907 | ETD: 0.483 | 
+technician/engineer group LIR: 0.340 | SEP: 0.907 | ETD: 0.475 | 
+tradesman/craftsman group LIR: 0.333 | SEP: 0.907 | ETD: 0.487 | 
+unemployed group LIR: 0.410 | SEP: 0.897 | ETD: 0.503 | 
+writer group LIR: 0.370 | SEP: 0.901 | ETD: 0.472 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.6---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.260 | hr: 0.394 | recall: 0.024 | precision: 0.060 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.257 | hr: 0.388 | recall: 0.024 | precision: 0.059 | 
+Female group ndcg: 0.268 | hr: 0.409 | recall: 0.026 | precision: 0.063 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.261 | hr: 0.421 | recall: 0.023 | precision: 0.060 | 
+18-24 group ndcg: 0.268 | hr: 0.409 | recall: 0.027 | precision: 0.062 | 
+25-34 group ndcg: 0.258 | hr: 0.385 | recall: 0.024 | precision: 0.057 | 
+35-44 group ndcg: 0.260 | hr: 0.390 | recall: 0.024 | precision: 0.061 | 
+45-49 group ndcg: 0.261 | hr: 0.391 | recall: 0.025 | precision: 0.060 | 
+50-55 group ndcg: 0.243 | hr: 0.393 | recall: 0.022 | precision: 0.062 | 
+56+ group ndcg: 0.271 | hr: 0.403 | recall: 0.023 | precision: 0.061 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.260 | hr: 0.388 | recall: 0.026 | precision: 0.054 | 
+academic/educator group ndcg: 0.248 | hr: 0.386 | recall: 0.022 | precision: 0.060 | 
+artist group ndcg: 0.243 | hr: 0.367 | recall: 0.023 | precision: 0.059 | 
+clerical/admin group ndcg: 0.224 | hr: 0.318 | recall: 0.015 | precision: 0.040 | 
+college/grad student group ndcg: 0.271 | hr: 0.419 | recall: 0.029 | precision: 0.063 | 
+customer service group ndcg: 0.224 | hr: 0.375 | recall: 0.024 | precision: 0.060 | 
+doctor/health care group ndcg: 0.266 | hr: 0.407 | recall: 0.024 | precision: 0.065 | 
+executive/managerial group ndcg: 0.244 | hr: 0.368 | recall: 0.022 | precision: 0.059 | 
+farmer group ndcg: 0.340 | hr: 0.471 | recall: 0.045 | precision: 0.071 | 
+homemaker group ndcg: 0.309 | hr: 0.467 | recall: 0.033 | precision: 0.076 | 
+K-12 student group ndcg: 0.267 | hr: 0.428 | recall: 0.023 | precision: 0.062 | 
+lawyer group ndcg: 0.187 | hr: 0.279 | recall: 0.016 | precision: 0.040 | 
+programmer group ndcg: 0.260 | hr: 0.397 | recall: 0.024 | precision: 0.057 | 
+retired group ndcg: 0.280 | hr: 0.444 | recall: 0.023 | precision: 0.065 | 
+sales/marketing group ndcg: 0.299 | hr: 0.437 | recall: 0.027 | precision: 0.072 | 
+scientist group ndcg: 0.285 | hr: 0.438 | recall: 0.026 | precision: 0.069 | 
+self-employed group ndcg: 0.235 | hr: 0.344 | recall: 0.019 | precision: 0.056 | 
+technician/engineer group ndcg: 0.295 | hr: 0.430 | recall: 0.026 | precision: 0.065 | 
+tradesman/craftsman group ndcg: 0.195 | hr: 0.300 | recall: 0.024 | precision: 0.050 | 
+unemployed group ndcg: 0.284 | hr: 0.417 | recall: 0.027 | precision: 0.068 | 
+writer group ndcg: 0.254 | hr: 0.388 | recall: 0.024 | precision: 0.058 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.348 | SEP: 0.908 | ETD: 0.484 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.356 | SEP: 0.907 | ETD: 0.483 | 
+Female group LIR: 0.328 | SEP: 0.909 | ETD: 0.486 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.298 | SEP: 0.915 | ETD: 0.495 | 
+18-24 group LIR: 0.340 | SEP: 0.906 | ETD: 0.481 | 
+25-34 group LIR: 0.381 | SEP: 0.907 | ETD: 0.485 | 
+35-44 group LIR: 0.353 | SEP: 0.905 | ETD: 0.484 | 
+45-49 group LIR: 0.330 | SEP: 0.909 | ETD: 0.486 | 
+50-55 group LIR: 0.329 | SEP: 0.909 | ETD: 0.479 | 
+56+ group LIR: 0.249 | SEP: 0.913 | ETD: 0.479 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.368 | SEP: 0.908 | ETD: 0.484 | 
+academic/educator group LIR: 0.354 | SEP: 0.907 | ETD: 0.481 | 
+artist group LIR: 0.363 | SEP: 0.901 | ETD: 0.490 | 
+clerical/admin group LIR: 0.372 | SEP: 0.911 | ETD: 0.465 | 
+college/grad student group LIR: 0.364 | SEP: 0.905 | ETD: 0.480 | 
+customer service group LIR: 0.411 | SEP: 0.898 | ETD: 0.491 | 
+doctor/health care group LIR: 0.308 | SEP: 0.912 | ETD: 0.479 | 
+executive/managerial group LIR: 0.317 | SEP: 0.910 | ETD: 0.481 | 
+farmer group LIR: 0.334 | SEP: 0.901 | ETD: 0.471 | 
+homemaker group LIR: 0.313 | SEP: 0.903 | ETD: 0.499 | 
+K-12 student group LIR: 0.285 | SEP: 0.912 | ETD: 0.497 | 
+lawyer group LIR: 0.331 | SEP: 0.898 | ETD: 0.514 | 
+programmer group LIR: 0.374 | SEP: 0.905 | ETD: 0.488 | 
+retired group LIR: 0.256 | SEP: 0.910 | ETD: 0.480 | 
+sales/marketing group LIR: 0.333 | SEP: 0.911 | ETD: 0.476 | 
+scientist group LIR: 0.370 | SEP: 0.907 | ETD: 0.478 | 
+self-employed group LIR: 0.348 | SEP: 0.910 | ETD: 0.490 | 
+technician/engineer group LIR: 0.341 | SEP: 0.911 | ETD: 0.483 | 
+tradesman/craftsman group LIR: 0.332 | SEP: 0.909 | ETD: 0.496 | 
+unemployed group LIR: 0.409 | SEP: 0.902 | ETD: 0.508 | 
+writer group LIR: 0.370 | SEP: 0.906 | ETD: 0.480 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.65---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.258 | hr: 0.386 | recall: 0.024 | precision: 0.058 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.255 | hr: 0.381 | recall: 0.023 | precision: 0.057 | 
+Female group ndcg: 0.264 | hr: 0.398 | recall: 0.025 | precision: 0.060 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.266 | hr: 0.421 | recall: 0.023 | precision: 0.059 | 
+18-24 group ndcg: 0.261 | hr: 0.401 | recall: 0.025 | precision: 0.060 | 
+25-34 group ndcg: 0.255 | hr: 0.376 | recall: 0.023 | precision: 0.055 | 
+35-44 group ndcg: 0.266 | hr: 0.388 | recall: 0.023 | precision: 0.060 | 
+45-49 group ndcg: 0.259 | hr: 0.382 | recall: 0.025 | precision: 0.058 | 
+50-55 group ndcg: 0.232 | hr: 0.375 | recall: 0.021 | precision: 0.059 | 
+56+ group ndcg: 0.262 | hr: 0.387 | recall: 0.022 | precision: 0.060 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.257 | hr: 0.381 | recall: 0.025 | precision: 0.052 | 
+academic/educator group ndcg: 0.249 | hr: 0.383 | recall: 0.023 | precision: 0.059 | 
+artist group ndcg: 0.234 | hr: 0.341 | recall: 0.021 | precision: 0.054 | 
+clerical/admin group ndcg: 0.213 | hr: 0.312 | recall: 0.015 | precision: 0.042 | 
+college/grad student group ndcg: 0.261 | hr: 0.403 | recall: 0.027 | precision: 0.060 | 
+customer service group ndcg: 0.226 | hr: 0.357 | recall: 0.021 | precision: 0.056 | 
+doctor/health care group ndcg: 0.265 | hr: 0.407 | recall: 0.023 | precision: 0.064 | 
+executive/managerial group ndcg: 0.240 | hr: 0.361 | recall: 0.021 | precision: 0.056 | 
+farmer group ndcg: 0.384 | hr: 0.529 | recall: 0.045 | precision: 0.071 | 
+homemaker group ndcg: 0.287 | hr: 0.435 | recall: 0.031 | precision: 0.071 | 
+K-12 student group ndcg: 0.272 | hr: 0.428 | recall: 0.023 | precision: 0.060 | 
+lawyer group ndcg: 0.198 | hr: 0.287 | recall: 0.016 | precision: 0.040 | 
+programmer group ndcg: 0.260 | hr: 0.389 | recall: 0.023 | precision: 0.057 | 
+retired group ndcg: 0.275 | hr: 0.423 | recall: 0.023 | precision: 0.065 | 
+sales/marketing group ndcg: 0.293 | hr: 0.421 | recall: 0.026 | precision: 0.069 | 
+scientist group ndcg: 0.296 | hr: 0.451 | recall: 0.028 | precision: 0.069 | 
+self-employed group ndcg: 0.232 | hr: 0.336 | recall: 0.018 | precision: 0.053 | 
+technician/engineer group ndcg: 0.290 | hr: 0.416 | recall: 0.026 | precision: 0.063 | 
+tradesman/craftsman group ndcg: 0.211 | hr: 0.329 | recall: 0.025 | precision: 0.051 | 
+unemployed group ndcg: 0.282 | hr: 0.403 | recall: 0.026 | precision: 0.065 | 
+writer group ndcg: 0.265 | hr: 0.391 | recall: 0.025 | precision: 0.059 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.348 | SEP: 0.911 | ETD: 0.489 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.910 | ETD: 0.488 | 
+Female group LIR: 0.328 | SEP: 0.912 | ETD: 0.492 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.298 | SEP: 0.918 | ETD: 0.500 | 
+18-24 group LIR: 0.340 | SEP: 0.910 | ETD: 0.486 | 
+25-34 group LIR: 0.380 | SEP: 0.909 | ETD: 0.490 | 
+35-44 group LIR: 0.354 | SEP: 0.908 | ETD: 0.491 | 
+45-49 group LIR: 0.330 | SEP: 0.913 | ETD: 0.492 | 
+50-55 group LIR: 0.329 | SEP: 0.913 | ETD: 0.484 | 
+56+ group LIR: 0.248 | SEP: 0.916 | ETD: 0.485 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.368 | SEP: 0.911 | ETD: 0.490 | 
+academic/educator group LIR: 0.354 | SEP: 0.911 | ETD: 0.486 | 
+artist group LIR: 0.363 | SEP: 0.904 | ETD: 0.493 | 
+clerical/admin group LIR: 0.372 | SEP: 0.915 | ETD: 0.472 | 
+college/grad student group LIR: 0.364 | SEP: 0.909 | ETD: 0.485 | 
+customer service group LIR: 0.413 | SEP: 0.901 | ETD: 0.495 | 
+doctor/health care group LIR: 0.308 | SEP: 0.914 | ETD: 0.482 | 
+executive/managerial group LIR: 0.317 | SEP: 0.913 | ETD: 0.486 | 
+farmer group LIR: 0.334 | SEP: 0.904 | ETD: 0.471 | 
+homemaker group LIR: 0.313 | SEP: 0.907 | ETD: 0.503 | 
+K-12 student group LIR: 0.284 | SEP: 0.916 | ETD: 0.503 | 
+lawyer group LIR: 0.332 | SEP: 0.900 | ETD: 0.519 | 
+programmer group LIR: 0.374 | SEP: 0.909 | ETD: 0.491 | 
+retired group LIR: 0.256 | SEP: 0.911 | ETD: 0.489 | 
+sales/marketing group LIR: 0.334 | SEP: 0.913 | ETD: 0.481 | 
+scientist group LIR: 0.371 | SEP: 0.910 | ETD: 0.483 | 
+self-employed group LIR: 0.348 | SEP: 0.915 | ETD: 0.492 | 
+technician/engineer group LIR: 0.340 | SEP: 0.913 | ETD: 0.490 | 
+tradesman/craftsman group LIR: 0.329 | SEP: 0.911 | ETD: 0.501 | 
+unemployed group LIR: 0.408 | SEP: 0.905 | ETD: 0.510 | 
+writer group LIR: 0.369 | SEP: 0.908 | ETD: 0.486 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.7---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.252 | hr: 0.376 | recall: 0.023 | precision: 0.056 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.248 | hr: 0.369 | recall: 0.022 | precision: 0.055 | 
+Female group ndcg: 0.261 | hr: 0.391 | recall: 0.024 | precision: 0.059 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.269 | hr: 0.412 | recall: 0.022 | precision: 0.059 | 
+18-24 group ndcg: 0.253 | hr: 0.387 | recall: 0.024 | precision: 0.059 | 
+25-34 group ndcg: 0.247 | hr: 0.366 | recall: 0.022 | precision: 0.053 | 
+35-44 group ndcg: 0.262 | hr: 0.377 | recall: 0.022 | precision: 0.058 | 
+45-49 group ndcg: 0.259 | hr: 0.380 | recall: 0.024 | precision: 0.057 | 
+50-55 group ndcg: 0.231 | hr: 0.361 | recall: 0.020 | precision: 0.056 | 
+56+ group ndcg: 0.253 | hr: 0.382 | recall: 0.021 | precision: 0.059 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.250 | hr: 0.373 | recall: 0.024 | precision: 0.050 | 
+academic/educator group ndcg: 0.254 | hr: 0.384 | recall: 0.022 | precision: 0.057 | 
+artist group ndcg: 0.226 | hr: 0.337 | recall: 0.020 | precision: 0.053 | 
+clerical/admin group ndcg: 0.217 | hr: 0.318 | recall: 0.015 | precision: 0.042 | 
+college/grad student group ndcg: 0.256 | hr: 0.389 | recall: 0.025 | precision: 0.058 | 
+customer service group ndcg: 0.218 | hr: 0.330 | recall: 0.021 | precision: 0.054 | 
+doctor/health care group ndcg: 0.272 | hr: 0.411 | recall: 0.023 | precision: 0.064 | 
+executive/managerial group ndcg: 0.244 | hr: 0.359 | recall: 0.021 | precision: 0.057 | 
+farmer group ndcg: 0.333 | hr: 0.471 | recall: 0.035 | precision: 0.065 | 
+homemaker group ndcg: 0.296 | hr: 0.446 | recall: 0.032 | precision: 0.071 | 
+K-12 student group ndcg: 0.269 | hr: 0.412 | recall: 0.021 | precision: 0.059 | 
+lawyer group ndcg: 0.195 | hr: 0.271 | recall: 0.014 | precision: 0.038 | 
+programmer group ndcg: 0.242 | hr: 0.369 | recall: 0.021 | precision: 0.054 | 
+retired group ndcg: 0.266 | hr: 0.408 | recall: 0.022 | precision: 0.063 | 
+sales/marketing group ndcg: 0.274 | hr: 0.401 | recall: 0.026 | precision: 0.067 | 
+scientist group ndcg: 0.300 | hr: 0.451 | recall: 0.027 | precision: 0.069 | 
+self-employed group ndcg: 0.224 | hr: 0.320 | recall: 0.016 | precision: 0.051 | 
+technician/engineer group ndcg: 0.272 | hr: 0.392 | recall: 0.024 | precision: 0.060 | 
+tradesman/craftsman group ndcg: 0.238 | hr: 0.371 | recall: 0.026 | precision: 0.054 | 
+unemployed group ndcg: 0.273 | hr: 0.375 | recall: 0.026 | precision: 0.064 | 
+writer group ndcg: 0.248 | hr: 0.370 | recall: 0.023 | precision: 0.055 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.913 | ETD: 0.493 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.912 | ETD: 0.492 | 
+Female group LIR: 0.327 | SEP: 0.915 | ETD: 0.495 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.298 | SEP: 0.920 | ETD: 0.503 | 
+18-24 group LIR: 0.340 | SEP: 0.912 | ETD: 0.489 | 
+25-34 group LIR: 0.380 | SEP: 0.912 | ETD: 0.493 | 
+35-44 group LIR: 0.353 | SEP: 0.911 | ETD: 0.495 | 
+45-49 group LIR: 0.330 | SEP: 0.915 | ETD: 0.497 | 
+50-55 group LIR: 0.329 | SEP: 0.914 | ETD: 0.489 | 
+56+ group LIR: 0.248 | SEP: 0.918 | ETD: 0.489 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.913 | ETD: 0.495 | 
+academic/educator group LIR: 0.354 | SEP: 0.913 | ETD: 0.490 | 
+artist group LIR: 0.362 | SEP: 0.906 | ETD: 0.497 | 
+clerical/admin group LIR: 0.372 | SEP: 0.918 | ETD: 0.473 | 
+college/grad student group LIR: 0.364 | SEP: 0.911 | ETD: 0.488 | 
+customer service group LIR: 0.412 | SEP: 0.904 | ETD: 0.499 | 
+doctor/health care group LIR: 0.309 | SEP: 0.915 | ETD: 0.484 | 
+executive/managerial group LIR: 0.316 | SEP: 0.914 | ETD: 0.492 | 
+farmer group LIR: 0.334 | SEP: 0.910 | ETD: 0.476 | 
+homemaker group LIR: 0.311 | SEP: 0.907 | ETD: 0.513 | 
+K-12 student group LIR: 0.284 | SEP: 0.919 | ETD: 0.504 | 
+lawyer group LIR: 0.333 | SEP: 0.902 | ETD: 0.523 | 
+programmer group LIR: 0.374 | SEP: 0.911 | ETD: 0.497 | 
+retired group LIR: 0.256 | SEP: 0.914 | ETD: 0.491 | 
+sales/marketing group LIR: 0.332 | SEP: 0.917 | ETD: 0.485 | 
+scientist group LIR: 0.370 | SEP: 0.912 | ETD: 0.489 | 
+self-employed group LIR: 0.347 | SEP: 0.916 | ETD: 0.498 | 
+technician/engineer group LIR: 0.340 | SEP: 0.916 | ETD: 0.494 | 
+tradesman/craftsman group LIR: 0.329 | SEP: 0.914 | ETD: 0.507 | 
+unemployed group LIR: 0.408 | SEP: 0.907 | ETD: 0.514 | 
+writer group LIR: 0.370 | SEP: 0.910 | ETD: 0.490 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.75---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.249 | hr: 0.369 | recall: 0.022 | precision: 0.055 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.244 | hr: 0.361 | recall: 0.021 | precision: 0.054 | 
+Female group ndcg: 0.261 | hr: 0.389 | recall: 0.023 | precision: 0.059 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.273 | hr: 0.407 | recall: 0.022 | precision: 0.058 | 
+18-24 group ndcg: 0.244 | hr: 0.370 | recall: 0.023 | precision: 0.056 | 
+25-34 group ndcg: 0.246 | hr: 0.362 | recall: 0.021 | precision: 0.052 | 
+35-44 group ndcg: 0.258 | hr: 0.370 | recall: 0.022 | precision: 0.057 | 
+45-49 group ndcg: 0.258 | hr: 0.380 | recall: 0.024 | precision: 0.057 | 
+50-55 group ndcg: 0.230 | hr: 0.361 | recall: 0.020 | precision: 0.056 | 
+56+ group ndcg: 0.248 | hr: 0.376 | recall: 0.021 | precision: 0.058 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.245 | hr: 0.368 | recall: 0.023 | precision: 0.049 | 
+academic/educator group ndcg: 0.253 | hr: 0.381 | recall: 0.022 | precision: 0.057 | 
+artist group ndcg: 0.217 | hr: 0.326 | recall: 0.019 | precision: 0.052 | 
+clerical/admin group ndcg: 0.209 | hr: 0.301 | recall: 0.014 | precision: 0.043 | 
+college/grad student group ndcg: 0.246 | hr: 0.369 | recall: 0.023 | precision: 0.055 | 
+customer service group ndcg: 0.217 | hr: 0.330 | recall: 0.022 | precision: 0.054 | 
+doctor/health care group ndcg: 0.270 | hr: 0.407 | recall: 0.021 | precision: 0.062 | 
+executive/managerial group ndcg: 0.238 | hr: 0.355 | recall: 0.020 | precision: 0.055 | 
+farmer group ndcg: 0.221 | hr: 0.294 | recall: 0.027 | precision: 0.041 | 
+homemaker group ndcg: 0.291 | hr: 0.435 | recall: 0.031 | precision: 0.068 | 
+K-12 student group ndcg: 0.268 | hr: 0.402 | recall: 0.020 | precision: 0.057 | 
+lawyer group ndcg: 0.196 | hr: 0.271 | recall: 0.014 | precision: 0.038 | 
+programmer group ndcg: 0.236 | hr: 0.363 | recall: 0.021 | precision: 0.052 | 
+retired group ndcg: 0.274 | hr: 0.415 | recall: 0.023 | precision: 0.063 | 
+sales/marketing group ndcg: 0.280 | hr: 0.401 | recall: 0.026 | precision: 0.066 | 
+scientist group ndcg: 0.313 | hr: 0.465 | recall: 0.027 | precision: 0.072 | 
+self-employed group ndcg: 0.231 | hr: 0.324 | recall: 0.015 | precision: 0.050 | 
+technician/engineer group ndcg: 0.270 | hr: 0.386 | recall: 0.024 | precision: 0.058 | 
+tradesman/craftsman group ndcg: 0.228 | hr: 0.357 | recall: 0.029 | precision: 0.054 | 
+unemployed group ndcg: 0.276 | hr: 0.375 | recall: 0.026 | precision: 0.064 | 
+writer group ndcg: 0.249 | hr: 0.367 | recall: 0.023 | precision: 0.055 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.915 | ETD: 0.495 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.914 | ETD: 0.495 | 
+Female group LIR: 0.327 | SEP: 0.917 | ETD: 0.497 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.299 | SEP: 0.922 | ETD: 0.506 | 
+18-24 group LIR: 0.340 | SEP: 0.915 | ETD: 0.491 | 
+25-34 group LIR: 0.380 | SEP: 0.913 | ETD: 0.496 | 
+35-44 group LIR: 0.353 | SEP: 0.913 | ETD: 0.497 | 
+45-49 group LIR: 0.330 | SEP: 0.917 | ETD: 0.499 | 
+50-55 group LIR: 0.329 | SEP: 0.916 | ETD: 0.492 | 
+56+ group LIR: 0.249 | SEP: 0.919 | ETD: 0.493 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.916 | ETD: 0.497 | 
+academic/educator group LIR: 0.354 | SEP: 0.913 | ETD: 0.492 | 
+artist group LIR: 0.362 | SEP: 0.908 | ETD: 0.500 | 
+clerical/admin group LIR: 0.372 | SEP: 0.919 | ETD: 0.478 | 
+college/grad student group LIR: 0.364 | SEP: 0.913 | ETD: 0.490 | 
+customer service group LIR: 0.411 | SEP: 0.906 | ETD: 0.497 | 
+doctor/health care group LIR: 0.308 | SEP: 0.917 | ETD: 0.486 | 
+executive/managerial group LIR: 0.316 | SEP: 0.916 | ETD: 0.494 | 
+farmer group LIR: 0.333 | SEP: 0.914 | ETD: 0.482 | 
+homemaker group LIR: 0.313 | SEP: 0.907 | ETD: 0.514 | 
+K-12 student group LIR: 0.285 | SEP: 0.922 | ETD: 0.506 | 
+lawyer group LIR: 0.333 | SEP: 0.905 | ETD: 0.523 | 
+programmer group LIR: 0.375 | SEP: 0.913 | ETD: 0.498 | 
+retired group LIR: 0.257 | SEP: 0.916 | ETD: 0.492 | 
+sales/marketing group LIR: 0.334 | SEP: 0.919 | ETD: 0.490 | 
+scientist group LIR: 0.370 | SEP: 0.914 | ETD: 0.490 | 
+self-employed group LIR: 0.346 | SEP: 0.919 | ETD: 0.504 | 
+technician/engineer group LIR: 0.340 | SEP: 0.917 | ETD: 0.497 | 
+tradesman/craftsman group LIR: 0.329 | SEP: 0.915 | ETD: 0.507 | 
+unemployed group LIR: 0.406 | SEP: 0.908 | ETD: 0.517 | 
+writer group LIR: 0.370 | SEP: 0.911 | ETD: 0.493 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.8---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.245 | hr: 0.362 | recall: 0.021 | precision: 0.054 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.240 | hr: 0.354 | recall: 0.020 | precision: 0.053 | 
+Female group ndcg: 0.256 | hr: 0.382 | recall: 0.022 | precision: 0.057 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.258 | hr: 0.394 | recall: 0.022 | precision: 0.057 | 
+18-24 group ndcg: 0.242 | hr: 0.363 | recall: 0.022 | precision: 0.055 | 
+25-34 group ndcg: 0.243 | hr: 0.356 | recall: 0.021 | precision: 0.051 | 
+35-44 group ndcg: 0.257 | hr: 0.370 | recall: 0.020 | precision: 0.056 | 
+45-49 group ndcg: 0.249 | hr: 0.367 | recall: 0.023 | precision: 0.055 | 
+50-55 group ndcg: 0.224 | hr: 0.349 | recall: 0.019 | precision: 0.055 | 
+56+ group ndcg: 0.236 | hr: 0.358 | recall: 0.018 | precision: 0.056 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.237 | hr: 0.364 | recall: 0.023 | precision: 0.049 | 
+academic/educator group ndcg: 0.245 | hr: 0.371 | recall: 0.020 | precision: 0.056 | 
+artist group ndcg: 0.217 | hr: 0.333 | recall: 0.019 | precision: 0.053 | 
+clerical/admin group ndcg: 0.207 | hr: 0.306 | recall: 0.014 | precision: 0.043 | 
+college/grad student group ndcg: 0.242 | hr: 0.358 | recall: 0.022 | precision: 0.053 | 
+customer service group ndcg: 0.212 | hr: 0.312 | recall: 0.019 | precision: 0.048 | 
+doctor/health care group ndcg: 0.267 | hr: 0.398 | recall: 0.019 | precision: 0.059 | 
+executive/managerial group ndcg: 0.239 | hr: 0.352 | recall: 0.019 | precision: 0.054 | 
+farmer group ndcg: 0.221 | hr: 0.294 | recall: 0.027 | precision: 0.041 | 
+homemaker group ndcg: 0.288 | hr: 0.413 | recall: 0.028 | precision: 0.063 | 
+K-12 student group ndcg: 0.253 | hr: 0.387 | recall: 0.020 | precision: 0.055 | 
+lawyer group ndcg: 0.180 | hr: 0.240 | recall: 0.013 | precision: 0.034 | 
+programmer group ndcg: 0.239 | hr: 0.366 | recall: 0.021 | precision: 0.052 | 
+retired group ndcg: 0.268 | hr: 0.408 | recall: 0.020 | precision: 0.061 | 
+sales/marketing group ndcg: 0.259 | hr: 0.374 | recall: 0.024 | precision: 0.064 | 
+scientist group ndcg: 0.294 | hr: 0.444 | recall: 0.024 | precision: 0.068 | 
+self-employed group ndcg: 0.235 | hr: 0.328 | recall: 0.016 | precision: 0.050 | 
+technician/engineer group ndcg: 0.276 | hr: 0.388 | recall: 0.023 | precision: 0.058 | 
+tradesman/craftsman group ndcg: 0.225 | hr: 0.343 | recall: 0.028 | precision: 0.054 | 
+unemployed group ndcg: 0.277 | hr: 0.375 | recall: 0.025 | precision: 0.062 | 
+writer group ndcg: 0.243 | hr: 0.352 | recall: 0.021 | precision: 0.052 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.916 | ETD: 0.497 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.915 | ETD: 0.496 | 
+Female group LIR: 0.327 | SEP: 0.918 | ETD: 0.499 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.299 | SEP: 0.923 | ETD: 0.510 | 
+18-24 group LIR: 0.340 | SEP: 0.916 | ETD: 0.494 | 
+25-34 group LIR: 0.379 | SEP: 0.915 | ETD: 0.497 | 
+35-44 group LIR: 0.353 | SEP: 0.914 | ETD: 0.499 | 
+45-49 group LIR: 0.330 | SEP: 0.918 | ETD: 0.500 | 
+50-55 group LIR: 0.330 | SEP: 0.918 | ETD: 0.494 | 
+56+ group LIR: 0.248 | SEP: 0.921 | ETD: 0.494 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.918 | ETD: 0.498 | 
+academic/educator group LIR: 0.353 | SEP: 0.915 | ETD: 0.493 | 
+artist group LIR: 0.362 | SEP: 0.910 | ETD: 0.502 | 
+clerical/admin group LIR: 0.371 | SEP: 0.921 | ETD: 0.478 | 
+college/grad student group LIR: 0.363 | SEP: 0.915 | ETD: 0.492 | 
+customer service group LIR: 0.411 | SEP: 0.908 | ETD: 0.499 | 
+doctor/health care group LIR: 0.308 | SEP: 0.918 | ETD: 0.489 | 
+executive/managerial group LIR: 0.316 | SEP: 0.917 | ETD: 0.495 | 
+farmer group LIR: 0.333 | SEP: 0.917 | ETD: 0.482 | 
+homemaker group LIR: 0.313 | SEP: 0.910 | ETD: 0.515 | 
+K-12 student group LIR: 0.285 | SEP: 0.922 | ETD: 0.510 | 
+lawyer group LIR: 0.333 | SEP: 0.908 | ETD: 0.525 | 
+programmer group LIR: 0.375 | SEP: 0.916 | ETD: 0.498 | 
+retired group LIR: 0.257 | SEP: 0.918 | ETD: 0.492 | 
+sales/marketing group LIR: 0.335 | SEP: 0.920 | ETD: 0.490 | 
+scientist group LIR: 0.371 | SEP: 0.914 | ETD: 0.493 | 
+self-employed group LIR: 0.347 | SEP: 0.919 | ETD: 0.506 | 
+technician/engineer group LIR: 0.340 | SEP: 0.918 | ETD: 0.498 | 
+tradesman/craftsman group LIR: 0.329 | SEP: 0.915 | ETD: 0.506 | 
+unemployed group LIR: 0.407 | SEP: 0.910 | ETD: 0.515 | 
+writer group LIR: 0.370 | SEP: 0.913 | ETD: 0.496 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.85---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.242 | hr: 0.356 | recall: 0.020 | precision: 0.053 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.238 | hr: 0.350 | recall: 0.020 | precision: 0.052 | 
+Female group ndcg: 0.252 | hr: 0.373 | recall: 0.022 | precision: 0.056 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.252 | hr: 0.380 | recall: 0.020 | precision: 0.053 | 
+18-24 group ndcg: 0.238 | hr: 0.356 | recall: 0.021 | precision: 0.053 | 
+25-34 group ndcg: 0.239 | hr: 0.352 | recall: 0.020 | precision: 0.051 | 
+35-44 group ndcg: 0.252 | hr: 0.359 | recall: 0.020 | precision: 0.054 | 
+45-49 group ndcg: 0.247 | hr: 0.364 | recall: 0.022 | precision: 0.054 | 
+50-55 group ndcg: 0.226 | hr: 0.341 | recall: 0.019 | precision: 0.054 | 
+56+ group ndcg: 0.244 | hr: 0.366 | recall: 0.019 | precision: 0.056 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.237 | hr: 0.363 | recall: 0.022 | precision: 0.048 | 
+academic/educator group ndcg: 0.249 | hr: 0.373 | recall: 0.019 | precision: 0.055 | 
+artist group ndcg: 0.217 | hr: 0.333 | recall: 0.017 | precision: 0.052 | 
+clerical/admin group ndcg: 0.189 | hr: 0.289 | recall: 0.013 | precision: 0.042 | 
+college/grad student group ndcg: 0.238 | hr: 0.353 | recall: 0.022 | precision: 0.052 | 
+customer service group ndcg: 0.212 | hr: 0.312 | recall: 0.020 | precision: 0.047 | 
+doctor/health care group ndcg: 0.254 | hr: 0.377 | recall: 0.018 | precision: 0.057 | 
+executive/managerial group ndcg: 0.231 | hr: 0.340 | recall: 0.018 | precision: 0.052 | 
+farmer group ndcg: 0.225 | hr: 0.294 | recall: 0.027 | precision: 0.041 | 
+homemaker group ndcg: 0.294 | hr: 0.413 | recall: 0.029 | precision: 0.064 | 
+K-12 student group ndcg: 0.252 | hr: 0.376 | recall: 0.018 | precision: 0.053 | 
+lawyer group ndcg: 0.173 | hr: 0.233 | recall: 0.013 | precision: 0.035 | 
+programmer group ndcg: 0.231 | hr: 0.345 | recall: 0.020 | precision: 0.049 | 
+retired group ndcg: 0.263 | hr: 0.394 | recall: 0.019 | precision: 0.059 | 
+sales/marketing group ndcg: 0.265 | hr: 0.381 | recall: 0.024 | precision: 0.064 | 
+scientist group ndcg: 0.289 | hr: 0.431 | recall: 0.024 | precision: 0.066 | 
+self-employed group ndcg: 0.237 | hr: 0.332 | recall: 0.015 | precision: 0.050 | 
+technician/engineer group ndcg: 0.270 | hr: 0.382 | recall: 0.024 | precision: 0.057 | 
+tradesman/craftsman group ndcg: 0.211 | hr: 0.300 | recall: 0.026 | precision: 0.049 | 
+unemployed group ndcg: 0.278 | hr: 0.375 | recall: 0.025 | precision: 0.061 | 
+writer group ndcg: 0.256 | hr: 0.359 | recall: 0.020 | precision: 0.053 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.917 | ETD: 0.498 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.916 | ETD: 0.498 | 
+Female group LIR: 0.327 | SEP: 0.919 | ETD: 0.499 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.300 | SEP: 0.922 | ETD: 0.512 | 
+18-24 group LIR: 0.340 | SEP: 0.918 | ETD: 0.494 | 
+25-34 group LIR: 0.379 | SEP: 0.915 | ETD: 0.498 | 
+35-44 group LIR: 0.353 | SEP: 0.915 | ETD: 0.500 | 
+45-49 group LIR: 0.328 | SEP: 0.920 | ETD: 0.501 | 
+50-55 group LIR: 0.330 | SEP: 0.920 | ETD: 0.494 | 
+56+ group LIR: 0.249 | SEP: 0.922 | ETD: 0.497 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.919 | ETD: 0.499 | 
+academic/educator group LIR: 0.353 | SEP: 0.917 | ETD: 0.495 | 
+artist group LIR: 0.362 | SEP: 0.911 | ETD: 0.503 | 
+clerical/admin group LIR: 0.369 | SEP: 0.921 | ETD: 0.480 | 
+college/grad student group LIR: 0.363 | SEP: 0.916 | ETD: 0.492 | 
+customer service group LIR: 0.409 | SEP: 0.907 | ETD: 0.499 | 
+doctor/health care group LIR: 0.309 | SEP: 0.918 | ETD: 0.493 | 
+executive/managerial group LIR: 0.315 | SEP: 0.919 | ETD: 0.498 | 
+farmer group LIR: 0.334 | SEP: 0.913 | ETD: 0.482 | 
+homemaker group LIR: 0.314 | SEP: 0.914 | ETD: 0.509 | 
+K-12 student group LIR: 0.286 | SEP: 0.921 | ETD: 0.511 | 
+lawyer group LIR: 0.334 | SEP: 0.910 | ETD: 0.532 | 
+programmer group LIR: 0.374 | SEP: 0.916 | ETD: 0.499 | 
+retired group LIR: 0.257 | SEP: 0.919 | ETD: 0.494 | 
+sales/marketing group LIR: 0.335 | SEP: 0.921 | ETD: 0.491 | 
+scientist group LIR: 0.370 | SEP: 0.916 | ETD: 0.492 | 
+self-employed group LIR: 0.347 | SEP: 0.920 | ETD: 0.508 | 
+technician/engineer group LIR: 0.339 | SEP: 0.920 | ETD: 0.499 | 
+tradesman/craftsman group LIR: 0.328 | SEP: 0.918 | ETD: 0.510 | 
+unemployed group LIR: 0.407 | SEP: 0.910 | ETD: 0.519 | 
+writer group LIR: 0.369 | SEP: 0.913 | ETD: 0.499 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.9---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.238 | hr: 0.350 | recall: 0.020 | precision: 0.051 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.233 | hr: 0.342 | recall: 0.019 | precision: 0.050 | 
+Female group ndcg: 0.250 | hr: 0.369 | recall: 0.021 | precision: 0.055 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.245 | hr: 0.353 | recall: 0.019 | precision: 0.049 | 
+18-24 group ndcg: 0.235 | hr: 0.352 | recall: 0.021 | precision: 0.053 | 
+25-34 group ndcg: 0.232 | hr: 0.342 | recall: 0.019 | precision: 0.049 | 
+35-44 group ndcg: 0.253 | hr: 0.361 | recall: 0.020 | precision: 0.053 | 
+45-49 group ndcg: 0.241 | hr: 0.353 | recall: 0.021 | precision: 0.052 | 
+50-55 group ndcg: 0.225 | hr: 0.337 | recall: 0.017 | precision: 0.053 | 
+56+ group ndcg: 0.239 | hr: 0.358 | recall: 0.019 | precision: 0.054 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.235 | hr: 0.353 | recall: 0.022 | precision: 0.046 | 
+academic/educator group ndcg: 0.231 | hr: 0.358 | recall: 0.019 | precision: 0.052 | 
+artist group ndcg: 0.228 | hr: 0.333 | recall: 0.017 | precision: 0.051 | 
+clerical/admin group ndcg: 0.174 | hr: 0.266 | recall: 0.012 | precision: 0.037 | 
+college/grad student group ndcg: 0.235 | hr: 0.350 | recall: 0.021 | precision: 0.052 | 
+customer service group ndcg: 0.197 | hr: 0.304 | recall: 0.018 | precision: 0.045 | 
+doctor/health care group ndcg: 0.248 | hr: 0.373 | recall: 0.018 | precision: 0.056 | 
+executive/managerial group ndcg: 0.233 | hr: 0.340 | recall: 0.017 | precision: 0.051 | 
+farmer group ndcg: 0.225 | hr: 0.294 | recall: 0.027 | precision: 0.041 | 
+homemaker group ndcg: 0.310 | hr: 0.446 | recall: 0.031 | precision: 0.066 | 
+K-12 student group ndcg: 0.243 | hr: 0.345 | recall: 0.018 | precision: 0.049 | 
+lawyer group ndcg: 0.179 | hr: 0.240 | recall: 0.013 | precision: 0.036 | 
+programmer group ndcg: 0.223 | hr: 0.338 | recall: 0.019 | precision: 0.048 | 
+retired group ndcg: 0.255 | hr: 0.380 | recall: 0.018 | precision: 0.056 | 
+sales/marketing group ndcg: 0.268 | hr: 0.391 | recall: 0.025 | precision: 0.062 | 
+scientist group ndcg: 0.292 | hr: 0.431 | recall: 0.021 | precision: 0.064 | 
+self-employed group ndcg: 0.221 | hr: 0.311 | recall: 0.014 | precision: 0.048 | 
+technician/engineer group ndcg: 0.264 | hr: 0.371 | recall: 0.022 | precision: 0.055 | 
+tradesman/craftsman group ndcg: 0.200 | hr: 0.300 | recall: 0.024 | precision: 0.047 | 
+unemployed group ndcg: 0.288 | hr: 0.375 | recall: 0.025 | precision: 0.060 | 
+writer group ndcg: 0.251 | hr: 0.352 | recall: 0.020 | precision: 0.053 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.918 | ETD: 0.499 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.917 | ETD: 0.499 | 
+Female group LIR: 0.327 | SEP: 0.920 | ETD: 0.499 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.299 | SEP: 0.924 | ETD: 0.512 | 
+18-24 group LIR: 0.340 | SEP: 0.918 | ETD: 0.495 | 
+25-34 group LIR: 0.379 | SEP: 0.916 | ETD: 0.499 | 
+35-44 group LIR: 0.353 | SEP: 0.916 | ETD: 0.501 | 
+45-49 group LIR: 0.329 | SEP: 0.920 | ETD: 0.503 | 
+50-55 group LIR: 0.330 | SEP: 0.921 | ETD: 0.494 | 
+56+ group LIR: 0.250 | SEP: 0.923 | ETD: 0.497 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.920 | ETD: 0.500 | 
+academic/educator group LIR: 0.353 | SEP: 0.918 | ETD: 0.495 | 
+artist group LIR: 0.362 | SEP: 0.912 | ETD: 0.504 | 
+clerical/admin group LIR: 0.369 | SEP: 0.921 | ETD: 0.479 | 
+college/grad student group LIR: 0.363 | SEP: 0.917 | ETD: 0.494 | 
+customer service group LIR: 0.413 | SEP: 0.905 | ETD: 0.505 | 
+doctor/health care group LIR: 0.308 | SEP: 0.920 | ETD: 0.493 | 
+executive/managerial group LIR: 0.315 | SEP: 0.919 | ETD: 0.497 | 
+farmer group LIR: 0.334 | SEP: 0.915 | ETD: 0.482 | 
+homemaker group LIR: 0.313 | SEP: 0.916 | ETD: 0.510 | 
+K-12 student group LIR: 0.285 | SEP: 0.924 | ETD: 0.508 | 
+lawyer group LIR: 0.333 | SEP: 0.913 | ETD: 0.533 | 
+programmer group LIR: 0.374 | SEP: 0.917 | ETD: 0.500 | 
+retired group LIR: 0.258 | SEP: 0.920 | ETD: 0.495 | 
+sales/marketing group LIR: 0.335 | SEP: 0.921 | ETD: 0.492 | 
+scientist group LIR: 0.369 | SEP: 0.917 | ETD: 0.490 | 
+self-employed group LIR: 0.347 | SEP: 0.921 | ETD: 0.508 | 
+technician/engineer group LIR: 0.339 | SEP: 0.920 | ETD: 0.501 | 
+tradesman/craftsman group LIR: 0.330 | SEP: 0.919 | ETD: 0.510 | 
+unemployed group LIR: 0.405 | SEP: 0.909 | ETD: 0.526 | 
+writer group LIR: 0.369 | SEP: 0.914 | ETD: 0.499 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=0.95---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.231 | hr: 0.340 | recall: 0.019 | precision: 0.049 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.226 | hr: 0.332 | recall: 0.018 | precision: 0.048 | 
+Female group ndcg: 0.243 | hr: 0.357 | recall: 0.020 | precision: 0.053 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.217 | hr: 0.317 | recall: 0.016 | precision: 0.047 | 
+18-24 group ndcg: 0.231 | hr: 0.345 | recall: 0.020 | precision: 0.051 | 
+25-34 group ndcg: 0.228 | hr: 0.333 | recall: 0.018 | precision: 0.047 | 
+35-44 group ndcg: 0.242 | hr: 0.348 | recall: 0.019 | precision: 0.050 | 
+45-49 group ndcg: 0.231 | hr: 0.340 | recall: 0.020 | precision: 0.049 | 
+50-55 group ndcg: 0.229 | hr: 0.345 | recall: 0.019 | precision: 0.053 | 
+56+ group ndcg: 0.226 | hr: 0.334 | recall: 0.017 | precision: 0.051 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.227 | hr: 0.340 | recall: 0.020 | precision: 0.045 | 
+academic/educator group ndcg: 0.221 | hr: 0.341 | recall: 0.017 | precision: 0.049 | 
+artist group ndcg: 0.231 | hr: 0.333 | recall: 0.017 | precision: 0.050 | 
+clerical/admin group ndcg: 0.178 | hr: 0.272 | recall: 0.012 | precision: 0.036 | 
+college/grad student group ndcg: 0.234 | hr: 0.348 | recall: 0.021 | precision: 0.050 | 
+customer service group ndcg: 0.195 | hr: 0.304 | recall: 0.017 | precision: 0.045 | 
+doctor/health care group ndcg: 0.240 | hr: 0.360 | recall: 0.017 | precision: 0.054 | 
+executive/managerial group ndcg: 0.218 | hr: 0.320 | recall: 0.016 | precision: 0.048 | 
+farmer group ndcg: 0.225 | hr: 0.294 | recall: 0.027 | precision: 0.041 | 
+homemaker group ndcg: 0.289 | hr: 0.424 | recall: 0.026 | precision: 0.064 | 
+K-12 student group ndcg: 0.220 | hr: 0.320 | recall: 0.016 | precision: 0.047 | 
+lawyer group ndcg: 0.197 | hr: 0.264 | recall: 0.013 | precision: 0.037 | 
+programmer group ndcg: 0.216 | hr: 0.320 | recall: 0.017 | precision: 0.046 | 
+retired group ndcg: 0.227 | hr: 0.338 | recall: 0.016 | precision: 0.050 | 
+sales/marketing group ndcg: 0.259 | hr: 0.377 | recall: 0.024 | precision: 0.061 | 
+scientist group ndcg: 0.291 | hr: 0.438 | recall: 0.022 | precision: 0.063 | 
+self-employed group ndcg: 0.215 | hr: 0.307 | recall: 0.013 | precision: 0.047 | 
+technician/engineer group ndcg: 0.267 | hr: 0.373 | recall: 0.022 | precision: 0.054 | 
+tradesman/craftsman group ndcg: 0.205 | hr: 0.300 | recall: 0.022 | precision: 0.044 | 
+unemployed group ndcg: 0.237 | hr: 0.306 | recall: 0.020 | precision: 0.049 | 
+writer group ndcg: 0.247 | hr: 0.352 | recall: 0.020 | precision: 0.052 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.918 | ETD: 0.500 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.918 | ETD: 0.500 | 
+Female group LIR: 0.326 | SEP: 0.920 | ETD: 0.501 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.300 | SEP: 0.925 | ETD: 0.511 | 
+18-24 group LIR: 0.340 | SEP: 0.919 | ETD: 0.496 | 
+25-34 group LIR: 0.379 | SEP: 0.916 | ETD: 0.501 | 
+35-44 group LIR: 0.352 | SEP: 0.916 | ETD: 0.502 | 
+45-49 group LIR: 0.328 | SEP: 0.920 | ETD: 0.506 | 
+50-55 group LIR: 0.330 | SEP: 0.921 | ETD: 0.493 | 
+56+ group LIR: 0.249 | SEP: 0.924 | ETD: 0.499 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.920 | ETD: 0.502 | 
+academic/educator group LIR: 0.352 | SEP: 0.917 | ETD: 0.496 | 
+artist group LIR: 0.362 | SEP: 0.914 | ETD: 0.506 | 
+clerical/admin group LIR: 0.369 | SEP: 0.921 | ETD: 0.480 | 
+college/grad student group LIR: 0.363 | SEP: 0.917 | ETD: 0.494 | 
+customer service group LIR: 0.414 | SEP: 0.908 | ETD: 0.503 | 
+doctor/health care group LIR: 0.308 | SEP: 0.921 | ETD: 0.494 | 
+executive/managerial group LIR: 0.315 | SEP: 0.920 | ETD: 0.497 | 
+farmer group LIR: 0.334 | SEP: 0.920 | ETD: 0.482 | 
+homemaker group LIR: 0.313 | SEP: 0.915 | ETD: 0.516 | 
+K-12 student group LIR: 0.285 | SEP: 0.925 | ETD: 0.508 | 
+lawyer group LIR: 0.335 | SEP: 0.911 | ETD: 0.534 | 
+programmer group LIR: 0.375 | SEP: 0.918 | ETD: 0.500 | 
+retired group LIR: 0.255 | SEP: 0.922 | ETD: 0.500 | 
+sales/marketing group LIR: 0.334 | SEP: 0.921 | ETD: 0.494 | 
+scientist group LIR: 0.369 | SEP: 0.919 | ETD: 0.490 | 
+self-employed group LIR: 0.345 | SEP: 0.920 | ETD: 0.510 | 
+technician/engineer group LIR: 0.339 | SEP: 0.919 | ETD: 0.502 | 
+tradesman/craftsman group LIR: 0.331 | SEP: 0.920 | ETD: 0.519 | 
+unemployed group LIR: 0.407 | SEP: 0.911 | ETD: 0.525 | 
+writer group LIR: 0.368 | SEP: 0.914 | ETD: 0.502 | 
+--- AFTER ETD_SEP_LIR_opt optimization with alpha=1.0---
+
+---Recommandation Quality---
+Average for the entire user base: ndcg: 0.218 | hr: 0.319 | recall: 0.017 | precision: 0.046 | 
+
+-Statistic with user grouped by Gender attribute
+Male group ndcg: 0.215 | hr: 0.313 | recall: 0.017 | precision: 0.045 | 
+Female group ndcg: 0.226 | hr: 0.333 | recall: 0.017 | precision: 0.048 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group ndcg: 0.203 | hr: 0.299 | recall: 0.013 | precision: 0.043 | 
+18-24 group ndcg: 0.224 | hr: 0.333 | recall: 0.018 | precision: 0.048 | 
+25-34 group ndcg: 0.212 | hr: 0.313 | recall: 0.017 | precision: 0.044 | 
+35-44 group ndcg: 0.224 | hr: 0.318 | recall: 0.016 | precision: 0.045 | 
+45-49 group ndcg: 0.215 | hr: 0.316 | recall: 0.017 | precision: 0.045 | 
+50-55 group ndcg: 0.218 | hr: 0.319 | recall: 0.016 | precision: 0.048 | 
+56+ group ndcg: 0.232 | hr: 0.329 | recall: 0.016 | precision: 0.050 | 
+
+-Statistic with user grouped by Occupation attribute
+other group ndcg: 0.214 | hr: 0.318 | recall: 0.018 | precision: 0.041 | 
+academic/educator group ndcg: 0.213 | hr: 0.333 | recall: 0.016 | precision: 0.047 | 
+artist group ndcg: 0.215 | hr: 0.311 | recall: 0.017 | precision: 0.045 | 
+clerical/admin group ndcg: 0.171 | hr: 0.243 | recall: 0.011 | precision: 0.035 | 
+college/grad student group ndcg: 0.228 | hr: 0.333 | recall: 0.019 | precision: 0.049 | 
+customer service group ndcg: 0.213 | hr: 0.321 | recall: 0.018 | precision: 0.044 | 
+doctor/health care group ndcg: 0.225 | hr: 0.335 | recall: 0.016 | precision: 0.050 | 
+executive/managerial group ndcg: 0.213 | hr: 0.314 | recall: 0.016 | precision: 0.046 | 
+farmer group ndcg: 0.237 | hr: 0.294 | recall: 0.023 | precision: 0.035 | 
+homemaker group ndcg: 0.286 | hr: 0.413 | recall: 0.019 | precision: 0.059 | 
+K-12 student group ndcg: 0.202 | hr: 0.309 | recall: 0.014 | precision: 0.044 | 
+lawyer group ndcg: 0.174 | hr: 0.233 | recall: 0.011 | precision: 0.033 | 
+programmer group ndcg: 0.198 | hr: 0.291 | recall: 0.016 | precision: 0.042 | 
+retired group ndcg: 0.199 | hr: 0.289 | recall: 0.011 | precision: 0.042 | 
+sales/marketing group ndcg: 0.223 | hr: 0.328 | recall: 0.019 | precision: 0.053 | 
+scientist group ndcg: 0.278 | hr: 0.389 | recall: 0.018 | precision: 0.055 | 
+self-employed group ndcg: 0.214 | hr: 0.299 | recall: 0.012 | precision: 0.045 | 
+technician/engineer group ndcg: 0.234 | hr: 0.337 | recall: 0.019 | precision: 0.048 | 
+tradesman/craftsman group ndcg: 0.229 | hr: 0.314 | recall: 0.019 | precision: 0.043 | 
+unemployed group ndcg: 0.208 | hr: 0.264 | recall: 0.016 | precision: 0.042 | 
+writer group ndcg: 0.240 | hr: 0.331 | recall: 0.019 | precision: 0.048 | 
+
+
+
+---Explanation Quality---
+Average for the entire user base: LIR: 0.347 | SEP: 0.918 | ETD: 0.501 | 
+
+-Statistic with user grouped by Gender attribute
+Male group LIR: 0.355 | SEP: 0.917 | ETD: 0.501 | 
+Female group LIR: 0.327 | SEP: 0.920 | ETD: 0.502 | 
+
+-Statistic with user grouped by Age attribute
+Under 18 group LIR: 0.299 | SEP: 0.923 | ETD: 0.512 | 
+18-24 group LIR: 0.341 | SEP: 0.918 | ETD: 0.498 | 
+25-34 group LIR: 0.379 | SEP: 0.916 | ETD: 0.501 | 
+35-44 group LIR: 0.352 | SEP: 0.916 | ETD: 0.503 | 
+45-49 group LIR: 0.327 | SEP: 0.920 | ETD: 0.509 | 
+50-55 group LIR: 0.331 | SEP: 0.921 | ETD: 0.492 | 
+56+ group LIR: 0.249 | SEP: 0.924 | ETD: 0.502 | 
+
+-Statistic with user grouped by Occupation attribute
+other group LIR: 0.367 | SEP: 0.920 | ETD: 0.501 | 
+academic/educator group LIR: 0.351 | SEP: 0.917 | ETD: 0.498 | 
+artist group LIR: 0.361 | SEP: 0.914 | ETD: 0.513 | 
+clerical/admin group LIR: 0.371 | SEP: 0.920 | ETD: 0.482 | 
+college/grad student group LIR: 0.364 | SEP: 0.916 | ETD: 0.496 | 
+customer service group LIR: 0.411 | SEP: 0.908 | ETD: 0.507 | 
+doctor/health care group LIR: 0.308 | SEP: 0.922 | ETD: 0.499 | 
+executive/managerial group LIR: 0.314 | SEP: 0.920 | ETD: 0.496 | 
+farmer group LIR: 0.335 | SEP: 0.916 | ETD: 0.494 | 
+homemaker group LIR: 0.315 | SEP: 0.917 | ETD: 0.520 | 
+K-12 student group LIR: 0.285 | SEP: 0.924 | ETD: 0.507 | 
+lawyer group LIR: 0.336 | SEP: 0.915 | ETD: 0.527 | 
+programmer group LIR: 0.373 | SEP: 0.917 | ETD: 0.503 | 
+retired group LIR: 0.256 | SEP: 0.921 | ETD: 0.500 | 
+sales/marketing group LIR: 0.334 | SEP: 0.921 | ETD: 0.498 | 
+scientist group LIR: 0.369 | SEP: 0.918 | ETD: 0.490 | 
+self-employed group LIR: 0.346 | SEP: 0.920 | ETD: 0.513 | 
+technician/engineer group LIR: 0.341 | SEP: 0.919 | ETD: 0.504 | 
+tradesman/craftsman group LIR: 0.330 | SEP: 0.924 | ETD: 0.517 | 
+unemployed group LIR: 0.408 | SEP: 0.908 | ETD: 0.524 | 
+writer group LIR: 0.369 | SEP: 0.912 | ETD: 0.500 | 

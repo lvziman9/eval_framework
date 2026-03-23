@@ -1,0 +1,4 @@
+date,model,dataset,stage,artifact,location,notes
+2026-03-23,pgpr,lastfm,evaluation,baseline_log,runs/pgpr/lastfm/baseline/baseline_handoff_2026-03-23.txt,Imported from handoff snapshot
+2026-03-23,vrkg4rec,lastfm,evaluation,baseline_log,runs/vrkg4rec/lastfm/evaluation/baseline_handoff_2026-03-23.txt,Imported from handoff snapshot
+2026-03-23,vrkg4rec,lastfm,adapter,adapter_logs,runs/vrkg4rec/lastfm/adapter,Root-level adapter logs moved here
