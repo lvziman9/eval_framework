@@ -159,49 +159,127 @@ So the old `ETD-family` figures should be treated cautiously.
 
 ## Why VRKG4Rec Was More Fragile
 
-`VRKG4Rec` is not a native path-reasoning model in this setup. Its explanations are post-hoc.
+`VRKG4Rec` is not a native path-reasoning model in this setup. Its explanations are post-hoc, and the adapter has to construct a representative path after recommendation has already happened.
 
-The integration path is:
+The effective logic in [vrkg4rec_adapter.py](/usr1/home/s125mdg43_08/eval_framework/adapters/vrkg4rec_adapter.py) is:
 
-1. rank items from latent model outputs,
-2. search for a path afterward,
-3. convert the found path into `xrecsys` format,
-4. then evaluate explanation metrics.
+1. compute user-item scores from latent embeddings,
+2. keep only raw top-k items,
+3. search short 2-hop / 3-hop paths for those items,
+4. convert valid paths to `xrecsys` format,
+5. keep one best path per item,
+6. export `uid_topk.csv` and `uid_pid_explanation.csv`.
 
-This differs from `PGPR`, where path reasoning is much closer to the model's original mechanism.
+This is qualitatively different from `PGPR`, where the path is much closer to the model's own reasoning process.
+
+A key snippet is the adapter's retrieval stage:
+
+```python
+u_emb = user_gcn_emb[vrkg_uid].unsqueeze(0)
+item_scores = _torch.matmul(u_emb, all_item_emb.t()).squeeze(0)
+for ti in train_items_set:
+    if ti < n_items:
+        item_scores[ti] = float('-inf')
+top_item_ids = item_scores.topk(args.topk).indices.tolist()
+
+for target_entity_id in top_item_ids:
+    paths = find_paths_for_item(...)
+```
+
+So the adapter first chooses items from latent scores, and only afterward tries to recover explanation paths.
 
 
 ## VRKG4Rec Integration Risk 1: Candidate Pool Too Narrow
 
-The main narrow-pool issue is in [vrkg4rec_adapter.py](/usr1/home/s125mdg43_08/eval_framework/adapters/vrkg4rec_adapter.py).
+The most important baseline coverage issue came from the fact that the adapter only searched for explanations inside raw top-k items.
 
-The adapter first truncates candidates to raw top-k items:
+The relevant snippet is:
 
 ```python
 top_item_ids = item_scores.topk(args.topk).indices.tolist()
+
+for target_entity_id in top_item_ids:
+    paths = find_paths_for_item(
+        vrkg_uid, target_entity_id, rev_adj,
+        train_items_set, entity_gcn_emb,
+        item_etype, lookups, args.topk_paths)
 ```
 
-Then it only tries to find explanation paths for those items.
+That means the old policy was effectively:
 
-This means:
+- raw top-10 item window
+- then explanation search only inside that window
+- no backfilling from item 11, 12, 13, ... if explanation search failed
 
-- if some raw top-10 items have no valid path,
-- the adapter does not backfill from item 11, 12, 13, ...
-- so the final explainable top-k becomes shorter than 10.
+This is exactly why a user could have:
 
-This was not just inferred from code. It was validated empirically:
+- a valid recommender top-10 from the latent model,
+- but fewer than 10 explainable exported items in `xrecsys`.
+
+This was then validated experimentally:
 
 - original `VRKG4Rec` baseline full top-10 users: `13143`
 - sandbox `cand50` full top-10 users: `14559`
 
-So the baseline coverage gap was largely caused by the adapter's selection policy.
+So the large baseline coverage gap was not just a vague hypothesis; it was directly tied to the adapter's candidate-selection policy.
 
 
-## VRKG4Rec Integration Risk 2: Ranking Semantics May Drift
+## VRKG4Rec Integration Risk 2: Path Construction Is Heuristic
 
-Another risk in [vrkg4rec_adapter.py](/usr1/home/s125mdg43_08/eval_framework/adapters/vrkg4rec_adapter.py) is that the final `uid_topk` is not guaranteed to preserve the model's original ranking score semantics.
+The adapter does not recover a native reasoning path from the model. Instead, it enumerates short reverse-KG paths and scores them heuristically.
 
-The adapter first selects items using model scores, but then best paths are scored and used in downstream export logic. This makes it possible for the exported top-k to reflect path scoring heuristics rather than the original recommender ranking alone.
+The path search itself is here:
+
+```python
+for (b_entity, b_etype, b_lid) in rev_adj.get(target_entity_id, []):
+    ...
+    if b_etype == item_etype and b_entity in train_items_set:
+        score = cosine(seed, target)
+        paths.append(([vrkg_uid, b_entity, target_entity_id], score))
+    ...
+    for (s_entity, s_etype, s_lid) in rev_adj.get(b_entity, []):
+        if s_etype == item_etype and s_entity in train_items_set:
+            score = (cosine(seed, bridge) + cosine(bridge, target)) / 2.0
+            paths.append(([vrkg_uid, s_entity, b_entity, target_entity_id], score))
+```
+
+This means the explanation path is not selected because the original VRKG model explicitly traversed that path. It is selected because:
+
+- the item was first recommended by the latent model,
+- then a short path was found in the KG,
+- then that short path received a good heuristic similarity score.
+
+So the explanation remains analyzable, but it should be interpreted as post-hoc explanation quality rather than native path-reasoning fidelity.
+
+
+## VRKG4Rec Integration Risk 3: Ranking Semantics May Drift
+
+Another risk is that the final exported `uid_topk` can drift away from the recommender's original ranking semantics.
+
+After path conversion, the adapter groups by item and keeps only the best-scoring path per item:
+
+```python
+pid_best = {}
+for (pid, score, path_nodes) in user_raw:
+    path_str = convert_path(...)
+    if path_str:
+        if pid not in pid_best or score > pid_best[pid][0]:
+            pid_best[pid] = (score, path_str)
+    else:
+        if pid not in pid_best or score > pid_best[pid][0]:
+            pid_best[pid] = (score, None)
+
+items_scored = sorted(pid_best.items(), key=lambda kv: kv[1][0], reverse=True)
+top_items = items_scored[:args.topk]
+uid_topk[xuid] = [p for p, _ in top_items]
+uid_pid_best[xuid] = {p: ps for p, (_, ps) in top_items if ps is not None}
+```
+
+So the final exported ranking is no longer just “the original latent model's item ranking”. It becomes:
+
+- latent model ranking to define a narrow candidate set,
+- then path-level heuristic scoring to decide best path per item,
+- then item export based on that path score grouping.
 
 This matters because recommendation metrics such as:
 
@@ -210,7 +288,91 @@ This matters because recommendation metrics such as:
 - `Recall`
 - `Precision`
 
-are only cleanly interpretable if the exported recommendation list still corresponds to the intended model ranking.
+are only fully clean when the exported top-k still clearly corresponds to the intended recommendation ranking semantics.
+
+
+## What We Previously Did, and Why It Became a Risk
+
+The original VRKG integration was a reasonable first bridge into `xrecsys`: use the latent model to recommend items, then recover short KG paths so that `LIR`, `SEP`, and `ETD` can be computed.
+
+However, once the figures started changing sharply, the code review showed that this bridge had three important assumptions built into it:
+
+1. raw top-k is a sufficient search window,
+2. short reverse-KG path search is a good enough explanation proxy,
+3. exporting one best path per item does not significantly alter ranking semantics.
+
+The debugging work this week showed that those assumptions are not harmless. They are exactly where the current `VRKG4Rec` evaluation becomes fragile.
+
+
+## VRKG4Rec Integration Risk 4: Not Every Found Graph Path Becomes a Valid xrecsys Path
+
+A second hidden source of fragility is that even when the adapter finds a graph path, that path must still satisfy `xrecsys` format constraints before it can be used.
+
+The key conversion logic is in [vrkg4rec_adapter.py](/usr1/home/s125mdg43_08/eval_framework/adapters/vrkg4rec_adapter.py):
+
+```python
+def convert_path(path_nodes, vrkg_uid, xrecsys_uid, dataset, lookups, kg_G):
+    n = len(path_nodes)
+    if n < 3 or n > 4:
+        return None
+    ...
+    if n == 4:
+        ...
+        if e1_etype != item_etype:
+            return None
+        rel2 = find_relation(...)
+        rel3 = find_relation(...)
+        if rel2 is None or rel3 is None:
+            return None
+    else:  # n == 3
+        ...
+        if e1_etype != item_etype:
+            return None
+        rel2 = find_relation(...)
+        if rel2 is None:
+            return None
+```
+
+So even if the reverse-KG search finds a path in graph space, that path is discarded unless it also satisfies the `xrecsys` structural template.
+
+This matters because the user-facing symptom can look like:
+
+- “the graph has a path”
+- but the exported explanation is still missing
+
+In practice, this means `VRKG4Rec` explainability here is constrained not just by graph reachability, but also by path-template compatibility.
+
+
+## Why This Directly Affects the Figures
+
+The effect on final tradeoff plots is amplified by the recommendation-metric filtering logic in [metrics.py](/usr1/home/s125mdg43_08/eval_framework/xrecsys/metrics.py):
+
+```python
+def measure_rec_quality(path_data):
+    ...
+    topk_matches = path_data.uid_topk
+    test_labels = path_data.test_labels
+    ...
+    for uid in test_user_idxs:
+        if uid not in topk_matches: continue
+        if len(topk_matches[uid]) < 10:
+            invalid_users.append(uid)
+            continue
+```
+
+So once the exported top-k becomes shorter than 10, that user is removed from rec-metric aggregation entirely.
+
+This is the key bridge between adapter behavior and figure instability:
+
+1. narrow candidate pool or failed path conversion shortens exported top-k,
+2. short exported top-k removes the user from rec metrics,
+3. the evaluation population changes,
+4. the resulting tradeoff curve can shift for implementation reasons rather than pure model reasons.
+
+This is why the `VRKG4Rec` debug work had to inspect both:
+
+- adapter-side path generation, and
+- metric-side user filtering.
 
 
 ## Why PGPR Is a Better Baseline for xrecsys
