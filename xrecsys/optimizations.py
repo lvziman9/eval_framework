@@ -118,6 +118,17 @@ def optimize_SEP(path_data, alpha):
         path_data.uid_topk[uid] = [get_rec_pid(candidate) for candidate in best_candidates]
         path_data.uid_pid_explaination[uid] = {get_rec_pid(candidate): candidate[-1] for candidate in best_candidates}
 
+
+def _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids, limit=10):
+    for candidate in candidates:
+        rec_pid = get_rec_pid(candidate)
+        if rec_pid in best_candidates_pids:
+            continue
+        best_candidates.append(candidate)
+        best_candidates_pids.add(rec_pid)
+        if len(best_candidates) == limit:
+            break
+
 #ETD Alpha optimization
 def optimize_ETD(path_data, alpha):
     pred_path = path_data.pred_paths
@@ -173,6 +184,12 @@ def optimize_ETD(path_data, alpha):
             bins[best_type].pop(0)
             if len(bins[best_type]) == 0:
                 bins.pop(best_type)
+
+        _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
+
+        _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
+
+        _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
 
         # Rearrange the topk based on the metric
         best_candidates.sort(key=lambda x: x[0],
@@ -275,6 +292,8 @@ def optimize_ETD_LIR(path_data, alpha):
             bins[best_type].pop(0)
             if len(bins[best_type]) == 0:
                 bins.pop(best_type)
+
+        _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
 
         # Rearrange the topk based on path_score
         best_candidates.sort(key=lambda candidate: candidate[0], reverse=True)

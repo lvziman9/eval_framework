@@ -2,6 +2,23 @@ import numpy as np
 from myutils import *
 from easydict import EasyDict as edict
 
+
+def safe_mean(values):
+    if values is None:
+        return np.nan
+    arr = np.asarray(values, dtype=float)
+    if arr.size == 0:
+        return np.nan
+    return float(arr.mean())
+
+
+def format_metric_value(value):
+    if value is None:
+        return "n/a"
+    if isinstance(value, (float, np.floating)) and np.isnan(value):
+        return "n/a"
+    return "{:.3f}".format(value)
+
 def dcg_at_k(r, k, method=1):
     r = np.asfarray(r)[:k]
     if r.size:
@@ -84,7 +101,7 @@ def print_rec_metrics(dataset_name, metrics):
     print("\n---Recommandation Quality---")
     print("Average for the entire user base:", end=" ")
     for metric, values in metrics.items():
-        print("{}: {:.3f}".format(metric, np.array(values["Overall"]).mean()), end=" | ")
+        print("{}: {}".format(metric, format_metric_value(safe_mean(values["Overall"]))), end=" | ")
     print("")
 
     for attribute_category, values in attribute_list.items():
@@ -92,7 +109,7 @@ def print_rec_metrics(dataset_name, metrics):
         for attribute in values[1].values():
             print("{} group".format(attribute), end=" ")
             for metric_name, groups_values in metrics.items():
-                print("{}: {:.3f}".format(metric_name, np.array(groups_values[attribute]).mean()), end=" | ")
+                print("{}: {}".format(metric_name, format_metric_value(safe_mean(groups_values[attribute]))), end=" | ")
             print("")
     print("\n")
 
@@ -158,7 +175,7 @@ def avg_ETD(path_data):
 
 
     for attribute_label, group_scores in groups_ETD_scores.items():
-        avg_groups_ETD[attribute_label] = np.array(group_scores).mean()
+        avg_groups_ETD[attribute_label] = safe_mean(group_scores)
 
 
     diversity_results = edict(
@@ -238,7 +255,7 @@ def avg_LIR(path_data, attribute_name="Gender"):
 
 
     for attribute_label, group_scores in groups_LIR_scores.items():
-         avg_groups_LIR[attribute_label] = np.array(group_scores).mean()
+         avg_groups_LIR[attribute_label] = safe_mean(group_scores)
 
     LIR = edict(
         avg_groups_LIR=avg_groups_LIR,
@@ -298,7 +315,7 @@ def avg_SEP(path_data):
         groups_SEP_scores["Overall"].append(SEP_score)
 
     for attribute_label, group_scores in groups_SEP_scores.items():
-        avg_groups_SEP[attribute_label] = np.array(group_scores).mean()
+        avg_groups_SEP[attribute_label] = safe_mean(group_scores)
 
     serendipity_results = edict(
         avg_groups_SEP=avg_groups_SEP,
@@ -312,7 +329,7 @@ def print_expquality_metrics(dataset_name, avg_groups_LIR, avg_groups_SEP, avg_g
     print("\n---Explanation Quality---")
     print("Average for the entire user base:", end=" ")
     for metric, values in metric_values.items():
-        print("{}: {:.3f}".format(metric, values["Overall"]), end= " | ")
+        print("{}: {}".format(metric, format_metric_value(values["Overall"])), end= " | ")
     print("")
 
     for attribute_category, values in attribute_list.items():
@@ -321,6 +338,6 @@ def print_expquality_metrics(dataset_name, avg_groups_LIR, avg_groups_SEP, avg_g
         for attribute in attributes:
             print("{} group".format(attribute), end=" ")
             for metric, values in metric_values.items():
-                print("{}: {:.3f}".format(metric, values[attribute]), end=" | ")
+                print("{}: {}".format(metric, format_metric_value(values[attribute])), end=" | ")
             print("")
 
