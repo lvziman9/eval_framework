@@ -1,8 +1,0 @@
-{
-  "dataset": "lastfm",
-  "vrkg_dataset_name": "xrecsys_lastfm",
-  "n_users": 15549,
-  "n_items": 47982,
-  "n_entities": 90695,
-  "n_relations": 9
-}

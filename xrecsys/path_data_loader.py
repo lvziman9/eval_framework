@@ -13,6 +13,7 @@ class PathDataLoader(object):
         self.model_dir = "/PGPR"
         self.dataset_name = args.dataset
         self.agent_topk = args.agent_topk
+        self.labels_dir = getattr(args, 'labels_dir', None)
         if args.eval_baseline or args.opt in ["softETD", "softSEP", "softLIR"]:
             self.load_uid_topk()
             self.load_uid_pid_path()
@@ -25,7 +26,7 @@ class PathDataLoader(object):
         self.uid_pid_timestamp, self.uid_timestamp = get_interaction2timestamp(self.dataset_name)
 
         #Dependent by the model
-        self.test_labels = load_labels(self.dataset_name, 'test')
+        self.test_labels = load_labels(self.dataset_name, 'test', labels_dir=self.labels_dir)
         self._load_or_generate_SEP_matrix()
         self._load_or_generate_LIR_matrix()
 
@@ -194,5 +195,4 @@ class PathDataLoader(object):
 
             SEP_matrix[type] = pid_weigth
         self.SEP_matrix = SEP_matrix
-
 

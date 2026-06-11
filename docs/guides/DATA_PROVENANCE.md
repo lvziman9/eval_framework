@@ -21,8 +21,8 @@ There are four different artifact layers in this repository:
 
 4. Archive/download layer
 - Location: `archive/raw_downloads/`
-- Contents: archived zip files such as `paths_lastfm.zip` and `paths_ml1m.zip`.
-- These are historical download artifacts, not the runtime source of truth.
+- Contents: historical raw downloads when retained.
+- Note: previously retained `paths_lastfm.zip` and `paths_ml1m.zip` were removed during the 2026-06-11 cleanup because they were not runtime sources of truth.
 
 ## 2. Dataset sources
 
@@ -109,12 +109,10 @@ These folders contain files such as:
 - optionally `user2timestamp.csv`
 - optionally `uid_pid_timestamp.csv`
 
-Historical download sources:
-- `archive/raw_downloads/paths_lastfm.zip`
-- `archive/raw_downloads/paths_ml1m.zip`
+Historical download archives were previously kept under `archive/raw_downloads/`, but they are not part of the active runtime path source.
 
 Important distinction:
-- The zip files are archived downloads.
+- Raw zip files, when present, are historical downloads only.
 - The live runtime path files are the unpacked files under `xrecsys/paths/`.
 
 ## 7. Current completeness check
@@ -145,6 +143,7 @@ Use this answer:
 
 ## 9. Related references
 
-- Project development history: `docs/plans/log.md`
+- Project development history: `archive/historical_docs/early_framework/plans/log.md`
 - Path format and metric assumptions: `docs/guides/PATH_METRICS_GUIDE.md`
-- Repository role overview: `docs/guides/PROJECT_OVERVIEW.md`
+- Current repository architecture: `docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md`
+- Historical repository overview: `archive/historical_docs/debug_reports/PROJECT_OVERVIEW.md`

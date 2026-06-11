@@ -37,6 +37,14 @@ LABELS_DIR = {
     }
 }
 
+
+def resolve_label_file(dataset, mode='train', labels_dir=None):
+    if mode not in {'train', 'test'}:
+        raise Exception('mode should be one of {train, test}.')
+    if labels_dir:
+        return labels_dir.rstrip('/') + f'/{mode}_label.pkl'
+    return LABELS_DIR[dataset][mode]
+
 PGPR_MODEL_DIR = "models/PGPR"
 
 
@@ -232,14 +240,8 @@ def normalize_path(path_str):
         normalized_path.append((path[i], path[i + 1], path[i + 2]))
     return normalized_path
 
-def load_labels(dataset, mode='train'):
-    if mode == 'train':
-        label_file = LABELS_DIR[dataset][mode]
-        # CHANGED
-    elif mode == 'test':
-        label_file = LABELS_DIR[dataset][mode]
-    else:
-        raise Exception('mode should be one of {train, test}.')
+def load_labels(dataset, mode='train', labels_dir=None):
+    label_file = resolve_label_file(dataset, mode, labels_dir=labels_dir)
     user_products = pickle.load(open(label_file, 'rb'))
     return user_products
 

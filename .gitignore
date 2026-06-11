@@ -49,3 +49,13 @@ adapters/vrkg_lookups/
 
 # 日志 (可选保留 log/，已暂存)
 # xrecsys/log/
+
+# Local agent/tool state
+.codex
+.codex/
+
+# Large/generated experiment workspaces
+runs/debug_compare/
+
+# Raw xrecsys evaluation logs; curate selected summaries under reports/ instead
+xrecsys/log/

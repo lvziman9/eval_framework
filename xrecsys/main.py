@@ -115,6 +115,7 @@ if __name__ == '__main__':
     parser.add_argument('--agent_topk', type=str, default="25-50-1", help='One of {25-50-1, 10-12-1} or more if you compute the predpaths with PGPR')
     parser.add_argument('--opt', type=str, default="LIRopt", help='One of ["softETD", "softSEP", "softLIR", "ETDopt", "SEPopt", "LIRopt", "ETD_SEP_opt", "ETD_LIR_opt", "SEP_LIR_opt", "ETD_SEP_LIR_opt"]')
     parser.add_argument('--alpha', type=float, default=-1, help='Determine the weight of the optimized explanation metric/s in reranking, -1 means test all alpha from 0. to 1. at step of 0.05')
+    parser.add_argument('--labels_dir', type=str, default="", help='Optional directory containing train_label.pkl and test_label.pkl for evaluation override')
     parser.add_argument('--eval_baseline', type=bool, default=False, help='If True compute rec quality metrics and explanation quality metrics from the extracted paths')
     parser.add_argument('--log_enabled', type=bool, default=True, help='If true save log files instead of printing results')
     parser.add_argument('--save_baseline_rec_quality_avgs', type=bool, default=True, help='If true save a csv with the average baseline values for rec metrics and groups')
