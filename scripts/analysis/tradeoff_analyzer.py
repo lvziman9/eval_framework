@@ -3,9 +3,9 @@ Trade-off Analyzer: Recommendation Quality vs Explanation Quality
 =================================================================
 Reads xrecsys alpha-sweep result CSVs and plots alpha-induced tradeoff curves.
 
-Two intended report modes:
-1. Single-model, multi-rec-metric comparison (implemented here).
-2. Multi-model, single-rec-metric comparison (kept as a documented TODO).
+Two report modes:
+1. Single-model, multi-rec-metric comparison.
+2. Multi-model, single-rec-metric comparison.
 
 Usage (from eval_framework/ root):
     conda run -n eval_frame python scripts/analysis/tradeoff_analyzer.py \
@@ -45,12 +45,14 @@ METRIC_DISPLAY = {
 }
 
 REC_METRIC_CHOICES = ['ndcg', 'hr', 'precision', 'recall']
+EXPECTED_ALPHAS = [round(i * 0.05, 2) for i in range(21)]
 METRIC_COLORS = {
     'ndcg': '#1565C0',
     'hr': '#C62828',
     'precision': '#2E7D32',
     'recall': '#EF6C00',
 }
+MODEL_COLORS = ['#1565C0', '#C62828', '#2E7D32', '#EF6C00', '#6A1B9A', '#00838F']
 ALPHA0_MARKER = 'o'
 ALPHA1_MARKER = 'X'
 EXP_LINESTYLE = (0, (6, 2))
@@ -80,6 +82,23 @@ def load_model_results(result_dir: Path, exp_metric: str) -> pd.DataFrame:
     if exp_col_actual and exp_col_actual != exp_metric:
         result = result.rename(columns={exp_col_actual: exp_metric})
     return result
+
+
+def validate_alpha_coverage(model_name: str, df: pd.DataFrame, allow_incomplete: bool = False) -> None:
+    found = {round(float(x), 2) for x in df['alpha'].dropna().tolist()}
+    expected = set(EXPECTED_ALPHAS)
+    missing = sorted(expected - found)
+    extra = sorted(found - expected)
+    if missing or extra:
+        message = (
+            f"Incomplete alpha sweep for {model_name}: "
+            f"found={len(found)} expected={len(expected)} "
+            f"missing={missing} extra={extra}"
+        )
+        if allow_incomplete:
+            print(f"  Warning: {message}")
+        else:
+            raise ValueError(message)
 
 
 def load_baseline(result_dir: Path) -> dict:
@@ -205,6 +224,91 @@ def save_table(model_name: str, df: pd.DataFrame, exp_metric: str, dataset: str,
     print()
 
 
+def plot_multi_model_tradeoff(models_data: dict, exp_metric: str, rec_metric: str, dataset: str, out_dir: Path):
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    fig, ax = plt.subplots(1, 1, figsize=(8.8, 6.8))
+    fig.suptitle(
+        f'Model Comparison: {METRIC_DISPLAY[rec_metric]} vs {exp_metric}  (dataset={dataset})',
+        fontsize=15,
+        fontweight='bold',
+        y=0.98,
+    )
+
+    handles = []
+    for idx, (model_name, df) in enumerate(models_data.items()):
+        if rec_metric not in df.columns or exp_metric not in df.columns:
+            print(f"  Skipping {model_name}: missing {rec_metric} or {exp_metric}")
+            continue
+        color = MODEL_COLORS[idx % len(MODEL_COLORS)]
+        ax.plot(
+            df[exp_metric],
+            df[rec_metric],
+            color=color,
+            linewidth=2.6,
+            marker='o',
+            markersize=4.2,
+            label=model_name,
+        )
+        ax.scatter(
+            df[exp_metric].iloc[0],
+            df[rec_metric].iloc[0],
+            color=color,
+            marker=ALPHA0_MARKER,
+            s=86,
+            edgecolor='white',
+            linewidth=0.9,
+            zorder=5,
+        )
+        ax.scatter(
+            df[exp_metric].iloc[-1],
+            df[rec_metric].iloc[-1],
+            color=color,
+            marker=ALPHA1_MARKER,
+            s=95,
+            edgecolor='white',
+            linewidth=0.9,
+            zorder=5,
+        )
+        handles.append(Line2D([0], [0], color=color, lw=2.8, marker='o', label=model_name))
+
+    ax.set_xlabel(METRIC_DISPLAY.get(exp_metric, exp_metric), fontsize=11)
+    ax.set_ylabel(METRIC_DISPLAY.get(rec_metric, rec_metric), fontsize=11)
+    ax.grid(True, alpha=0.25)
+
+    endpoint_handles = [
+        Line2D([0], [0], marker=ALPHA0_MARKER, color='none', markerfacecolor='#424242',
+               markeredgecolor='white', markersize=8, label='α = 0 endpoint'),
+        Line2D([0], [0], marker=ALPHA1_MARKER, color='none', markerfacecolor='#424242',
+               markeredgecolor='white', markersize=8, label='α = 1 endpoint'),
+    ]
+    fig.legend(handles=handles + endpoint_handles, loc='upper center', ncol=min(4, len(handles) + 2),
+               bbox_to_anchor=(0.5, 0.92), frameon=False)
+
+    plt.tight_layout(rect=[0.04, 0.04, 0.98, 0.86])
+    out_path = out_dir / f'tradeoff_{dataset}_{exp_metric}_{rec_metric}_models.png'
+    plt.savefig(out_path, dpi=180, bbox_inches='tight')
+    plt.close()
+    print(f'  Saved: {out_path}')
+
+
+def save_multi_model_table(models_data: dict, exp_metric: str, rec_metric: str, dataset: str, out_dir: Path):
+    rows = []
+    for model_name, df in models_data.items():
+        if rec_metric not in df.columns or exp_metric not in df.columns:
+            continue
+        subset = df[['alpha', rec_metric, exp_metric]].copy()
+        subset.insert(0, 'model', model_name)
+        rows.append(subset)
+    if not rows:
+        return
+
+    out = pd.concat(rows, ignore_index=True)
+    out_path = out_dir / f'tradeoff_{dataset}_{exp_metric}_{rec_metric}_models.csv'
+    out.to_csv(out_path, index=False, float_format='%.4f')
+    print(f'  Saved: {out_path}')
+
+
 def main():
     parser = argparse.ArgumentParser(description='Plot alpha-sweep tradeoff curves')
     parser.add_argument('--dataset', default='lastfm', help='Dataset name (default: lastfm)')
@@ -216,6 +320,8 @@ def main():
                         help='Recommendation metrics to include (default: ndcg hr precision recall)')
     parser.add_argument('--out', default='reports/figures/tradeoff',
                         help='Output directory for figures (default: reports/figures/tradeoff)')
+    parser.add_argument('--allow-incomplete', action='store_true',
+                        help='Allow plotting partial alpha sweeps. Default is to fail fast.')
     args = parser.parse_args()
 
     model_dirs = {}
@@ -225,30 +331,34 @@ def main():
         name, path = entry.split('=', 1)
         model_dirs[name] = Path(path)
 
-    if len(model_dirs) != 1:
-        raise ValueError(
-            'This refined report version currently supports the single-model, multi-metric mode only. '
-            'Use one NAME=PATH pair for now; the multi-model comparison remains a documented TODO.'
-        )
-
-    model_name, result_dir = next(iter(model_dirs.items()))
     out_dir = Path(args.out)
 
-    print(f'\nLoading results for model={model_name}, exp_metric={args.exp_metric} ...')
-    df = load_model_results(result_dir, args.exp_metric)
-    baseline = load_baseline(result_dir)
-    if baseline:
-        available_baselines = []
-        for metric in ['ndcg', 'hr', 'precision', 'recall', args.exp_metric]:
-            metric_value = baseline.get(metric, baseline.get(metric.lower(), None))
-            if metric_value is not None:
-                available_baselines.append(f'{metric}={metric_value:.4f}')
-        if available_baselines:
-            print('  baseline ' + '  '.join(available_baselines))
+    models_data = {}
+    for model_name, result_dir in model_dirs.items():
+        print(f'\nLoading results for model={model_name}, exp_metric={args.exp_metric} ...')
+        df = load_model_results(result_dir, args.exp_metric)
+        validate_alpha_coverage(model_name, df, allow_incomplete=args.allow_incomplete)
+        models_data[model_name] = df
+        baseline = load_baseline(result_dir)
+        if baseline:
+            available_baselines = []
+            for metric in ['ndcg', 'hr', 'precision', 'recall', args.exp_metric]:
+                metric_value = baseline.get(metric, baseline.get(metric.lower(), None))
+                if metric_value is not None:
+                    available_baselines.append(f'{metric}={metric_value:.4f}')
+            if available_baselines:
+                print('  baseline ' + '  '.join(available_baselines))
 
-    print('\nPlotting single-model multi-metric tradeoff figure ...')
-    plot_single_model_tradeoff(model_name, df, args.exp_metric, args.rec_metrics, args.dataset, out_dir)
-    save_table(model_name, df, args.exp_metric, args.dataset, out_dir)
+    if len(models_data) == 1:
+        model_name, df = next(iter(models_data.items()))
+        print('\nPlotting single-model multi-metric tradeoff figure ...')
+        plot_single_model_tradeoff(model_name, df, args.exp_metric, args.rec_metrics, args.dataset, out_dir)
+        save_table(model_name, df, args.exp_metric, args.dataset, out_dir)
+    else:
+        print('\nPlotting multi-model single-metric tradeoff figures ...')
+        for rec_metric in _available_rec_metrics(models_data, args.rec_metrics):
+            plot_multi_model_tradeoff(models_data, args.exp_metric, rec_metric, args.dataset, out_dir)
+            save_multi_model_table(models_data, args.exp_metric, rec_metric, args.dataset, out_dir)
 
 
 if __name__ == '__main__':

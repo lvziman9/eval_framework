@@ -54,6 +54,7 @@ def convert(
     xrecsys_dir: str,
     topk: int = 10,
     agent_topk_tag: str = None,
+    labels_dir: str = None,
 ) -> None:
     """
     Read policy_paths pkl and write the three xrecsys CSVs.
@@ -94,7 +95,7 @@ def convert(
     # Load train labels for filtering already-seen items
     # ------------------------------------------------------------------
     print("Loading train labels ...")
-    train_set = load_train_labels(xrecsys_dir, dataset)
+    train_set = load_train_labels(xrecsys_dir, dataset, labels_dir=labels_dir)
 
     # ------------------------------------------------------------------
     # Global score normalisation (excluding train items)
@@ -160,6 +161,8 @@ if __name__ == '__main__':
     parser.add_argument('--topk',           type=int, default=10,   help='Top-K items per user')
     parser.add_argument('--agent-topk-tag', default=None,
                         help='Folder tag e.g. 10-12-1; inferred from --topk if omitted')
+    parser.add_argument('--labels-dir', default=None,
+                        help='Optional canonical labels directory containing train_label.pkl')
     args = parser.parse_args()
 
     convert(
@@ -168,4 +171,5 @@ if __name__ == '__main__':
         xrecsys_dir=args.xrecsys_dir,
         topk=args.topk,
         agent_topk_tag=args.agent_topk_tag,
+        labels_dir=args.labels_dir,
     )

@@ -33,14 +33,17 @@ def format_path(path_tuples) -> str:
     return ' '.join(parts)
 
 
-def load_train_labels(xrecsys_dir: str, dataset: str) -> dict:
+def load_train_labels(xrecsys_dir: str, dataset: str, labels_dir: str = None) -> dict:
     """
     Load training labels used to filter already-seen items.
 
     Returns:
         {uid: set(pids)}
     """
-    pkl = Path(xrecsys_dir) / 'models' / 'PGPR' / 'tmp' / dataset / 'train_label.pkl'
+    if labels_dir:
+        pkl = Path(labels_dir) / 'train_label.pkl'
+    else:
+        pkl = Path(xrecsys_dir) / 'models' / 'PGPR' / 'tmp' / dataset / 'train_label.pkl'
     with open(pkl, 'rb') as f:
         raw = pickle.load(f)
     return {uid: set(pids) for uid, pids in raw.items()}

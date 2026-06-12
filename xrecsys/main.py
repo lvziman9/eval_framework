@@ -117,6 +117,7 @@ if __name__ == '__main__':
     parser.add_argument('--alpha', type=float, default=-1, help='Determine the weight of the optimized explanation metric/s in reranking, -1 means test all alpha from 0. to 1. at step of 0.05')
     parser.add_argument('--labels_dir', type=str, default="", help='Optional directory containing train_label.pkl and test_label.pkl for evaluation override')
     parser.add_argument('--eval_baseline', type=bool, default=False, help='If True compute rec quality metrics and explanation quality metrics from the extracted paths')
+    parser.add_argument('--only_baseline', action='store_true', help='If set with --eval_baseline True, skip optimization after writing baseline outputs')
     parser.add_argument('--log_enabled', type=bool, default=True, help='If true save log files instead of printing results')
     parser.add_argument('--save_baseline_rec_quality_avgs', type=bool, default=True, help='If true save a csv with the average baseline values for rec metrics and groups')
     parser.add_argument('--save_baseline_exp_quality_avgs', type=bool, default=True, help='If true save a csv with the average baseline values for exp metrics and groups')
@@ -128,6 +129,9 @@ if __name__ == '__main__':
     parser.add_argument('--save_after_exp_quality_distributions', type=bool, default=True, help='If true save a csv with the distribution of after-opt values for the exp metrics and groups')
     parser.add_argument('--save_overall', type=bool, default=True, help='If true saves the avgs and distribution also for the overall group')
     args = parser.parse_args()
+
+    if args.only_baseline and not args.eval_baseline:
+        parser.error("--only_baseline requires --eval_baseline True")
 
     sys.path.append(r'models/PGPR')
 
@@ -151,7 +155,7 @@ if __name__ == '__main__':
         try:
             if args.log_enabled:
                 log_path = log_base_path + '/baseline.txt'
-                log_file = open(log_path, 'w+')
+                log_file = open(log_path, 'w+', buffering=1)
                 sys.stdout = log_file
 
             print('--- Baseline---')
@@ -169,6 +173,10 @@ if __name__ == '__main__':
                 log_file.close()
                 sys.stdout = orig_stdout
 
+    if args.only_baseline:
+        print("Baseline-only requested; skipping optimization.")
+        sys.exit(0)
+
     chosen_optimization = args.opt
     if chosen_optimization not in alpha_optimizations and chosen_optimization not in soft_optimizations:
         print("The chosen optimization doesn't exist...")
@@ -180,7 +188,7 @@ if __name__ == '__main__':
         try:
             if args.log_enabled:
                 log_path = log_base_path + chosen_optimization + '.txt'
-                log_file = open(log_path, 'w+')
+                log_file = open(log_path, 'w+', buffering=1)
                 sys.stdout = log_file
             print('Performing Soft-Optimization...')
             path_data = build_path_data(args)
@@ -227,7 +235,7 @@ if __name__ == '__main__':
         try:
             if args.log_enabled:
                 log_path = log_base_path + chosen_optimization + '.txt'
-                log_file = open(log_path, 'w+')
+                log_file = open(log_path, 'w+', buffering=1)
                 sys.stdout = log_file
             print('Performing Alpha-Optimization...')
             if args.alpha == -1:

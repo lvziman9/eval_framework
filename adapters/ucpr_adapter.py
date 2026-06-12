@@ -10,16 +10,17 @@ expected by xrecsys:
 
 This adapter is intentionally lightweight:
 1. Reuse UCPR's already-extracted `pred_paths.pkl`
-2. Map UCPR's compact uid/product indices back to xrecsys lastfm ids
+2. Map UCPR's compact uid/product indices back to canonical/xrecsys lastfm ids
 3. Rename `product` nodes to `song` so the path schema matches xrecsys
+   and normalize UCPR relation aliases such as `mixed_by_engineer`
 4. Preserve UCPR's ranking logic as closely as possible:
    - best path per (uid, pid) chosen by path probability
    - final item ranking chosen by (path_score, path_prob)
 
 Current scope
 -------------
-This adapter is currently implemented for `dataset=lastfm` only, because the
-required remap files come from the local UCPR conversion step:
+This adapter is currently implemented for `dataset=lastfm` only. By default it
+keeps backward compatibility with the older local UCPR conversion output:
 
   runs/debug_compare/2026-03-24_ucpr_lastfm_converter/output/
     user_remap.tsv
@@ -32,7 +33,10 @@ Usage
       --dataset lastfm \
       --xrecsys-dir xrecsys \
       --topk 10 \
-      --agent-topk-tag 10-12-1-ucpr
+      --agent-topk-tag 10-12-1-ucpr \
+      --user-remap runs/.../model_views/ucpr/preprocessed/user_remap.tsv \
+      --product-remap runs/.../model_views/ucpr/preprocessed/product_remap.tsv \
+      --labels-dir runs/.../labels
 """
 
 import argparse
@@ -46,20 +50,47 @@ sys.path.insert(0, os.path.dirname(__file__))
 from base_adapter import format_path, load_train_labels, write_csvs
 
 
-def _load_ucpr_uid_to_xrecsys_uid(repo_root: Path) -> dict:
-    """
-    Compose:
-      UCPR uid -> raw lastfm uid -> xrecsys internal user kgid
-    """
-    converter_dir = repo_root / "runs" / "debug_compare" / "2026-03-24_ucpr_lastfm_converter" / "output"
-    ucpr_user_remap = converter_dir / "user_remap.tsv"
-    xrecsys_user_map = repo_root / "xrecsys" / "datasets" / "lastfm" / "mappings" / "user_mappings.txt"
+RELATION_ALIASES = {
+    "belong_to_genre": "belong_to",
+    "featured_by_artist": "featured_by",
+    "mixed_by_engineer": "mixed_by",
+}
 
-    raw_to_ucpr = {}
-    with open(ucpr_user_remap, newline="") as f:
+ENTITY_ALIASES = {
+    "product": "song",
+    "genre": "category",
+}
+
+
+def _load_ucpr_uid_to_xrecsys_uid(repo_root: Path, user_remap: Path = None) -> dict:
+    """
+    Load UCPR uid -> canonical/xrecsys user id.
+
+    New canonical views write:
+      canonical_uid -> ucpr_uid
+
+    The older converter wrote:
+      raw_lastfm_uid -> ucpr_uid, then needed xrecsys user_mappings.txt.
+    """
+    if user_remap is None:
+        converter_dir = repo_root / "runs" / "debug_compare" / "2026-03-24_ucpr_lastfm_converter" / "output"
+        user_remap = converter_dir / "user_remap.tsv"
+
+    with open(user_remap, newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
-        for row in reader:
-            raw_to_ucpr[int(row["raw_lastfm_uid"])] = int(row["ucpr_uid"])
+        fieldnames = set(reader.fieldnames or [])
+        if {"canonical_uid", "ucpr_uid"}.issubset(fieldnames):
+            return {int(row["ucpr_uid"]): int(row["canonical_uid"]) for row in reader}
+
+        if not {"raw_lastfm_uid", "ucpr_uid"}.issubset(fieldnames):
+            raise ValueError(f"Unsupported user remap schema in {user_remap}: {reader.fieldnames}")
+
+        raw_to_ucpr = {
+            int(row["raw_lastfm_uid"]): int(row["ucpr_uid"])
+            for row in reader
+        }
+
+    xrecsys_user_map = repo_root / "xrecsys" / "datasets" / "lastfm" / "mappings" / "user_mappings.txt"
 
     raw_to_xrecsys = {}
     with open(xrecsys_user_map) as f:
@@ -88,19 +119,36 @@ def _load_ucpr_uid_to_xrecsys_uid(repo_root: Path) -> dict:
     return ucpr_to_xrecsys
 
 
-def _load_ucpr_pid_to_xrecsys_pid(repo_root: Path) -> dict:
+def _load_ucpr_pid_to_xrecsys_pid(repo_root: Path, product_remap: Path = None) -> dict:
     """
-    Invert:
+    Load UCPR product idx -> canonical/xrecsys product id.
+
+    New canonical views write:
+      canonical_pid -> ucpr_product_idx
+
+    The older converter wrote:
       raw_xrecsys_pid -> ucpr_product_idx
     into:
-      ucpr_product_idx -> raw_xrecsys_pid
+      ucpr_product_idx -> xrecsys/canonical pid
     """
-    converter_dir = repo_root / "runs" / "debug_compare" / "2026-03-24_ucpr_lastfm_converter" / "output"
-    ucpr_product_remap = converter_dir / "product_remap.tsv"
+    if product_remap is None:
+        converter_dir = repo_root / "runs" / "debug_compare" / "2026-03-24_ucpr_lastfm_converter" / "output"
+        product_remap = converter_dir / "product_remap.tsv"
 
     ucpr_to_xrecsys = {}
-    with open(ucpr_product_remap, newline="") as f:
+    with open(product_remap, newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
+        fieldnames = set(reader.fieldnames or [])
+        if {"canonical_pid", "ucpr_product_idx"}.issubset(fieldnames):
+            for row in reader:
+                x_pid = int(row["canonical_pid"])
+                ucpr_pid = int(row["ucpr_product_idx"])
+                ucpr_to_xrecsys[ucpr_pid] = x_pid
+            return ucpr_to_xrecsys
+
+        if not {"raw_xrecsys_pid", "ucpr_product_idx"}.issubset(fieldnames):
+            raise ValueError(f"Unsupported product remap schema in {product_remap}: {reader.fieldnames}")
+
         for row in reader:
             x_pid = int(row["raw_xrecsys_pid"])
             ucpr_pid = int(row["ucpr_product_idx"])
@@ -118,13 +166,16 @@ def _convert_path_tuples(path_tuples, uid_map, pid_map):
       ('listened','user',bridge_uid)
       ('listened','product',target_pid)
 
-    xrecsys lastfm expects `song` instead of `product`, but does already
-    accept collaborative `... listened user ... listened song ...` paths.
+    xrecsys lastfm expects `song` instead of `product` and `category`
+    instead of UCPR's `genre`, but does accept collaborative
+    `... listened user ... listened song ...` paths.
     """
     converted = []
     for rel, etype, eid in path_tuples:
-        if etype == "product":
-            etype = "song"
+        rel = RELATION_ALIASES.get(rel, rel)
+        etype = ENTITY_ALIASES.get(etype, etype)
+
+        if etype == "song":
             eid = pid_map.get(int(eid))
         elif etype == "user":
             eid = uid_map.get(int(eid))
@@ -142,6 +193,9 @@ def convert(
     xrecsys_dir: str,
     topk: int = 10,
     agent_topk_tag: str = None,
+    user_remap: str = None,
+    product_remap: str = None,
+    labels_dir: str = None,
 ) -> None:
     if dataset != "lastfm":
         raise ValueError("UCPR adapter currently supports dataset='lastfm' only.")
@@ -156,9 +210,11 @@ def convert(
 
     print(f"  {len(pred_paths):,} users with extracted paths")
     print("Loading remap tables ...")
-    uid_map = _load_ucpr_uid_to_xrecsys_uid(repo_root)
-    pid_map = _load_ucpr_pid_to_xrecsys_pid(repo_root)
-    train_set = load_train_labels(xrecsys_dir, dataset)
+    uid_map = _load_ucpr_uid_to_xrecsys_uid(repo_root, Path(user_remap) if user_remap else None)
+    pid_map = _load_ucpr_pid_to_xrecsys_pid(repo_root, Path(product_remap) if product_remap else None)
+    print(f"  uid remap entries       : {len(uid_map):,}")
+    print(f"  product remap entries   : {len(pid_map):,}")
+    train_set = load_train_labels(xrecsys_dir, dataset, labels_dir=labels_dir)
 
     pred_rows = []
     uid_topk = {}
@@ -229,6 +285,9 @@ if __name__ == "__main__":
     parser.add_argument("--xrecsys-dir", default="xrecsys", help="Root of xrecsys repo clone")
     parser.add_argument("--topk", type=int, default=10, help="Top-K items per user")
     parser.add_argument("--agent-topk-tag", default=None, help="Folder tag e.g. 10-12-1-ucpr")
+    parser.add_argument("--user-remap", default=None, help="Optional canonical user_remap.tsv")
+    parser.add_argument("--product-remap", default=None, help="Optional canonical product_remap.tsv")
+    parser.add_argument("--labels-dir", default=None, help="Optional canonical labels dir containing train_label.pkl")
     args = parser.parse_args()
 
     convert(
@@ -237,4 +296,7 @@ if __name__ == "__main__":
         xrecsys_dir=args.xrecsys_dir,
         topk=args.topk,
         agent_topk_tag=args.agent_topk_tag,
+        user_remap=args.user_remap,
+        product_remap=args.product_remap,
+        labels_dir=args.labels_dir,
     )
