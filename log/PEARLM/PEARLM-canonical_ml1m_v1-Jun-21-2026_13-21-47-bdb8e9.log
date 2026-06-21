@@ -1,0 +1,182 @@
+Sun 21 Jun 2026 13:21:47 INFO  ['scripts/hopwise/run_canonical_native_path.py', '--model', 'PEARLM', '--dataset', 'canonical_ml1m_v1', '--data-root', '/usr1/home/s125mdg43_08/eval_framework/runs/debug_compare/2026-06-20_native_path_expansion/hopwise_data', '--checkpoint-dir', '/usr1/home/s125mdg43_08/eval_framework/runs/debug_compare/2026-06-20_native_path_expansion/hopwise_smoke/checkpoints/pearlm_ml1m', '--output', '/usr1/home/s125mdg43_08/eval_framework/runs/debug_compare/2026-06-20_native_path_expansion/hopwise_smoke/pearlm_canonical_ml1m_v1_train.json', '--gpu-id', '0', '--epochs', '1', '--embedding-size', '128', '--num-heads', '4', '--num-layers', '2']
+Sun 21 Jun 2026 13:21:47 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2024
+state = INFO
+reproducibility = True
+data_path = /usr1/home/s125mdg43_08/eval_framework/runs/debug_compare/2026-06-20_native_path_expansion/hopwise_data/canonical_ml1m_v1
+checkpoint_dir = /usr1/home/s125mdg43_08/eval_framework/runs/debug_compare/2026-06-20_native_path_expansion/hopwise_smoke/checkpoints/pearlm_ml1m
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 1
+train_batch_size = 128
+learner = adam
+learning_rate = 0.0002
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none', 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 0
+stopping_step = 1
+clip_grad_norm = None
+weight_decay = 0.01
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = False
+metrics = ['Recall', 'NDCG', 'Hit', 'Precision', 'Fidelity']
+topk = [10]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 32
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp'], 'kg': ['head_id', 'relation_id', 'tail_id'], 'link': ['item_id', 'entity_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = ['train', 'valid', 'test']
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = hopwise
+progress_bar_rich = True
+shuffle = True
+weight_precision = torch.float32
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+preload_weight_path = None
+discretization = None
+ui_relation = [UI-Relation]
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+path_hop_length = 3
+MAX_PATHS_PER_USER = 1
+context_length = 9
+metapaths = None
+path_sample_args = {'temporal_causality': False, 'collaborative_path': True, 'strategy': 'constrained-rw', 'path_token_separator': ' ', 'restrict_by_phase': False, 'MAX_CONSECUTIVE_INVALID': 10, 'MAX_RW_TRIES_PER_IID': 1, 'MAX_RW_PATHS_PER_HOP': 1, 'parallel_max_workers': 1}
+tokenizer = {'model': 'WordLevel', 'special_tokens': {'mask_token': '[MASK]', 'unk_token': '[UNK]', 'pad_token': '[PAD]', 'eos_token': '[EOS]', 'bos_token': '[BOS]', 'sep_token': '[SEP]', 'cls_token': '[CLS]'}}
+MODEL_TYPE = ModelType.PATH_LANGUAGE_MODELING
+path_generation_args = {'paths_per_user': 1, 'num_beams': 1, 'num_beam_groups': 1, 'diversity_penalty': 0.0, 'length_penalty': 0.0, 'top_k': None, 'top_p': None, 'do_sample': False}
+sequence_postprocessor = Cumulative
+warmup_steps = 0
+embedding_size = 128
+num_heads = 4
+num_layers = 2
+use_kg_token_types = True
+base_model = distilgpt2
+MODEL_INPUT_TYPE = InputType.PATHWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 21 Jun 2026 13:21:50 INFO  canonical_ml1m_v1
+The number of users: 6041
+Average actions of users: 155.84370860927152
+The number of items: 3194
+Average actions of items: 294.79987472596304
+The number of inters: 941296
+The sparsity of the dataset: 95.1215431765217%
+Remain Fields: ['entity_id', 'user_id', 'item_id', 'rating', 'timestamp', 'head_id', 'relation_id', 'tail_id']
+The number of entities: 9059
+The number of relations: 10
+The number of triples: 112145
+The number of items that have been linked to KG: 3163
+The number of items that have not been linked to KG: 31
+The sparsity of the KG: 0.9998633469290212
+The sparsity of the KG (relation-aware): 0.9986334692902122
+The average degree of entities in the KG:: 24.758803399933768
+The average degree of items in the KG:: 34.7110472541507
+The number of hops used for path sampling: 3
+Maximum number of paths sampled per user: 1
+The path sampling strategy: constrained-rw
+The tokenizer model: WordLevel
+Sun 21 Jun 2026 13:21:59 INFO  [Training]: train_batch_size = [128] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 'none', 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sun 21 Jun 2026 13:21:59 INFO  [Evaluation]: eval_batch_size = [32] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 21 Jun 2026 13:22:04 INFO  PEARLM(
+  (transformer): GPT2Model(
+    (wte): Embedding(15120, 128)
+    (wpe): Embedding(9, 128)
+    (drop): Dropout(p=0.1, inplace=False)
+    (h): ModuleList(
+      (0-1): 2 x GPT2Block(
+        (ln_1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (attn): GPT2Attention(
+          (c_attn): Conv1D(nf=384, nx=128)
+          (c_proj): Conv1D(nf=128, nx=128)
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (mlp): GPT2MLP(
+          (c_fc): Conv1D(nf=512, nx=128)
+          (c_proj): Conv1D(nf=128, nx=512)
+          (act): NewGELUActivation()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+    (ln_f): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(in_features=128, out_features=15117, bias=False)
+  (loss): CrossEntropyLoss()
+)
+Trainable parameters: 2333312
+Sun 21 Jun 2026 13:22:06 INFO  FLOPs: 5811072.0
+Sun 21 Jun 2026 13:22:14 INFO  epoch 1 training [time: 3.39s, train loss: 8.0334]
+Sun 21 Jun 2026 13:22:27 INFO  The running environment of this training is as follows:
++-------------+-----------------+
+| Environment |      Usage      |
++=============+=================+
+| CPU         |     2.40 %      |
++-------------+-----------------+
+| GPU         | 0.32 G/23.68 G  |
++-------------+-----------------+
+| Memory      | 2.14 G/251.53 G |
++-------------+-----------------+
+Sun 21 Jun 2026 13:22:27 INFO  test result: [recall@10]: 0.0068 [ndcg@10]: 0.0243 [hit@10]: 0.1781 [precision@10]: 0.0203 [Fidelity@10]: 0.1 

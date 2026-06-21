@@ -56,6 +56,7 @@ adapters/vrkg_lookups/
 
 # Large/generated experiment workspaces
 runs/debug_compare/
+data_sources/
 
 # Raw xrecsys evaluation logs; curate selected summaries under reports/ instead
 xrecsys/log/

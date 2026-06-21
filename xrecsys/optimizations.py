@@ -120,13 +120,15 @@ def optimize_SEP(path_data, alpha):
 
 
 def _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids, limit=10):
+    if len(best_candidates) >= limit:
+        return
     for candidate in candidates:
         rec_pid = get_rec_pid(candidate)
         if rec_pid in best_candidates_pids:
             continue
         best_candidates.append(candidate)
         best_candidates_pids.add(rec_pid)
-        if len(best_candidates) == limit:
+        if len(best_candidates) >= limit:
             break
 
 #ETD Alpha optimization
@@ -184,10 +186,6 @@ def optimize_ETD(path_data, alpha):
             bins[best_type].pop(0)
             if len(bins[best_type]) == 0:
                 bins.pop(best_type)
-
-        _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
-
-        _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
 
         _dedupe_and_fill_remaining(candidates, best_candidates, best_candidates_pids)
 

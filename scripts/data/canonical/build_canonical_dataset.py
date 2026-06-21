@@ -60,7 +60,10 @@ def iter_interactions(path):
                 continue
             if len(row) < 3:
                 raise ValueError(f"Expected at least 3 columns in {path}, got: {row}")
-            yield int(row[0]), int(row[1]), int(row[2])
+            if len(row) >= 4:
+                yield int(row[0]), int(row[1]), int(row[2]), int(row[3])
+            else:
+                yield int(row[0]), int(row[1]), DEFAULT_RATING, int(row[2])
 
 
 def canonicalize_split(split_path, user_raw_to_kg, valid_products, raw_product_to_kg, product_id_policy):
@@ -71,7 +74,7 @@ def canonicalize_split(split_path, user_raw_to_kg, valid_products, raw_product_t
         "skipped_user_interactions": 0,
         "skipped_product_interactions": 0,
     }
-    for raw_uid, raw_pid, ts in iter_interactions(split_path):
+    for raw_uid, raw_pid, rating, ts in iter_interactions(split_path):
         stats["input_interactions"] += 1
         uid = user_raw_to_kg.get(raw_uid)
         if uid is None:
@@ -86,7 +89,7 @@ def canonicalize_split(split_path, user_raw_to_kg, valid_products, raw_product_t
         if not valid:
             stats["skipped_product_interactions"] += 1
             continue
-        rows.append((uid, pid, DEFAULT_RATING, ts))
+        rows.append((uid, pid, rating, ts))
         stats["kept_interactions"] += 1
     stats["users"] = len({r[0] for r in rows})
     stats["products"] = len({r[1] for r in rows})
@@ -194,8 +197,8 @@ def main():
         "domain": args.domain,
         "source_dataset_dir": str(source),
         "interaction_format": "uid\tpid\trating\ttimestamp",
-        "feedback_type": "implicit",
-        "default_rating": DEFAULT_RATING,
+        "feedback_type": "explicit_if_source_has_rating_else_implicit",
+        "default_rating_for_three_column_source": DEFAULT_RATING,
         "user_id_policy": "raw_user_id_to_xrecsys_kgid_via_user_mappings_col1_to_col0",
         "product_id_policy": args.product_id_policy,
         "product_entity": args.product_entity,

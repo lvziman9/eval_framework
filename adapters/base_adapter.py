@@ -35,7 +35,11 @@ def format_path(path_tuples) -> str:
 
 def load_train_labels(xrecsys_dir: str, dataset: str, labels_dir: str = None) -> dict:
     """
-    Load training labels used to filter already-seen items.
+    Load labels used to filter already-seen items.
+
+    Canonical datasets use train/validation/test splits, so validation items
+    are also prior interactions at test time. Legacy xrecsys layouts without a
+    validation label file retain train-only behavior.
 
     Returns:
         {uid: set(pids)}
@@ -46,7 +50,15 @@ def load_train_labels(xrecsys_dir: str, dataset: str, labels_dir: str = None) ->
         pkl = Path(xrecsys_dir) / 'models' / 'PGPR' / 'tmp' / dataset / 'train_label.pkl'
     with open(pkl, 'rb') as f:
         raw = pickle.load(f)
-    return {uid: set(pids) for uid, pids in raw.items()}
+    excluded = {uid: set(pids) for uid, pids in raw.items()}
+    if labels_dir:
+        valid_pkl = Path(labels_dir) / 'valid_label.pkl'
+        if valid_pkl.exists():
+            with open(valid_pkl, 'rb') as f:
+                valid = pickle.load(f)
+            for uid, pids in valid.items():
+                excluded.setdefault(uid, set()).update(pids)
+    return excluded
 
 
 def write_csvs(
@@ -136,3 +148,8 @@ class _DeprecatedBaseAdapter:
             raise ValueError(f"uid_pid_explanation missing required columns")
         
         print("✓ Output validation passed")
+
+
+# Preserve the historical package import while new adapters use the functions
+# above directly.
+BaseAdapter = _DeprecatedBaseAdapter

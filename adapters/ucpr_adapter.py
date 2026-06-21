@@ -10,17 +10,17 @@ expected by xrecsys:
 
 This adapter is intentionally lightweight:
 1. Reuse UCPR's already-extracted `pred_paths.pkl`
-2. Map UCPR's compact uid/product indices back to canonical/xrecsys lastfm ids
-3. Rename `product` nodes to `song` so the path schema matches xrecsys
-   and normalize UCPR relation aliases such as `mixed_by_engineer`
+2. Map UCPR's compact uid/product indices back to canonical/xrecsys ids
+3. Rename model-local product/entity/relation aliases to the canonical
+   LastFM or ML-1M path schema
 4. Preserve UCPR's ranking logic as closely as possible:
    - best path per (uid, pid) chosen by path probability
    - final item ranking chosen by (path_score, path_prob)
 
-Current scope
--------------
-This adapter is currently implemented for `dataset=lastfm` only. By default it
-keeps backward compatibility with the older local UCPR conversion output:
+Backward compatibility
+----------------------
+For LastFM, the adapter keeps backward compatibility with the older local UCPR
+conversion output:
 
   runs/debug_compare/2026-03-24_ucpr_lastfm_converter/output/
     user_remap.tsv
@@ -51,14 +51,32 @@ from base_adapter import format_path, load_train_labels, write_csvs
 
 
 RELATION_ALIASES = {
-    "belong_to_genre": "belong_to",
-    "featured_by_artist": "featured_by",
-    "mixed_by_engineer": "mixed_by",
+    "lastfm": {
+        "belong_to_genre": "belong_to",
+        "featured_by_artist": "featured_by",
+        "mixed_by_engineer": "mixed_by",
+    },
+    "ml1m": {
+        "belong_to_category": "belong_to",
+        "cinematography_by_cinematographer": "cinematography",
+        "composed_by_composer": "composed_by",
+        "directed_by_director": "directed_by",
+        "edited_by_editor": "edited_by",
+        "produced_by_prodcompany": "produced_by_company",
+        "starred_by_actor": "starring",
+        "wrote_by_writter": "wrote_by",
+    },
 }
 
 ENTITY_ALIASES = {
-    "product": "song",
-    "genre": "category",
+    "lastfm": {
+        "product": "song",
+        "genre": "category",
+    },
+    "ml1m": {
+        "product": "movie",
+        "prodcompany": "production_company",
+    },
 }
 
 
@@ -156,7 +174,7 @@ def _load_ucpr_pid_to_xrecsys_pid(repo_root: Path, product_remap: Path = None) -
     return ucpr_to_xrecsys
 
 
-def _convert_path_tuples(path_tuples, uid_map, pid_map):
+def _convert_path_tuples(path_tuples, uid_map, pid_map, dataset):
     """
     Convert UCPR path tuples into xrecsys-compatible tuples.
 
@@ -172,10 +190,10 @@ def _convert_path_tuples(path_tuples, uid_map, pid_map):
     """
     converted = []
     for rel, etype, eid in path_tuples:
-        rel = RELATION_ALIASES.get(rel, rel)
-        etype = ENTITY_ALIASES.get(etype, etype)
+        rel = RELATION_ALIASES[dataset].get(rel, rel)
+        etype = ENTITY_ALIASES[dataset].get(etype, etype)
 
-        if etype == "song":
+        if etype in {"song", "movie"}:
             eid = pid_map.get(int(eid))
         elif etype == "user":
             eid = uid_map.get(int(eid))
@@ -197,8 +215,8 @@ def convert(
     product_remap: str = None,
     labels_dir: str = None,
 ) -> None:
-    if dataset != "lastfm":
-        raise ValueError("UCPR adapter currently supports dataset='lastfm' only.")
+    if dataset not in RELATION_ALIASES:
+        raise ValueError(f"UCPR adapter does not support dataset={dataset!r}.")
 
     pred_pkl = Path(pred_pkl)
     xrecsys_dir = Path(xrecsys_dir)
@@ -241,7 +259,7 @@ def convert(
 
             converted_paths = []
             for score, path_prob, path_tuples in path_list:
-                converted = _convert_path_tuples(path_tuples, uid_map, pid_map)
+                converted = _convert_path_tuples(path_tuples, uid_map, pid_map, dataset)
                 if converted is None:
                     skipped_path += 1
                     continue
@@ -281,7 +299,7 @@ def convert(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert UCPR pred_paths.pkl to xrecsys CSVs")
     parser.add_argument("--pred-pkl", required=True, help="Path to UCPR pred_paths.pkl")
-    parser.add_argument("--dataset", required=True, help="Currently supports only lastfm")
+    parser.add_argument("--dataset", required=True, choices=sorted(RELATION_ALIASES))
     parser.add_argument("--xrecsys-dir", default="xrecsys", help="Root of xrecsys repo clone")
     parser.add_argument("--topk", type=int, default=10, help="Top-K items per user")
     parser.add_argument("--agent-topk-tag", default=None, help="Folder tag e.g. 10-12-1-ucpr")

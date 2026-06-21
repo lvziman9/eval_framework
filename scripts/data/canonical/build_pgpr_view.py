@@ -16,16 +16,34 @@ from collections import defaultdict
 from pathlib import Path
 
 
-LASTFM_RELATIONS = [
-    "alternative_version_of_s_rs.txt.gz",
-    "belong_to_s_ca.txt.gz",
-    "featured_by_s_a.txt.gz",
-    "mixed_by_s_e.txt.gz",
-    "orginal_version_of_s_rs.txt.gz",
-    "produced_by_producer_s_pr.txt.gz",
-    "related_to_s_rs.txt.gz",
-    "sang_by_s_a.txt.gz",
-]
+RELATION_FILES = {
+    "lastfm": [
+        "alternative_version_of_s_rs.txt.gz",
+        "belong_to_s_ca.txt.gz",
+        "featured_by_s_a.txt.gz",
+        "mixed_by_s_e.txt.gz",
+        "orginal_version_of_s_rs.txt.gz",
+        "produced_by_producer_s_pr.txt.gz",
+        "related_to_s_rs.txt.gz",
+        "sang_by_s_a.txt.gz",
+    ],
+    "ml1m": [
+        "belong_to_m_ca.txt.gz",
+        "cinematography_m_ci.txt.gz",
+        "composed_by_m_c.txt.gz",
+        "directed_by_m_d.txt.gz",
+        "edited_by_m_ed.txt.gz",
+        "produced_by_company_m_pc.txt.gz",
+        "produced_by_producer_m_pr.txt.gz",
+        "starring_m_a.txt.gz",
+        "wrote_by_m_w.txt.gz",
+    ],
+}
+
+PRODUCT_ENTITIES = {
+    "lastfm": "song",
+    "ml1m": "movie",
+}
 
 
 def iter_canonical_interactions(path):
@@ -44,16 +62,17 @@ def load_labels(path):
         return pickle.load(f)
 
 
-def write_split(canonical_root, split, out_path):
+def write_split(canonical_root, split, out_path, model_dataset):
     rows = 0
     users = set()
     products = set()
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with gzip.open(out_path, "wt") as f:
-        for uid, pid, _rating, ts in iter_canonical_interactions(canonical_root / "interactions" / f"{split}.tsv.gz"):
-            # LastFM PGPR expects three space-separated columns: raw_uid raw_pid timestamp.
-            # The identity mappings in this view map these canonical values back to themselves.
-            f.write(f"{uid} {pid} {ts}\n")
+        for uid, pid, rating, ts in iter_canonical_interactions(canonical_root / "interactions" / f"{split}.tsv.gz"):
+            if model_dataset == "ml1m":
+                f.write(f"{uid} {pid} {rating} {ts}\n")
+            else:
+                f.write(f"{uid} {pid} {ts}\n")
             rows += 1
             users.add(uid)
             products.add(pid)
@@ -107,6 +126,8 @@ def pad_entity_file_for_identity_ids(entity_dir, entity_name, max_id):
 
 
 def copy_tree_files(src_dir, dst_dir, names=None):
+    if not src_dir.exists():
+        return
     dst_dir.mkdir(parents=True, exist_ok=True)
     if names is None:
         paths = [p for p in src_dir.iterdir() if p.is_file()]
@@ -177,7 +198,8 @@ def validate_identity_labels(canonical_root, view_root):
         rebuilt = defaultdict(list)
         with gzip.open(view_root / f"{split}.txt.gz", "rt") as f:
             for line in f:
-                uid_raw, pid_raw, _ts = map(int, line.strip().split(" "))
+                parts = line.strip().split(" ")
+                uid_raw, pid_raw = int(parts[0]), int(parts[1])
                 rebuilt[user_map[uid_raw]].append(product_map[pid_raw])
         canonical = load_labels(canonical_root / "labels" / f"{split}_label.pkl")
         report[split] = {
@@ -194,6 +216,7 @@ def main():
     parser.add_argument("--source-xrecsys-dataset-dir", required=True)
     parser.add_argument("--out-dir", required=True, help="Output PGPR view dir; basename should be lastfm for unmodified PGPR loaders")
     parser.add_argument("--dataset", default="lastfm_v1")
+    parser.add_argument("--model-dataset", choices=["lastfm", "ml1m"], default="lastfm")
     args = parser.parse_args()
 
     canonical_root = Path(args.canonical_root)
@@ -202,23 +225,29 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     split_stats = {
-        "train": write_split(canonical_root, "train", out / "train.txt.gz"),
-        "valid": write_split(canonical_root, "valid", out / "valid.txt.gz"),
-        "test": write_split(canonical_root, "test", out / "test.txt.gz"),
+        "train": write_split(canonical_root, "train", out / "train.txt.gz", args.model_dataset),
+        "valid": write_split(canonical_root, "valid", out / "valid.txt.gz", args.model_dataset),
+        "test": write_split(canonical_root, "test", out / "test.txt.gz", args.model_dataset),
     }
 
     copy_tree_files(source / "entities", out / "entities")
-    copy_tree_files(source / "relations", out / "relations", names=LASTFM_RELATIONS)
+    copy_tree_files(source / "relations", out / "relations", names=RELATION_FILES[args.model_dataset])
     copy_tree_files(source / "kg-completion", out / "kg-completion")
     copy_tree_files(source / "mappings", out / "mappings")
     mapping_stats = write_identity_mappings(canonical_root, out / "mappings", source / "mappings")
     entity_padding = {
         "user": pad_entity_file_for_identity_ids(out / "entities", "user", mapping_stats["max_user_id"]),
+        PRODUCT_ENTITIES[args.model_dataset]: pad_entity_file_for_identity_ids(
+            out / "entities",
+            PRODUCT_ENTITIES[args.model_dataset],
+            mapping_stats["max_product_id"],
+        ),
     }
 
     validation = validate_identity_labels(canonical_root, out)
     metadata = {
         "dataset": args.dataset,
+        "model_dataset": args.model_dataset,
         "canonical_root": str(canonical_root),
         "source_xrecsys_dataset_dir": str(source),
         "out_dir": str(out),

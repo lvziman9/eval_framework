@@ -6,6 +6,10 @@ The goal is to stop comparing models through historical, model-specific data art
 
 Current experiment planning is tracked in [NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md](/usr1/home/s125mdg43_08/eval_framework/docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md). That document narrows the main explainability evaluation to models with native recommendation paths and treats non-path KG recommenders as accuracy references only.
 
+PGPR-specific canonical data flow and the embedding-table padding bug are documented in [PGPR_CANONICAL_DATA_FLOW_2026-06-12.md](/usr1/home/s125mdg43_08/eval_framework/docs/guides/PGPR_CANONICAL_DATA_FLOW_2026-06-12.md).
+
+The active UCPR/CAFE/ML-1M implementation and execution status is tracked in [NATIVE_PATH_IMPLEMENTATION_LOG_2026-06-20.md](/usr1/home/s125mdg43_08/eval_framework/docs/guides/NATIVE_PATH_IMPLEMENTATION_LOG_2026-06-20.md).
+
 ## Motivation
 
 The recent `lastfm` debugging showed that assets with the same dataset name can still refer to different effective evaluation spaces:
@@ -68,6 +72,10 @@ All canonical interaction splits use four tab-separated columns:
 uid    pid    rating    timestamp
 ```
 
+Existing generated `lastfm_v1` and `ml1m_v1` split files store rows without a
+physical header line. Consumers must therefore accept both headerless
+four-column files and future files that include the documented header.
+
 Meaning:
 
 - `uid`: canonical user id,
@@ -107,16 +115,70 @@ For `lastfm_v1`:
 - canonical product id: selected by an explicit product-id policy,
 - first trial policy: `xrecsys_kgid`, meaning the product column is retained only when it exists in the `kgid` column of `product_mappings.txt`.
 
-For future `ml1m_v1`:
+For `ml1m_v1`:
 
 - canonical user id: `xrecsys` internal user id,
 - canonical product id: movie/product kgid,
 - product entity: `movie`.
 
-For future `amazon_v1`:
+The first `ml1m_v1` implementation was generated on 2026-06-20 under:
 
-- the product entity and KG source must be defined first,
-- then the same canonical schema can be applied.
+```text
+runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1
+```
+
+Its PGPR and UCPR views pass canonical label round-trip validation.
+
+For `beauty_legacy_v1`:
+
+- canonical user id: the shared historical PGPR/CAFE compact user index;
+- canonical product id: the shared historical PGPR/CAFE compact product index;
+- product entity: `product`;
+- interaction relation: `purchase`;
+- validation policy: intentionally empty to preserve the historical training
+  graph exactly.
+
+PGPR and CAFE contain the same per-user train/test pair sets for Beauty, even
+though their label-list ordering differs. The raw Amazon review file provides
+an exact one-to-one rating/timestamp record for every historical pair.
+
+The empty validation split is a compatibility protocol, not a recommended
+general split. Moving interactions from train to validation without rebuilding
+CAFE's purchase and review-text KG edges would leak those held-out interactions
+through the graph. A future temporal Beauty version must rebuild those edges
+from its reduced training split.
+
+## Larger Amazon Dataset with an Existing KG
+
+`beauty_legacy_v1` is the correctness/reference dataset, not the project's
+large-scale Amazon claim.
+
+Only one additional large Amazon dataset is required. The selected benchmark
+is KGAT/KGIN **Amazon-book**, which already distributes user-item
+interactions, item-to-Freebase mappings, relation mappings, and KG triples.
+This project will not construct a replacement graph from Amazon review
+metadata and call it a native KG.
+
+“Native KG” here means native to the published recommendation benchmark. The
+KGAT authors followed KB4Rec to map Amazon-book items to Freebase entities via
+title matching. It is not an Amazon-authored KG.
+
+Published scale:
+
+- 70,679 users;
+- 24,915 items;
+- 847,733 interactions;
+- 88,572 KG entities;
+- 39 relation types;
+- 2,557,746 KG triples.
+
+The canonical import preserves the source KG and mappings. Because the source
+benchmark provides train/test but no validation split, one deterministic
+interaction per eligible user will be held out from source train for
+validation, and all models must be retrained.
+
+The detailed source contract, model scope, and validation gates are tracked in
+[AMAZON_BOOK_KG_EXPERIMENT_PLAN_2026-06-21.md](/usr1/home/s125mdg43_08/eval_framework/docs/guides/AMAZON_BOOK_KG_EXPERIMENT_PLAN_2026-06-21.md).
 
 ## Model Views
 
@@ -198,6 +260,22 @@ Then `xrecsys` should evaluate with the matching canonical labels:
 --labels_dir canonical_datasets/{dataset_name}_v1/labels
 ```
 
+Native-path models are allowed to return fewer than `K` recommendations when
+the graph search produces fewer than `K` unique unseen item-ending paths.
+They must not insert non-path recommendations solely to fill the list.
+
+In that case evaluation must:
+
+1. preserve the short list;
+2. count missing slots as non-hits;
+3. divide Precision@K by `K`, not by the returned list length;
+4. report exact-K users, short users, empty users, and slot coverage;
+5. compute NDCG against the ideal ranking with
+   `min(K, number_of_relevant_items)` gains.
+
+This exception applies to candidate exhaustion, not duplicate items or seen
+item leakage; both remain validation errors.
+
 ## First Implementation Plan
 
 We will start with `lastfm_v1` because it is where the current mismatch was found.
@@ -212,7 +290,7 @@ Execution order:
 6. export both models back to canonical `xrecsys` CSVs,
 7. draw single-model and multi-model tradeoff figures.
 
-The same framework should then be reused for `ml1m_v1`. Amazon should be added later after its KG and product entity schema are fixed.
+The same framework is now reused for `ml1m_v1`. Amazon should be added later after its KG and product entity schema are fixed.
 
 ## First Smoke-Run Result: `lastfm_v1`
 
