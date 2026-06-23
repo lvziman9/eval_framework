@@ -264,13 +264,21 @@ Native-path models are allowed to return fewer than `K` recommendations when
 the graph search produces fewer than `K` unique unseen item-ending paths.
 They must not insert non-path recommendations solely to fill the list.
 
+`uid_topk.csv` must still contain exactly the canonical test-user set. A user
+that cannot enter the model's train-derived graph, has no executable native
+program, or produces no valid unseen item-ending path must be retained with an
+explicit empty recommendation row. Such users remain in the evaluation
+denominator. They must not be deleted and must not receive a score-only,
+popularity, or non-path fallback.
+
 In that case evaluation must:
 
-1. preserve the short list;
-2. count missing slots as non-hits;
-3. divide Precision@K by `K`, not by the returned list length;
-4. report exact-K users, short users, empty users, and slot coverage;
-5. compute NDCG against the ideal ranking with
+1. require exact canonical test-user coverage;
+2. preserve short and empty lists;
+3. count missing slots as non-hits;
+4. divide Precision@K by `K`, not by the returned list length;
+5. report exact-K users, short users, empty users, and slot coverage;
+6. compute NDCG against the ideal ranking with
    `min(K, number_of_relevant_items)` gains.
 
 This exception applies to candidate exhaustion, not duplicate items or seen

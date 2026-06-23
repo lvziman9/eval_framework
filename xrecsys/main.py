@@ -1,4 +1,5 @@
 import argparse
+from collections import Counter
 import csv
 import os
 import sys
@@ -13,6 +14,53 @@ from path_data_loader import PathDataLoader
 def ensure_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
+
+
+def _alpha_row_counts(path):
+    counts = Counter()
+    if not os.path.exists(path):
+        return counts
+    with open(path, newline='') as handle:
+        reader = csv.DictReader(handle)
+        if not reader.fieldnames or 'alpha' not in reader.fieldnames:
+            raise ValueError(f"Cannot resume malformed alpha output: {path}")
+        for row in reader:
+            counts[round(float(row['alpha']), 2)] += 1
+    return counts
+
+
+def _retain_complete_alphas(path, completed_alphas):
+    if not os.path.exists(path):
+        return
+    temporary = path + '.resume.tmp'
+    with open(path, newline='') as source, open(temporary, 'w', newline='') as target:
+        reader = csv.DictReader(source)
+        if not reader.fieldnames:
+            raise ValueError(f"Cannot resume alpha output without a header: {path}")
+        writer = csv.DictWriter(target, fieldnames=reader.fieldnames)
+        writer.writeheader()
+        for row in reader:
+            if round(float(row['alpha']), 2) in completed_alphas:
+                writer.writerow(row)
+    os.replace(temporary, path)
+
+
+def _completed_alpha_outputs(avg_path, distribution_path):
+    avg_counts = _alpha_row_counts(avg_path) if avg_path else Counter()
+    distribution_counts = (
+        _alpha_row_counts(distribution_path) if distribution_path else Counter()
+    )
+    count_sets = [counts for counts in (avg_counts, distribution_counts) if counts]
+    if not count_sets:
+        return set()
+    completed = set(count_sets[0])
+    for counts in count_sets:
+        expected_rows = max(counts.values())
+        completed &= {
+            alpha for alpha, row_count in counts.items()
+            if row_count == expected_rows
+        }
+    return completed
 
 
 def build_path_data(args):
@@ -112,9 +160,18 @@ def run_alpha_optimization(path_data, optimization_name, alpha):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', type=str, default="lastfm", help='One of {ml1m, lastfm}')
-    parser.add_argument('--agent_topk', type=str, default="25-50-1", help='One of {25-50-1, 10-12-1} or more if you compute the predpaths with PGPR')
+    parser.add_argument('--agent_topk', type=str, default="25-50-1", help='Path artifact tag under paths/<dataset>/agent_topk=<tag>')
+    parser.add_argument('--result_tag', type=str, default="", help='Optional separate results/log tag; defaults to --agent_topk')
+    parser.add_argument(
+        '--rec_eval_protocol',
+        choices=('legacy-exact-k', 'canonical-all-users'),
+        default='legacy-exact-k',
+        help='Legacy skips short lists; canonical evaluates every test user with standard NDCG and Precision@10.',
+    )
     parser.add_argument('--opt', type=str, default="LIRopt", help='One of ["softETD", "softSEP", "softLIR", "ETDopt", "SEPopt", "LIRopt", "ETD_SEP_opt", "ETD_LIR_opt", "SEP_LIR_opt", "ETD_SEP_LIR_opt"]')
     parser.add_argument('--alpha', type=float, default=-1, help='Determine the weight of the optimized explanation metric/s in reranking, -1 means test all alpha from 0. to 1. at step of 0.05')
+    parser.add_argument('--resume-moving-alpha', action='store_true',
+                        help='Resume a full moving-alpha sweep, pruning any incomplete final alpha before appending missing values')
     parser.add_argument('--labels_dir', type=str, default="", help='Optional directory containing train_label.pkl and test_label.pkl for evaluation override')
     parser.add_argument('--eval_baseline', type=bool, default=False, help='If True compute rec quality metrics and explanation quality metrics from the extracted paths')
     parser.add_argument('--only_baseline', action='store_true', help='If set with --eval_baseline True, skip optimization after writing baseline outputs')
@@ -129,21 +186,24 @@ if __name__ == '__main__':
     parser.add_argument('--save_after_exp_quality_distributions', type=bool, default=True, help='If true save a csv with the distribution of after-opt values for the exp metrics and groups')
     parser.add_argument('--save_overall', type=bool, default=True, help='If true saves the avgs and distribution also for the overall group')
     args = parser.parse_args()
+    result_tag = args.result_tag or args.agent_topk
 
     if args.only_baseline and not args.eval_baseline:
         parser.error("--only_baseline requires --eval_baseline True")
+    if args.resume_moving_alpha and args.alpha != -1:
+        parser.error("--resume-moving-alpha requires the default --alpha -1 sweep")
 
     sys.path.append(r'models/PGPR')
 
     ensure_dir('./results')
     ensure_dir('./results/' + args.dataset)
-    ensure_dir('./results/' + args.dataset + '/agent_topk=' + args.agent_topk)
-    result_base_path = './results/' + args.dataset + '/agent_topk=' + args.agent_topk + '/'
+    ensure_dir('./results/' + args.dataset + '/agent_topk=' + result_tag)
+    result_base_path = './results/' + args.dataset + '/agent_topk=' + result_tag + '/'
 
     ensure_dir('./log')
     ensure_dir('./log/' + args.dataset)
-    ensure_dir('./log/' + args.dataset + '/agent_topk=' + args.agent_topk)
-    log_base_path = './log/' + args.dataset + '/agent_topk=' + args.agent_topk + '/'
+    ensure_dir('./log/' + args.dataset + '/agent_topk=' + result_tag)
+    log_base_path = './log/' + args.dataset + '/agent_topk=' + result_tag + '/'
 
     soft_optimizations = ["softETD", "softSEP", "softLIR"]
     alpha_optimizations = ["ETDopt", "SEPopt", "LIRopt", "ETD_SEP_opt", "ETD_LIR_opt", "SEP_LIR_opt", "ETD_SEP_LIR_opt"]
@@ -159,7 +219,9 @@ if __name__ == '__main__':
                 sys.stdout = log_file
 
             print('--- Baseline---')
-            rec_metrics_before = measure_rec_quality(path_data)
+            rec_metrics_before = measure_rec_quality(
+                path_data, protocol=args.rec_eval_protocol
+            )
             print_rec_metrics(path_data.dataset_name, rec_metrics_before)
             exp_metrics_before, distributions_exp_metrics_before = compute_exp_metrics(path_data)
             print_expquality_metrics(path_data.dataset_name,
@@ -194,7 +256,9 @@ if __name__ == '__main__':
             path_data = build_path_data(args)
             run_soft_optimization(path_data, chosen_optimization)
 
-            rec_metrics_after = measure_rec_quality(path_data)
+            rec_metrics_after = measure_rec_quality(
+                path_data, protocol=args.rec_eval_protocol
+            )
             print_rec_metrics(path_data.dataset_name, rec_metrics_after)
             avg_exp_metrics_after, distributions_exp_metrics_after = compute_exp_metrics(path_data)
             print_expquality_metrics(path_data.dataset_name,
@@ -245,26 +309,70 @@ if __name__ == '__main__':
             else:
                 alphas = [args.alpha]
 
+            avg_file_path = None
+            distribution_file_path = None
             if args.save_after_rec_quality_avgs or args.save_after_exp_quality_avgs:
                 filename = (chosen_optimization + '_moving_alpha_avg.csv'
                             if args.alpha == -1 else
                             chosen_optimization + '_alpha=' + str(args.alpha) + '_avg.csv')
-                file_path = result_base_path + filename
-                avg_metrics_file = open(file_path, 'w+')
-                writer = csv.writer(avg_metrics_file)
-                writer.writerow(["alpha", "metric", "group", "data", "opt"])
-            else:
-                avg_metrics_file = None
-                writer = None
+                avg_file_path = result_base_path + filename
 
             if args.save_after_rec_quality_distributions or args.save_after_exp_quality_distributions:
                 filename = (chosen_optimization + '_moving_alpha_distribution.csv'
                             if args.alpha == -1 else
                             chosen_optimization + '_alpha=' + str(args.alpha) + '_distribution.csv')
-                file_path = result_base_path + filename
-                distribution_file = open(file_path, 'w+')
+                distribution_file_path = result_base_path + filename
+
+            completed_alphas = set()
+            if args.resume_moving_alpha:
+                completed_alphas = _completed_alpha_outputs(
+                    avg_file_path, distribution_file_path
+                )
+                if avg_file_path:
+                    _retain_complete_alphas(avg_file_path, completed_alphas)
+                if distribution_file_path:
+                    _retain_complete_alphas(
+                        distribution_file_path, completed_alphas
+                    )
+                alphas = [
+                    alpha for alpha in alphas
+                    if round(float(alpha), 2) not in completed_alphas
+                ]
+                print(
+                    "Resuming moving-alpha sweep; completed={} remaining={}".format(
+                        sorted(completed_alphas), alphas
+                    )
+                )
+
+            if avg_file_path:
+                avg_exists = os.path.exists(avg_file_path) and os.path.getsize(avg_file_path) > 0
+                avg_metrics_file = open(
+                    avg_file_path,
+                    'a' if args.resume_moving_alpha and avg_exists else 'w+',
+                    newline='',
+                )
+                writer = csv.writer(avg_metrics_file)
+                if not (args.resume_moving_alpha and avg_exists):
+                    writer.writerow(["alpha", "metric", "group", "data", "opt"])
+            else:
+                avg_metrics_file = None
+                writer = None
+
+            if distribution_file_path:
+                distribution_exists = (
+                    os.path.exists(distribution_file_path)
+                    and os.path.getsize(distribution_file_path) > 0
+                )
+                distribution_file = open(
+                    distribution_file_path,
+                    'a' if args.resume_moving_alpha and distribution_exists else 'w+',
+                    newline='',
+                )
                 writer_distribution = csv.writer(distribution_file)
-                writer_distribution.writerow(["alpha", "metric", "group", "data", "opt"])
+                if not (args.resume_moving_alpha and distribution_exists):
+                    writer_distribution.writerow(
+                        ["alpha", "metric", "group", "data", "opt"]
+                    )
             else:
                 distribution_file = None
                 writer_distribution = None
@@ -274,7 +382,9 @@ if __name__ == '__main__':
                 path_data = build_path_data(args)
                 run_alpha_optimization(path_data, chosen_optimization, alpha)
 
-                rec_metrics_after = measure_rec_quality(path_data)
+                rec_metrics_after = measure_rec_quality(
+                    path_data, protocol=args.rec_eval_protocol
+                )
                 print_rec_metrics(path_data.dataset_name, rec_metrics_after)
                 exp_metrics_after, distributions_exp_metrics_after = compute_exp_metrics(path_data)
                 print_expquality_metrics(path_data.dataset_name,
@@ -311,6 +421,10 @@ if __name__ == '__main__':
                                 continue
                             for value in values:
                                 writer_distribution.writerow([alpha, metric_name, group_name, value, chosen_optimization])
+                if avg_metrics_file is not None:
+                    avg_metrics_file.flush()
+                if distribution_file is not None:
+                    distribution_file.flush()
         finally:
             if log_file is not None:
                 log_file.close()

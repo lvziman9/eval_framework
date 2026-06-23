@@ -16,6 +16,7 @@ PRODUCT_TYPE = {
     "ml1m": "movie",
     "beauty": "product",
     "beauty_legacy_v1": "product",
+    "amazon_book_kgat_v1": "book",
 }
 
 
@@ -40,7 +41,13 @@ def parse_path(path_str: str, expected_uid: int, expected_pid: int, product_type
     return path
 
 
-def validate(paths_dir: Path, labels_dir: Path, dataset: str, topk: int) -> dict:
+def validate(
+    paths_dir: Path,
+    labels_dir: Path,
+    dataset: str,
+    topk: int,
+    require_all_test_users: bool = False,
+) -> dict:
     train = load_labels(labels_dir, "train")
     valid_path = labels_dir / "valid_label.pkl"
     if valid_path.exists():
@@ -67,6 +74,13 @@ def validate(paths_dir: Path, labels_dir: Path, dataset: str, topk: int) -> dict
             if any(pid in train.get(uid, set()) for pid in pids):
                 raise ValueError(f"Seen training item leaked into top-k for uid={uid}")
             uid_topk[uid] = pids
+    if require_all_test_users and set(uid_topk) != set(test):
+        missing = sorted(set(test) - set(uid_topk))[:10]
+        extra = sorted(set(uid_topk) - set(test))[:10]
+        raise ValueError(
+            "uid_topk.csv does not cover the exact canonical test-user set: "
+            f"missing={missing}, extra={extra}"
+        )
 
     explanations = {}
     explanation_pids_by_uid = {}
@@ -141,6 +155,8 @@ def validate(paths_dir: Path, labels_dir: Path, dataset: str, topk: int) -> dict
         "pred_path_rows": pred_rows,
         "candidate_users": len(candidate_users),
         "topk_users": len(uid_topk),
+        "canonical_test_users": len(test),
+        "require_all_test_users": require_all_test_users,
         "explanations": len(explanations),
         "score_range": [min_score, max_score],
         "status": "PASS",
@@ -153,6 +169,7 @@ def main() -> None:
     parser.add_argument("--labels-dir", required=True)
     parser.add_argument("--dataset", choices=sorted(PRODUCT_TYPE), required=True)
     parser.add_argument("--topk", type=int, default=10)
+    parser.add_argument("--require-all-test-users", action="store_true")
     parser.add_argument("--summary-json")
     args = parser.parse_args()
 
@@ -161,6 +178,7 @@ def main() -> None:
         Path(args.labels_dir),
         args.dataset,
         args.topk,
+        args.require_all_test_users,
     )
     rendered = json.dumps(summary, indent=2, sort_keys=True)
     print(rendered)

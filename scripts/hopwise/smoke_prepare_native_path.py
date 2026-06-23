@@ -11,9 +11,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
+from collections import OrderedDict
 from pathlib import Path
 
 import numpy as np
+import torch
 
 from hopwise.config import Config
 from hopwise.data import create_dataset
@@ -85,7 +88,14 @@ def install_kgglm_serial_sampler() -> None:
         if self._path_dataset is not None:
             return
 
+        print("[KGGLM] collaborative KG construction start", flush=True)
+        started_at = time.monotonic()
         graph = self._create_ckg_igraph(show_relation=True, directed=False)
+        print(
+            f"[KGGLM] collaborative KG ready: vertices={len(graph.vs):,} "
+            f"edges={len(graph.es):,} elapsed={time.monotonic() - started_at:.1f}s",
+            flush=True,
+        )
         kg_relation_count = len(self.relations)
         graph.es["weight"] = [0.0] * self.inter_num + [1.0] * kg_relation_count
 
@@ -93,6 +103,8 @@ def install_kgglm_serial_sampler() -> None:
         min_hop, max_hop = self.pretrain_hop_length
         max_tries = self.config["path_sample_args"]["MAX_RW_TRIES_PER_IID"]
         paths: set[tuple[int, ...]] = set()
+        total_nodes = max(len(graph.vs) - (graph_min_iid + 1), 0)
+        sampled_nodes = 0
 
         for start_node in range(graph_min_iid + 1, len(graph.vs)):
             for _ in range(self.pretrain_paths):
@@ -102,11 +114,98 @@ def install_kgglm_serial_sampler() -> None:
                     if path not in paths:
                         paths.add(path)
                         break
+            sampled_nodes += 1
+            if sampled_nodes % 10_000 == 0 or sampled_nodes == total_nodes:
+                print(
+                    f"[KGGLM] pretrain sampling: nodes={sampled_nodes:,}/{total_nodes:,} "
+                    f"unique_paths={len(paths):,} elapsed={time.monotonic() - started_at:.1f}s",
+                    flush=True,
+                )
 
+        print("[KGGLM] sparse relation annotation start", flush=True)
         paths_with_relations = self._add_paths_relations(graph, paths)
         self._path_dataset = "".join(self._format_path(path) + "\n" for path in paths_with_relations)
+        print(
+            f"[KGGLM] pretrain path dataset ready: paths={len(paths_with_relations):,} "
+            f"elapsed={time.monotonic() - started_at:.1f}s",
+            flush=True,
+        )
 
     KGGLMDataset.generate_pretrain_dataset = generate_pretrain_dataset
+
+
+def install_cumulative_score_alignment() -> None:
+    """Align generation-step probabilities with the tokens generated at that step.
+
+    Upstream slices ``[-max_new_tokens - 1:-1]``, which scores the prompt tail
+    and every generated token except the final item. Under KG-constrained
+    decoding those preceding tokens are commonly masked, collapsing every
+    path score to zero.
+    """
+
+    from hopwise.model.sequence_postprocessor import CumulativeSequenceScorePostProcessor
+
+    def calculate_sequence_scores(self, normalized_tuple, sequences, max_new_tokens=24):
+        generated_tokens = sequences[:, -max_new_tokens:]
+        step_scores = [
+            probabilities.gather(1, generated_tokens[:, [step]])
+            for step, probabilities in enumerate(normalized_tuple[:max_new_tokens])
+        ]
+        return torch.cat(step_scores, dim=-1).mean(dim=-1)
+
+    CumulativeSequenceScorePostProcessor.calculate_sequence_scores = calculate_sequence_scores
+
+
+def install_bounded_logits_mask_cache(
+    max_cached_vocab: int = 50_000,
+    max_large_vocab_entries: int = 4_096,
+) -> None:
+    """Avoid caching one full-vocabulary boolean mask per KG node.
+
+    Hopwise's cache is reasonable for small vocabularies, but canonical
+    LastFM has more than 106k tokens. Each cached key therefore costs roughly
+    106 KB and full-user inference grows to tens of GB. For large
+    vocabularies, all graph states are retained in a bounded LRU. This keeps
+    repeated user keys hot within the current beam batch while evicting old
+    users and stale item/entity states.
+    """
+
+    from hopwise.model.logits_processor import ConstrainedLogitsProcessorWordLevel
+
+    current = ConstrainedLogitsProcessorWordLevel.get_banned_mask
+    if getattr(current, "_canonical_bounded_cache", False):
+        return
+
+    original = current
+
+    def get_banned_mask(self, key, candidate_tokens):
+        vocab_size = getattr(self, "_canonical_vocab_size", None)
+        if vocab_size is None:
+            vocab_size = len(self.tokenizer)
+            self._canonical_vocab_size = vocab_size
+        if vocab_size <= max_cached_vocab:
+            return original(self, key, candidate_tokens)
+
+        cache = getattr(self, "_canonical_large_vocab_mask_cache", None)
+        if cache is None:
+            cache = OrderedDict()
+            self._canonical_large_vocab_mask_cache = cache
+        cached = cache.get(key)
+        if cached is not None:
+            cache.move_to_end(key)
+            return cached
+
+        banned_mask = np.ones(vocab_size, dtype=bool)
+        banned_mask[candidate_tokens] = False
+
+        cache[key] = banned_mask
+        cache.move_to_end(key)
+        if len(cache) > max_large_vocab_entries:
+            cache.popitem(last=False)
+        return banned_mask
+
+    get_banned_mask._canonical_bounded_cache = True
+    ConstrainedLogitsProcessorWordLevel.get_banned_mask = get_banned_mask
 
 
 def main() -> None:

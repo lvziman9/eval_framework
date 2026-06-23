@@ -141,6 +141,11 @@ def convert(
 
     print("Loading train labels ...")
     train_set = load_train_labels(xrecsys_dir, dataset, labels_dir=labels_dir)
+    test_users = None
+    if labels_dir:
+        test_path = Path(labels_dir) / "test_label.pkl"
+        with test_path.open("rb") as handle:
+            test_users = {int(uid) for uid in pickle.load(handle)}
 
     def parse_candidate(path_tuples, prob_list):
         if not path_tuples or path_tuples[-1][1] != product_type:
@@ -149,6 +154,8 @@ def convert(
             raise ValueError(f"PGPR path does not start at a user: {path_tuples}")
         uid = int(path_tuples[0][2])
         pid = int(path_tuples[-1][2])
+        if test_users is not None and uid not in test_users:
+            raise ValueError(f"PGPR path uid={uid} is absent from canonical test labels")
         score = item_score(uid, pid) if item_score else sum(prob_list)
         action_probs = [
             max(0.0, float(value) - legacy_prob_offset) for value in prob_list
@@ -226,8 +233,9 @@ def convert(
             )
             pred_rows += 1
 
-    uid_topk = {}
-    uid_pid_best = {}
+    output_users = sorted(test_users if test_users is not None else top_candidates)
+    uid_topk = {uid: [] for uid in output_users}
+    uid_pid_best = {uid: {} for uid in output_users}
     for uid, pid_candidates in top_candidates.items():
         top_items = sorted(
             (

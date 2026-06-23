@@ -37,7 +37,22 @@ def ndcg_at_k(r, k, method=0):
         return 0.
     return dcg_at_k(r, k, method) / dcg_max
 
-def measure_rec_quality(path_data):
+
+def standard_ndcg_at_k(relevance, relevant_count, k=10):
+    relevance = list(relevance[:k])
+    if len(relevance) < k:
+        relevance.extend([0] * (k - len(relevance)))
+    dcg = dcg_at_k(relevance, k, method=1)
+    ideal_hits = min(k, relevant_count)
+    ideal = [1] * ideal_hits + [0] * (k - ideal_hits)
+    idcg = dcg_at_k(ideal, k, method=1)
+    return dcg / idcg if idcg else 0.0
+
+
+def measure_rec_quality(path_data, protocol="legacy-exact-k"):
+    if protocol not in {"legacy-exact-k", "canonical-all-users"}:
+        raise ValueError(f"Unknown recommendation evaluation protocol: {protocol}")
+
     attribute_list = get_attribute_list(path_data.dataset_name)
     metrics_names = ["ndcg", "hr", "recall", "precision"]
     metrics = edict()
@@ -52,30 +67,28 @@ def measure_rec_quality(path_data):
     test_labels = path_data.test_labels
 
     test_user_idxs = list(test_labels.keys())
-    invalid_users = []
     for uid in test_user_idxs:
-        if uid not in topk_matches: continue
-        if len(topk_matches[uid]) < 10:
-            invalid_users.append(uid)
-            continue
-        pred_list, rel_set = topk_matches[uid], test_labels[uid]
-        if len(pred_list) == 0:
+        pred_list = topk_matches.get(uid, [])[:10]
+        rel_set = test_labels[uid]
+        if protocol == "legacy-exact-k" and len(pred_list) < 10:
             continue
 
-        k = 0
         hit_num = 0.0
         hit_list = []
         for pid in pred_list:
-            k += 1
             if pid in rel_set:
                 hit_num += 1
                 hit_list.append(1)
             else:
                 hit_list.append(0)
 
-        ndcg = ndcg_at_k(hit_list, k)
+        if protocol == "legacy-exact-k":
+            ndcg = ndcg_at_k(hit_list, len(pred_list))
+            precision = hit_num / len(pred_list)
+        else:
+            ndcg = standard_ndcg_at_k(hit_list, len(rel_set), k=10)
+            precision = hit_num / 10
         recall = hit_num / len(rel_set)
-        precision = hit_num / len(pred_list)
         hit = 1.0 if hit_num > 0.0 else 0.0
 
         # Based on attribute
@@ -340,4 +353,3 @@ def print_expquality_metrics(dataset_name, avg_groups_LIR, avg_groups_SEP, avg_g
             for metric, values in metric_values.items():
                 print("{}: {}".format(metric, format_metric_value(values[attribute])), end=" | ")
             print("")
-

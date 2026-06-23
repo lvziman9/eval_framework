@@ -22,12 +22,11 @@ def load_labels(labels_dir: Path, split: str) -> dict[int, set[int]]:
 def ndcg(hit_list: list[int], ideal_hits: int) -> float:
     if not hit_list or not any(hit_list):
         return 0.0
-    dcg = hit_list[0] + sum(
-        value / math.log2(rank)
-        for rank, value in enumerate(hit_list[1:], start=2)
+    dcg = sum(
+        value / math.log2(rank + 2)
+        for rank, value in enumerate(hit_list)
     )
-    ideal = [1] * ideal_hits
-    idcg = ideal[0] + sum(1 / math.log2(rank) for rank in range(2, ideal_hits + 1))
+    idcg = sum(1 / math.log2(rank + 2) for rank in range(ideal_hits))
     return dcg / idcg
 
 

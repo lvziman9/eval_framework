@@ -53,6 +53,7 @@ adapters/vrkg_lookups/
 # Local agent/tool state
 .codex
 .codex/
+.cache/
 
 # Large/generated experiment workspaces
 runs/debug_compare/
@@ -60,3 +61,13 @@ data_sources/
 
 # Raw xrecsys evaluation logs; curate selected summaries under reports/ instead
 xrecsys/log/
+
+# Generated Hopwise runtime logs; durable status is recorded under docs/runs.
+log/PEARLM/PEARLM-canonical_*.log
+log/KGGLM/KGGLM-canonical_*.log
+log_tensorboard/PEARLM-canonical_*/
+log_tensorboard/KGGLM-canonical_*/
+log/TPRec/TPRec-canonical_*.log
+log/TransE/TransE-canonical_*.log
+log_tensorboard/TPRec-canonical_*/
+log_tensorboard/TransE-canonical_*/

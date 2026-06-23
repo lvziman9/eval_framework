@@ -121,13 +121,61 @@ def patch_runtime(runtime_root: Path) -> list[str]:
         "                path_log_score, best_item_scores.get(pid, float('-inf'))\n"
         "            )\n",
     )
-    if new_path_scoring not in text:
+    current_path_scoring_markers = (
+        "path_log_score = float(np.sum(r[1]))",
+        "path_probability = float(np.exp(path_log_score))",
+        "pred_paths_instances[uid].setdefault(pid, []).append(",
+        "best_item_scores[pid] = max(",
+    )
+    if new_path_scoring not in text and not all(
+        marker in text for marker in current_path_scoring_markers
+    ):
         if best_only_path_scoring in text:
             text = text.replace(best_only_path_scoring, new_path_scoring, 1)
         elif old_path_scoring in text:
             text = text.replace(old_path_scoring, new_path_scoring, 1)
         else:
             raise RuntimeError(f"Could not patch path scoring in {execute}")
+    missing_native_path_guard = (
+        "    skipped_native_users = []\n"
+        "    for uid in test_labels:\n"
+        "        pred_paths_instances[uid] = {}\n"
+        "        if uid not in raw_paths or uid not in path_counts:\n"
+        "            # CAFE builds both artifacts from the training graph. Test-only\n"
+        "            # users have no executable native program; preserve an empty\n"
+        "            # recommendation row instead of fabricating a fallback path.\n"
+        "            pred_labels[uid] = []\n"
+        "            skipped_native_users.append(uid)\n"
+        "            pbar.update(1)\n"
+        "            continue\n"
+        "        program = create_heuristic_program(kg.metapaths, raw_paths[uid], path_counts[uid], args.sample_size)\n"
+        "        program_exe.execute(program, uid, train_valid_labels.get(uid, []))\n"
+    )
+    unguarded_native_path_block = (
+        "    for uid in test_labels:\n"
+        "        pred_paths_instances[uid] = {}\n"
+        "        program = create_heuristic_program(kg.metapaths, raw_paths[uid], path_counts[uid], args.sample_size)\n"
+        "        program_exe.execute(program, uid, train_valid_labels[uid])\n"
+    )
+    if missing_native_path_guard not in text:
+        if unguarded_native_path_block not in text:
+            raise RuntimeError(f"Could not patch missing-user path guard in {execute}")
+        text = text.replace(
+            unguarded_native_path_block,
+            missing_native_path_guard,
+            1,
+        )
+    skipped_native_log = (
+        "    logger.info(\n"
+        "        f\"CAFE native-path-ineligible test users: {len(skipped_native_users)}\"\n"
+        "    )\n"
+        "    save_pred_paths(args.dataset, pred_paths_instances)\n"
+    )
+    if skipped_native_log not in text:
+        save_marker = "    save_pred_paths(args.dataset, pred_paths_instances)\n"
+        if save_marker not in text:
+            raise RuntimeError(f"Could not add missing-user audit log in {execute}")
+        text = text.replace(save_marker, skipped_native_log, 1)
     bad_merge = (
         "    train_valid_labels = dict(zip(train_labels.keys(), "
         "list(train_labels.values()) + list(valid_labels.values())))\n"
