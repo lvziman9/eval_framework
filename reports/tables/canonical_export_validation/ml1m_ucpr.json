@@ -1,0 +1,18 @@
+{
+  "candidate_users": 5988,
+  "canonical_test_users": 6040,
+  "dataset": "ml1m",
+  "dataset_label": "ml1m",
+  "explanations": 50022,
+  "labels_dir": "runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1/labels",
+  "model": "UCPR",
+  "paths_dir": "xrecsys/paths/ml1m/agent_topk=25-50-1-ucpr-canonical-ml1m",
+  "pred_path_rows": 2543087,
+  "require_all_test_users": true,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "status": "PASS",
+  "topk_users": 6040
+}

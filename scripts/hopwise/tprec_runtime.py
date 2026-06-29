@@ -36,12 +36,27 @@ LASTFM_PATH_CONSTRAINTS = [
     [[None], ["[UI-Relation]"], ["sang_by"], ["sang_by"]],
 ]
 
+AMAZON_BOOK_KGAT_PATH_CONSTRAINTS = [
+    [[None], ["[UI-Relation]"], ["[UI-Relation]"], ["[UI-Relation]"]],
+    [[None], ["[UI-Relation]"], ["relation:5"], ["relation:5"]],
+    [[None], ["[UI-Relation]"], ["relation:10"], ["relation:10"]],
+    [[None], ["[UI-Relation]"], ["relation:11"], ["relation:11"]],
+    [[None], ["[UI-Relation]"], ["relation:13"], ["relation:13"]],
+    [[None], ["[UI-Relation]"], ["relation:15"], ["relation:15"]],
+    [[None], ["[UI-Relation]"], ["relation:18"], ["relation:18"]],
+    [[None], ["[UI-Relation]"], ["relation:19"], ["relation:19"]],
+    [[None], ["[UI-Relation]"], ["relation:20"], ["relation:20"]],
+    [[None], ["[UI-Relation]"], ["relation:36"], ["relation:36"]],
+]
+
 
 def canonical_path_constraints(dataset: str) -> list:
     if dataset == "canonical_ml1m_v1":
         return ML1M_PATH_CONSTRAINTS
     if dataset == "canonical_lastfm_v1":
         return LASTFM_PATH_CONSTRAINTS
+    if dataset == "canonical_amazon_book_kgat_v1":
+        return AMAZON_BOOK_KGAT_PATH_CONSTRAINTS
     raise ValueError(f"TPRec is not configured for canonical dataset {dataset!r}")
 
 

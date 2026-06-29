@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="${ROOT:-/usr1/home/s125mdg43_08/eval_framework}"
-DATASET="${1:?usage: run_canonical_tprec_pipeline.sh <canonical_ml1m_v1|canonical_lastfm_v1> [physical_gpu]}"
+DATASET="${1:?usage: run_canonical_tprec_pipeline.sh <canonical_ml1m_v1|canonical_lastfm_v1|canonical_amazon_book_kgat_v1> [physical_gpu]}"
 PHYSICAL_GPU="${2:-}"
 RUN_ROOT="$ROOT/runs/debug_compare/2026-06-20_native_path_expansion"
 DATA_ROOT="$RUN_ROOT/hopwise_data"
@@ -30,6 +30,19 @@ case "$DATASET" in
     LABELS_DIR="$ROOT/runs/debug_compare/2026-04-14_canonical_dataset/lastfm_v1/labels"
     TRAIN_BATCH_SIZE="${TRAIN_BATCH_SIZE:-4096}"
     EVAL_BATCH_SIZE="${EVAL_BATCH_SIZE:-4}"
+    ;;
+  canonical_amazon_book_kgat_v1)
+    CANONICAL_DATASET="amazon_book_kgat_v1"
+    LABELS_DIR="$RUN_ROOT/amazon_book_kgat_v1/labels"
+    TRAIN_BATCH_SIZE="${TRAIN_BATCH_SIZE:-2048}"
+    EVAL_BATCH_SIZE="${EVAL_BATCH_SIZE:-4}"
+    "$EVAL_PY" "$ROOT/scripts/validation/audit_tprec_amazon_timestamp_semantics.py" \
+      --summary-json "$RUN_ROOT/amazon_book_kgat_v1/model_views/tprec/tprec_timestamp_semantics_audit.json"
+    if [[ "${TPREC_ALLOW_TIMESTAMPLESS_AMAZON:-0}" != "1" ]]; then
+      echo "Amazon TPRec formal run blocked: canonical_amazon_book_kgat_v1 timestamps are sentinel -1." >&2
+      echo "Set TPREC_ALLOW_TIMESTAMPLESS_AMAZON=1 only for an explicitly documented non-temporal ablation, not for formal TPRec reporting." >&2
+      exit 3
+    fi
     ;;
   *)
     echo "unsupported canonical TPRec dataset: $DATASET" >&2

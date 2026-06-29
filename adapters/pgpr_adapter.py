@@ -88,6 +88,7 @@ def convert(
         "lastfm": ("song", "listened"),
         "beauty": ("product", "purchase"),
         "beauty_legacy_v1": ("product", "purchase"),
+        "amazon_book_kgat_v1": ("book", "purchased"),
     }
     if dataset not in dataset_config:
         raise ValueError(
@@ -281,7 +282,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--dataset',
         required=True,
-        help='ml1m, lastfm, beauty, or beauty_legacy_v1',
+        help='ml1m, lastfm, beauty, beauty_legacy_v1, or amazon_book_kgat_v1',
     )
     parser.add_argument('--xrecsys-dir',    default='xrecsys',      help='Root of xrecsys repo clone')
     parser.add_argument('--topk',           type=int, default=10,   help='Top-K items per user')

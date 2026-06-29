@@ -66,6 +66,18 @@ RELATION_ALIASES = {
         "starred_by_actor": "starring",
         "wrote_by_writter": "wrote_by",
     },
+    "amazon_book_kgat_v1": {
+        "book_author_entity": "book_author",
+        "book_character_entity": "book_character",
+        "book_genre_entity": "book_genre",
+        "book_interior_illustration_entity": "book_interior_illustration",
+        "book_next_in_series_entity": "book_next_in_series",
+        "book_original_language_entity": "book_original_language",
+        "book_part_of_series_entity": "book_part_of_series",
+        "book_previous_in_series_entity": "book_previous_in_series",
+        "book_subject_entity": "book_subject",
+        "purchase": "purchased",
+    },
 }
 
 ENTITY_ALIASES = {
@@ -76,6 +88,9 @@ ENTITY_ALIASES = {
     "ml1m": {
         "product": "movie",
         "prodcompany": "production_company",
+    },
+    "amazon_book_kgat_v1": {
+        "product": "book",
     },
 }
 
@@ -193,7 +208,7 @@ def _convert_path_tuples(path_tuples, uid_map, pid_map, dataset):
         rel = RELATION_ALIASES[dataset].get(rel, rel)
         etype = ENTITY_ALIASES[dataset].get(etype, etype)
 
-        if etype in {"song", "movie"}:
+        if etype in {"song", "movie", "book"}:
             eid = pid_map.get(int(eid))
         elif etype == "user":
             eid = uid_map.get(int(eid))

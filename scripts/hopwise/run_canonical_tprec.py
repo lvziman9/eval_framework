@@ -29,7 +29,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--stage", choices=("preflight", "transe", "pretrain", "policy"), required=True)
     parser.add_argument(
         "--dataset",
-        choices=("canonical_ml1m_v1", "canonical_lastfm_v1"),
+        choices=(
+            "canonical_ml1m_v1",
+            "canonical_lastfm_v1",
+            "canonical_amazon_book_kgat_v1",
+        ),
         required=True,
     )
     parser.add_argument("--data-root", type=Path, required=True)

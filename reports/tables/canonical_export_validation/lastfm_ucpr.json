@@ -1,0 +1,18 @@
+{
+  "candidate_users": 14502,
+  "canonical_test_users": 14620,
+  "dataset": "lastfm",
+  "dataset_label": "lastfm",
+  "explanations": 140318,
+  "labels_dir": "runs/debug_compare/2026-04-14_canonical_dataset/lastfm_v1/labels",
+  "model": "UCPR",
+  "paths_dir": "xrecsys/paths/lastfm/agent_topk=25-50-1-ucpr-canonical-matched",
+  "pred_path_rows": 5294784,
+  "require_all_test_users": true,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "status": "PASS",
+  "topk_users": 14620
+}

@@ -30,7 +30,13 @@ def ndcg(hit_list: list[int], ideal_hits: int) -> float:
     return dcg / idcg
 
 
-def evaluate(uid_topk_path: Path, labels_dir: Path, topk: int, allow_short: bool = False) -> dict:
+def evaluate(
+    uid_topk_path: Path,
+    labels_dir: Path,
+    topk: int,
+    allow_short: bool = False,
+    allow_user_subset: bool = False,
+) -> dict:
     excluded = load_labels(labels_dir, "train")
     valid_path = labels_dir / "valid_label.pkl"
     if valid_path.exists():
@@ -58,14 +64,18 @@ def evaluate(uid_topk_path: Path, labels_dir: Path, topk: int, allow_short: bool
 
     missing_users = sorted(set(test) - set(predictions))
     extra_users = sorted(set(predictions) - set(test))
-    if missing_users or extra_users:
+    if extra_users or (missing_users and not allow_user_subset):
         raise ValueError(
             f"Prediction/test users differ: missing={missing_users[:5]}, "
             f"extra={extra_users[:5]}"
         )
+    evaluated_users = sorted(set(test) & set(predictions))
+    if not evaluated_users:
+        raise ValueError("No predicted users overlap with the canonical test split")
 
     values = {"ndcg": [], "hr": [], "recall": [], "precision": []}
-    for uid, relevant in test.items():
+    for uid in evaluated_users:
+        relevant = test[uid]
         pids = predictions[uid]
         hits = [int(pid in relevant) for pid in pids]
         hit_count = sum(hits)
@@ -74,23 +84,28 @@ def evaluate(uid_topk_path: Path, labels_dir: Path, topk: int, allow_short: bool
         values["recall"].append(hit_count / len(relevant))
         values["precision"].append(hit_count / topk)
 
-    recommendation_counts = [len(pids) for pids in predictions.values()]
+    recommendation_counts = [len(predictions[uid]) for uid in evaluated_users]
     short_users = sum(count < topk for count in recommendation_counts)
 
     return {
         "status": "PASS",
         "uid_topk": str(uid_topk_path),
-        "users": len(test),
+        "users": len(evaluated_users),
+        "canonical_test_users": len(test),
+        "missing_test_users": len(missing_users),
+        "extra_prediction_users": len(extra_users),
         "topk": topk,
         "allow_short": allow_short,
+        "allow_user_subset": allow_user_subset,
+        "user_coverage": len(evaluated_users) / len(test),
         "recommendation_coverage": {
-            "exact_k_users": len(test) - short_users,
+            "exact_k_users": len(evaluated_users) - short_users,
             "short_users": short_users,
             "empty_users": sum(count == 0 for count in recommendation_counts),
             "min_items": min(recommendation_counts),
             "max_items": max(recommendation_counts),
             "mean_items": sum(recommendation_counts) / len(recommendation_counts),
-            "slot_coverage": sum(recommendation_counts) / (len(test) * topk),
+            "slot_coverage": sum(recommendation_counts) / (len(evaluated_users) * topk),
         },
         "metrics": {
             name: sum(metric_values) / len(metric_values)
@@ -105,9 +120,21 @@ def main() -> None:
     parser.add_argument("--labels-dir", required=True)
     parser.add_argument("--topk", type=int, default=10)
     parser.add_argument("--allow-short", action="store_true")
+    parser.add_argument(
+        "--allow-user-subset",
+        action="store_true",
+        help="Evaluate only predicted users that belong to the test split. "
+        "Default keeps the formal protocol strict and requires all test users.",
+    )
     parser.add_argument("--summary-json")
     args = parser.parse_args()
-    summary = evaluate(Path(args.uid_topk), Path(args.labels_dir), args.topk, args.allow_short)
+    summary = evaluate(
+        Path(args.uid_topk),
+        Path(args.labels_dir),
+        args.topk,
+        args.allow_short,
+        args.allow_user_subset,
+    )
     rendered = json.dumps(summary, indent=2, sort_keys=True)
     print(rendered)
     if args.summary_json:

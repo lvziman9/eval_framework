@@ -116,7 +116,8 @@ def patch_runtime(runtime_root: Path) -> list[str]:
             batch_scores = np.dot(user_queries[start:end], product_embeds.T)
             self.u_p_scales[start:end] = np.max(batch_scores, axis=1)
 """
-    if new_scale not in kg_text:
+    amazon_aware_scale_marker = "user_queries = self.embeds[USER] + self.embeds[self.review_interaction][0]\n"
+    if new_scale not in kg_text and amazon_aware_scale_marker not in kg_text:
         if old_scale not in kg_text:
             raise RuntimeError(f"Could not patch batched user-product scaling in {kg_env_file}")
         kg_env_file.write_text(kg_text.replace(old_scale, new_scale, 1))

@@ -141,8 +141,8 @@ if [[ ! -f "$OUT_ROOT/finetune.complete" ]]; then
 fi
 
 FINETUNE_CHECKPOINT="$(
-  find "$FINETUNE_CHECKPOINT_ROOT" -mindepth 1 -maxdepth 1 -type d \
-    -exec test -f '{}/model.safetensors' ';' -printf '%T@ %p\n' |
+  find "$FINETUNE_CHECKPOINT_ROOT" -mindepth 1 -maxdepth 4 -type f -name model.safetensors \
+    -printf '%T@ %h\n' |
     sort -nr |
     sed -n '1s/^[^ ]* //p'
 )"

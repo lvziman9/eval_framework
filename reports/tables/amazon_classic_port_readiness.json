@@ -1,0 +1,193 @@
+{
+  "blocked_models": [
+    "PGPR",
+    "UCPR",
+    "CAFE",
+    "TPRec"
+  ],
+  "dataset": "canonical_amazon_book_kgat_v1",
+  "generated_at_utc": "2026-06-27T07:14:45.223651+00:00",
+  "models": {
+    "CAFE": {
+      "checks": [
+        {
+          "evidence": "available keys=['lastfm', 'ml1m']",
+          "name": "DATASET_CONFIG includes Amazon",
+          "passed": false
+        },
+        {
+          "evidence": "parser choices are derived from DATASET_CONFIG",
+          "name": "CLI model-dataset choices include an Amazon option",
+          "passed": false
+        }
+      ],
+      "required_next_steps": [
+        "Build a compatible Amazon UCPR view first.",
+        "Add executable Amazon CAFE entity/relation schema and metapaths.",
+        "Validate that CAFE emits non-empty native paths mapped back to canonical uid/pid."
+      ],
+      "status": "BLOCKED"
+    },
+    "PGPR": {
+      "checks": [
+        {
+          "evidence": "available keys=['amazon_book_kgat_v1', 'lastfm', 'ml1m']",
+          "name": "RELATION_FILES includes amazon_book_kgat_v1 or amazon",
+          "passed": true
+        },
+        {
+          "evidence": "available keys=['amazon_book_kgat_v1', 'lastfm', 'ml1m']",
+          "name": "PRODUCT_ENTITIES includes Amazon book entity",
+          "passed": true
+        },
+        {
+          "evidence": "parser choices are derived from RELATION_FILES keys=['amazon_book_kgat_v1', 'lastfm', 'ml1m']",
+          "name": "CLI model-dataset choices include an Amazon option",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_view_metadata.json exact_splits=['test', 'train', 'valid']",
+          "name": "Generated Amazon PGPR view round-trips canonical labels",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_runtime_preprocess_smoke.json status=PASS split_exact={'train': True, 'test': True} core_files_exist=True",
+          "name": "Isolated Amazon PGPR runtime preprocess smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_transe_forward_smoke.json status=PASS batch_shape=[64, 11] loss=18.71475601196289 gradient_tensors=21",
+          "name": "Amazon PGPR TransE one-batch forward/backward smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_transe_training_smoke.json status=PASS epoch=1 embed_size_ok=True checkpoint_exists=True embedding_exists=True",
+          "name": "Amazon PGPR TransE training smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_env_smoke.json status=PASS manual_pattern_ok=True beam_path_count=4 beam_book_endings=4",
+          "name": "Amazon PGPR policy environment and beam smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_training_smoke.json status=PASS epoch=1 run_name=train_agent_amazon_smoke_e1_a250_h32-16 checkpoint_exists=True shape_checks={'actor.weight': True, 'critic.weight': True, 'l1.weight': True, 'l2.weight': True}",
+          "name": "Amazon PGPR policy training smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_inference_smoke.json status=PASS users=8 path_count=191 book_ending_path_count=170 finite_probability_rows=191/191",
+          "name": "Amazon PGPR policy inference smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_export_smoke_validation.json status=PASS pred_path_rows=166 candidate_users=8 explanations=80 require_all_test_users=False",
+          "name": "Amazon PGPR adapter/export smoke validation passes",
+          "passed": true
+        },
+        {
+          "evidence": "missing formal outputs: ['runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json', 'runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json']",
+          "name": "Formal Amazon PGPR export and accuracy validation exist",
+          "passed": false
+        }
+      ],
+      "required_next_steps": [
+        "Run full/formal PGPR Amazon policy training and native path export from the ported runtime.",
+        "Run strict full-user export validation and strict accuracy validation before any formal report row."
+      ],
+      "status": "BLOCKED"
+    },
+    "TPRec": {
+      "checks": [
+        {
+          "evidence": "tprec_runtime.py defines Amazon relation-token path constraints",
+          "name": "canonical_path_constraints supports canonical_amazon_book_kgat_v1",
+          "passed": true
+        },
+        {
+          "evidence": "run_canonical_tprec.py parser choices include Amazon",
+          "name": "run_canonical_tprec.py CLI accepts canonical_amazon_book_kgat_v1",
+          "passed": true
+        },
+        {
+          "evidence": "export_tprec_paths.py maps Amazon products to canonical book endpoints",
+          "name": "export_tprec_paths.py aliases canonical_amazon_book_kgat_v1",
+          "passed": true
+        },
+        {
+          "evidence": "run_canonical_tprec_pipeline.sh contains an Amazon case with a timestamp gate",
+          "name": "pipeline case statement supports canonical_amazon_book_kgat_v1",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/hopwise_data/canonical_amazon_book_kgat_v1/hopwise_view_manifest.json status=PASS kept_link_rows=24915 dropped_link_rows=0",
+          "name": "Hopwise Amazon view is present and preserves interactions/KG",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/tprec/tprec_timestamp_semantics_audit.json status=BLOCKED formal_temporal_reward_approved=False timestamp_policy=-1 train_sentinel_fraction=1.0",
+          "name": "Amazon timestamps support formal TPRec temporal rewards",
+          "passed": false
+        }
+      ],
+      "required_next_steps": [
+        "Keep Amazon TPRec formal reporting blocked while canonical timestamps are sentinel -1.",
+        "Either rebuild Amazon-book KGAT with real interaction timestamps or define an explicitly labeled non-temporal TPRec ablation protocol.",
+        "Only after timestamp semantics are approved, run full TPRec training/export with strict full-user validation."
+      ],
+      "status": "BLOCKED"
+    },
+    "UCPR": {
+      "checks": [
+        {
+          "evidence": "available keys=['amazon_book_kgat_v1', 'lastfm', 'ml1m']",
+          "name": "DATASET_CONFIG includes Amazon",
+          "passed": true
+        },
+        {
+          "evidence": "parser choices are derived from DATASET_CONFIG",
+          "name": "CLI model-dataset choices include an Amazon option",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/preprocessed/ucpr_view_metadata.json exact_splits=['test', 'train', 'valid'] users=70679 products=24915 relations=9 skipped={'test': 0, 'train': 0, 'valid': 0}",
+          "name": "Generated Amazon UCPR view round-trips canonical labels",
+          "passed": true
+        },
+        {
+          "evidence": "adapters/ucpr_adapter.py maps Amazon UCPR product paths to canonical book endpoints and strips relation suffixes=True",
+          "name": "UCPR adapter supports Amazon book path aliases",
+          "passed": true
+        },
+        {
+          "evidence": "scripts/model_patches/patch_ucpr_amazon_runtime.py has Amazon runtime constants/path-pattern patch=True",
+          "name": "Active UCPR runtime supports Amazon path semantics",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_runtime_preprocess_smoke.json status=PASS exact_splits=['test', 'train', 'valid'] review_rows=581835 user_purchase_edges=581835",
+          "name": "Isolated Amazon UCPR runtime preprocess smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_transe_forward_smoke.json status=PASS batch_shape=[64, 11] loss=24.95353126525879 gradient_tensors=21 relations=10",
+          "name": "Amazon UCPR TransE one-batch forward/backward smoke passes",
+          "passed": true
+        },
+        {
+          "evidence": "missing formal outputs: ['runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_export_validation.json', 'runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_accuracy.json']",
+          "name": "Formal Amazon UCPR export and accuracy validation exist",
+          "passed": false
+        }
+      ],
+      "required_next_steps": [
+        "Run UCPR Amazon TransE and policy training from the patched runtime.",
+        "Run UCPR Amazon native-path inference/export with full canonical test-user coverage.",
+        "Run strict full-user export validation and strict accuracy validation before formal reporting."
+      ],
+      "status": "BLOCKED"
+    }
+  },
+  "ready_models": [],
+  "status": "BLOCKED"
+}

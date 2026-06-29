@@ -35,6 +35,11 @@ DATASET_ALIASES = {
         "product_type": "song",
         "ui_relation": "listened",
     },
+    "canonical_amazon_book_kgat_v1": {
+        "canonical_dataset": "amazon_book_kgat_v1",
+        "product_type": "book",
+        "ui_relation": "purchased",
+    },
 }
 
 

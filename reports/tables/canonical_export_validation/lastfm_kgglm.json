@@ -1,0 +1,18 @@
+{
+  "candidate_users": 14537,
+  "canonical_test_users": 14620,
+  "dataset": "lastfm",
+  "dataset_label": "lastfm",
+  "explanations": 128496,
+  "labels_dir": "runs/debug_compare/2026-04-14_canonical_dataset/lastfm_v1/labels",
+  "model": "KGGLM",
+  "paths_dir": "xrecsys/paths/lastfm/agent_topk=kgglm-canonical-p3-f2-h768-l6-b25",
+  "pred_path_rows": 191102,
+  "require_all_test_users": true,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "status": "PASS",
+  "topk_users": 14620
+}

@@ -1,0 +1,18 @@
+{
+  "candidate_users": 6040,
+  "canonical_test_users": 6040,
+  "dataset": "ml1m",
+  "dataset_label": "ml1m",
+  "explanations": 60399,
+  "labels_dir": "runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1/labels",
+  "model": "TPRec",
+  "paths_dir": "xrecsys/paths/ml1m/agent_topk=tprec-canonical-e50-25-50-1",
+  "pred_path_rows": 4218974,
+  "require_all_test_users": true,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "status": "PASS",
+  "topk_users": 6040
+}

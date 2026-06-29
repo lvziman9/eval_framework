@@ -1,0 +1,132 @@
+{
+  "exports": 14,
+  "status": "PASS",
+  "summaries": [
+    {
+      "canonical_test_users": 14620,
+      "dataset_label": "lastfm",
+      "explanations": 145390,
+      "model": "PGPR",
+      "pred_path_rows": 11695015,
+      "summary_json": "reports/tables/canonical_export_validation/lastfm_pgpr.json",
+      "topk_users": 14620
+    },
+    {
+      "canonical_test_users": 14620,
+      "dataset_label": "lastfm",
+      "explanations": 140318,
+      "model": "UCPR",
+      "pred_path_rows": 5294784,
+      "summary_json": "reports/tables/canonical_export_validation/lastfm_ucpr.json",
+      "topk_users": 14620
+    },
+    {
+      "canonical_test_users": 14620,
+      "dataset_label": "lastfm",
+      "explanations": 145440,
+      "model": "CAFE",
+      "pred_path_rows": 2056564,
+      "summary_json": "reports/tables/canonical_export_validation/lastfm_cafe.json",
+      "topk_users": 14620
+    },
+    {
+      "canonical_test_users": 14620,
+      "dataset_label": "lastfm",
+      "explanations": 138067,
+      "model": "TPRec",
+      "pred_path_rows": 1928716,
+      "summary_json": "reports/tables/canonical_export_validation/lastfm_tprec.json",
+      "topk_users": 14620
+    },
+    {
+      "canonical_test_users": 14620,
+      "dataset_label": "lastfm",
+      "explanations": 128496,
+      "model": "KGGLM",
+      "pred_path_rows": 191102,
+      "summary_json": "reports/tables/canonical_export_validation/lastfm_kgglm.json",
+      "topk_users": 14620
+    },
+    {
+      "canonical_test_users": 14620,
+      "dataset_label": "lastfm",
+      "explanations": 126145,
+      "model": "PEARLM",
+      "pred_path_rows": 183538,
+      "summary_json": "reports/tables/canonical_export_validation/lastfm_pearlm.json",
+      "topk_users": 14620
+    },
+    {
+      "canonical_test_users": 6040,
+      "dataset_label": "ml1m",
+      "explanations": 60400,
+      "model": "PGPR",
+      "pred_path_rows": 5457838,
+      "summary_json": "reports/tables/canonical_export_validation/ml1m_pgpr.json",
+      "topk_users": 6040
+    },
+    {
+      "canonical_test_users": 6040,
+      "dataset_label": "ml1m",
+      "explanations": 50022,
+      "model": "UCPR",
+      "pred_path_rows": 2543087,
+      "summary_json": "reports/tables/canonical_export_validation/ml1m_ucpr.json",
+      "topk_users": 6040
+    },
+    {
+      "canonical_test_users": 6040,
+      "dataset_label": "ml1m",
+      "explanations": 60400,
+      "model": "CAFE",
+      "pred_path_rows": 2349585,
+      "summary_json": "reports/tables/canonical_export_validation/ml1m_cafe.json",
+      "topk_users": 6040
+    },
+    {
+      "canonical_test_users": 6040,
+      "dataset_label": "ml1m",
+      "explanations": 60399,
+      "model": "TPRec",
+      "pred_path_rows": 4218974,
+      "summary_json": "reports/tables/canonical_export_validation/ml1m_tprec.json",
+      "topk_users": 6040
+    },
+    {
+      "canonical_test_users": 6040,
+      "dataset_label": "ml1m",
+      "explanations": 18761,
+      "model": "KGGLM",
+      "pred_path_rows": 18761,
+      "summary_json": "reports/tables/canonical_export_validation/ml1m_kgglm.json",
+      "topk_users": 6040
+    },
+    {
+      "canonical_test_users": 6040,
+      "dataset_label": "ml1m",
+      "explanations": 38798,
+      "model": "PEARLM",
+      "pred_path_rows": 44986,
+      "summary_json": "reports/tables/canonical_export_validation/ml1m_pearlm.json",
+      "topk_users": 6040
+    },
+    {
+      "canonical_test_users": 70591,
+      "dataset_label": "amazon_book_kgat_v1",
+      "explanations": 655285,
+      "model": "KGGLM",
+      "pred_path_rows": 1326486,
+      "summary_json": "reports/tables/canonical_export_validation/amazon_book_kgat_v1_kgglm.json",
+      "topk_users": 70591
+    },
+    {
+      "canonical_test_users": 70591,
+      "dataset_label": "amazon_book_kgat_v1",
+      "explanations": 578518,
+      "model": "PEARLM",
+      "pred_path_rows": 885270,
+      "summary_json": "reports/tables/canonical_export_validation/amazon_book_kgat_v1_pearlm.json",
+      "topk_users": 70591
+    }
+  ]
+}

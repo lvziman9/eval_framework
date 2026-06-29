@@ -1,0 +1,18 @@
+{
+  "candidate_users": 5833,
+  "canonical_test_users": 6040,
+  "dataset": "ml1m",
+  "dataset_label": "ml1m",
+  "explanations": 38798,
+  "labels_dir": "runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1/labels",
+  "model": "PEARLM",
+  "paths_dir": "xrecsys/paths/ml1m/agent_topk=pearlm-canonical-bestval10-e50-h768-l6-b25",
+  "pred_path_rows": 44986,
+  "require_all_test_users": true,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "status": "PASS",
+  "topk_users": 6040
+}

@@ -2764,3 +2764,1885 @@ Its finite baseline is:
 - LIR: `0.3161425276`;
 - SEP: `0.4790553972`;
 - ETD: `0.09503311258`.
+
+### 2026-06-25: PEARLM ML-1M Completed and Queues Resumed
+
+The 2026-06-25 server audit found no active canonical native-path experiment
+processes. GPU 3 was free; GPUs 0--2 each had a small unrelated process. The
+worktree was clean before new runs were started.
+
+The first PEARLM ML-1M resume attempt used a plain background `nohup` command
+and exited after printing the selected checkpoint without writing paths. A
+32-user foreground diagnostic with the same checkpoint, GPU, and export
+configuration passed:
+
+- requested/processed users: 32/32;
+- raw validated paths: 234;
+- output:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_ml1m_v1/diagnostic_pearlm_paths_32.pkl`.
+
+This showed the exporter and checkpoint were valid. The failure mode was
+therefore treated as background process detachment, not a PEARLM model or data
+bug. Formal long-running commands are now hosted in `tmux` sessions instead of
+plain `nohup`.
+
+PEARLM ML-1M was resumed in:
+
+```bash
+tmux new-session -d -s pearl_ml1m_20260625 -c /usr1/home/s125mdg43_08/eval_framework \
+  '/bin/bash scripts/hopwise/run_canonical_pearlm_pipeline.sh canonical_ml1m_v1 3 > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/pearlm_ml1m_resume_20260625_2127.log 2>&1'
+```
+
+The pipeline skipped the completed training stage, exported native paths, ran
+the adapter, strict export validation, standalone accuracy, and
+canonical-all-users xrecsys protocol. It completed with `pipeline.complete`
+present.
+
+PEARLM ML-1M final evidence:
+
+- train marker: `train.complete`;
+- path marker: `paths.complete`;
+- pipeline marker: `pipeline.complete`;
+- requested/processed users: 6,040/6,040;
+- raw edge-validated paths: 45,071;
+- unseen paths: 44,986;
+- users with recommendations: 5,833;
+- selected explanations: 38,798;
+- path shards: 189;
+- strict export validation: `PASS`;
+- xrecsys sweep validation: `PASS`;
+- standard HR@10: `0.2147350993`;
+- standard NDCG@10: `0.03530345750`;
+- standard Precision@10: `0.02711920530`;
+- standard Recall@10: `0.01103966777`;
+- empty users: 207;
+- mean native recommendations: `6.4235`;
+- slot coverage: `64.2351%`.
+
+TPRec LastFM was then resumed on GPU 3 in:
+
+```bash
+tmux new-session -d -s tprec_lastfm_20260625 -c /usr1/home/s125mdg43_08/eval_framework \
+  '/bin/bash scripts/hopwise/run_canonical_tprec_pipeline.sh canonical_lastfm_v1 3 > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/tprec_lastfm_resume_20260625_2128.log 2>&1'
+```
+
+The runner reused completed TransE, embedding export, preflight, temporal
+pretraining, and policy stages. It also reused the 6,352 existing per-user
+path shards and began generating new shards after that point. At the latest
+documented snapshot, TPRec LastFM had reached 6,396/14,620 requested users and
+7,387,871 raw paths. This is active/resumable and not yet a final result.
+
+To avoid mixing legacy exact-ten and canonical-all-users recommendation
+protocols in refreshed figures, a separate ML-1M canonical-all-users xrecsys
+refresh queue was started for the four older completed models:
+
+```bash
+tmux new-session -d -s xrec_ml1m_canon_20260625 -c /usr1/home/s125mdg43_08/eval_framework \
+  'LABELS=/usr1/home/s125mdg43_08/eval_framework/runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1/labels; /bin/bash scripts/hopwise/run_canonical_xrecsys_protocol.sh ml1m 25-50-1-pgpr-canonical-ml1m "$LABELS" 25-50-1-pgpr-canonical-ml1m-canonical-all-users && /bin/bash scripts/hopwise/run_canonical_xrecsys_protocol.sh ml1m 25-50-1-ucpr-canonical-ml1m "$LABELS" 25-50-1-ucpr-canonical-ml1m-canonical-all-users && /bin/bash scripts/hopwise/run_canonical_xrecsys_protocol.sh ml1m cafe-canonical-ml1m "$LABELS" cafe-canonical-ml1m-canonical-all-users && /bin/bash scripts/hopwise/run_canonical_xrecsys_protocol.sh ml1m tprec-canonical-e50-25-50-1 "$LABELS" tprec-canonical-e50-25-50-1-canonical-all-users > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/ml1m_canonical_xrecsys_refresh_20260625.log 2>&1'
+```
+
+The first queue item, PGPR ML-1M canonical-all-users, had written its baseline
+and LIR files by the latest snapshot. The queue remains active until PGPR,
+UCPR, CAFE, and TPRec each have validated 21-point LIR/SEP/ETD sweeps under
+their `*-canonical-all-users` result tags.
+
+A follow-up GPU queue was also registered for KGGLM LastFM:
+
+```bash
+tmux new-session -d -s kgglm_lastfm_after_tprec_20260625 -c /usr1/home/s125mdg43_08/eval_framework \
+  'while [ ! -f runs/debug_compare/2026-06-20_native_path_expansion/tprec_formal/canonical_lastfm_v1/paths.complete ]; do sleep 300; done; /bin/bash scripts/hopwise/run_canonical_kgglm_pipeline.sh canonical_lastfm_v1 3 > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/kgglm_lastfm_after_tprec_20260625.log 2>&1'
+```
+
+This queue intentionally waits for TPRec LastFM path extraction to finish
+before using GPU 3. KGGLM LastFM already has a completed pretraining marker, so
+the follow-up runner should skip pretraining and continue from finetuning when
+the wait condition is satisfied.
+
+The server later showed GPUs 0--2 idle while TPRec used GPU 3, so the waiting
+KGGLM queue was stopped to avoid a duplicate future launch and KGGLM LastFM was
+started immediately on GPU 0:
+
+```bash
+tmux kill-session -t kgglm_lastfm_after_tprec_20260625
+
+tmux new-session -d -s kgglm_lastfm_20260625 -c /usr1/home/s125mdg43_08/eval_framework \
+  '/bin/bash scripts/hopwise/run_canonical_kgglm_pipeline.sh canonical_lastfm_v1 0 > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/kgglm_lastfm_resume_20260625_2137.log 2>&1'
+```
+
+KGGLM LastFM reused the completed 3-epoch generic-path pretraining checkpoint,
+then completed its 2-epoch recommendation-path finetuning:
+
+- best validation checkpoint: epoch 2;
+- validation NDCG@10: `0.0044`;
+- validation Recall/Hit@10: `0.0084`;
+- validation Precision@10: `0.0008`;
+- validation Fidelity@10: `0.6376`;
+- marker: `finetune.complete`.
+
+The same session then completed native path extraction and the canonical
+adapter/standard-accuracy gates:
+
+- requested users: 14,620;
+- processed users: 14,544;
+- skipped cold-start users: 76;
+- raw edge-validated paths: 191,294;
+- unseen paths: 191,102;
+- users with recommendations: 14,537;
+- selected explanations: 128,496;
+- path shards: 457;
+- strict export validation: `PASS`;
+- standard HR@10: `0.1258549932`;
+- standard NDCG@10: `0.02131871191`;
+- standard Precision@10: `0.01640902873`;
+- standard Recall@10: `0.01419057838`;
+- empty users: 83;
+- slot coverage: `87.8906%`;
+- marker: `paths.complete`.
+
+Canonical-all-users xrecsys was active for KGGLM LastFM under
+`kgglm-canonical-p3-f2-h768-l6-b25-canonical-all-users` at the latest
+snapshot. The result is not yet complete until `canonical_protocol.complete`
+and `xrecsys_sweeps_validation.json` are present.
+
+The Amazon-book PEARLM compact checkpoint was also used to start the missing
+100-user native-path export gate before any full 70k-user formal run:
+
+```bash
+tmux new-session -d -s pearlm_amazon_100_20260625 -c /usr1/home/s125mdg43_08/eval_framework \
+  'ROOT=/usr1/home/s125mdg43_08/eval_framework; RUN_ROOT=$ROOT/runs/debug_compare/2026-06-20_native_path_expansion; PY=/usr1/home/s125mdg43_08/miniconda3/envs/hopwise/bin/python; EVAL_PY=/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python; OUT=$RUN_ROOT/hopwise_amazon_smoke/pearlm_100user_export; mkdir -p "$OUT/path_shards" "$OUT/export_checkpoints" "$RUN_ROOT/job_logs"; export PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/usr1/home/s125mdg43_08/hopwise:$ROOT HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1; $PY scripts/hopwise/export_native_paths.py --model PEARLM --dataset canonical_amazon_book_kgat_v1 --data-root $RUN_ROOT/hopwise_data --checkpoint $RUN_ROOT/hopwise_amazon_smoke/pearlm_compact/checkpoints/huggingface-distilgpt2-PEARLM-Jun-23-2026_02-25-08.pth --checkpoint-dir "$OUT/export_checkpoints" --output "$OUT/pearlm_paths_100.pkl" --shard-dir "$OUT/path_shards" --gpu-id 1 --embedding-size 128 --num-heads 4 --num-layers 2 --paths-per-user 25 --num-beams 25 --batch-size 16 --max-users 100 && $EVAL_PY adapters/hopwise_adapter.py --raw-path "$OUT/pearlm_paths_100.pkl" --xrecsys-dir $ROOT/xrecsys --labels-dir $RUN_ROOT/amazon_book_kgat_v1/labels --topk 10 --agent-topk-tag pearlm-amazon-compact-e1-h128-l2-b25-100user --summary-json "$OUT/adapter.json" && $EVAL_PY scripts/validation/validate_xrecsys_export.py --paths-dir $ROOT/xrecsys/paths/amazon_book_kgat_v1/agent_topk=pearlm-amazon-compact-e1-h128-l2-b25-100user --labels-dir $RUN_ROOT/amazon_book_kgat_v1/labels --dataset amazon_book_kgat_v1 --topk 10 --summary-json "$OUT/export_validation.json" && $EVAL_PY scripts/validation/evaluate_uid_topk.py --uid-topk $ROOT/xrecsys/paths/amazon_book_kgat_v1/agent_topk=pearlm-amazon-compact-e1-h128-l2-b25-100user/uid_topk.csv --labels-dir $RUN_ROOT/amazon_book_kgat_v1/labels --topk 10 --allow-short --summary-json "$OUT/accuracy.json" && touch "$OUT/pearlm_amazon_100.complete"'
+```
+
+This Amazon-book smoke is intentionally scoped as a gate, not a final formal
+baseline. Hopwise still performs full split-level KG path sampling before the
+`--max-users` export limit is applied; at launch it was sampling 70,679 users
+at roughly 14 users/second.
+
+### 2026-06-26: Completion Audit, Figure Refresh, and Amazon Smoke Fix
+
+The 2026-06-26 host audit found no active `tmux` experiment sessions and no
+active experiment Python processes. `nvidia-smi` showed all four GPUs idle
+with about 9 MiB used on each device. This means the previous queue has
+finished or exited; the current state is a verification/documentation and next
+Amazon-formal-run decision point, not an active-training point.
+
+Current standard accuracy gates:
+
+| Dataset | Model | Status | Users | HR@10 | NDCG@10 | Precision@10 | Recall@10 | Slot coverage | Empty users |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| LastFM | PGPR | PASS | 14,620 | 0.186389 | 0.030905 | 0.025356 | 0.017731 | 0.994460 | 76 |
+| LastFM | UCPR | PASS | 14,620 | 0.216416 | 0.037377 | 0.031129 | 0.023155 | 0.959767 | 118 |
+| LastFM | CAFE | PASS | 14,620 | 0.180233 | 0.030214 | 0.025718 | 0.018639 | 0.994802 | 76 |
+| LastFM | TPRec | PASS | 14,620 | 0.188919 | 0.038981 | 0.032736 | 0.022307 | 0.944371 | 189 |
+| LastFM | KGGLM | PASS | 14,620 | 0.125855 | 0.021319 | 0.016409 | 0.014191 | 0.878906 | 83 |
+| LastFM | PEARLM | PASS | 14,620 | 0.099590 | 0.015960 | 0.012736 | 0.009047 | 0.862825 | 280 |
+| ML-1M | PGPR | PASS | 6,040 | 0.511258 | 0.101896 | 0.092914 | 0.042342 | 1.000000 | 0 |
+| ML-1M | UCPR | PASS | 6,040 | 0.441887 | 0.086215 | 0.066391 | 0.037913 | 0.828179 | 52 |
+| ML-1M | CAFE | PASS | 6,040 | 0.554305 | 0.116655 | 0.107119 | 0.052024 | 1.000000 | 0 |
+| ML-1M | TPRec | PASS | 6,040 | 0.474503 | 0.094220 | 0.089702 | 0.043772 | 0.999983 | 0 |
+| ML-1M | KGGLM | PASS | 6,040 | 0.168874 | 0.033649 | 0.019305 | 0.010506 | 0.310613 | 645 |
+| ML-1M | PEARLM | PASS | 6,040 | 0.214735 | 0.035303 | 0.027119 | 0.011040 | 0.642351 | 207 |
+
+Current xrecsys sweep evidence:
+
+| Dataset | Model | Result tag | Sweep validation | Canonical protocol marker | Notes |
+|---|---|---|---|---|---|
+| ML-1M | PGPR | `25-50-1-pgpr-canonical-ml1m-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 4,557 avg rows per objective |
+| ML-1M | UCPR | `25-50-1-ucpr-canonical-ml1m-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 4,557 avg rows per objective |
+| ML-1M | CAFE | `cafe-canonical-ml1m-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 4,557 avg rows per objective |
+| ML-1M | TPRec | `tprec-canonical-e50-25-50-1-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 4,557 avg rows per objective |
+| ML-1M | KGGLM | `kgglm-canonical-p3-f2-h768-l6-b25-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 4,557 avg rows per objective |
+| ML-1M | PEARLM | `pearlm-canonical-bestval10-e50-h768-l6-b25-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 4,557 avg rows per objective |
+| LastFM | PGPR | `10-12-1-pgpr-canonical` | PASS | no | Existing canonical export sweep validated after the audit; no canonical-all-users marker |
+| LastFM | UCPR | `10-12-1-ucpr-canonical` | PASS | no | Existing canonical export sweep validated after the audit; no canonical-all-users marker |
+| LastFM | CAFE | `cafe-canonical-lastfm` | PASS | no | Existing canonical export sweep validated after the audit; no canonical-all-users marker |
+| LastFM | TPRec | `tprec-canonical-e50-25-50-1` | PASS | no | TPRec pipeline used `--include-all-test-users`/`--require-all-test-users`, but wrote validation into the model root rather than a result-dir marker |
+| LastFM | KGGLM | `kgglm-canonical-p3-f2-h768-l6-b25-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 1,470 avg rows per objective |
+| LastFM | PEARLM | `pearlm-canonical-bestval10-e50-h768-l6-b25-canonical-all-users` | PASS | yes | 21 alphas for LIR/SEP/ETD, 1,470 avg rows per objective |
+
+The following light validation commands were used to make the LastFM result
+directories self-verifying without rerunning the expensive sweeps:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/validate_xrecsys_sweeps.py \
+  --results-dir xrecsys/results/lastfm/agent_topk=<tag> \
+  --summary-json xrecsys/results/lastfm/agent_topk=<tag>/sweeps_validation.json
+```
+
+This was run for:
+
+- `10-12-1-pgpr-canonical`;
+- `10-12-1-ucpr-canonical`;
+- `cafe-canonical-lastfm`;
+- `tprec-canonical-e50-25-50-1`.
+
+Figure refresh:
+
+- generated `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/`;
+- generated `reports/figures/tradeoff/canonical_lastfm_native_paths_v3/`;
+- each directory now contains 12 PNGs and 12 CSVs;
+- ML-1M v2 includes six models under the same canonical-all-users protocol:
+  PGPR, UCPR, CAFE, TPRec, KGGLM, PEARLM;
+- LastFM v3 intentionally includes only the three completed native-path models
+  with current comparable path-native evidence: TPRec, KGGLM, PEARLM. The
+  legacy LastFM PGPR/UCPR/CAFE sweeps are validated, but their result dirs do
+  not carry the canonical protocol marker, so they should be plotted separately
+  unless rerun under the same tagged protocol.
+
+The plotting commands used `scripts/analysis/tradeoff_analyzer.py` with the
+`eval_frame` Python environment and `--exp-metric` set separately to `LIR`,
+`SEP`, and `ETD`.
+
+Amazon-book PEARLM 100-user smoke:
+
+- adapter: `PASS`;
+- strict export validation: `PASS`;
+- processed/output users: 112;
+- canonical test users: 70,591;
+- path shards: 7;
+- explanations: 729;
+- accuracy gate after smoke-subset fix: `PASS`;
+- subset HR/NDCG/Precision/Recall: all `0.0`;
+- evaluated-user slot coverage: `0.650893`;
+- marker: `pearlm_amazon_100.complete`.
+
+The Amazon smoke failure was caused by an evaluator interface mismatch, not by
+the adapter/export itself. `scripts/validation/evaluate_uid_topk.py` previously
+allowed short top-k rows but always required prediction users to exactly match
+the full test split. That is correct for formal runs but blocks partial smoke
+gates. A new explicit `--allow-user-subset` flag was added. Default behavior is
+unchanged: formal evaluations still require all test users unless this flag is
+provided.
+
+The fixed smoke command was:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/evaluate_uid_topk.py \
+  --uid-topk xrecsys/paths/amazon_book_kgat_v1/agent_topk=pearlm-amazon-compact-e1-h128-l2-b25-100user/uid_topk.csv \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --topk 10 \
+  --allow-short \
+  --allow-user-subset \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/hopwise_amazon_smoke/pearlm_100user_export/accuracy.json
+```
+
+Next decisions:
+
+1. Treat ML-1M as the current complete same-protocol six-model showcase.
+2. Treat LastFM as complete for native-path TPRec/KGGLM/PEARLM, with legacy
+   PGPR/UCPR/CAFE available as validated but not same-marker sweeps.
+3. Do not report Amazon-book PEARLM 100-user smoke as a formal baseline; use it
+   only as proof that the larger native-KG Amazon view can be exported and
+   evaluated end-to-end on a small gate.
+4. Before launching a full Amazon-book run, decide whether to start with KGGLM,
+   PEARLM, or TPRec, because PEARLM currently performs full KG path sampling
+   before applying `--max-users`, which makes even small gates expensive.
+
+KGGLM was selected as the first larger Amazon-book formal run because the
+pipeline explicitly supports `canonical_amazon_book_kgat_v1` and disables
+xrecsys explanation sweeps for Amazon until a canonical SEP/ETD denominator is
+approved.
+
+Launched:
+
+```bash
+tmux new-session -d -s kgglm_amazon_formal_20260626 -c /usr1/home/s125mdg43_08/eval_framework \
+  '/bin/bash scripts/hopwise/run_canonical_kgglm_pipeline.sh canonical_amazon_book_kgat_v1 0 > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/kgglm_amazon_formal_20260626.log 2>&1'
+```
+
+Startup evidence after launch:
+
+- tmux session: `kgglm_amazon_formal_20260626`;
+- active process: `scripts/hopwise/run_canonical_native_path.py --model KGGLM --train-stage pretrain --dataset canonical_amazon_book_kgat_v1`;
+- process PID at audit: `3030516`;
+- CPU use at audit: about `94%`;
+- GPU status at audit: GPU 0 was still near idle, consistent with CPU-side
+  graph/path preparation before training;
+- log: `runs/debug_compare/2026-06-20_native_path_expansion/job_logs/kgglm_amazon_formal_20260626.log`;
+- log reached Amazon data/KG loading and collaborative KG construction:
+  70,680 users, 24,916 items, 846,434 interactions, 113,488 entities,
+  41 relations, 2,557,746 triples, collaborative KG vertices 184,168 and
+  edges 3,139,581.
+
+Current status: running; no `pretrain.complete` marker yet.
+
+Follow-up monitor:
+
+- tmux session was still present: `kgglm_amazon_formal_20260626`;
+- active pretrain process was still running as PID `3030516`;
+- CPU use was about `96%`, which indicates the process had not silently died;
+- GPU memory/use remained near idle, consistent with the current CPU-heavy
+  KG/path sampling or data preparation stage before model training;
+- the latest log line was still collaborative KG ready, with no Python
+  traceback and no failure marker;
+- no `pretrain.complete` marker or checkpoint artifact had been written yet.
+
+Next monitor should check whether the job has advanced past pretraining data
+preparation into checkpoint writing. If the log and output directory remain
+unchanged for a long period while CPU drops to idle, inspect the tmux pane
+before taking any recovery action.
+
+Second follow-up monitor:
+
+- tmux session remained active;
+- PID `3030516` was still running with about `99%` CPU;
+- GPU memory was about 328 MiB on GPUs 0--2 and 12 MiB on GPU 3, with low
+  utilization, which is still consistent with CPU-bound path sampling;
+- the log advanced from KG construction into KGGLM pretrain path sampling;
+- latest visible progress: `50,000/113,486` sampled nodes and `50,000` unique
+  paths after `2,832.0s`;
+- approximate sampling rate from the log: about `17.7` nodes/second;
+- rough remaining sampling time from 50k nodes: about one hour, before the
+  actual GPU training/checkpoint stage begins.
+
+This confirms the Amazon KGGLM formal job is progressing rather than stalled.
+
+Third follow-up monitor:
+
+- after another wait window, the same tmux session and PID were still active;
+- PID `3030516` was using about `99.5%` CPU;
+- latest visible progress advanced to `60,000/113,486` sampled nodes and
+  `60,000` unique paths after `3,402.2s`;
+- the sampling rate remained stable at roughly `17.6` nodes/second;
+- no checkpoint or `pretrain.complete` marker had been written yet, which is
+  still expected because the job is still in the pretraining path sampling
+  phase.
+
+Fourth follow-up monitor:
+
+- after a longer wait window, the tmux session was still active;
+- PID `3030516` remained the active pretrain process, using about `99.6%` CPU;
+- latest visible progress advanced to `70,000/113,486` sampled nodes and
+  `70,000` unique paths after `3,972.1s`;
+- GPU utilization remained low and no checkpoint/marker had been written yet;
+- based on the same roughly `17.6` nodes/second sampling rate, the remaining
+  pretraining sampling time was roughly forty minutes before the job can enter
+  model training/checkpoint writing.
+
+Fifth follow-up monitor:
+
+- the job remained active under the same tmux session and PID;
+- latest visible progress advanced to `80,000/113,486` sampled nodes and
+  `80,000` unique paths after `4,542.4s`;
+- GPU 0 showed only modest utilization, while CPU stayed near fully occupied;
+- no checkpoint/marker was present yet, so the run is still in sampling rather
+  than training/checkpoint writing.
+
+Sixth follow-up monitor:
+
+- the job advanced to `90,000/113,486` sampled nodes and `90,000` unique paths
+  after `5,112.7s`;
+- PID `3030516` was still the active process at roughly `99.6%` CPU;
+- no checkpoint or `pretrain.complete` marker was present yet;
+- at the observed rate, remaining sampling time was roughly twenty to
+  twenty-five minutes.
+
+Seventh follow-up monitor:
+
+- the job advanced to `100,000/113,486` sampled nodes and `100,000` unique
+  paths after `5,683.1s`;
+- the same PID remained active at roughly `99.6%` CPU;
+- GPU utilization remained low, so the job still had not entered the main
+  training/checkpoint writing stage;
+- no checkpoint or `pretrain.complete` marker was present yet.
+
+Eighth follow-up monitor:
+
+- pretrain sampling completed: `113,486/113,486` sampled nodes and `113,486`
+  unique paths after `6,452.3s`;
+- sparse relation annotation completed and the pretrain path dataset was ready
+  after `6,458.3s`;
+- the training stage started at `2026-06-26 14:46`;
+- epoch 1 completed in `186.30s` with train loss `4.1574`;
+- checkpoint artifacts were written under
+  `runs/debug_compare/2026-06-20_native_path_expansion/kgglm_formal/canonical_amazon_book_kgat_v1/pretrain_checkpoints/huggingface-distilgpt2-KGGLM-canonical_amazon_book_kgat_v1-pretrained-1.pth/checkpoint-444/`;
+- observed checkpoint files included `model.safetensors`, `config.json`,
+  `tokenizer.json`, `trainer_state.json`, `optimizer.pt`, `scheduler.pt`, and
+  `rng_state.pth`;
+- at this monitor point the tmux session and Python process were still active,
+  so the pipeline had not yet written `pretrain.complete` or advanced to the
+  finetune command.
+
+Ninth follow-up monitor:
+
+- `pretrain.complete` was present;
+- `pretrain.json` status was `PASS`;
+- the wrapper JSON reports `epochs=1`, while the formal KGGLM pretraining
+  configuration is recorded as `pretrain_epochs=3`; the log confirms three
+  pretraining epochs were run;
+- epoch losses were: epoch 1 `4.1574`, epoch 2 `4.1275`, epoch 3 `3.9647`;
+- latest pretrain checkpoint selected by the pipeline:
+  `pretrain_checkpoints/huggingface-distilgpt2-KGGLM-canonical_amazon_book_kgat_v1-pretrained-3.pth/checkpoint-1332`;
+- the pipeline then advanced automatically into recommendation-path
+  finetuning;
+- active finetune process at the monitor point: PID `3114882`;
+- finetune command uses `--train-stage finetune`, `--epochs 2`,
+  `--validation-paths-per-user 10`, `--validation-num-beams 10`, and
+  `--select-best-validation`;
+- no finetune checkpoint had been written yet at this monitor point.
+
+Tenth follow-up monitor:
+
+- `finetune.complete` was present;
+- `finetune.json` status was `PASS`;
+- epoch 1 finetune training completed in `101.11s` with train loss `5.0337`;
+- epoch 1 validation completed in `1630.74s` with valid-score/NDCG@10
+  `0.002300`, recall@10 `0.0038`, hit@10 `0.0038`, precision@10 `0.0004`,
+  and Fidelity@10 `0.5553`;
+- epoch 2 finetune training completed in `108.13s` with train loss `4.8722`;
+- epoch 2 validation completed in `1633.91s` with valid-score/NDCG@10
+  `0.001600`, recall@10 `0.0025`, hit@10 `0.0025`, precision@10 `0.0002`,
+  and Fidelity@10 `0.4214`;
+- because epoch 1 had the better validation score, the selected finetune
+  checkpoint remained
+  `finetune_checkpoints/huggingface-distilgpt2-KGGLM-Jun-26-2026_16-07-27.pth`;
+- the log emitted `There were missing keys in the checkpoint model loaded:
+  ['lm_head.weight']` at checkpoint reload time; this was non-fatal because the
+  pipeline advanced into path export, but it should remain on the risk list
+  until adapter/export validation and accuracy evaluation pass.
+
+Eleventh follow-up monitor:
+
+- tmux session `kgglm_amazon_formal_20260626` was still active;
+- active process was PID `3178065`, running
+  `scripts/hopwise/export_native_paths.py --model KGGLM --dataset
+  canonical_amazon_book_kgat_v1`;
+- process runtime at audit was about `1:34:02`, CPU about `103%`, memory about
+  `1.8%`;
+- GPU 0 showed about `4739` MiB memory use and `34%` utilization, confirming
+  the export process was active rather than idle;
+- `path_shards/` contained `1013` shard files, latest observed shard
+  `batch_001012.pkl`;
+- latest export progress line:
+  `requested_users=16208 processed_users=16208 skipped_cold_start_users=0 raw_paths=287964`;
+- no final `kgglm_paths.pkl`, `path_export.json`, `adapter.json`,
+  `export_validation.json`, `accuracy.json`, `paths.complete`, or
+  `pipeline.complete` artifact existed yet.
+
+Current interpretation: Amazon-book KGGLM formal is past pretrain and finetune
+and is actively exporting native paths. It is not yet a reportable formal
+Amazon result because final path merge, adapter conversion, export validation,
+and accuracy evaluation have not completed.
+
+Twelfth follow-up monitor and next Amazon launch:
+
+- after a further wait, KGGLM export continued to advance; latest observed
+  progress was
+  `requested_users=27456 processed_users=27456 skipped_cold_start_users=0 raw_paths=499554`;
+- `path_shards/` for KGGLM contained `1716` shard files at this audit point;
+- because the machine has `48` CPU cores, load average was about `6.6`, and
+  GPU 3 was idle, a second formal native-path Amazon job was launched without
+  sharing KGGLM's GPU 0;
+- launched PEARLM Amazon-book formal:
+
+```bash
+tmux new-session -d -s pearlm_amazon_formal_20260626 -c /usr1/home/s125mdg43_08/eval_framework \
+  '/bin/bash scripts/hopwise/run_canonical_pearlm_pipeline.sh canonical_amazon_book_kgat_v1 3 > runs/debug_compare/2026-06-20_native_path_expansion/job_logs/pearlm_amazon_formal_20260626.log 2>&1'
+```
+
+- tmux sessions after launch:
+  `kgglm_amazon_formal_20260626` and `pearlm_amazon_formal_20260626`;
+- PEARLM launch log:
+  `runs/debug_compare/2026-06-20_native_path_expansion/job_logs/pearlm_amazon_formal_20260626.log`;
+- PEARLM formal output root:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_amazon_book_kgat_v1`;
+- active PEARLM train process at audit: PID `3254163`, running
+  `scripts/hopwise/run_canonical_native_path.py --model PEARLM --dataset
+  canonical_amazon_book_kgat_v1 --gpu-id 3 --epochs 50 ...`;
+- PEARLM successfully reached Amazon data/KG loading:
+  70,680 users, 24,916 items, 846,434 interactions, 113,488 entities,
+  41 relations, 2,557,746 triples, and 24,915 linked items;
+- no PEARLM `train.complete` marker or JSON result existed yet, which is
+  expected at launch time.
+
+Current Amazon queue:
+
+1. KGGLM formal: actively exporting paths on GPU 0; not yet final.
+2. PEARLM formal: newly running on GPU 3; not yet trained.
+
+TPRec is not launched for Amazon in this pass because
+`scripts/hopwise/run_canonical_tprec_pipeline.sh` currently only supports
+`canonical_ml1m_v1` and `canonical_lastfm_v1`; Amazon TPRec requires a
+separate canonical runtime/config extension before it is an honest compatible
+baseline.
+
+Thirteenth follow-up monitor:
+
+- KGGLM export continued to progress after PEARLM launch, reaching
+  `requested_users=30352 processed_users=30352 skipped_cold_start_users=0 raw_paths=554365`;
+- KGGLM `path_shards/` contained `1897` shard files at this audit point;
+- PEARLM log had not advanced beyond initial Amazon data/KG loading, but the
+  PEARLM Python process remained active rather than failed;
+- active PEARLM process at audit: PID `3254163`, runtime about `04:53`, CPU
+  about `95.9%`, memory about `0.6%`;
+- GPU 3 still showed only idle memory, so PEARLM was still in a CPU-bound
+  preparation/sampling phase before GPU training/checkpointing;
+- no PEARLM `train.complete` marker, JSON result, checkpoint, or path shard had
+  been created yet.
+
+Next monitor should watch for either PEARLM training/checkpoint log lines or a
+stalled CPU drop with no log/checkpoint change. No recovery action is needed
+while PID `3254163` remains CPU-active.
+
+LastFM six-model figure bundle update:
+
+The earlier `canonical_lastfm_native_paths_v3` figure bundle intentionally used
+only TPRec/KGGLM/PEARLM because those result directories had the newer
+canonical-all-users marker convention. A follow-up audit confirmed that the
+classic LastFM baselines also have complete and validated xrecsys alpha sweeps:
+
+- PGPR latest large-candidate result:
+  `xrecsys/results/lastfm/agent_topk=25-50-1-pgpr-canonical-native-score`;
+- UCPR latest matched large-candidate result:
+  `xrecsys/results/lastfm/agent_topk=25-50-1-ucpr-canonical-matched`;
+- CAFE result:
+  `xrecsys/results/lastfm/agent_topk=cafe-canonical-lastfm`;
+- TPRec result:
+  `xrecsys/results/lastfm/agent_topk=tprec-canonical-e50-25-50-1`;
+- KGGLM result:
+  `xrecsys/results/lastfm/agent_topk=kgglm-canonical-p3-f2-h768-l6-b25-canonical-all-users`;
+- PEARLM result:
+  `xrecsys/results/lastfm/agent_topk=pearlm-canonical-bestval10-e50-h768-l6-b25-canonical-all-users`.
+
+Important correction: an initial v4 generation attempt used the older
+`10-12-1` PGPR/UCPR tags. It was immediately overwritten after checking the
+formal accuracy and sweep-validation summaries, which point to the `25-50-1`
+large-candidate tags above.
+
+The corrected six-model figure command was:
+
+```bash
+mkdir -p .cache/matplotlib
+export MPLCONFIGDIR=/usr1/home/s125mdg43_08/eval_framework/.cache/matplotlib
+for METRIC in LIR SEP ETD; do
+  /usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python scripts/analysis/tradeoff_analyzer.py \
+    --dataset lastfm \
+    --models \
+      PGPR=xrecsys/results/lastfm/agent_topk=25-50-1-pgpr-canonical-native-score \
+      UCPR=xrecsys/results/lastfm/agent_topk=25-50-1-ucpr-canonical-matched \
+      CAFE=xrecsys/results/lastfm/agent_topk=cafe-canonical-lastfm \
+      TPRec=xrecsys/results/lastfm/agent_topk=tprec-canonical-e50-25-50-1 \
+      KGGLM=xrecsys/results/lastfm/agent_topk=kgglm-canonical-p3-f2-h768-l6-b25-canonical-all-users \
+      PEARLM=xrecsys/results/lastfm/agent_topk=pearlm-canonical-bestval10-e50-h768-l6-b25-canonical-all-users \
+    --exp-metric "$METRIC" \
+    --out reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model
+done
+```
+
+Generated and validated:
+
+- output directory:
+  `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model`;
+- 24 files total: 12 PNGs and 12 CSVs;
+- each CSV has 126 rows: 6 models times 21 alpha values;
+- all CSVs contain exactly these models:
+  `CAFE`, `KGGLM`, `PEARLM`, `PGPR`, `TPRec`, `UCPR`;
+- all CSVs cover alpha `0.0` through `1.0` in the expected 21-point grid;
+- visual smoke check passed on
+  `tradeoff_lastfm_SEP_ndcg_models.png`.
+
+This v4 bundle is now the presentation-ready LastFM six-model tradeoff bundle.
+The v3 bundle remains useful only as the stricter marker-convention subset for
+TPRec/KGGLM/PEARLM.
+
+Reproducibility fix:
+
+- added the tracked helper
+  `scripts/analysis/generate_native_path_figures.sh` as the canonical
+  figure-regeneration entrypoint for current six-model LastFM and ML-1M
+  bundles;
+- also updated the ignored run-local helper
+  `runs/debug_compare/2026-06-20_native_path_expansion/generate_native_path_figures.sh`
+  for convenience in this experiment sandbox;
+- `lastfm` now regenerates the v4 six-model bundle with the latest PGPR and
+  UCPR `25-50-1` large-candidate result tags;
+- `ml1m` now regenerates
+  `reports/figures/tradeoff/canonical_ml1m_native_paths_v2` with all six
+  canonical-all-users result tags;
+- reran `bash scripts/analysis/generate_native_path_figures.sh lastfm` and
+  `bash scripts/analysis/generate_native_path_figures.sh ml1m`; both completed
+  successfully and wrote the expected figure/table bundles.
+
+Fourteenth Amazon monitor:
+
+- KGGLM export was still active under PID `3178065`;
+- KGGLM progress reached
+  `requested_users=38432 processed_users=38432 skipped_cold_start_users=0 raw_paths=707084`;
+- KGGLM `path_shards/` contained `2402` shard files;
+- no KGGLM final `kgglm_paths.pkl`, adapter summary, export-validation
+  summary, accuracy summary, or pipeline marker existed yet;
+- PEARLM remained active under PID `3254163`, runtime about `13:15`, CPU about
+  `98.5%`, memory about `0.6%`;
+- PEARLM still had no new log lines after initial Amazon KG loading, no
+  checkpoint, no JSON, and no marker; this remains consistent with CPU-bound
+  path/data preparation as long as CPU stays active.
+
+Amazon classic-model compatibility audit:
+
+While KGGLM/PEARLM formal jobs were running, the classic native-path adapters
+were checked for Amazon-book compatibility.
+
+Findings:
+
+- `scripts/data/canonical/build_pgpr_view.py` only exposes
+  `--model-dataset {lastfm,ml1m}` and hard-codes LastFM/ML-1M relation files
+  plus product entity names (`song`/`movie`);
+- `scripts/data/canonical/build_ucpr_view.py` only defines `DATASET_CONFIG`
+  entries for `lastfm` and `ml1m`;
+- `scripts/data/canonical/build_cafe_view.py` likewise only defines CAFE
+  schema configs for `lastfm` and `ml1m`, and CAFE depends on a compatible
+  UCPR view plus UCPR TransE checkpoint;
+- the UCPR runtime contains historical Amazon constants such as
+  `AZ_BOOK_CORE = 'book'` and shell scripts mentioning `amazon-book_20core`,
+  but the active canonical runtime utilities still define `DATASET_DIR`,
+  `TMP_DIR`, `KG_RELATION`, `MAIN_PRODUCT_INTERACTION`, metric paths, and
+  path-pattern tables only for the integrated ML-1M/LastFM schemas in the
+  canonical queue;
+- UCPR training also has an explicit branch where `AZ_BOOK_CORE` is commented
+  out of the ML-1M/LastFM parameter-freezing path:
+  `elif args.dataset in [LFM1M,ML1M]:#MOVIE_CORE, AZ_BOOK_CORE]`.
+
+Decision:
+
+- Do not launch PGPR/UCPR/CAFE on `canonical_amazon_book_kgat_v1` yet. They
+  are not currently honest drop-in compatible with the native KGAT Amazon-book
+  view.
+- Treat KGGLM and PEARLM as the current formal Amazon native-path baselines
+  because their Hopwise pipeline explicitly supports
+  `canonical_amazon_book_kgat_v1` and keeps the native KG path semantics.
+- Treat TPRec as not launched for Amazon until its canonical path constraints
+  and runtime support are extended beyond ML-1M/LastFM.
+
+If Amazon classic baselines are required later, the correct next task is a
+separate schema-porting task: define an Amazon product/entity/relation
+projection, build and validate PGPR/UCPR/CAFE model views, add runtime
+constants/path patterns, run smoke gates, then run formal jobs. Starting them
+now would mix unapproved schema assumptions into the comparison.
+
+Fifteenth Amazon monitor:
+
+- KGGLM export remained active as PID `3178065`, runtime about `1:56:47`, CPU
+  about `105%`;
+- KGGLM progress reached
+  `requested_users=42064 processed_users=42064 skipped_cold_start_users=0 raw_paths=774842`;
+- KGGLM `path_shards/` contained `2629` shard files;
+- GPU 0 showed about `4735` MiB memory and `25%` utilization;
+- PEARLM remained active as PID `3254163`, runtime about `19:57`, CPU about
+  `99%`;
+- PEARLM still had no checkpoint, JSON, marker, or post-KG-loading log update,
+  so it remains in the CPU-bound preparation/sampling watch state.
+
+Sixteenth Amazon monitor: KGGLM formal completed
+
+KGGLM Amazon-book formal pipeline completed at `2026-06-26 19:27:07`.
+
+Final KGGLM artifacts:
+
+- run root:
+  `runs/debug_compare/2026-06-20_native_path_expansion/kgglm_formal/canonical_amazon_book_kgat_v1`;
+- markers present: `pretrain.complete`, `finetune.complete`,
+  `paths.complete`, `pipeline.complete`;
+- summary JSONs present: `pretrain.json`, `finetune.json`, `adapter.json`,
+  `export_validation.json`, `accuracy.json`;
+- raw manifest: `kgglm_paths.pkl`;
+- path shards: `4412`;
+- raw manifest metadata:
+  `requested_users=70591`, `processed_users=70591`,
+  `raw_paths=1327552`, `row_shards=4412`, `paths_per_user=25`,
+  `num_beams=25`;
+- xrecsys sweeps were intentionally not run for Amazon; marker note present in
+  `xrecsys_not_applicable.txt`.
+
+Independent re-validation was run after pipeline completion without overwriting
+the formal summaries:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/validate_xrecsys_export.py \
+  --paths-dir xrecsys/paths/amazon_book_kgat_v1/agent_topk=kgglm-canonical-p3-f2-h768-l6-b25 \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --dataset amazon_book_kgat_v1 \
+  --topk 10 \
+  --require-all-test-users \
+  --summary-json /tmp/kgglm_amazon_export_validation_recheck.json
+```
+
+Recheck result: `PASS`.
+
+- canonical test users: `70591`;
+- top-k users: `70591`;
+- candidate users: `70586`;
+- pred-path rows: `1326486`;
+- explanation rows: `655285`;
+- score range: `[0.0, 1.0]`.
+
+Accuracy was independently rechecked with strict full-user coverage and only
+`--allow-short` for short recommendation lists:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/evaluate_uid_topk.py \
+  --uid-topk xrecsys/paths/amazon_book_kgat_v1/agent_topk=kgglm-canonical-p3-f2-h768-l6-b25/uid_topk.csv \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --topk 10 \
+  --allow-short \
+  --summary-json /tmp/kgglm_amazon_accuracy_recheck.json
+```
+
+Recheck result: `PASS`.
+
+Amazon-book KGGLM formal accuracy:
+
+- users: `70591`;
+- user coverage: `1.0`;
+- missing test users: `0`;
+- extra prediction users: `0`;
+- HR@10: `0.01266450397`;
+- NDCG@10: `0.00302209521`;
+- Precision@10: `0.00138261251`;
+- Recall@10: `0.00474723572`;
+- slot coverage: `0.92828405887`;
+- empty users: `5`;
+- exact-k users: `55267`;
+- short users: `15324`.
+
+Interpretation: KGGLM is now the first completed formal native-path baseline
+on the larger native-KG Amazon-book dataset. It is reportable for
+recommendation accuracy and native path export quality. It is not reportable
+for SEP/ETD/LIR alpha-sweep explanation tradeoffs because Amazon has no
+approved canonical timestamp/SEP/ETD denominator yet, so xrecsys sweeps are
+intentionally disabled.
+
+PEARLM Amazon status at the same audit:
+
+- PEARLM completed KG path sampling for `70679/70679` users after about
+  `1:10:01`;
+- PEARLM entered GPU training on physical GPU 3;
+- epoch 1 train loss: `5.1043`;
+- epoch 2 train loss: `4.9762`;
+- epoch 3 train loss: `4.7239`;
+- epoch 4 train loss: `4.6830`;
+- active PID remained `3254163`, GPU 3 memory about `5606` MiB and utilization
+  about `73%`;
+- no PEARLM checkpoint/`train.complete` marker existed yet, because the formal
+  50-epoch run is still training.
+
+Seventeenth Amazon monitor:
+
+- `tmux list-sessions` showed only `pearlm_amazon_formal_20260626`; the KGGLM
+  tmux session had naturally exited after writing `pipeline.complete`;
+- KGGLM formal artifacts remained complete and unchanged:
+  `pipeline.complete`, `paths.complete`, `adapter.json`, `export_validation.json`,
+  and `accuracy.json` were present and `PASS`;
+- PEARLM remained the only active Amazon formal job;
+- active PEARLM process: PID `3254163`, runtime about `1:24:52`, CPU about
+  `99.8%`, memory about `1.0%`;
+- GPU 3 showed about `5606` MiB memory and `69%` utilization;
+- PEARLM log had reached epoch 4:
+  - epoch 1 train loss `5.1043`;
+  - epoch 2 train loss `4.9762`;
+  - epoch 3 train loss `4.7239`;
+  - epoch 4 train loss `4.6830`;
+- no PEARLM `train.complete`, `pearlm_paths.pkl`, adapter, export-validation,
+  accuracy, or pipeline marker existed yet.
+
+Next monitor should wait for PEARLM validation/checkpoint events around the
+configured `eval_step=5`, then continue through export, adapter validation, and
+strict full-user accuracy validation.
+
+Eighteenth Amazon monitor:
+
+Checked again at `2026-06-26 20:12:02 +08`.
+
+KGGLM Amazon-book formal remains complete:
+
+- run root:
+  `runs/debug_compare/2026-06-20_native_path_expansion/kgglm_formal/canonical_amazon_book_kgat_v1`;
+- markers present: `pretrain.complete`, `finetune.complete`,
+  `paths.complete`, `pipeline.complete`;
+- summaries present: `pretrain.json`, `finetune.json`, `adapter.json`,
+  `export_validation.json`, `accuracy.json`;
+- final validation state remains `PASS` for export and `PASS` for strict
+  full-user accuracy.
+
+PEARLM Amazon-book formal remains active, not complete:
+
+- tmux session: `pearlm_amazon_formal_20260626`;
+- active process: PID `3254163`;
+- runtime: about `1:29:40`;
+- process state: `Rl+`, CPU about `102%`, memory about `1.4%`;
+- physical GPU 3 active with about `6284` MiB memory and about `24%`
+  utilization;
+- log reached epoch 5 training:
+  - epoch 1 train loss `5.1043`;
+  - epoch 2 train loss `4.9762`;
+  - epoch 3 train loss `4.7239`;
+  - epoch 4 train loss `4.6830`;
+  - epoch 5 train loss `4.1698`;
+- latest log modification time: `2026-06-26 20:07:29`;
+- current checkpoint directory contains one initial HuggingFace checkpoint
+  directory, `huggingface-distilgpt2-PEARLM-Jun-26-2026_19-53-31.pth`;
+- no `train.complete`, `train.json`, `paths.complete`, `pearlm_paths.pkl`,
+  `adapter.json`, `export_validation.json`, `accuracy.json`, or
+  `pipeline.complete` exists yet.
+
+Interpretation: PEARLM is still inside the train/validation phase after the
+first configured validation boundary (`eval_step=5`). It has not failed, but
+there is still no reportable Amazon PEARLM result. Next monitor should look for
+either a best-checkpoint/epoch-6 log update or a `train.complete` marker. If the
+training step completes, immediately continue with path export, adapter
+validation, export validation, and strict full-user accuracy recheck.
+
+Short follow-up poll:
+
+- checked workspace artifacts again at `2026-06-26 20:16:09 +08`;
+- PEARLM log still had `188` lines and latest modification time
+  `2026-06-26 20:07:29`;
+- the last logged training event was still epoch 5 with train loss `4.1698`;
+- no PEARLM completion markers or summary JSONs had appeared yet.
+
+Interpretation: this remains a waiting state inside the PEARLM train/validation
+stage. Because the formal run is still the only route to a reportable Amazon
+PEARLM baseline, no restart or parameter change was made.
+
+Nineteenth Amazon monitor and checkpoint-discovery fix:
+
+Checked Amazon PEARLM artifacts again at `2026-06-26 23:36:37 +08`.
+
+PEARLM had progressed substantially:
+
+- still no `train.complete`, `train.json`, `paths.complete`,
+  `pearlm_paths.pkl`, `adapter.json`, `export_validation.json`,
+  `accuracy.json`, or `pipeline.complete`;
+- checkpoint root now contained both the Hopwise checkpoint file and a
+  HuggingFace checkpoint directory;
+- the best HuggingFace checkpoint was written under the nested path
+  `checkpoints/huggingface-distilgpt2-PEARLM-Jun-26-2026_19-53-31.pth/checkpoint-5525`;
+- this nested checkpoint contains `model.safetensors` and `config.json`;
+- epoch 5 validation completed after `1512.96s` with
+  `valid_score=0.012000`;
+- epoch 5 validation metrics:
+  `recall@10=0.017`, `ndcg@10=0.012`, `hit@10=0.017`,
+  `precision@10=0.0017`, `Fidelity@10=0.5333`;
+- PEARLM saved the epoch 5 checkpoint as the current best;
+- later validation did not improve the best score:
+  - epoch 10: `valid_score=0.008900`;
+  - epoch 15: `valid_score=0.008100`;
+  - epoch 20: `valid_score=0.008600`;
+  - epoch 25: `valid_score=0.008500`;
+- training had reached epoch 30 with train loss `1.4015`; epoch-30 validation
+  was expected next.
+
+Bug found before export:
+
+- `scripts/hopwise/run_canonical_pearlm_pipeline.sh` looked only one directory
+  deep for a directory containing `model.safetensors`;
+- PEARLM's saved HuggingFace checkpoint is nested one level deeper under
+  `checkpoint-5525`;
+- if left unchanged, the shell pipeline could finish training and then fail at
+  checkpoint discovery before path export.
+
+Fix applied:
+
+- changed PEARLM checkpoint discovery to search up to four levels for
+  `model.safetensors`, then pass the containing directory to
+  `export_native_paths.py`;
+- applied the same more robust lookup to KGGLM finetune checkpoint discovery
+  for future reruns.
+
+Validation after the fix:
+
+```bash
+bash -n scripts/hopwise/run_canonical_pearlm_pipeline.sh
+bash -n scripts/hopwise/run_canonical_kgglm_pipeline.sh
+git diff --check
+```
+
+All checks passed. A direct filesystem check found exactly one current PEARLM
+`model.safetensors`, under the nested `checkpoint-5525` directory, and confirmed
+the sibling `config.json` exists.
+
+Twentieth Amazon monitor:
+
+Checked PEARLM again at `2026-06-26 23:46:06 +08`.
+
+- still no PEARLM `train.complete`, `train.json`, `paths.complete`,
+  `adapter.json`, `export_validation.json`, `accuracy.json`, or
+  `pipeline.complete`;
+- epoch 30 validation completed after `1445.87s`;
+- epoch 30 validation score was `0.007600`, so it did not improve over the
+  epoch 5 best checkpoint;
+- epoch 30 validation metrics:
+  `recall@10=0.0122`, `ndcg@10=0.0076`, `hit@10=0.0122`,
+  `precision@10=0.0012`, `Fidelity@10=0.7012`;
+- training continued through epoch 31 with train loss `1.4153`;
+- training continued through epoch 32 with train loss `1.4042`;
+- latest log modification time was `2026-06-26 23:44:46`.
+
+Interpretation: PEARLM remains healthy but not complete. Since the best
+validation score is still from epoch 5 and there have now been five later
+non-improving validation checkpoints, the next expected decision point is
+around the epoch 35 validation/early-stop boundary.
+
+Twenty-first Amazon monitor: PEARLM training completed
+
+PEARLM training completed at local log time `2026-06-27 00:17`.
+
+Training artifacts:
+
+- marker present: `train.complete`;
+- summary present:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_amazon_book_kgat_v1/train.json`;
+- `train.json` status: `PASS`;
+- requested max epochs: `50`;
+- selected best validation checkpoint: epoch 5;
+- best validation score: `0.012`;
+- best validation metrics:
+  `recall@10=0.017`, `ndcg@10=0.012`, `hit@10=0.017`,
+  `precision@10=0.0017`, `Fidelity@10=0.5333`;
+- final observed validation before early stop:
+  epoch 35, `valid_score=0.007800`;
+- epoch 35 validation metrics:
+  `recall@10=0.0125`, `ndcg@10=0.0078`, `hit@10=0.0125`,
+  `precision@10=0.0013`, `Fidelity@10=0.7028`;
+- Hopwise built-in test evaluation was intentionally skipped:
+  `SKIPPED_FOR_CANONICAL_COLD_START_USERS`;
+- formal canonical accuracy will be computed from the exported `uid_topk.csv`
+  after the adapter includes all canonical test users.
+
+Checkpoint/export transition:
+
+- after training, the best HuggingFace checkpoint was also materialized at
+  `checkpoints/huggingface-distilgpt2-PEARLM-Jun-26-2026_19-53-31.pth/model.safetensors`;
+- the running pipeline selected
+  `checkpoints/huggingface-distilgpt2-PEARLM-Jun-26-2026_19-53-31.pth`
+  as the export checkpoint;
+- `export_native_paths.py` started after checkpoint selection;
+- at `2026-06-27 00:31:50 +08`, there were still no
+  `pearlm_paths.pkl`, path shards, `paths.complete`, `adapter.json`,
+  `export_validation.json`, `accuracy.json`, or `pipeline.complete`.
+
+Interpretation: PEARLM has moved from training into the path-export phase.
+There is still no reportable Amazon PEARLM recommendation result until export,
+adapter validation, export validation, and strict full-user accuracy evaluation
+finish.
+
+Twenty-second Amazon monitor: PEARLM export live check
+
+Checked the live PEARLM export process at `2026-06-27 00:32:46 +08`.
+
+- parent tmux shell remained alive under session
+  `pearlm_amazon_formal_20260626`;
+- active export process:
+  `scripts/hopwise/export_native_paths.py`;
+- export PID: `3456663`;
+- export runtime: about `15:26`;
+- process state: `Rl+`;
+- CPU usage: about `98.7%`;
+- memory usage: about `0.6%`;
+- command confirmed formal export settings:
+  `--model PEARLM`, `--dataset canonical_amazon_book_kgat_v1`,
+  `--paths-per-user 25`, `--num-beams 25`, `--batch-size 16`,
+  `--gpu-id 3`;
+- no path shards or `pearlm_paths.pkl` existed yet at the artifact check just
+  before this process check;
+- GPU usage for this process was not yet visible, which is consistent with the
+  export still being in CPU-heavy dataset/model/path-sampling preparation.
+
+Interpretation: export is active and CPU-bound, not failed. The next useful
+artifact-level evidence is the first shard under `path_shards/`, followed by
+`pearlm_paths.pkl` and `paths.complete`.
+
+Twenty-third Amazon monitor: PEARLM export still in CPU preparation
+
+Checked at `2026-06-27 00:53:29 +08`.
+
+- PEARLM export process was still alive:
+  PID `3456663`, runtime about `36:08`;
+- process state remained `Rl+`;
+- CPU usage remained about `99.4%`;
+- memory remained about `0.6%`;
+- no GPU allocation by the PEARLM export process was visible yet;
+- artifact state was unchanged:
+  `train.complete` and `train.json` present, but no `path_shards/` files,
+  no `pearlm_paths.pkl`, no `paths.complete`, no adapter/export/accuracy
+  summaries, and no `pipeline.complete`;
+- PEARLM export log still had no new line after the export-start warnings.
+
+Interpretation: the export step is still active and CPU-bound. This is
+consistent with the export process rebuilding Hopwise dataset/path-sampling
+state before the first generation batch; the earlier training-side KG path
+sampling took about `1:10:01`, so the absence of shards at `36` minutes is not
+yet evidence of failure.
+
+Twenty-fourth Amazon monitor: PEARLM export writing shards
+
+Checked at `2026-06-27 01:34:02 +08`.
+
+- `train.complete` and `train.json` remained present;
+- PEARLM export had started writing per-batch shards;
+- path shard count: `402`;
+- first shard:
+  `path_shards/batch_000000.pkl`, mtime `2026-06-27 01:28:38`;
+- latest observed shard:
+  `path_shards/batch_000401.pkl`, mtime `2026-06-27 01:34:02`;
+- latest shard summary:
+  `requested_users=16`, `processed_users=16`, skipped users `0`,
+  rows `214`;
+- latest log counters reached:
+  `requested_users=6432`, `processed_users=6432`,
+  `skipped_cold_start_users=0`, `raw_paths=87235`;
+- no `pearlm_paths.pkl`, `paths.complete`, adapter/export/accuracy summaries,
+  or `pipeline.complete` yet.
+
+Interpretation: PEARLM export is now past the long dataset/path-sampling
+preparation phase and is actively generating/writing path shards. Amazon-book
+has `70591` canonical test users, so with `batch-size=16` the expected full
+export is about `4412` shard batches before the manifest and downstream
+adapter/validation steps appear.
+
+Twenty-fifth Amazon monitor: PEARLM formal completed
+
+PEARLM Amazon-book formal pipeline completed at `2026-06-27 02:27:39 +08`.
+
+Final PEARLM artifacts:
+
+- run root:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_amazon_book_kgat_v1`;
+- markers present: `train.complete`, `paths.complete`, `pipeline.complete`;
+- summary JSONs present: `train.json`, `adapter.json`,
+  `export_validation.json`, `accuracy.json`;
+- raw manifest: `pearlm_paths.pkl`;
+- path shards: `4412`;
+- first shard: `path_shards/batch_000000.pkl`;
+- last shard: `path_shards/batch_004411.pkl`;
+- manifest metadata:
+  `source_dataset=canonical_amazon_book_kgat_v1`,
+  `canonical_dataset=amazon_book_kgat_v1`, `paths_per_user=25`,
+  `num_beams=25`, `requested_users=70591`, `processed_users=70591`,
+  `raw_paths=887376`, `row_shards=4412`;
+- skipped cold-start users during path export: `0`;
+- xrecsys alpha sweeps were intentionally not run for Amazon; marker note
+  present in `xrecsys_not_applicable.txt`.
+
+Adapter summary:
+
+- status: `PASS`;
+- dataset: `amazon_book_kgat_v1`;
+- requested users: `70591`;
+- processed users: `70591`;
+- output users: `70591`;
+- users with recommendations: `70216`;
+- raw users: `70290`;
+- raw paths: `887376`;
+- unseen paths: `885270`;
+- explanations: `578518`;
+- native score range:
+  `[8.445615094387904e-06, 0.9891902804374695]`;
+- path shards: `4412`.
+
+Export validation:
+
+- status: `PASS`;
+- canonical test users: `70591`;
+- top-k users: `70591`;
+- candidate users: `70216`;
+- pred-path rows: `885270`;
+- explanation rows: `578518`;
+- score range: `[0.0, 1.0]`;
+- strict full-test-user requirement: enabled.
+
+Accuracy:
+
+- status: `PASS`;
+- users: `70591`;
+- user coverage: `1.0`;
+- missing test users: `0`;
+- extra prediction users: `0`;
+- HR@10: `0.02933801759`;
+- NDCG@10: `0.01071598226`;
+- Precision@10: `0.00309954527`;
+- Recall@10: `0.01540367157`;
+- empty users: `375`;
+- exact-k users: `41791`;
+- short users: `28800`;
+- mean recommendation items: `8.19535068210`;
+- slot coverage: `0.81953506821`.
+
+Independent PEARLM re-validation was run after pipeline completion without
+overwriting the formal summaries:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/validate_xrecsys_export.py \
+  --paths-dir xrecsys/paths/amazon_book_kgat_v1/agent_topk=pearlm-canonical-bestval10-e50-h768-l6-b25 \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --dataset amazon_book_kgat_v1 \
+  --topk 10 \
+  --require-all-test-users \
+  --summary-json /tmp/pearlm_amazon_export_validation_recheck.json
+```
+
+Recheck result: `PASS`.
+
+Accuracy was independently rechecked with strict full-user coverage and only
+`--allow-short` for naturally short recommendation lists:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/evaluate_uid_topk.py \
+  --uid-topk xrecsys/paths/amazon_book_kgat_v1/agent_topk=pearlm-canonical-bestval10-e50-h768-l6-b25/uid_topk.csv \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --topk 10 \
+  --allow-short \
+  --summary-json /tmp/pearlm_amazon_accuracy_recheck.json
+```
+
+Recheck result: `PASS`.
+
+Interpretation: Amazon-book now has two completed formal native-path baselines
+on the larger native-KG dataset: KGGLM and PEARLM. PEARLM has higher formal
+recommendation accuracy than KGGLM on this dataset in the current run
+(`HR@10=0.029338` vs. KGGLM `HR@10=0.012665`; `NDCG@10=0.010716` vs. KGGLM
+`NDCG@10=0.003022`). Both are reportable for recommendation accuracy and
+native path export quality. Neither is reportable for Amazon SEP/ETD/LIR
+alpha-sweep explanation tradeoffs until an approved timestamp/SEP/ETD
+denominator is defined for Amazon-book.
+
+Current status matrix:
+
+Created a concise reporting matrix at
+`reports/tables/canonical_native_path_status_matrix.md`.
+
+The matrix records:
+
+- LastFM and ML-1M six-model completion state and HR/NDCG values;
+- Amazon-book KGGLM/PEARLM formal completion state and comparison metrics;
+- Amazon PGPR/UCPR/CAFE/TPRec blocked state and the required schema/runtime
+  porting reason;
+- figure-bundle status for LastFM and ML-1M;
+- Amazon alpha-sweep status as `N/A` until a canonical timestamp/SEP/ETD
+  denominator is approved.
+
+Follow-up reporting artifact:
+
+- added machine-readable companion CSV:
+  `reports/tables/canonical_native_path_status_matrix.csv`;
+- added Amazon classic-port acceptance criteria to the Markdown matrix:
+  shared canonical projection/remap/export/accuracy gates plus model-specific
+  PGPR, UCPR, CAFE, and TPRec prerequisites.
+
+Reproducibility follow-up:
+
+- added `scripts/analysis/generate_canonical_status_matrix.py`;
+- the script reads current accuracy/export JSON artifacts, validates that
+  completed rows are `PASS`, counts LastFM/ML-1M figure bundle files, and
+  regenerates both:
+  - `reports/tables/canonical_native_path_status_matrix.csv`;
+  - `reports/tables/canonical_native_path_status_matrix.md`;
+- verified regeneration with:
+
+```bash
+python scripts/analysis/generate_canonical_status_matrix.py
+python -m py_compile scripts/analysis/generate_canonical_status_matrix.py
+```
+
+The generated Markdown now shows Amazon blocker reasons directly in the main
+status table, while the CSV keeps the same reasons in `blocker_or_note`.
+
+Report regeneration wrapper:
+
+- added `scripts/analysis/regenerate_canonical_native_path_reports.sh`;
+- default behavior:
+  - regenerate LastFM six-model alpha-sweep figures/CSVs;
+  - regenerate ML-1M six-model alpha-sweep figures/CSVs;
+  - regenerate the canonical native-path status CSV/Markdown;
+  - validate that each figure bundle has `12` PNG and `12` CSV files;
+  - validate that the status CSV has `18` rows and that the Markdown contains
+    the Amazon porting criteria;
+- quick mode:
+  `bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only`;
+- full mode:
+  `bash scripts/analysis/regenerate_canonical_native_path_reports.sh`.
+
+Both modes were executed successfully. The full mode completed as report-only
+analysis, not training or path extraction, and ended with:
+
+```text
+canonical native-path report validation PASS
+Canonical native-path reports regenerated.
+```
+
+Stronger export-validation evidence:
+
+- added `scripts/analysis/validate_canonical_export_evidence.py`;
+- the validator enumerates the `14` complete model/dataset rows
+  (LastFM six models, ML-1M six models, Amazon KGGLM/PEARLM), runs
+  `validate_xrecsys_export.validate(..., require_all_test_users=True)`, and
+  writes per-row summaries under
+  `reports/tables/canonical_export_validation/`;
+- full revalidation summaries now exist for all `14` complete rows, and
+  `reports/tables/canonical_export_validation/manifest.json` records
+  `status=PASS`, `exports=14`;
+- because classic PGPR/UCPR exports contain multi-million-row `pred_paths.csv`
+  files (for example LastFM PGPR has about `11.7M` rows), the validator also
+  supports targeted runs:
+
+```bash
+python scripts/analysis/validate_canonical_export_evidence.py --list
+python scripts/analysis/validate_canonical_export_evidence.py \
+  --only amazon_book_kgat_v1:KGGLM \
+  --only amazon_book_kgat_v1:PEARLM
+python scripts/analysis/validate_canonical_export_evidence.py --manifest-only
+```
+
+- `scripts/analysis/generate_canonical_status_matrix.py` now requires these
+  export-validation summaries for complete rows and records each summary path
+  in the CSV `export_evidence` column;
+- `scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only`
+  now rebuilds the export-validation manifest before regenerating the status
+  matrix.
+
+Completion audit artifact:
+
+- added `docs/guides/CANONICAL_NATIVE_PATH_COMPLETION_AUDIT_2026-06-27.md`;
+- the audit maps the active objective to evidence by requirement area:
+  LastFM, ML-1M, Amazon, export validation, accuracy validation, report
+  reproducibility, bug fixes, documentation, and remaining blockers;
+- verified referenced paths exist:
+  - status CSV/Markdown;
+  - export-validation manifest;
+  - LastFM and ML-1M figure bundles;
+  - report regeneration wrapper.
+
+Audit conclusion: all reportable LastFM and ML-1M canonical native-path
+baselines are complete, and Amazon KGGLM/PEARLM formal baselines are complete.
+The broader goal remains active rather than globally closed because Amazon
+PGPR/UCPR/CAFE/TPRec are documented schema/runtime porting blockers, not
+implemented experiments.
+
+Amazon classic readiness audit:
+
+- added `scripts/analysis/audit_amazon_classic_port_readiness.py`;
+- generated `reports/tables/amazon_classic_port_readiness.json`;
+- current readiness status: `BLOCKED`;
+- blocked models: `PGPR`, `UCPR`, `CAFE`, `TPRec`;
+- checks include:
+  - PGPR `RELATION_FILES`/`PRODUCT_ENTITIES` and CLI model-dataset support;
+  - UCPR `DATASET_CONFIG` and CLI model-dataset support;
+  - CAFE `DATASET_CONFIG` and CLI model-dataset support;
+  - TPRec path-constraint and pipeline case support;
+- `scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only`
+  now regenerates this readiness audit as part of report validation.
+
+Artifact manifest:
+
+- added `scripts/analysis/generate_canonical_artifact_manifest.py`;
+- generated `reports/tables/canonical_native_path_artifact_manifest.json`;
+- the manifest records:
+  - status matrix row counts (`18` rows, `14` complete, `4` blocked);
+  - export-validation manifest status (`PASS`, `14` exports);
+  - Amazon classic readiness status (`BLOCKED`);
+  - figure-bundle counts for LastFM and ML-1M (`12` PNG + `12` CSV each);
+  - core report files and scripts with file size, mtime, and SHA-256 hashes
+    for small files;
+  - the `14` per-row export-validation summaries;
+- `scripts/analysis/regenerate_canonical_native_path_reports.sh` now creates
+  this manifest and asserts it exists before reporting success.
+
+Amazon classic readiness Markdown companion:
+
+- extended `scripts/analysis/audit_amazon_classic_port_readiness.py` so the
+  Amazon PGPR/UCPR/CAFE/TPRec readiness gate writes both:
+  - machine-readable JSON:
+    `reports/tables/amazon_classic_port_readiness.json`;
+  - human-readable Markdown:
+    `reports/tables/amazon_classic_port_readiness.md`;
+- the Markdown table records model-by-model readiness, passed-check counts,
+  failed gates, concrete next actions, and per-check evidence;
+- `scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only`
+  now asserts that both readiness artifacts exist;
+- `scripts/analysis/generate_canonical_artifact_manifest.py` now includes the
+  readiness Markdown and the short handoff document in its core-file manifest;
+- `docs/guides/CANONICAL_NATIVE_PATH_HANDOFF_2026-06-27.md` now points to the
+  human-readable readiness table as the fastest way to inspect the remaining
+  Amazon classic blockers.
+
+Amazon PGPR data-view smoke:
+
+- extended `scripts/data/canonical/build_pgpr_view.py` with an
+  `amazon_book_kgat_v1` model-dataset option;
+- the builder now creates a generic Amazon book/entity PGPR view from the
+  KGAT Amazon-book source:
+  - `entities/user.txt.gz`: `70,679` users;
+  - `entities/book.txt.gz`: `24,915` book/product entities;
+  - `entities/entity.txt.gz`: `113,487` KG entities;
+  - nine default semantic book relations:
+    author, genre, original language, subject, next/previous series,
+    part-of-series, character, interior illustration;
+- generated the smoke view with:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/data/canonical/build_pgpr_view.py \
+  --canonical-root runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1 \
+  --source-xrecsys-dataset-dir data_sources/kgat_amazon_book \
+  --out-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/amazon_book_kgat_v1 \
+  --dataset amazon_book_kgat_v1 \
+  --model-dataset amazon_book_kgat_v1
+```
+
+- metadata:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_view_metadata.json`;
+- round-trip validation is exact for train, valid, and test labels:
+  - train users: `70,679`;
+  - valid users: `70,679`;
+  - test users: `70,591`;
+- this is a preparation artifact only. PGPR Amazon remains blocked until an
+  isolated PGPR runtime patch defines the Amazon book/entity schema, relation
+  constants, path patterns, loader smoke, training, path export, strict export
+  validation, and strict accuracy validation.
+
+Amazon PGPR isolated preprocess smoke:
+
+- added `scripts/model_patches/patch_pgpr_amazon_runtime.py`;
+  - patches an isolated PGPR runtime copy, not the source `xrecsys` tree;
+  - adds `amazon_book_kgat_v1` dataset constants;
+  - adds generic `book`/`entity` schema support;
+  - wires the nine default Amazon semantic book relations into PGPR
+    `utils.py`, `data_utils.py`, and `knowledge_graph.py`;
+- added `scripts/validation/validate_pgpr_preprocess_smoke.py`;
+  - validates PGPR-generated train/test labels against canonical labels;
+  - confirms core PGPR preprocess pickles exist;
+- added `scripts/validation/run_pgpr_amazon_preprocess_smoke.sh`;
+  - copies PGPR into
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke/`;
+  - copies the generated Amazon PGPR view;
+  - applies the existing general PGPR patch plus the new Amazon preprocess
+    patch;
+  - runs `preprocess.py --dataset amazon_book_kgat_v1`;
+  - writes
+    `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_runtime_preprocess_smoke.json`;
+- executed:
+
+```bash
+bash scripts/validation/run_pgpr_amazon_preprocess_smoke.sh
+```
+
+- smoke result: `PASS`;
+- generated core runtime artifacts:
+  - `dataset.pkl`: `35,947,655` bytes;
+  - `kg.pkl`: `16,042,181` bytes;
+  - `train_label.pkl`: `2,521,951` bytes;
+  - `test_label.pkl`: `1,345,587` bytes;
+- label validation:
+  - train users/interactions: `70,679` / `581,835`, exact match;
+  - test users/interactions: `70,591` / `193,920`, exact match;
+- `scripts/analysis/audit_amazon_classic_port_readiness.py` now records PGPR
+  preprocess smoke as a passed gate, while keeping PGPR Amazon blocked until
+  formal export and accuracy validation exist.
+
+Amazon PGPR TransE one-batch smoke:
+
+- extended `scripts/model_patches/patch_pgpr_amazon_runtime.py` to patch the
+  isolated PGPR `transe_model.py` for `amazon_book_kgat_v1`;
+  - adds Amazon `user`/`book`/`entity` embeddings;
+  - adds `purchased` plus the nine semantic book relations;
+  - routes the Amazon batch columns through the PGPR negative-sampling loss;
+  - replaces deprecated `np.float` with `float` in the patched runtime copy;
+- added `scripts/validation/run_pgpr_transe_forward_smoke.py`;
+- executed:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/pgpr_env/bin/python \
+  scripts/validation/run_pgpr_transe_forward_smoke.py \
+  --runtime-root runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke \
+  --dataset amazon_book_kgat_v1 \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_transe_forward_smoke.json \
+  --batch-size 64 \
+  --embed-size 16 \
+  --num-neg-samples 2
+```
+
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_transe_forward_smoke.json`;
+- batch shape: `64 x 11`
+  (`user`, `book`, and nine semantic book-relation columns);
+- finite loss: `18.71475601196289`;
+- gradient tensors: `21`;
+- this proves the Amazon PGPR schema can enter TransE loss computation, but it
+  is not yet a trained checkpoint, policy run, path export, or formal
+  accuracy result.
+
+Amazon PGPR TransE training smoke:
+
+- extended `scripts/model_patches/patch_pgpr_amazon_runtime.py` so the
+  isolated `train_transe_model.py` can export Amazon `transe_embed.pkl`;
+- added `scripts/validation/validate_pgpr_transe_training_smoke.py`;
+- added `scripts/validation/run_pgpr_amazon_transe_training_smoke.sh`;
+- executed a small, non-formal training smoke:
+
+```bash
+bash scripts/validation/run_pgpr_amazon_transe_training_smoke.sh
+```
+
+- smoke configuration:
+  - epochs: `1`;
+  - embedding dimension: `16`;
+  - batch size: `2048`;
+  - negative samples: `2`;
+  - device: CPU;
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_transe_training_smoke.json`;
+- generated checkpoint:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke/models/PGPR/tmp/amazon_book_kgat_v1/train_transe_model_amazon_smoke_e1_d16/transe_model_sd_epoch_1.ckpt`;
+- generated embedding pickle:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke/models/PGPR/tmp/amazon_book_kgat_v1/transe_embed.pkl`;
+- validation details:
+  - checkpoint exists: `true`;
+  - embedding pickle exists: `true`;
+  - missing embedding keys: none;
+  - expected embedding dimension: `16`;
+  - train log contains `Epoch: 01`;
+- this advances PGPR Amazon from data/runtime smoke into training smoke, but
+  PGPR Amazon remains blocked until policy training/inference, path export,
+  strict export validation, and strict accuracy validation pass.
+
+Amazon PGPR policy environment / beam smoke:
+
+- extended `scripts/model_patches/patch_pgpr_amazon_runtime.py` to patch the
+  isolated PGPR `kg_env.py` and `test_agent.py`;
+  - replaces ml1m/lastfm-only product/relation/path-pattern branches with the
+    generic helper functions added for Amazon;
+  - patches `batch_step` to use the Amazon KG relation map;
+  - patches beam search to use `get_kg_relation(env.dataset_name)`;
+- added `scripts/validation/run_pgpr_policy_env_smoke.py`;
+- first smoke attempt caught a real bug:
+  - `_get_actions` had been patched to use `self.KG_RELATION`;
+  - `batch_step` still used the old ml1m/lastfm conditional map because the
+    patch helper skipped an identical replacement string already present in a
+    different function;
+  - fixed with a context-specific replacement around the `# Execute batch
+    actions` block;
+- executed:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/pgpr_env/bin/python \
+  scripts/validation/run_pgpr_policy_env_smoke.py \
+  --runtime-root runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke \
+  --dataset amazon_book_kgat_v1 \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_env_smoke.json \
+  --max-acts 10000
+```
+
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_env_smoke.json`;
+- verified manual native path:
+  `user(0) -> purchased -> book(0) -> book_author -> entity(81640) -> book_author -> book(11)`;
+- manual path checks:
+  - environment done: `true`;
+  - path pattern accepted: `true`;
+  - final node is book: `true`;
+  - reward finite: `true`;
+- random ActorCritic beam smoke:
+  - beam paths: `4`;
+  - book-ending paths: `4`;
+- this proves the Amazon PGPR policy environment and beam relation mapping can
+  execute native paths, but PGPR Amazon is still blocked until policy training,
+  path export/adaptation, strict export validation, and strict accuracy
+  validation are complete.
+
+Amazon PGPR policy training and inference smokes:
+
+- added `scripts/validation/validate_pgpr_policy_training_smoke.py`;
+- added `scripts/validation/run_pgpr_amazon_policy_training_smoke.sh`;
+- added `scripts/validation/run_pgpr_policy_inference_smoke.py`;
+- updated `scripts/validation/run_pgpr_amazon_policy_training_smoke.sh` to apply
+  both the general PGPR runtime patch and the Amazon-specific PGPR runtime
+  patch before training;
+- fixed `scripts/model_patches/patch_pgpr_runtime.py` idempotency:
+  - a runtime that had already been Amazon-patched contained the newer generic
+    `self.review_interaction` / `self.main_product` user-product scaling block;
+  - the general patch previously recognized only its own ml1m/lastfm batched
+    scaling block and aborted;
+  - the patch now treats the Amazon-aware scaling block as already patched;
+- first policy-inference smoke attempt executed beam search but failed while
+  serializing the summary because the probability examples contained
+  `numpy.float32`;
+- fixed `scripts/validation/run_pgpr_policy_inference_smoke.py` with a small
+  `to_jsonable` converter for numpy/torch scalar containers;
+- executed policy training smoke:
+
+```bash
+bash scripts/validation/run_pgpr_amazon_policy_training_smoke.sh
+```
+
+- smoke configuration:
+  - epochs: `1`;
+  - policy hidden sizes: `32 16`;
+  - batch size: `8192`;
+  - max actions: `250`;
+  - device: CPU;
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_training_smoke.json`;
+- generated policy checkpoint:
+  `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke/models/PGPR/tmp/amazon_book_kgat_v1/train_agent_amazon_smoke_e1_a250_h32-16/policy_model_epoch_1.ckpt`;
+- validation details:
+  - checkpoint exists: `true`;
+  - train log contains the checkpoint save marker: `true`;
+  - `state_dim`: `64`;
+  - `act_dim`: `251`;
+  - expected actor/critic/layer shapes passed;
+- executed policy inference smoke:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/pgpr_env/bin/python \
+  scripts/validation/run_pgpr_policy_inference_smoke.py \
+  --runtime-root runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_smoke \
+  --dataset amazon_book_kgat_v1 \
+  --run-name train_agent_amazon_smoke_e1_a250_h32-16 \
+  --epoch 1 \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_inference_smoke.json \
+  --max-acts 250 \
+  --num-users 8 \
+  --topk 5 5 1
+```
+
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_inference_smoke.json`;
+- inference details:
+  - users: `8`;
+  - generated paths: `191`;
+  - probability rows: `191`;
+  - finite probability rows: `191`;
+  - book-ending paths: `170`;
+- `scripts/analysis/audit_amazon_classic_port_readiness.py` now records the
+  policy training and policy inference smokes as passed gates. PGPR Amazon
+  remains blocked because there is still no formal policy run, native path
+  export/adaptation, strict export validation, or strict accuracy result.
+
+Amazon PGPR adapter/export smoke:
+
+- updated `adapters/pgpr_adapter.py` to support
+  `amazon_book_kgat_v1` with product type `book` and interaction relation
+  `purchased`;
+- updated `scripts/validation/run_pgpr_policy_inference_smoke.py` with an
+  optional `--paths-pkl` output so the already-validated beam smoke can feed
+  the existing PGPR adapter interface;
+- added `scripts/validation/run_pgpr_amazon_export_smoke.sh`;
+- executed:
+
+```bash
+bash scripts/validation/run_pgpr_amazon_export_smoke.sh
+```
+
+- smoke result: `PASS`;
+- inference pkl:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_inference_smoke_paths.pkl`;
+- xrecsys export directory:
+  `xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-smoke-e1_a250_8users`;
+- validation summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_export_smoke_validation.json`;
+- export validation details:
+  - status: `PASS`;
+  - pred-path rows: `166`;
+  - candidate users: `8`;
+  - canonical test users listed in `uid_topk.csv`: `70,591`;
+  - top-k explanations: `80`;
+  - `require_all_test_users`: `false`;
+- interpretation:
+  - the Amazon PGPR path serializer and adapter can emit xrecsys-compatible
+    `pred_paths.csv`, `uid_topk.csv`, and `uid_pid_explanation.csv`;
+  - this is deliberately still a smoke export, not a formal PGPR Amazon
+    baseline, because it uses an 8-user policy-inference pkl and does not
+    require full-user candidate coverage.
+
+Amazon PGPR formal-v1 pipeline launch:
+
+- generalized `scripts/validation/validate_pgpr_policy_training_smoke.py`:
+  - added `--expected-hidden`;
+  - formal PGPR policy checkpoints can now be validated with hidden sizes
+    other than the smoke-only `32 16`;
+- generalized `scripts/validation/run_pgpr_policy_inference_smoke.py`:
+  - added `--hidden`;
+  - added `--beam-batch-size`;
+  - `--num-users 0` now means all canonical test users;
+- added `scripts/validation/run_pgpr_amazon_formal_pipeline.sh`;
+- added `scripts/validation/launch_pgpr_amazon_formal_pipeline.sh`;
+- rationale:
+  - the formal pipeline must not reuse the smoke `dim=16` TransE or
+    `hidden=32 16` policy checkpoint;
+  - the first formal-v1 Amazon PGPR run uses full canonical test-user coverage
+    with a CPU-feasible beam `10 12 1`;
+  - the larger historical PGPR `25 50 1` beam is supported through
+    `PGPR_FORMAL_TOPK` but is expected to create a much larger path pool on
+    Amazon-Book KGAT and should be treated as a separate expensive run if
+    needed;
+- launched through persistent tmux:
+
+```bash
+bash scripts/validation/launch_pgpr_amazon_formal_pipeline.sh
+```
+
+- launch result:
+  - tmux session: `pgpr_amazon_formal`;
+  - pane pid recorded in:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline.pid`;
+  - log:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline.log`;
+  - status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`;
+- formal-v1 configuration:
+  - device: CPU;
+  - TransE: `30` epochs, dim `300`, batch `2048`, negative samples `5`;
+  - policy: `50` epochs, hidden `512 256`, batch `8192`,
+    max actions `250`;
+  - full-user inference/export beam: `10 12 1`;
+  - strict export summary target:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json`;
+  - strict accuracy summary target:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json`;
+- current observed state:
+  - formal runtime preprocess validation PASS;
+  - status stage: `transe`;
+  - PGPR Amazon remains not reportable until the formal pipeline writes strict
+    full-user export validation and strict accuracy summaries with
+    `status=PASS`.
+
+Amazon TPRec structural wiring and timestamp semantics audit:
+
+- added Amazon relation-token path constraints to
+  `scripts/hopwise/tprec_runtime.py`;
+- added `canonical_amazon_book_kgat_v1` to:
+  - `scripts/hopwise/run_canonical_tprec.py`;
+  - `scripts/hopwise/export_tprec_paths.py`;
+  - `scripts/hopwise/run_canonical_tprec_pipeline.sh`;
+- the Amazon TPRec product endpoint is exported as canonical `book`, and the
+  interaction relation is `purchased`;
+- added `scripts/validation/audit_tprec_amazon_timestamp_semantics.py`;
+- ran:
+
+```bash
+python scripts/validation/audit_tprec_amazon_timestamp_semantics.py
+```
+
+- audit output:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/tprec/tprec_timestamp_semantics_audit.json`;
+- structural checks:
+  - Hopwise Amazon view status: `PASS`;
+  - kept link rows: `24,915`;
+  - dropped link rows: `0`;
+  - required TPRec relation-token constraints are all present in the Hopwise
+    KG: `relation:5`, `relation:10`, `relation:11`, `relation:13`,
+    `relation:15`, `relation:18`, `relation:19`, `relation:20`,
+    `relation:36`;
+- timestamp findings:
+  - canonical metadata `timestamp_policy`: `-1`;
+  - train sentinel fraction: `1.0`;
+  - valid sentinel fraction: `1.0`;
+  - test sentinel fraction: `1.0`;
+  - `formal_temporal_reward_approved`: `false`;
+- verified the Amazon TPRec formal pipeline default entrypoint stops safely at
+  the timestamp gate:
+
+```bash
+bash scripts/hopwise/run_canonical_tprec_pipeline.sh canonical_amazon_book_kgat_v1
+```
+
+- expected result:
+  - exit code: `3`;
+  - message: Amazon TPRec formal run blocked because all canonical timestamps
+    are sentinel `-1`;
+- updated `scripts/analysis/audit_amazon_classic_port_readiness.py`;
+- updated `scripts/analysis/generate_canonical_status_matrix.py`;
+- regenerated report tables:
+
+```bash
+bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
+```
+
+- readiness result:
+  - TPRec checks passed: `5/6`;
+  - only failed TPRec gate:
+    `Amazon timestamps support formal TPRec temporal rewards`;
+- interpretation:
+  - Amazon TPRec is no longer blocked by missing path constraints or missing
+    pipeline entrypoints;
+  - it remains blocked for formal reporting because TPRec is a temporal model
+    and the canonical Amazon-book KGAT interactions contain no real timestamps;
+  - running it anyway would need to be labeled as a non-temporal ablation, not
+    a formal TPRec baseline.
+
+Amazon UCPR data-view projection:
+
+- extended `scripts/data/canonical/build_ucpr_view.py` with an
+  `amazon_book_kgat_v1` KGAT-source projection;
+- the projection exposes Amazon book items as UCPR `product`, generic KG tail
+  nodes as `entity`, and nine native book relations:
+  `book_author_entity`, `book_genre_entity`,
+  `book_original_language_entity`, `book_subject_entity`,
+  `book_next_in_series_entity`, `book_previous_in_series_entity`,
+  `book_part_of_series_entity`, `book_character_entity`, and
+  `book_interior_illustration_entity`;
+- generated the UCPR view with:
+
+```bash
+python scripts/data/canonical/build_ucpr_view.py \
+  --canonical-root runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1 \
+  --source-xrecsys-dataset-dir data_sources/kgat_amazon_book \
+  --out-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/preprocessed/ucpr \
+  --dataset amazon_book_kgat_v1 \
+  --model-dataset amazon_book_kgat_v1
+```
+
+- output metadata:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/preprocessed/ucpr_view_metadata.json`;
+- validation result:
+  - users: `70,679`;
+  - products: `24,915`;
+  - relation files: `9`;
+  - train interactions: `581,835`, exact canonical label round-trip;
+  - valid interactions: `70,679`, exact canonical label round-trip;
+  - test interactions: `193,920`, exact canonical label round-trip;
+  - skipped users/products: `0` in all splits;
+- updated `scripts/analysis/audit_amazon_classic_port_readiness.py` so UCPR
+  reports generated view evidence separately from runtime support;
+- added Amazon book aliases to `adapters/ucpr_adapter.py`:
+  - UCPR `product` paths map to canonical `book`;
+  - Amazon relation names with `_entity` suffixes map to canonical
+    `book_*` relation names;
+- interpretation:
+  - Amazon UCPR is no longer blocked at the data-view/remap layer;
+  - it is also no longer blocked by the adapter alias scaffold;
+  - it remains blocked for formal training/export because the active UCPR
+    runtime constants, `KG_RELATION`, main interaction relation, and
+    path-pattern tables still need an Amazon-specific patch.
+
+2026-06-27 14:59 +08 progress checkpoint:
+
+- refreshed status-only reports after the Amazon UCPR data-view and adapter
+  alias updates:
+
+```bash
+python -m py_compile \
+  adapters/ucpr_adapter.py \
+  scripts/data/canonical/build_ucpr_view.py \
+  scripts/analysis/audit_amazon_classic_port_readiness.py \
+  scripts/analysis/generate_canonical_status_matrix.py \
+  scripts/analysis/generate_canonical_artifact_manifest.py
+
+bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
+```
+
+- validation result:
+  - `canonical native-path report validation PASS`;
+  - status matrix remains `18` rows: `14` complete, `4` blocked;
+  - UCPR Amazon readiness is now `4/5`;
+  - the only failed UCPR gate is active runtime Amazon path semantics;
+- PGPR Amazon formal-v1 monitor:
+  - tmux session `pgpr_amazon_formal` is still alive;
+  - status JSON still reports `status=RUNNING`, `stage=transe`;
+  - TransE checkpoints through epoch `7` are present;
+  - log has advanced into epoch `8`;
+  - strict formal export validation and strict accuracy JSONs are still absent,
+    so PGPR Amazon remains not reportable.
+
+Amazon UCPR runtime schema patch and preprocess smoke:
+
+- added `scripts/model_patches/patch_ucpr_amazon_runtime.py`;
+- the patch injects `amazon_book_kgat_v1` into the runtime copy's UCPR
+  dictionaries:
+  - `DATASET_DIR`, `TMP_DIR`, metric/config/log path maps;
+  - `INTERACTION`;
+  - `KG_RELATION`;
+  - `PATH_PATTERN`;
+  - `MAIN_PRODUCT_INTERACTION`;
+  - KG-based preprocess branch for Amazon;
+- added `scripts/validation/validate_ucpr_preprocess_smoke.py`;
+- added `scripts/validation/run_ucpr_amazon_preprocess_smoke.sh`;
+- executed:
+
+```bash
+bash scripts/validation/run_ucpr_amazon_preprocess_smoke.sh
+```
+
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_runtime_preprocess_smoke.json`;
+- runtime:
+  `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_runtime_smoke`;
+- generated UCPR runtime core files:
+  - `dataset.pkl`: `30,628,454` bytes;
+  - `kg.pkl`: `55,436,208` bytes;
+  - train/valid/test label pickles all present;
+- validation details:
+  - runtime schema checks all true;
+  - dataset entities: `entity`, `product`, `user`;
+  - UCPR Amazon relations: `9`;
+  - train labels: `581,835` interactions, exact canonical round-trip;
+  - valid labels: `70,679` interactions, exact canonical round-trip;
+  - test labels: `193,920` interactions, exact canonical round-trip;
+  - KG `purchased` user edges: `581,835`;
+  - all nine Amazon relation edge sets are non-empty;
+- interpretation:
+  - Amazon UCPR is now past the data-view, adapter-alias, runtime-schema, and
+    preprocess-label gates;
+  - it is still not a formal Amazon UCPR baseline because TransE training,
+    policy training, native-path export, strict export validation, and strict
+    accuracy validation have not run.
+
+Amazon UCPR TransE forward/backward smoke:
+
+- added `scripts/validation/run_ucpr_transe_forward_smoke.py`;
+- executed:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/rep/bin/python \
+  scripts/validation/run_ucpr_transe_forward_smoke.py \
+  --runtime-root runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_runtime_smoke \
+  --dataset amazon_book_kgat_v1 \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_transe_forward_smoke.json \
+  --batch-size 64 \
+  --embed-size 32 \
+  --num-neg-samples 3
+```
+
+- smoke result: `PASS`;
+- summary:
+  `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_transe_forward_smoke.json`;
+- details:
+  - batch shape: `[64, 11]`;
+  - loss: `24.95353126525879`;
+  - finite gradient tensors: `21`;
+  - all expected Amazon relation parameters are present, including
+    `purchased` and the nine `book_*_entity` relations;
+- interpretation:
+  - the patched UCPR Amazon runtime can instantiate its TransE model and run
+    loss/backprop through the Amazon schema;
+  - formal UCPR Amazon TransE training is still pending.
+
+2026-06-27 15:14 +08 progress checkpoint:
+
+- refreshed status-only reports after the UCPR Amazon TransE smoke:
+
+```bash
+bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
+```
+
+- validation result:
+  - `canonical native-path report validation PASS`;
+  - UCPR Amazon readiness is now `7/8`;
+  - the only failed UCPR gate is formal Amazon UCPR export and accuracy
+    validation;
+- PGPR Amazon formal-v1 monitor:
+  - tmux session `pgpr_amazon_formal` is still alive;
+  - status JSON still reports `status=RUNNING`, `stage=transe`;
+  - TransE checkpoints through epoch `11` are present;
+  - log has advanced into epoch `12`;
+  - strict formal export validation and strict accuracy JSONs are still absent.
