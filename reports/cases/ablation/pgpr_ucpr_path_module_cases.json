@@ -1,0 +1,630 @@
+[
+  {
+    "dataset": "LastFM",
+    "model": "PGPR",
+    "role": "main",
+    "user_id": 12294,
+    "case_type": "qualitative explanation case",
+    "quantitative_use": "illustration only; not a metric proof and not a full alpha-sweep reproduction",
+    "module": "ETD path module at alpha=1",
+    "original_unique_path_types": 2,
+    "module_unique_path_types": 5,
+    "unique_path_type_gain": 3,
+    "changed_top10_positions": 3,
+    "original_top10": [
+      {
+        "rank": 1,
+        "pid": 759,
+        "path_type": "belong_to",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 43611 belong_to category 4 belong_to song 759"
+      },
+      {
+        "rank": 2,
+        "pid": 6711,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 25681 listened user 8196 listened song 6711"
+      },
+      {
+        "rank": 3,
+        "pid": 760,
+        "path_type": "belong_to",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 16931 belong_to category 4 belong_to song 760"
+      },
+      {
+        "rank": 4,
+        "pid": 2845,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 25681 listened user 11909 listened song 2845"
+      },
+      {
+        "rank": 5,
+        "pid": 3971,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 14726 listened user 2039 listened song 3971"
+      },
+      {
+        "rank": 6,
+        "pid": 444,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 20495 listened user 118 listened song 444"
+      },
+      {
+        "rank": 7,
+        "pid": 323,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 25681 listened user 942 listened song 323"
+      },
+      {
+        "rank": 8,
+        "pid": 286,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 47367 listened user 92 listened song 286"
+      },
+      {
+        "rank": 9,
+        "pid": 885,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 14726 listened user 8865 listened song 885"
+      },
+      {
+        "rank": 10,
+        "pid": 2536,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 20495 listened user 172 listened song 2536"
+      }
+    ],
+    "module_top10": [
+      {
+        "rank": 1,
+        "pid": 759,
+        "path_type": "belong_to",
+        "path_score": 0.7173632333511674,
+        "path": "self_loop user 12294 listened song 43611 belong_to category 4 belong_to song 759"
+      },
+      {
+        "rank": 2,
+        "pid": 6711,
+        "path_type": "listened",
+        "path_score": 0.7156034874456405,
+        "path": "self_loop user 12294 listened song 25681 listened user 8196 listened song 6711"
+      },
+      {
+        "rank": 3,
+        "pid": 760,
+        "path_type": "belong_to",
+        "path_score": 0.7141631288322312,
+        "path": "self_loop user 12294 listened song 16931 belong_to category 4 belong_to song 760"
+      },
+      {
+        "rank": 4,
+        "pid": 2845,
+        "path_type": "listened",
+        "path_score": 0.7116683409012029,
+        "path": "self_loop user 12294 listened song 25681 listened user 11909 listened song 2845"
+      },
+      {
+        "rank": 5,
+        "pid": 3971,
+        "path_type": "listened",
+        "path_score": 0.665864897599628,
+        "path": "self_loop user 12294 listened song 20495 listened user 5429 listened song 3971"
+      },
+      {
+        "rank": 6,
+        "pid": 444,
+        "path_type": "listened",
+        "path_score": 0.6619877872860579,
+        "path": "self_loop user 12294 listened song 20495 listened user 118 listened song 444"
+      },
+      {
+        "rank": 7,
+        "pid": 323,
+        "path_type": "listened",
+        "path_score": 0.6579106570098867,
+        "path": "self_loop user 12294 listened song 25681 listened user 942 listened song 323"
+      },
+      {
+        "rank": 8,
+        "pid": 3277,
+        "path_type": "related_to",
+        "path_score": 0.41024275189076165,
+        "path": "self_loop user 12294 listened song 15184 related_to related_song 29317 related_to song 3277"
+      },
+      {
+        "rank": 9,
+        "pid": 36543,
+        "path_type": "mixed_by",
+        "path_score": 0.24564242096426955,
+        "path": "self_loop user 12294 listened song 25681 mixed_by engineer 78 mixed_by song 36543"
+      },
+      {
+        "rank": 10,
+        "pid": 25933,
+        "path_type": "produced_by_producer",
+        "path_score": 0.24140171124688434,
+        "path": "self_loop user 12294 listened song 25681 produced_by_producer producer 650 produced_by_producer song 25933"
+      }
+    ]
+  },
+  {
+    "dataset": "LastFM",
+    "model": "UCPR",
+    "role": "auxiliary",
+    "user_id": 12294,
+    "case_type": "qualitative explanation case",
+    "quantitative_use": "illustration only; not a metric proof and not a full alpha-sweep reproduction",
+    "module": "ETD path module at alpha=1",
+    "original_unique_path_types": 2,
+    "module_unique_path_types": 4,
+    "unique_path_type_gain": 2,
+    "changed_top10_positions": 2,
+    "original_top10": [
+      {
+        "rank": 1,
+        "pid": 6711,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 14726 listened user 2491 listened song 6711"
+      },
+      {
+        "rank": 2,
+        "pid": 29971,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 25681 listened user 17257 listened song 29971"
+      },
+      {
+        "rank": 3,
+        "pid": 6801,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 25681 listened user 8037 listened song 6801"
+      },
+      {
+        "rank": 4,
+        "pid": 2269,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 20495 listened user 5245 listened song 2269"
+      },
+      {
+        "rank": 5,
+        "pid": 323,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 43612 listened user 10263 listened song 323"
+      },
+      {
+        "rank": 6,
+        "pid": 28295,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 14726 listened user 15245 listened song 28295"
+      },
+      {
+        "rank": 7,
+        "pid": 16181,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 43612 listened user 10297 listened song 16181"
+      },
+      {
+        "rank": 8,
+        "pid": 13011,
+        "path_type": "belong_to",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 43611 belong_to category 4 belong_to song 13011"
+      },
+      {
+        "rank": 9,
+        "pid": 16222,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 14726 listened user 10592 listened song 16222"
+      },
+      {
+        "rank": 10,
+        "pid": 759,
+        "path_type": "listened",
+        "path_score": null,
+        "path": "self_loop user 12294 listened song 47367 listened user 4363 listened song 759"
+      }
+    ],
+    "module_top10": [
+      {
+        "rank": 1,
+        "pid": 6711,
+        "path_type": "listened",
+        "path_score": 0.7450945716875335,
+        "path": "self_loop user 12294 listened song 14726 listened user 2491 listened song 6711"
+      },
+      {
+        "rank": 2,
+        "pid": 29971,
+        "path_type": "listened",
+        "path_score": 0.698408485798909,
+        "path": "self_loop user 12294 listened song 25681 listened user 17257 listened song 29971"
+      },
+      {
+        "rank": 3,
+        "pid": 6801,
+        "path_type": "belong_to",
+        "path_score": 0.6803069330845883,
+        "path": "self_loop user 12294 listened song 25681 belong_to category 4 belong_to song 6801"
+      },
+      {
+        "rank": 4,
+        "pid": 2269,
+        "path_type": "listened",
+        "path_score": 0.6127900697662897,
+        "path": "self_loop user 12294 listened song 20495 listened user 19598 listened song 2269"
+      },
+      {
+        "rank": 5,
+        "pid": 323,
+        "path_type": "listened",
+        "path_score": 0.6101050609873858,
+        "path": "self_loop user 12294 listened song 43612 listened user 10263 listened song 323"
+      },
+      {
+        "rank": 6,
+        "pid": 28295,
+        "path_type": "listened",
+        "path_score": 0.6032062259208122,
+        "path": "self_loop user 12294 listened song 14726 listened user 2554 listened song 28295"
+      },
+      {
+        "rank": 7,
+        "pid": 16181,
+        "path_type": "listened",
+        "path_score": 0.6003752173875921,
+        "path": "self_loop user 12294 listened song 47367 listened user 6458 listened song 16181"
+      },
+      {
+        "rank": 8,
+        "pid": 13011,
+        "path_type": "listened",
+        "path_score": 0.5740434980614025,
+        "path": "self_loop user 12294 listened song 13088 listened user 12164 listened song 13011"
+      },
+      {
+        "rank": 9,
+        "pid": 32212,
+        "path_type": "mixed_by",
+        "path_score": 0.3715027833951805,
+        "path": "self_loop user 12294 listened song 13088 mixed_by engineer 1322 mixed_by song 32212"
+      },
+      {
+        "rank": 10,
+        "pid": 25933,
+        "path_type": "produced_by_producer",
+        "path_score": 0.15096805463964535,
+        "path": "self_loop user 12294 listened song 25681 produced_by_producer producer 650 produced_by_producer song 25933"
+      }
+    ]
+  },
+  {
+    "dataset": "ML-1M",
+    "model": "PGPR",
+    "role": "main",
+    "user_id": 0,
+    "case_type": "qualitative explanation case",
+    "quantitative_use": "illustration only; not a metric proof and not a full alpha-sweep reproduction",
+    "module": "ETD path module at alpha=1",
+    "original_unique_path_types": 1,
+    "module_unique_path_types": 6,
+    "unique_path_type_gain": 5,
+    "changed_top10_positions": 4,
+    "original_top10": [
+      {
+        "rank": 1,
+        "pid": 421,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 968 watched user 66 watched movie 421"
+      },
+      {
+        "rank": 2,
+        "pid": 520,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 608 watched user 1943 watched movie 520"
+      },
+      {
+        "rank": 3,
+        "pid": 277,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1630 watched user 43 watched movie 277"
+      },
+      {
+        "rank": 4,
+        "pid": 1031,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1898 watched user 297 watched movie 1031"
+      },
+      {
+        "rank": 5,
+        "pid": 957,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 470 watched user 40 watched movie 957"
+      },
+      {
+        "rank": 6,
+        "pid": 31,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 830 watched user 47 watched movie 31"
+      },
+      {
+        "rank": 7,
+        "pid": 466,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 608 watched user 29 watched movie 466"
+      },
+      {
+        "rank": 8,
+        "pid": 312,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 958 watched user 378 watched movie 312"
+      },
+      {
+        "rank": 9,
+        "pid": 517,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 608 watched user 915 watched movie 517"
+      },
+      {
+        "rank": 10,
+        "pid": 748,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 608 watched user 436 watched movie 748"
+      }
+    ],
+    "module_top10": [
+      {
+        "rank": 1,
+        "pid": 421,
+        "path_type": "watched",
+        "path_score": 0.8662998049994517,
+        "path": "self_loop user 0 watched movie 470 watched user 1228 watched movie 421"
+      },
+      {
+        "rank": 2,
+        "pid": 520,
+        "path_type": "watched",
+        "path_score": 0.8524978505440786,
+        "path": "self_loop user 0 watched movie 608 watched user 1943 watched movie 520"
+      },
+      {
+        "rank": 3,
+        "pid": 277,
+        "path_type": "watched",
+        "path_score": 0.8391372139554916,
+        "path": "self_loop user 0 watched movie 608 watched user 75 watched movie 277"
+      },
+      {
+        "rank": 4,
+        "pid": 1031,
+        "path_type": "watched",
+        "path_score": 0.8337065202017072,
+        "path": "self_loop user 0 watched movie 1898 watched user 297 watched movie 1031"
+      },
+      {
+        "rank": 5,
+        "pid": 957,
+        "path_type": "watched",
+        "path_score": 0.8250464616220804,
+        "path": "self_loop user 0 watched movie 470 watched user 40 watched movie 957"
+      },
+      {
+        "rank": 6,
+        "pid": 31,
+        "path_type": "belong_to",
+        "path_score": 0.8232742769325635,
+        "path": "self_loop user 0 watched movie 765 belong_to category 481 belong_to movie 31"
+      },
+      {
+        "rank": 7,
+        "pid": 2401,
+        "path_type": "starring",
+        "path_score": 0.7102390226769586,
+        "path": "self_loop user 0 watched movie 1465 starring actor 422 starring movie 2401"
+      },
+      {
+        "rank": 8,
+        "pid": 746,
+        "path_type": "produced_by_producer",
+        "path_score": 0.6552693455006047,
+        "path": "self_loop user 0 watched movie 765 produced_by_producer producer 403 produced_by_producer movie 746"
+      },
+      {
+        "rank": 9,
+        "pid": 128,
+        "path_type": "produced_by_company",
+        "path_score": 0.4929602894971465,
+        "path": "self_loop user 0 watched movie 1465 produced_by_company production_company 5 produced_by_company movie 128"
+      },
+      {
+        "rank": 10,
+        "pid": 2541,
+        "path_type": "directed_by",
+        "path_score": 0.3438125706221423,
+        "path": "self_loop user 0 watched movie 765 directed_by director 354 directed_by movie 2541"
+      }
+    ]
+  },
+  {
+    "dataset": "ML-1M",
+    "model": "UCPR",
+    "role": "auxiliary",
+    "user_id": 0,
+    "case_type": "qualitative explanation case",
+    "quantitative_use": "illustration only; not a metric proof and not a full alpha-sweep reproduction",
+    "module": "ETD path module at alpha=1",
+    "original_unique_path_types": 2,
+    "module_unique_path_types": 3,
+    "unique_path_type_gain": 1,
+    "changed_top10_positions": 1,
+    "original_top10": [
+      {
+        "rank": 1,
+        "pid": 2359,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1898 watched user 4508 watched movie 2359"
+      },
+      {
+        "rank": 2,
+        "pid": 2476,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1898 watched user 4658 watched movie 2476"
+      },
+      {
+        "rank": 3,
+        "pid": 312,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1898 watched user 4571 watched movie 312"
+      },
+      {
+        "rank": 4,
+        "pid": 31,
+        "path_type": "belong_to",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 829 belong_to category 24 belong_to movie 31"
+      },
+      {
+        "rank": 5,
+        "pid": 1869,
+        "path_type": "belong_to",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1969 belong_to category 18 belong_to movie 1869"
+      },
+      {
+        "rank": 6,
+        "pid": 277,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 747 watched user 1656 watched movie 277"
+      },
+      {
+        "rank": 7,
+        "pid": 971,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 2302 watched user 1849 watched movie 971"
+      },
+      {
+        "rank": 8,
+        "pid": 957,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1898 watched user 1743 watched movie 957"
+      },
+      {
+        "rank": 9,
+        "pid": 2467,
+        "path_type": "belong_to",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 747 belong_to category 408 belong_to movie 2467"
+      },
+      {
+        "rank": 10,
+        "pid": 1015,
+        "path_type": "watched",
+        "path_score": null,
+        "path": "self_loop user 0 watched movie 1898 watched user 3666 watched movie 1015"
+      }
+    ],
+    "module_top10": [
+      {
+        "rank": 1,
+        "pid": 2359,
+        "path_type": "watched",
+        "path_score": 0.8657627059828484,
+        "path": "self_loop user 0 watched movie 1898 watched user 4508 watched movie 2359"
+      },
+      {
+        "rank": 2,
+        "pid": 2476,
+        "path_type": "belong_to",
+        "path_score": 0.8220823738744971,
+        "path": "self_loop user 0 watched movie 1898 belong_to category 11 belong_to movie 2476"
+      },
+      {
+        "rank": 3,
+        "pid": 312,
+        "path_type": "watched",
+        "path_score": 0.7923137587506983,
+        "path": "self_loop user 0 watched movie 1898 watched user 4571 watched movie 312"
+      },
+      {
+        "rank": 4,
+        "pid": 31,
+        "path_type": "belong_to",
+        "path_score": 0.7890118708631706,
+        "path": "self_loop user 0 watched movie 829 belong_to category 24 belong_to movie 31"
+      },
+      {
+        "rank": 5,
+        "pid": 1869,
+        "path_type": "belong_to",
+        "path_score": 0.7608160303552364,
+        "path": "self_loop user 0 watched movie 1969 belong_to category 18 belong_to movie 1869"
+      },
+      {
+        "rank": 6,
+        "pid": 277,
+        "path_type": "watched",
+        "path_score": 0.7607144316117455,
+        "path": "self_loop user 0 watched movie 1465 watched user 727 watched movie 277"
+      },
+      {
+        "rank": 7,
+        "pid": 971,
+        "path_type": "watched",
+        "path_score": 0.7500443030800691,
+        "path": "self_loop user 0 watched movie 2302 watched user 1849 watched movie 971"
+      },
+      {
+        "rank": 8,
+        "pid": 957,
+        "path_type": "watched",
+        "path_score": 0.7454636028661721,
+        "path": "self_loop user 0 watched movie 1898 watched user 1743 watched movie 957"
+      },
+      {
+        "rank": 9,
+        "pid": 2467,
+        "path_type": "belong_to",
+        "path_score": 0.7223564562895894,
+        "path": "self_loop user 0 watched movie 747 belong_to category 408 belong_to movie 2467"
+      },
+      {
+        "rank": 10,
+        "pid": 1375,
+        "path_type": "starring",
+        "path_score": 0.6563807289604968,
+        "path": "self_loop user 0 watched movie 2563 starring actor 735 starring movie 1375"
+      }
+    ]
+  }
+]
