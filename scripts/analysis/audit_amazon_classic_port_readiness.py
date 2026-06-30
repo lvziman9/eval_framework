@@ -623,13 +623,21 @@ def pgpr_audit() -> dict[str, Any]:
             formal_evidence,
         ),
     ]
+    status = "READY" if all(item["passed"] for item in checks) else "BLOCKED"
     return {
-        "status": "READY" if all(item["passed"] for item in checks) else "BLOCKED",
+        "status": status,
         "checks": checks,
-        "required_next_steps": [
-            "Run full/formal PGPR Amazon policy training and native path export from the ported runtime.",
-            "Run strict full-user export validation and strict accuracy validation before any formal report row.",
-        ],
+        "required_next_steps": (
+            [
+                "No further PGPR Amazon action required for the current formal row.",
+                "Do not launch larger PGPR Amazon variants unless explicitly approved.",
+            ]
+            if status == "READY"
+            else [
+                "Run full/formal PGPR Amazon policy training and native path export from the ported runtime.",
+                "Run strict full-user export validation and strict accuracy validation before any formal report row.",
+            ]
+        ),
     }
 
 
@@ -688,9 +696,9 @@ def ucpr_audit() -> dict[str, Any]:
         "status": "READY" if all(item["passed"] for item in checks) else "BLOCKED",
         "checks": checks,
         "required_next_steps": [
-            "Run UCPR Amazon TransE and policy training from the patched runtime.",
-            "Run UCPR Amazon native-path inference/export with full canonical test-user coverage.",
-            "Run strict full-user export validation and strict accuracy validation before formal reporting.",
+            "Do not relaunch UCPR Amazon policy training on the shared server by default.",
+            "Resume only with an explicitly approved smaller protocol or dedicated high-memory GPU allocation.",
+            "If resumed, require policy completion, full-user streaming export, strict export validation, and strict accuracy validation before formal reporting.",
         ],
     }
 

@@ -1,6 +1,6 @@
 # Canonical Native-Path Completion Audit
 
-Date: `2026-06-27` Asia/Singapore.
+Date: `2026-06-27`; updated `2026-06-30` Asia/Singapore.
 
 This audit maps the active project objective to current workspace evidence. It
 does not redefine the goal around easy subsets: completed items require current
@@ -13,9 +13,9 @@ artifacts, validation summaries, and reproducible report-generation commands.
 | LastFM canonical native-path baselines | Complete | Six complete rows in `reports/tables/canonical_native_path_status_matrix.csv` |
 | ML-1M canonical native-path baselines | Complete | Six complete rows in `reports/tables/canonical_native_path_status_matrix.csv` |
 | LastFM / ML-1M alpha-sweep figures | Complete | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/`, `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/` |
-| Amazon-Book larger native-KG dataset | Partially complete | KGGLM and PEARLM formal baselines complete; PGPR data view and all smoke gates pass; PGPR formal-v1 full-user pipeline is running in tmux but not reportable yet; UCPR data view, adapter aliases, runtime schema patch, preprocess smoke, and TransE forward smoke pass, but full training/export/accuracy are not complete; TPRec structural wiring is complete but formal temporal reporting is blocked by sentinel timestamps; CAFE remains blocked pending model porting |
-| Export validation evidence | Complete for 14 completed rows | `reports/tables/canonical_export_validation/manifest.json` has `status=PASS`, `exports=14` |
-| Accuracy evidence | Complete for 14 completed rows | Per-row `accuracy.json` paths listed in `reports/tables/canonical_native_path_status_matrix.csv` |
+| Amazon-Book larger native-KG dataset | Partially complete | KGGLM, PEARLM, and PGPR formal baselines complete; UCPR data view/preprocess/TransE gates pass but policy training OOMs even at batch 16 with Adam `foreach=False`, so further Amazon UCPR attempts are paused for server safety; TPRec structural wiring is complete but formal temporal reporting is blocked by sentinel timestamps; CAFE remains blocked pending model porting |
+| Export validation evidence | Complete for 15 completed rows | `reports/tables/canonical_export_validation/manifest.json` has `status=PASS`, `exports=15` |
+| Accuracy evidence | Complete for 15 completed rows | Per-row `accuracy.json` paths listed in `reports/tables/canonical_native_path_status_matrix.csv` |
 | Report reproducibility | Complete | `scripts/analysis/regenerate_canonical_native_path_reports.sh` |
 | Amazon classic model support | Not complete / blocked | Explicit blockers and acceptance criteria in `reports/tables/canonical_native_path_status_matrix.md` |
 
@@ -26,9 +26,9 @@ artifacts, validation summaries, and reproducible report-generation commands.
 | Take over and complete existing PGPR/UCPR/CAFE LastFM queues | Complete | LastFM PGPR, UCPR, and CAFE rows are `Complete + figures`; export evidence summaries exist under `reports/tables/canonical_export_validation/lastfm_*.json`. |
 | Complete PGPR/UCPR/CAFE ML-1M queues | Complete | ML-1M PGPR, UCPR, and CAFE rows are `Complete + figures`; export evidence summaries exist under `reports/tables/canonical_export_validation/ml1m_*.json`. |
 | Connect usable models that were not initially supported on LastFM | Complete for selected native-path models | TPRec, KGGLM, and PEARLM have LastFM complete rows, accuracy JSONs, export-validation JSONs, and figure curves. |
-| Run all compatible models on new datasets | Complete for currently compatible Amazon models | KGGLM and PEARLM completed formal Amazon-book runs with strict full-user export and accuracy validation. |
-| Do not run incompatible models dishonestly | Complete as a decision / blocked as implementation | Amazon UCPR/CAFE/TPRec are marked `Blocked`; UCPR is only promoted through preprocess readiness, not a formal trained/exported baseline; PGPR remains unreported while its formal-v1 pipeline is still running and lacks strict export/accuracy outputs. |
-| Fix bugs encountered during execution | Complete for encountered blockers | Notable fixes include UCPR/PGPR/CAFE runtime patches, `evaluate_uid_topk.py --allow-user-subset`, and nested HuggingFace checkpoint discovery in KGGLM/PEARLM pipeline scripts. |
+| Run all compatible models on new datasets | Complete for currently safe/reportable Amazon models | KGGLM, PEARLM, and PGPR completed formal Amazon-book runs with strict full-user export and accuracy validation. |
+| Do not run incompatible models dishonestly | Complete as a decision / blocked as implementation | Amazon UCPR/CAFE/TPRec are marked `Blocked`; UCPR is only promoted through preprocess/TransE readiness, not a formal trained/exported baseline. |
+| Fix bugs encountered during execution | Complete for encountered blockers | Notable fixes include UCPR/PGPR/CAFE runtime patches, `evaluate_uid_topk.py --allow-user-subset`, nested HuggingFace checkpoint discovery in KGGLM/PEARLM pipeline scripts, and a streaming PGPR exporter for Amazon-size full-user inference. |
 | Validate generated artifacts | Complete for reportable rows | `reports/tables/canonical_export_validation/manifest.json`, per-row accuracy JSONs, and status matrix checks. |
 | Keep change rationale, commands, status, results, and risks in docs | Complete / ongoing | `docs/guides/NATIVE_PATH_IMPLEMENTATION_LOG_2026-06-20.md` plus this audit and status matrices. |
 
@@ -52,9 +52,9 @@ Key generated files:
 The current matrix contains:
 
 - `18` model/dataset rows;
-- `14` complete rows;
-- `4` blocked Amazon classic-model rows;
-- `14` export-validation evidence summaries.
+- `15` complete rows;
+- `3` blocked Amazon classic-model rows;
+- `15` export-validation evidence summaries.
 
 The artifact manifest records the current report scripts, status files,
 export-validation summaries, figure-bundle counts, file sizes, mtimes, and
@@ -65,22 +65,25 @@ bundle has not drifted.
 
 The remaining meaningful blocker is Amazon classic-model support:
 
-- PGPR now has an Amazon model view, relation/entity projection, isolated
-  preprocess smoke PASS, one-batch TransE forward/backward smoke PASS,
-  1-epoch TransE training smoke PASS, policy-env/beam smoke PASS, and
-  policy train/inference smoke PASS, plus adapter/export smoke PASS; formal-v1
-  is running in tmux session `pgpr_amazon_formal` and has already validated
-  the formal runtime preprocess label round-trip, but it still needs completed
-  TransE, policy training, full-user native path export/adaptation, strict
-  export validation, and strict accuracy validation;
+- PGPR now has a complete Amazon formal row: full-user streaming export,
+  strict export validation, and strict accuracy validation all pass for
+  `70,591` users;
 - UCPR now has a generated Amazon data view with exact train/valid/test label
   round-trip validation (`70,679` users, `24,915` products, nine relation
   files, zero skipped users/products), adapter alias scaffolding, a runtime
   Amazon schema/path-pattern patch, and an isolated runtime preprocess smoke
   with exact train/valid/test label round-trip; a one-batch TransE
-  forward/backward smoke also passes through all Amazon relation parameters; it
-  still needs full TransE training, policy training, native-path export, strict
-  export validation, and strict accuracy validation before formal reporting;
+  forward/backward smoke also passes through all Amazon relation parameters;
+  formal preprocess validation now passes in
+  `ucpr_amazon_book_kgat_preprocess_validation.json`; formal TransE status now
+  passes in `ucpr_amazon_book_kgat_transe_formal_status.json`; the formal
+  training queue is running in tmux session `ucpr_amazon_formal` at
+  `stage=policy` with `run_inference=0`; the policy stage hit GPU OOM with
+  the initial batch-128 attempt, the batch-32 retry, and the batch-16
+  `foreach=False` retry at Adam `optimizer.step()`; UCPR still needs a smaller
+  approved protocol or dedicated high-memory run before policy training,
+  streaming native-path export, strict export validation, and strict accuracy
+  validation can be reported;
 - CAFE depends on compatible Amazon UCPR runtime support and executable Amazon
   CAFE metapaths;
 - TPRec has Amazon relation-token path constraints, CLI choices, export aliases,

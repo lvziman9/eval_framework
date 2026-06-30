@@ -4646,3 +4646,397 @@ bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
   - TransE checkpoints through epoch `11` are present;
   - log has advanced into epoch `12`;
   - strict formal export validation and strict accuracy JSONs are still absent.
+
+2026-06-29 11:10 +08 PGPR Amazon formal inference/export resume:
+
+- observed that the earlier PGPR Amazon formal-v1 status file still reported
+  `status=RUNNING`, `stage=inference_export`, but there was no live tmux
+  session or matching Python process;
+- current artifacts showed that the expensive training stages had completed:
+  - TransE formal checkpoint:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_formal/models/PGPR/tmp/amazon_book_kgat_v1/train_transe_model_amazon_formal_e30_d300_b2048_n5/transe_model_sd_epoch_30.ckpt`;
+  - policy formal checkpoint:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_formal/models/PGPR/tmp/amazon_book_kgat_v1/train_agent_amazon_formal_e50_a250_h512-256/policy_model_epoch_50.ckpt`;
+  - strict final files were still absent:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json`;
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json`;
+- diagnosis:
+  - the old full-user inference path accumulated all beam-search paths in one
+    Python object before writing `PATHS_PKL`;
+  - for Amazon, `70,591` canonical test users with beam `10-12-1` can create
+    millions of Python path/probability objects;
+  - this likely explains the stale `RUNNING` status with no output pickle and
+    no final CSVs;
+- fix:
+  - added `scripts/validation/export_pgpr_streaming.py`;
+  - the new exporter keeps native PGPR beam search and native TransE item
+    scoring, but streams candidate paths through a raw temporary CSV and keeps
+    only per-user top-10 state in memory;
+  - updated `scripts/validation/run_pgpr_amazon_formal_pipeline.sh` so
+    `PGPR_USE_STREAMING_EXPORT=1` is the default for the Amazon formal
+    inference/export stage;
+  - the legacy pickle route remains available by setting
+    `PGPR_USE_STREAMING_EXPORT=0`;
+- smoke validation:
+
+```bash
+/usr1/home/s125mdg43_08/miniconda3/envs/pgpr_env/bin/python \
+  scripts/validation/export_pgpr_streaming.py \
+  --runtime-root runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_formal \
+  --dataset amazon_book_kgat_v1 \
+  --run-name train_agent_amazon_formal_e50_a250_h512-256 \
+  --epoch 50 \
+  --embedding-pkl runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_runtime_formal/models/PGPR/tmp/amazon_book_kgat_v1/transe_embed.pkl \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --paths-dir xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-streaming-smoke-8users \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke.json \
+  --max-acts 250 \
+  --beam-batch-size 4 \
+  --hidden 512 256 \
+  --topk 10 12 1 \
+  --recommendation-topk 10 \
+  --num-users 8
+
+/usr1/home/s125mdg43_08/miniconda3/envs/eval_frame/bin/python \
+  scripts/validation/validate_xrecsys_export.py \
+  --paths-dir xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-streaming-smoke-8users \
+  --labels-dir runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels \
+  --dataset amazon_book_kgat_v1 \
+  --topk 10 \
+  --summary-json runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke_validation.json
+```
+
+- smoke result:
+  - streaming export summary:
+    `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke.json`;
+  - status: `PASS`;
+  - processed users: `8`;
+  - raw candidate rows: `677`;
+  - candidate users: `8`;
+  - slot coverage: `1.0`;
+  - native score range before normalization:
+    `[-2.5623128414154053, 6.311394214630127]`;
+  - validator summary:
+    `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke_validation.json`;
+  - validator status: `PASS`;
+  - validator saw `677` pred-path rows, `80` explanations, and normalized
+    score range `[0.0, 1.0]`;
+- formal resume command:
+
+```bash
+PGPR_USE_STREAMING_EXPORT=1 PGPR_INFERENCE_BATCH_SIZE=256 \
+  bash scripts/validation/launch_pgpr_amazon_formal_pipeline.sh
+```
+
+- launch result:
+  - tmux session: `pgpr_amazon_formal`;
+  - tmux pane pid: `97901`;
+  - active Python child observed: `99221`;
+  - status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - status now records `streaming_export_enabled=1` and
+    `stage=inference_export`;
+  - streaming progress summary:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_streaming_export_formal.json`;
+  - live output directory:
+    `xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-formal-e50_a250_beam10-12-1`;
+  - at the first monitor checkpoint, `pred_paths.raw.tmp.csv` had reached
+    `107,592` lines and the Python child was using about `1.7GB` RSS;
+- interpretation:
+  - PGPR Amazon is materially past training and is actively running formal
+    full-user native-path export again;
+  - it remains not reportable until the pipeline writes:
+    - `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json`;
+    - `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json`;
+  - after those appear, regenerate the status matrix and Amazon readiness
+    report before promoting PGPR Amazon from blocked to a formal result row.
+
+2026-06-29 11:23 +08 UCPR Amazon formal training queue launch:
+
+- GPU/resource check before launch:
+  - all four RTX A5000 GPUs were effectively idle;
+  - PGPR Amazon streaming export was CPU-bound, so a UCPR GPU training queue
+    could run concurrently;
+- added `scripts/validation/run_ucpr_amazon_formal_pipeline.sh`;
+- added `scripts/validation/launch_ucpr_amazon_formal_pipeline.sh`;
+- formal-v1 training configuration:
+  - dataset: `amazon_book_kgat_v1`;
+  - runtime:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_runtime_formal`;
+  - TransE: `30` epochs, embed size `100`, batch `512`, negative samples `5`;
+  - policy: `40` epochs, batch `128`;
+  - native beam tag: `25-5-1-ucpr-amazon-formal-e40`;
+  - `UCPR_RUN_INFERENCE=0` by default;
+- reason for deferring UCPR full-user inference/export:
+  - UCPR's native test path, like the old PGPR path, writes a full
+    `policy_paths` pickle before adapter export;
+  - Amazon `70,591` test users with beam `25-5-1` can still produce
+    multi-million path objects;
+  - after the PGPR stale-run diagnosis, it is safer to complete UCPR formal
+    training first and add/approve a memory-safe export path before enabling
+    full-user inference/export;
+- initial launch command:
+
+```bash
+UCPR_RUN_INFERENCE=0 UCPR_GPU=0 \
+  bash scripts/validation/launch_ucpr_amazon_formal_pipeline.sh 0
+```
+
+- first run exposed an environment bug:
+  - preprocessing succeeded, but the formal script called
+    `validate_ucpr_preprocess_smoke.py` with `eval_frame` Python;
+  - the UCPR pickle had been produced by the `rep` environment and failed to
+    unpickle in `eval_frame` with `ModuleNotFoundError: No module named
+    'numpy._core'`;
+  - fix: run the UCPR preprocess validator with `REP_PY`, matching the
+    environment that created the UCPR pickle;
+- relaunched with the same command after the fix;
+- current evidence:
+  - tmux session: `ucpr_amazon_formal`;
+  - status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - log:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline.log`;
+  - formal preprocess validation:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_preprocess_validation.json`;
+  - formal preprocess status: `PASS`;
+  - exact train/valid/test label round-trip remains true;
+  - formal TransE training has started on GPU 0 and reached epoch `1`
+    logging;
+- current interpretation:
+  - UCPR Amazon has moved from smoke-only readiness into an active formal
+    training queue;
+  - it remains not reportable because policy training, memory-safe full-user
+    path export, strict export validation, and strict accuracy validation are
+    not complete.
+
+2026-06-29 11:31 +08 UCPR Amazon streaming exporter and policy-stage update:
+
+- UCPR formal TransE training completed:
+  - status summary:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_transe_formal_status.json`;
+  - status: `PASS`;
+  - best checkpoint:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_runtime_formal/data/amazon_book_kgat_v1/preprocessed/ucpr/tmp/train_transe_model_amazon_formal_e30_d100_b512_n5/transe_best_model.ckpt`;
+  - embedding file:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_runtime_formal/data/amazon_book_kgat_v1/preprocessed/ucpr/tmp/transe_embed.pkl`;
+- UCPR formal pipeline status advanced to:
+  - `status=RUNNING`;
+  - `stage=policy`;
+  - policy run name: `train_agent_amazon_formal_e40_b128_d100`;
+- added `scripts/validation/export_ucpr_streaming.py`;
+- exporter design:
+  - reuses UCPR's native `BatchKGEnvironment`, `UCPR` policy model, action
+    probabilities, and TransE item score;
+  - avoids the native full-user `policy_paths.pkl` and `pred_paths.pkl`
+    accumulation;
+  - streams raw candidate rows to a temporary CSV, normalizes native scores in
+    a second pass, and keeps only per-user top-10 state in memory;
+  - maps UCPR-local `product` paths back to canonical Amazon `book` paths via
+    `user_remap.tsv` and `product_remap.tsv`;
+- updated `scripts/validation/run_ucpr_amazon_formal_pipeline.sh`:
+  - `UCPR_RUN_INFERENCE=1` now defaults to
+    `UCPR_USE_STREAMING_EXPORT=1`;
+  - legacy UCPR pickle inference/export remains available only by setting
+    `UCPR_USE_STREAMING_EXPORT=0`;
+- updated `scripts/validation/launch_ucpr_amazon_formal_pipeline.sh` to carry
+  `UCPR_USE_STREAMING_EXPORT` into tmux;
+- status/report refresh:
+
+```bash
+bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
+```
+
+- validation result:
+  - `canonical native-path report validation PASS`;
+  - status matrix now records UCPR Amazon as
+    `formal training pipeline status=RUNNING, stage=policy, beam=25-5-1,
+    run_inference=0`;
+- manifest note:
+  - `export_ucpr_streaming.py` is now included in the artifact manifest;
+  - the future formal streaming summary JSON is not listed as a required
+    manifest input until it exists, because no full-user UCPR export has run
+    yet;
+- current interpretation:
+  - UCPR Amazon is no longer blocked at TransE training;
+  - it remains not reportable until policy training completes and the
+    streaming full-user export plus strict validation/accuracy pass.
+
+2026-06-29 11:40 +08 Amazon PGPR/UCPR live monitor and UCPR batch-size mitigation:
+
+- live process check:
+  - `tmux list-sessions` shows both `pgpr_amazon_formal` and
+    `ucpr_amazon_formal`;
+  - PGPR active child:
+    `/usr1/home/s125mdg43_08/miniconda3/envs/pgpr_env/bin/python
+    scripts/validation/export_pgpr_streaming.py`;
+  - UCPR active child:
+    `/usr1/home/s125mdg43_08/miniconda3/envs/rep/bin/python train.py
+    --dataset amazon_book_kgat_v1 --name train_agent_amazon_formal_e40_b32_d100
+    --gpu 0 --epochs 40 --batch_size 32 ...`;
+  - `nvidia-smi --query-compute-apps=pid,process_name,used_memory` reports the
+    UCPR process using about `6150 MiB` on GPU 0;
+- PGPR streaming export progress:
+  - status file:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - status remains `RUNNING`, `stage=inference_export`;
+  - latest log progress observed:
+    `processed_users=25600 raw_rows=1647159 candidate_users=25600`;
+  - temporary raw stream:
+    `xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-formal-e50_a250_beam10-12-1/pred_paths.raw.tmp.csv`;
+  - observed line count: `1,647,156`;
+  - strict final outputs are still absent:
+    `pgpr_amazon_book_kgat_export_validation.json` and
+    `pgpr_amazon_book_kgat_accuracy.json`;
+- UCPR policy-stage mitigation:
+  - the first policy attempt used the original formal default
+    `train_agent_amazon_formal_e40_b128_d100`;
+  - that attempt was observed to hit CUDA OOM during the policy optimizer
+    step before the queue was relaunched;
+  - `scripts/validation/run_ucpr_amazon_formal_pipeline.sh` was then changed
+    to default `UCPR_POLICY_BATCH_SIZE` to `32` and export
+    `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`;
+  - relaunch command:
+
+```bash
+UCPR_RUN_INFERENCE=0 UCPR_POLICY_BATCH_SIZE=32 UCPR_GPU=0 \
+  bash scripts/validation/launch_ucpr_amazon_formal_pipeline.sh 0
+```
+
+  - current UCPR status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - status was `RUNNING`, `stage=policy`, policy run
+    `train_agent_amazon_formal_e40_b32_d100` at this checkpoint;
+  - `ucpr_amazon_book_kgat_policy_formal_status.json`,
+    `ucpr_amazon_book_kgat_streaming_export_formal.json`,
+    `ucpr_amazon_book_kgat_export_validation.json`, and
+    `ucpr_amazon_book_kgat_accuracy.json` are still absent;
+- interpretation:
+  - PGPR is actively producing the full-user candidate stream and is not
+    stalled;
+  - UCPR is past formal TransE and is actively training policy with a smaller
+    memory envelope;
+  - neither row is reportable yet, because neither has completed strict
+    full-user export validation plus strict accuracy.
+
+2026-06-29 11:46 +08 UCPR policy OOM root cause and second mitigation:
+
+- the batch-32 UCPR policy attempt failed at the same policy training stage:
+  - status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - status became `FAILED`, `stage=line_193`;
+  - failing command was `train.py --dataset amazon_book_kgat_v1 --name
+    train_agent_amazon_formal_e40_b32_d100 --gpu 0 --epochs 40 --batch_size
+    32 ...`;
+  - traceback showed the failure at `optimizer.step()` inside PyTorch Adam;
+  - concrete error:
+    `torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 5.27 GiB`;
+  - GPU 0 had about `2.05 GiB` free while the process held about `21.62 GiB`;
+- diagnosis:
+  - batch size contributed to the memory footprint, but the direct failure
+    point was Adam's multi-tensor/`foreach` implementation materializing a
+    large temporary tensor across UCPR's Amazon-scale parameter set;
+  - therefore simply reducing from `128` to `32` was insufficient;
+- code fix:
+  - extended `scripts/model_patches/patch_ucpr_amazon_runtime.py` so the
+    isolated Amazon UCPR runtime patches policy training from
+    `optim.Adam(model.parameters(), lr=args.lr)` to
+    `optim.Adam(model.parameters(), lr=args.lr, foreach=False)`;
+  - this keeps Adam semantics but avoids the large multi-tensor temporary
+    allocation in the first optimizer step;
+  - changed `scripts/validation/run_ucpr_amazon_formal_pipeline.sh` default
+    `UCPR_POLICY_BATCH_SIZE` from `32` to `16`;
+- relaunch command:
+
+```bash
+UCPR_RUN_INFERENCE=0 UCPR_POLICY_BATCH_SIZE=16 UCPR_GPU=0 \
+  bash scripts/validation/launch_ucpr_amazon_formal_pipeline.sh 0
+```
+
+- relaunch status:
+  - tmux session: `ucpr_amazon_formal`;
+  - pipeline pid: `232640`;
+  - active Python child observed: `233217`;
+  - run name: `train_agent_amazon_formal_e40_b16_d100`;
+  - status: `RUNNING`, `stage=policy`;
+  - GPU process memory observed around `5790 MiB`, far below the failed
+    batch-32 process footprint;
+- concurrent PGPR monitor:
+  - PGPR streaming export remained active in tmux session
+    `pgpr_amazon_formal`;
+  - latest observed progress:
+    `processed_users=30720 raw_rows=1959503 candidate_users=30720`;
+- interpretation:
+  - UCPR's current blocker is not data/schema/TransE; it is policy-training
+    GPU memory on the larger Amazon KG;
+  - the current b16 + scalar Adam run is the active attempt and has not yet
+    produced a reportable policy checkpoint;
+  - PGPR remains in full-user streaming export and still lacks final strict
+    export/accuracy summaries.
+
+2026-06-29 11:50 +08 post-mitigation monitor:
+
+- UCPR:
+  - `ucpr_amazon_formal` remains alive more than five minutes after the
+    `foreach=False`/batch-16 relaunch;
+  - active policy process:
+    `train.py --dataset amazon_book_kgat_v1 --name
+    train_agent_amazon_formal_e40_b16_d100 --gpu 0 --epochs 40 --batch_size
+    16 ...`;
+  - GPU memory observed around `5980 MiB`;
+  - no new `torch.OutOfMemoryError` was present in the current tail of
+    `results/amazon_book_kgat_v1/ucpr/eval/UCPR/train_log.txt`;
+  - policy checkpoint summary is still absent, so UCPR remains not reportable;
+- PGPR:
+  - `pgpr_amazon_formal` remains alive;
+  - latest streaming-export progress observed:
+    `processed_users=33280 raw_rows=2113294 candidate_users=33280`;
+  - final strict export validation and accuracy summaries are still absent.
+
+2026-06-30 Amazon Book safety decision and current state:
+
+- PGPR Amazon completed after the 2026-06-29 monitor:
+  - pipeline status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - status: `PASS`, `stage=complete`;
+  - strict export validation:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json`;
+  - export validation status: `PASS`;
+  - canonical test users / top-k users: `70,591` / `70,591`;
+  - pred-path rows: `4,109,983`;
+  - explanations: `705,846`;
+  - strict accuracy:
+    `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json`;
+  - HR@10: `0.054851`;
+  - NDCG@10: `0.015723`;
+- UCPR Amazon batch-16 also failed:
+  - status:
+    `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`;
+  - status: `FAILED`, `stage=line_193`;
+  - failing command:
+    `train.py --dataset amazon_book_kgat_v1 --name
+    train_agent_amazon_formal_e40_b16_d100 --gpu 0 --epochs 40 --batch_size
+    16 ...`;
+  - failure remains at Adam `optimizer.step()`;
+  - even with `foreach=False`, PyTorch single-tensor Adam attempted another
+    `5.27 GiB` allocation while the process held about `21.56 GiB`;
+- safety decision:
+  - do not launch more Amazon Book classic-model training/export attempts by
+    default;
+  - keep the reportable Amazon Book evidence to the completed formal rows:
+    KGGLM, PEARLM, and PGPR;
+  - leave UCPR, CAFE, and TPRec as blocked until there is either a much smaller
+    approved protocol or a dedicated high-memory server allocation;
+- report refresh:
+
+```bash
+python3 scripts/analysis/validate_canonical_export_evidence.py --only amazon_book_kgat_v1:PGPR
+bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
+```
+
+- refreshed report state:
+  - status rows: `18`;
+  - complete rows: `15`;
+  - blocked rows: `3`;
+  - export-validation manifest: `status=PASS`, `exports=15`;
+  - Amazon formal comparison now includes KGGLM, PEARLM, and PGPR.

@@ -17,6 +17,7 @@ OUT_CSV = OUT_DIR / "canonical_native_path_status_matrix.csv"
 OUT_MD = OUT_DIR / "canonical_native_path_status_matrix.md"
 EXPORT_VALIDATION_DIR = OUT_DIR / "canonical_export_validation"
 PGPR_AMAZON_FORMAL_STATUS = RUN / "pgpr_amazon_book_kgat_formal_pipeline_status.json"
+UCPR_AMAZON_FORMAL_STATUS = RUN / "ucpr_amazon_book_kgat_formal_pipeline_status.json"
 
 
 COMPLETE_ROWS = [
@@ -50,23 +51,19 @@ COMPLETE_ROWS = [
         "PEARLM",
         RUN / "pearlm_formal_bestval10" / "canonical_amazon_book_kgat_v1" / "accuracy.json",
     ),
+    (
+        "Amazon-Book KGAT",
+        "PGPR",
+        RUN / "pgpr_amazon_book_kgat_accuracy.json",
+    ),
 ]
 
 BLOCKED_ROWS = [
     {
         "dataset": "Amazon-Book KGAT",
-        "model": "PGPR",
-        "stage": "Blocked",
-        "blocker_or_note": "PGPR_AMAZON_DYNAMIC_NOTE",
-    },
-    {
-        "dataset": "Amazon-Book KGAT",
         "model": "UCPR",
         "stage": "Blocked",
-        "blocker_or_note": (
-            "Amazon UCPR data view, adapter aliases, runtime schema patch, and "
-            "preprocess/TransE-forward smokes are PASS; formal training/export/accuracy are pending"
-        ),
+        "blocker_or_note": "UCPR_AMAZON_DYNAMIC_NOTE",
     },
     {
         "dataset": "Amazon-Book KGAT",
@@ -97,6 +94,16 @@ AMAZON_EXPORT_ROOTS = {
     "KGGLM": RUN / "kgglm_formal" / "canonical_amazon_book_kgat_v1",
     "PEARLM": RUN / "pearlm_formal_bestval10" / "canonical_amazon_book_kgat_v1",
 }
+PGPR_AMAZON_STREAMING_SUMMARY = RUN / "pgpr_amazon_book_kgat_streaming_export_formal.json"
+PGPR_AMAZON_ACCURACY = RUN / "pgpr_amazon_book_kgat_accuracy.json"
+PGPR_AMAZON_EXPORT_VALIDATION = RUN / "pgpr_amazon_book_kgat_export_validation.json"
+PGPR_AMAZON_PATHS_DIR = (
+    ROOT
+    / "xrecsys"
+    / "paths"
+    / "amazon_book_kgat_v1"
+    / "agent_topk=pgpr-amazon-formal-e50_a250_beam10-12-1"
+)
 
 FIELDNAMES = [
     "dataset",
@@ -206,6 +213,30 @@ def pgpr_amazon_blocker_note() -> str:
     )
 
 
+def ucpr_amazon_blocker_note() -> str:
+    base = (
+        "Amazon UCPR data view, adapter aliases, runtime schema patch, and "
+        "preprocess/TransE-forward smokes are PASS"
+    )
+    if not UCPR_AMAZON_FORMAL_STATUS.exists():
+        return f"{base}; formal training/export/accuracy are pending"
+    data = read_json(UCPR_AMAZON_FORMAL_STATUS)
+    status = data.get("status", "UNKNOWN")
+    stage = data.get("stage", "unknown")
+    policy = data.get("policy", {})
+    policy_run = policy.get("run_name", "unknown")
+    policy_batch = policy.get("batch_size", "unknown")
+    export = data.get("export", {})
+    beam = export.get("beam_topk", [])
+    beam_text = "-".join(str(value) for value in beam) if beam else "unknown"
+    inference = export.get("run_inference", "unknown")
+    return (
+        f"{base}; formal training pipeline status={status}, stage={stage}, "
+        f"policy={policy_run}, policy_batch={policy_batch}, beam={beam_text}, "
+        f"run_inference={inference}; strict full-user export/accuracy still pending"
+    )
+
+
 def build_rows() -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for dataset, model, accuracy_path in COMPLETE_ROWS:
@@ -241,6 +272,8 @@ def build_rows() -> list[dict[str, str]]:
         row.update(blocked)
         if row["blocker_or_note"] == "PGPR_AMAZON_DYNAMIC_NOTE":
             row["blocker_or_note"] = pgpr_amazon_blocker_note()
+        elif row["blocker_or_note"] == "UCPR_AMAZON_DYNAMIC_NOTE":
+            row["blocker_or_note"] = ucpr_amazon_blocker_note()
         rows.append(row)
     return rows
 
@@ -273,6 +306,15 @@ def bundle_rows() -> list[tuple[str, str, str, str]]:
                 rel(root),
             )
         )
+    pgpr_summary = read_json(PGPR_AMAZON_STREAMING_SUMMARY)
+    rows.append(
+        (
+            "Amazon PGPR native-path export",
+            "Complete" if pgpr_summary.get("status") == "PASS" else "Incomplete",
+            f"{int(pgpr_summary.get('raw_candidate_rows', 0)):,} rows",
+            rel(PGPR_AMAZON_PATHS_DIR),
+        )
+    )
     return rows
 
 
@@ -296,6 +338,23 @@ def amazon_comparison_rows() -> list[dict[str, str]]:
                 "slot_coverage": format_float(coverage["slot_coverage"]),
             }
         )
+    pgpr_summary = read_json(PGPR_AMAZON_STREAMING_SUMMARY)
+    pgpr_export_validation = read_json(PGPR_AMAZON_EXPORT_VALIDATION)
+    pgpr_accuracy = read_json(PGPR_AMAZON_ACCURACY)
+    pgpr_metrics = pgpr_accuracy["metrics"]
+    pgpr_coverage = pgpr_accuracy["recommendation_coverage"]
+    rows.append(
+        {
+            "model": "PGPR",
+            "users": f"{int(pgpr_accuracy['users']):,}",
+            "raw_paths": f"{int(pgpr_summary['raw_candidate_rows']):,}",
+            "pred_path_rows": f"{int(pgpr_export_validation['pred_path_rows']):,}",
+            "explanations": f"{int(pgpr_export_validation['explanations']):,}",
+            "hr": format_float(pgpr_metrics["hr"]),
+            "ndcg": format_float(pgpr_metrics["ndcg"]),
+            "slot_coverage": format_float(pgpr_coverage["slot_coverage"]),
+        }
+    )
     return rows
 
 
@@ -383,9 +442,9 @@ def write_markdown(rows: list[dict[str, str]]) -> None:
             "",
             "## Amazon classic-port acceptance criteria",
             "",
-            "The Amazon PGPR/UCPR/CAFE/TPRec rows are blocked rather than failed. A future",
-            "port should be treated as a schema/runtime task with the following acceptance",
-            "gates before any formal comparison is reported.",
+            "The remaining Amazon UCPR/CAFE/TPRec rows are blocked rather than failed.",
+            "A future port should be treated as a schema/runtime task with the following",
+            "acceptance gates before any formal comparison is reported.",
             "",
             "Shared gates:",
             "",
@@ -405,7 +464,6 @@ def write_markdown(rows: list[dict[str, str]]) -> None:
             "",
             "| Model | Required porting work before launch |",
             "|---|---|",
-            "| PGPR | Generated Amazon data view, isolated preprocess smoke, TransE smokes, policy-env/beam smoke, policy train/inference smokes, and adapter/export smoke already pass; next run formal policy/full-user export gates and strict validation before any formal row. |",
             "| UCPR | Amazon data view, adapter book aliases, runtime schema patch, isolated preprocess smoke, and one-batch TransE forward/backward smoke now pass; next run TransE/policy training, native-path export, and strict full-user validation before formal reporting. |",
             "| CAFE | Build on the compatible Amazon UCPR view and UCPR TransE checkpoint; add executable Amazon CAFE schema/metapaths and verify non-empty native path execution. |",
             "| TPRec | Amazon relation-token path constraints, CLI choices, export aliases, and the pipeline case are wired; the default Amazon pipeline stops at the timestamp gate because all canonical timestamps are sentinel `-1`. Formal TPRec needs real timestamps or an explicitly labeled non-temporal ablation protocol. |",

@@ -1,6 +1,6 @@
 # Canonical Native-Path Status Matrix
 
-Generated from current workspace artifacts on `2026-06-27` Asia/Singapore.
+Generated from current workspace artifacts on `2026-06-30` Asia/Singapore.
 
 Machine-readable companion: `reports/tables/canonical_native_path_status_matrix.csv`.
 
@@ -35,8 +35,8 @@ Amazon-book alpha-sweep figures are intentionally marked `N/A`: the dataset has 
 | ML-1M | PEARLM | Complete + figures | 6,040 | 0.214735 | 0.035303 | PASS | Complete | `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_ml1m_v1/accuracy.json` |
 | Amazon-Book KGAT | KGGLM | Complete | 70,591 | 0.012665 | 0.003022 | PASS | N/A | `runs/debug_compare/2026-06-20_native_path_expansion/kgglm_formal/canonical_amazon_book_kgat_v1/accuracy.json` |
 | Amazon-Book KGAT | PEARLM | Complete | 70,591 | 0.029338 | 0.010716 | PASS | N/A | `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_amazon_book_kgat_v1/accuracy.json` |
-| Amazon-Book KGAT | PGPR | Blocked | N/A | N/A | N/A | N/A | N/A | Amazon PGPR data/preprocess/TransE/policy/export smokes are PASS; formal-v1 pipeline status=RUNNING, stage=transe, beam=10-12-1; strict full-user export/accuracy still pending |
-| Amazon-Book KGAT | UCPR | Blocked | N/A | N/A | N/A | N/A | N/A | Amazon UCPR data view, adapter aliases, runtime schema patch, and preprocess/TransE-forward smokes are PASS; formal training/export/accuracy are pending |
+| Amazon-Book KGAT | PGPR | Complete | 70,591 | 0.054851 | 0.015723 | PASS | N/A | `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json` |
+| Amazon-Book KGAT | UCPR | Blocked | N/A | N/A | N/A | N/A | N/A | Amazon UCPR data view, adapter aliases, runtime schema patch, and preprocess/TransE-forward smokes are PASS; formal training pipeline status=FAILED, stage=line_193, policy=train_agent_amazon_formal_e40_b16_d100, policy_batch=16, beam=25-5-1, run_inference=0; strict full-user export/accuracy still pending |
 | Amazon-Book KGAT | CAFE | Blocked | N/A | N/A | N/A | N/A | N/A | Needs Amazon schema/data-builder port and compatible UCPR view/TransE checkpoint |
 | Amazon-Book KGAT | TPRec | Blocked | N/A | N/A | N/A | N/A | N/A | Amazon TPRec structural path constraints/runtime entrypoints are wired; formal temporal TPRec remains blocked because canonical timestamps are sentinel -1 |
 
@@ -48,6 +48,7 @@ Amazon-book alpha-sweep figures are intentionally marked `N/A`: the dataset has 
 | ML-1M six-model alpha-sweep bundle | Complete | 12 PNG + 12 CSV | `reports/figures/tradeoff/canonical_ml1m_native_paths_v2` |
 | Amazon KGGLM native-path export | Complete | 4,412 shards | `runs/debug_compare/2026-06-20_native_path_expansion/kgglm_formal/canonical_amazon_book_kgat_v1` |
 | Amazon PEARLM native-path export | Complete | 4,412 shards | `runs/debug_compare/2026-06-20_native_path_expansion/pearlm_formal_bestval10/canonical_amazon_book_kgat_v1` |
+| Amazon PGPR native-path export | Complete | 4,109,983 rows | `xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-formal-e50_a250_beam10-12-1` |
 
 ## Amazon formal comparison
 
@@ -55,12 +56,13 @@ Amazon-book alpha-sweep figures are intentionally marked `N/A`: the dataset has 
 |---|---:|---:|---:|---:|---:|---:|---:|
 | KGGLM | 70,591 | 1,327,552 | 1,326,486 | 655,285 | 0.012665 | 0.003022 | 0.928284 |
 | PEARLM | 70,591 | 887,376 | 885,270 | 578,518 | 0.029338 | 0.010716 | 0.819535 |
+| PGPR | 70,591 | 4,109,983 | 4,109,983 | 705,846 | 0.054851 | 0.015723 | 0.999909 |
 
 ## Amazon classic-port acceptance criteria
 
-The Amazon PGPR/UCPR/CAFE/TPRec rows are blocked rather than failed. A future
-port should be treated as a schema/runtime task with the following acceptance
-gates before any formal comparison is reported.
+The remaining Amazon UCPR/CAFE/TPRec rows are blocked rather than failed.
+A future port should be treated as a schema/runtime task with the following
+acceptance gates before any formal comparison is reported.
 
 Shared gates:
 
@@ -80,7 +82,6 @@ Model-specific gates:
 
 | Model | Required porting work before launch |
 |---|---|
-| PGPR | Generated Amazon data view, isolated preprocess smoke, TransE smokes, policy-env/beam smoke, policy train/inference smokes, and adapter/export smoke already pass; next run formal policy/full-user export gates and strict validation before any formal row. |
 | UCPR | Amazon data view, adapter book aliases, runtime schema patch, isolated preprocess smoke, and one-batch TransE forward/backward smoke now pass; next run TransE/policy training, native-path export, and strict full-user validation before formal reporting. |
 | CAFE | Build on the compatible Amazon UCPR view and UCPR TransE checkpoint; add executable Amazon CAFE schema/metapaths and verify non-empty native path execution. |
 | TPRec | Amazon relation-token path constraints, CLI choices, export aliases, and the pipeline case are wired; the default Amazon pipeline stops at the timestamp gate because all canonical timestamps are sentinel `-1`. Formal TPRec needs real timestamps or an explicitly labeled non-temporal ablation protocol. |

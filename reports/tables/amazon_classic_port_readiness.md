@@ -1,6 +1,6 @@
 # Amazon Classic Native-Path Port Readiness
 
-Generated at `2026-06-27T07:14:45.223651+00:00`.
+Generated at `2026-06-30T08:52:16.361828+00:00`.
 
 Dataset: `canonical_amazon_book_kgat_v1`.
 
@@ -10,8 +10,8 @@ This report is intentionally a readiness gate, not an accuracy result. A blocked
 
 | Model | Readiness | Checks passed | Failed gates | Required next actions |
 |---|---:|---:|---|---|
-| PGPR | Blocked | 11/12 | Formal Amazon PGPR export and accuracy validation exist | Run full/formal PGPR Amazon policy training and native path export from the ported runtime.<br>Run strict full-user export validation and strict accuracy validation before any formal report row. |
-| UCPR | Blocked | 7/8 | Formal Amazon UCPR export and accuracy validation exist | Run UCPR Amazon TransE and policy training from the patched runtime.<br>Run UCPR Amazon native-path inference/export with full canonical test-user coverage.<br>Run strict full-user export validation and strict accuracy validation before formal reporting. |
+| PGPR | Ready | 12/12 | None | No further PGPR Amazon action required for the current formal row.<br>Do not launch larger PGPR Amazon variants unless explicitly approved. |
+| UCPR | Blocked | 7/8 | Formal Amazon UCPR export and accuracy validation exist | Do not relaunch UCPR Amazon policy training on the shared server by default.<br>Resume only with an explicitly approved smaller protocol or dedicated high-memory GPU allocation.<br>If resumed, require policy completion, full-user streaming export, strict export validation, and strict accuracy validation before formal reporting. |
 | CAFE | Blocked | 0/2 | DATASET_CONFIG includes Amazon<br>CLI model-dataset choices include an Amazon option | Build a compatible Amazon UCPR view first.<br>Add executable Amazon CAFE entity/relation schema and metapaths.<br>Validate that CAFE emits non-empty native paths mapped back to canonical uid/pid. |
 | TPRec | Blocked | 5/6 | Amazon timestamps support formal TPRec temporal rewards | Keep Amazon TPRec formal reporting blocked while canonical timestamps are sentinel -1.<br>Either rebuild Amazon-book KGAT with real interaction timestamps or define an explicitly labeled non-temporal TPRec ablation protocol.<br>Only after timestamp semantics are approved, run full TPRec training/export with strict full-user validation. |
 
@@ -30,7 +30,7 @@ This report is intentionally a readiness gate, not an accuracy result. A blocked
 | PGPR | Amazon PGPR policy training smoke passes | PASS | runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_training_smoke.json status=PASS epoch=1 run_name=train_agent_amazon_smoke_e1_a250_h32-16 checkpoint_exists=True shape_checks={'actor.weight': True, 'critic.weight': True, 'l1.weight': True, 'l2.weight': True} |
 | PGPR | Amazon PGPR policy inference smoke passes | PASS | runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_inference_smoke.json status=PASS users=8 path_count=191 book_ending_path_count=170 finite_probability_rows=191/191 |
 | PGPR | Amazon PGPR adapter/export smoke validation passes | PASS | runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_export_smoke_validation.json status=PASS pred_path_rows=166 candidate_users=8 explanations=80 require_all_test_users=False |
-| PGPR | Formal Amazon PGPR export and accuracy validation exist | FAIL | missing formal outputs: ['runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json', 'runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json'] |
+| PGPR | Formal Amazon PGPR export and accuracy validation exist | PASS | runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json status=PASS; runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json status=PASS |
 | UCPR | DATASET_CONFIG includes Amazon | PASS | available keys=['amazon_book_kgat_v1', 'lastfm', 'ml1m'] |
 | UCPR | CLI model-dataset choices include an Amazon option | PASS | parser choices are derived from DATASET_CONFIG |
 | UCPR | Generated Amazon UCPR view round-trips canonical labels | PASS | runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/preprocessed/ucpr_view_metadata.json exact_splits=['test', 'train', 'valid'] users=70679 products=24915 relations=9 skipped={'test': 0, 'train': 0, 'valid': 0} |

@@ -195,6 +195,17 @@ EXPORTS = [
         / "agent_topk=pearlm-canonical-bestval10-e50-h768-l6-b25",
         "labels_dir": RUN / "amazon_book_kgat_v1" / "labels",
     },
+    {
+        "dataset_label": "amazon_book_kgat_v1",
+        "model": "PGPR",
+        "dataset": "amazon_book_kgat_v1",
+        "paths_dir": ROOT
+        / "xrecsys"
+        / "paths"
+        / "amazon_book_kgat_v1"
+        / "agent_topk=pgpr-amazon-formal-e50_a250_beam10-12-1",
+        "labels_dir": RUN / "amazon_book_kgat_v1" / "labels",
+    },
 ]
 
 

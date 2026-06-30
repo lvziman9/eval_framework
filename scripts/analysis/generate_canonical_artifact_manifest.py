@@ -59,6 +59,16 @@ CORE_FILES = [
     / "runs"
     / "debug_compare"
     / "2026-06-20_native_path_expansion"
+    / "ucpr_amazon_book_kgat_formal_pipeline_status.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
+    / "ucpr_amazon_book_kgat_preprocess_validation.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
     / "amazon_book_kgat_v1"
     / "model_views"
     / "pgpr"
@@ -115,7 +125,38 @@ CORE_FILES = [
     / "runs"
     / "debug_compare"
     / "2026-06-20_native_path_expansion"
+    / "amazon_book_kgat_v1"
+    / "model_views"
+    / "pgpr"
+    / "pgpr_streaming_export_smoke.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
+    / "amazon_book_kgat_v1"
+    / "model_views"
+    / "pgpr"
+    / "pgpr_streaming_export_smoke_validation.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
     / "pgpr_amazon_book_kgat_formal_pipeline_status.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
+    / "pgpr_amazon_book_kgat_streaming_export_formal.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
+    / "pgpr_amazon_book_kgat_export_validation.json",
+    ROOT
+    / "runs"
+    / "debug_compare"
+    / "2026-06-20_native_path_expansion"
+    / "pgpr_amazon_book_kgat_accuracy.json",
     ROOT
     / "runs"
     / "debug_compare"
@@ -157,12 +198,16 @@ CORE_SCRIPTS = [
     ROOT / "scripts" / "validation" / "run_pgpr_amazon_policy_training_smoke.sh",
     ROOT / "scripts" / "validation" / "validate_pgpr_policy_training_smoke.py",
     ROOT / "scripts" / "validation" / "run_pgpr_policy_inference_smoke.py",
+    ROOT / "scripts" / "validation" / "export_pgpr_streaming.py",
     ROOT / "scripts" / "validation" / "run_pgpr_amazon_export_smoke.sh",
     ROOT / "scripts" / "validation" / "run_pgpr_amazon_formal_pipeline.sh",
     ROOT / "scripts" / "validation" / "launch_pgpr_amazon_formal_pipeline.sh",
     ROOT / "scripts" / "validation" / "run_ucpr_amazon_preprocess_smoke.sh",
     ROOT / "scripts" / "validation" / "validate_ucpr_preprocess_smoke.py",
     ROOT / "scripts" / "validation" / "run_ucpr_transe_forward_smoke.py",
+    ROOT / "scripts" / "validation" / "export_ucpr_streaming.py",
+    ROOT / "scripts" / "validation" / "run_ucpr_amazon_formal_pipeline.sh",
+    ROOT / "scripts" / "validation" / "launch_ucpr_amazon_formal_pipeline.sh",
     ROOT / "scripts" / "validation" / "audit_tprec_amazon_timestamp_semantics.py",
     ROOT / "scripts" / "hopwise" / "run_canonical_tprec_pipeline.sh",
     ROOT / "scripts" / "hopwise" / "run_canonical_tprec.py",
@@ -272,11 +317,11 @@ def main() -> None:
         "export_validation_summaries": [file_entry(path) for path in export_summaries],
     }
 
-    if report["status_matrix"] != {"rows": 18, "complete_rows": 14, "blocked_rows": 4}:
+    if report["status_matrix"] != {"rows": 18, "complete_rows": 15, "blocked_rows": 3}:
         raise ValueError(f"Unexpected status matrix counts: {report['status_matrix']}")
-    if report["export_validation"] != {"status": "PASS", "exports": 14}:
+    if report["export_validation"] != {"status": "PASS", "exports": 15}:
         raise ValueError(f"Unexpected export validation summary: {report['export_validation']}")
-    if len(report["export_validation_summaries"]) != 14:
+    if len(report["export_validation_summaries"]) != 15:
         raise ValueError(
             "Unexpected export validation summary count: "
             f"{len(report['export_validation_summaries'])}"

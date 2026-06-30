@@ -1,5 +1,5 @@
 {
-  "exports": 14,
+  "exports": 15,
   "status": "PASS",
   "summaries": [
     {
@@ -126,6 +126,15 @@
       "model": "PEARLM",
       "pred_path_rows": 885270,
       "summary_json": "reports/tables/canonical_export_validation/amazon_book_kgat_v1_pearlm.json",
+      "topk_users": 70591
+    },
+    {
+      "canonical_test_users": 70591,
+      "dataset_label": "amazon_book_kgat_v1",
+      "explanations": 705846,
+      "model": "PGPR",
+      "pred_path_rows": 4109983,
+      "summary_json": "reports/tables/canonical_export_validation/amazon_book_kgat_v1_pgpr.json",
       "topk_users": 70591
     }
   ]

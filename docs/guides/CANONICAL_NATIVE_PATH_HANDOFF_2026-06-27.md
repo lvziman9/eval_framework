@@ -1,6 +1,6 @@
 # Canonical Native-Path Handoff
 
-Date: `2026-06-27` Asia/Singapore.
+Date: `2026-06-27`; updated `2026-06-30` Asia/Singapore.
 
 This is the short handoff for the current canonical native-path experiment
 state. For full historical details, use
@@ -15,8 +15,8 @@ state. For full historical details, use
 | LastFM / ML-1M alpha-sweep figures | Complete |
 | Amazon-Book KGAT KGGLM formal baseline | Complete |
 | Amazon-Book KGAT PEARLM formal baseline | Complete |
-| Amazon-Book KGAT PGPR data view + smoke gates | Data view, preprocess, TransE, policy-env/beam, policy train/inference, and adapter/export smokes complete; formal-v1 full-user pipeline launched in tmux and currently not reportable until strict export/accuracy pass |
-| Amazon UCPR | Data view, adapter aliases, runtime schema patch, preprocess smoke, and TransE forward smoke PASS; blocked pending full TransE/policy/export/accuracy |
+| Amazon-Book KGAT PGPR formal baseline | Complete; strict full-user export validation and accuracy PASS |
+| Amazon UCPR | Data view, adapter aliases, runtime schema patch, preprocess smoke, and TransE forward smoke PASS; formal TransE PASS; batch-128, batch-32, and batch-16 policy attempts exceeded GPU memory at Adam optimizer step; paused for server safety, blocked pending a smaller protocol or dedicated high-memory run |
 | Amazon CAFE | Blocked pending compatible Amazon UCPR runtime support and CAFE schema/metapaths |
 | Amazon TPRec | Structural wiring complete; formal reporting blocked by timestamp semantics |
 
@@ -33,11 +33,16 @@ Current generated summary:
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_training_smoke.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_policy_inference_smoke.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_export_smoke_validation.json`;
+- `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke.json`;
+- `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke_validation.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/preprocessed/ucpr_view_metadata.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_runtime_preprocess_smoke.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_transe_forward_smoke.json`;
+- `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`;
+- `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_preprocess_validation.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`;
-- `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline.log`;
+- `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_export_validation.json`;
+- `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_accuracy.json`;
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/tprec/tprec_timestamp_semantics_audit.json`;
 - `reports/tables/canonical_native_path_artifact_manifest.json`.
 
@@ -63,12 +68,12 @@ These commands do not launch training or path extraction.
 
 The authoritative status table has `18` rows:
 
-- `14` complete rows:
+- `15` complete rows:
   - LastFM: PGPR, UCPR, CAFE, TPRec, KGGLM, PEARLM;
   - ML-1M: PGPR, UCPR, CAFE, TPRec, KGGLM, PEARLM;
-  - Amazon-Book KGAT: KGGLM, PEARLM.
-- `4` blocked rows:
-  - Amazon-Book KGAT: PGPR, UCPR, CAFE, TPRec.
+  - Amazon-Book KGAT: KGGLM, PEARLM, PGPR.
+- `3` blocked rows:
+  - Amazon-Book KGAT: UCPR, CAFE, TPRec.
 
 Amazon formal comparison:
 
@@ -76,16 +81,16 @@ Amazon formal comparison:
 |---|---:|---:|---:|---:|
 | KGGLM | 70,591 | 0.012665 | 0.003022 | PASS |
 | PEARLM | 70,591 | 0.029338 | 0.010716 | PASS |
+| PGPR | 70,591 | 0.054851 | 0.015723 | PASS |
 
 Amazon alpha-sweep explanation tradeoffs are not reportable yet because no
 approved timestamp/SEP/ETD denominator exists for Amazon-Book KGAT.
 
-Running but not reportable yet:
+Paused / blocked but not reportable yet:
 
 | Job | State | Evidence |
 |---|---:|---|
-| Amazon-Book KGAT PGPR formal-v1 | Running, TransE stage | tmux session `pgpr_amazon_formal`; status JSON `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`; log `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline.log` |
-| Amazon-Book KGAT UCPR | Runtime preprocess and TransE forward ready; full training/export blocked | metadata `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/preprocessed/ucpr_view_metadata.json`; preprocess smoke `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_runtime_preprocess_smoke.json`; TransE smoke `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/ucpr/ucpr_transe_forward_smoke.json`; readiness audit `reports/tables/amazon_classic_port_readiness.json` |
+| Amazon-Book KGAT UCPR | Failed at policy `optimizer.step()` even after `foreach=False` and batch size 16; pause further Amazon UCPR attempts for server safety | status JSON `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`; formal TransE status `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_transe_formal_status.json`; formal preprocess validation `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_preprocess_validation.json`; readiness audit `reports/tables/amazon_classic_port_readiness.json` |
 | Amazon-Book KGAT TPRec | Blocked before formal launch | timestamp audit `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/tprec/tprec_timestamp_semantics_audit.json` |
 
 ## Validation evidence
@@ -94,7 +99,7 @@ Core evidence files:
 
 - `reports/tables/canonical_export_validation/manifest.json`
   - `status=PASS`;
-  - `exports=14`.
+  - `exports=15`.
 - `reports/tables/amazon_classic_port_readiness.json`
   - `status=BLOCKED`;
   - blocked models: PGPR, UCPR, CAFE, TPRec.
@@ -137,13 +142,28 @@ Core evidence files:
   - validates Amazon `book` path serialization into xrecsys CSVs;
   - `166` pred-path rows, `8` candidate users, `80` top-k explanations;
   - `require_all_test_users=false`, so this is intentionally not formal.
+- `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke.json`
+  - 8-user streaming exporter smoke using the formal epoch-50 policy checkpoint
+    and formal TransE embeddings;
+  - validates the memory-safe path used for full Amazon inference/export;
+  - `677` raw candidate rows, `8` candidate users, slot coverage `1.0`.
+- `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/pgpr/pgpr_streaming_export_smoke_validation.json`
+  - xrecsys CSV validator for the streaming smoke;
+  - `status=PASS`, `677` pred-path rows, `80` explanations, normalized score
+    range `[0.0, 1.0]`;
+  - `require_all_test_users=false`, so this is intentionally still a smoke.
 - `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_formal_pipeline_status.json`
   - formal-v1 PGPR Amazon pipeline launched through tmux;
-  - current stage at handoff: `transe`;
+  - current stage at updated handoff: `inference_export`;
+  - `streaming_export_enabled=1`;
   - configuration: TransE `30` epochs, dim `300`, batch `2048`,
     negatives `5`; policy `50` epochs, hidden `512 256`, batch `8192`,
     max actions `250`; export beam `10 12 1`;
   - this is a running job marker, not a reportable result.
+- `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_streaming_export_formal.json`
+  - live formal streaming export progress marker;
+  - starts as `status=RUNNING`, `stage=beam_stream` and is expected to become
+    `PASS` only after all `70,591` canonical test users are exported.
 - `runs/debug_compare/2026-06-20_native_path_expansion/pgpr_amazon_book_kgat_preprocess_validation.json`
   - formal runtime preprocess validation;
   - train/test label round-trip is exact against canonical labels.
@@ -166,6 +186,18 @@ Core evidence files:
     gradient tensors;
   - all expected Amazon relation parameters are present;
   - this is still not a trained UCPR Amazon checkpoint.
+- `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_formal_pipeline_status.json`
+  - formal UCPR Amazon training queue launched through tmux;
+  - current stage at updated handoff: `policy`;
+  - `run_inference=0`, intentionally deferring full-user UCPR path export until
+    a memory-safe export path is available.
+- `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_transe_formal_status.json`
+  - formal UCPR Amazon TransE status;
+  - `status=PASS`;
+  - confirms `transe_best_model.ckpt` and `transe_embed.pkl` exist.
+- `runs/debug_compare/2026-06-20_native_path_expansion/ucpr_amazon_book_kgat_preprocess_validation.json`
+  - formal runtime preprocess validation;
+  - train/valid/test label round-trip is exact against canonical labels.
 - `runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/model_views/tprec/tprec_timestamp_semantics_audit.json`
   - Amazon TPRec structural support audit;
   - Hopwise view preserves interactions/KG and all configured relation-token
@@ -216,6 +248,10 @@ Canonical native-path reports regenerated.
 - `scripts/validation/run_pgpr_policy_inference_smoke.py`
   - now accepts `--hidden` and `--beam-batch-size`, so the same inference
     checker can load both smoke and formal policy checkpoints.
+- `scripts/validation/export_pgpr_streaming.py`
+  - memory-safe PGPR full-user exporter for Amazon-size candidate pools;
+  - streams candidate rows to CSV and keeps only per-user top-k state in
+    memory, avoiding the giant intermediate `PATHS_PKL`.
 - `scripts/validation/validate_pgpr_policy_training_smoke.py`
   - now accepts `--expected-hidden`, allowing formal-size policy checkpoints
     to be validated without hard-coded smoke dimensions.
@@ -244,6 +280,16 @@ Canonical native-path reports regenerated.
 - `scripts/validation/run_ucpr_transe_forward_smoke.py`
   - validates that the patched Amazon UCPR runtime can execute one TransE
     forward/backward step through all Amazon relation parameters.
+- `scripts/validation/run_ucpr_amazon_formal_pipeline.sh`
+  - launches UCPR Amazon formal training stages; by default it stops after
+    policy training with `UCPR_RUN_INFERENCE=0`; when inference is enabled it
+    defaults to the streaming exporter instead of native giant-pickle export.
+- `scripts/validation/launch_ucpr_amazon_formal_pipeline.sh`
+  - starts the UCPR Amazon formal pipeline in persistent `tmux`.
+- `scripts/validation/export_ucpr_streaming.py`
+  - memory-safe UCPR exporter for Amazon-size candidate pools;
+  - streams candidate rows directly to xrecsys CSVs and keeps only per-user
+    top-k state in memory.
 
 ## Do not do this accidentally
 
@@ -258,12 +304,13 @@ Canonical native-path reports regenerated.
 
 If Amazon classic baselines are required, start a separate porting task:
 
-1. let the running PGPR Amazon formal-v1 tmux job finish, then inspect strict
-   export validation and accuracy summaries;
+1. let the running PGPR Amazon formal-v1 streaming export job finish, then
+   inspect strict export validation and accuracy summaries;
 2. if formal-v1 passes, refresh readiness/status reports and decide whether a
    larger `25-50-1` PGPR beam is required for a second, more expensive run;
-3. run UCPR Amazon TransE/policy training and native-path export from the
-   patched runtime, then run strict export/accuracy gates;
+3. let the running UCPR Amazon `foreach=False`/batch-16 policy training
+   finish, run a small streaming-export smoke from the resulting checkpoint,
+   then enable full-user streaming export and strict export/accuracy gates;
 4. add CAFE Amazon schema/metapaths after compatible UCPR runtime support;
 5. for TPRec, either rebuild Amazon-book KGAT with real timestamps or approve a
    clearly labeled non-temporal ablation before running training/export;

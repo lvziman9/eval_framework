@@ -1,0 +1,18 @@
+{
+  "candidate_users": 70591,
+  "canonical_test_users": 70591,
+  "dataset": "amazon_book_kgat_v1",
+  "dataset_label": "amazon_book_kgat_v1",
+  "explanations": 705846,
+  "labels_dir": "runs/debug_compare/2026-06-20_native_path_expansion/amazon_book_kgat_v1/labels",
+  "model": "PGPR",
+  "paths_dir": "xrecsys/paths/amazon_book_kgat_v1/agent_topk=pgpr-amazon-formal-e50_a250_beam10-12-1",
+  "pred_path_rows": 4109983,
+  "require_all_test_users": true,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "status": "PASS",
+  "topk_users": 70591
+}

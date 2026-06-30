@@ -36,12 +36,14 @@ if [ "${#FORMAL_TOPK[@]}" -ne 3 ]; then
 fi
 INFERENCE_BATCH_SIZE="${PGPR_INFERENCE_BATCH_SIZE:-256}"
 AGENT_TOPK_TAG="${PGPR_AGENT_TOPK_TAG:-pgpr-amazon-formal-e${POLICY_EPOCHS}_a${POLICY_MAX_ACTS}_beam${FORMAL_TOPK[0]}-${FORMAL_TOPK[1]}-${FORMAL_TOPK[2]}}"
+PGPR_USE_STREAMING_EXPORT="${PGPR_USE_STREAMING_EXPORT:-1}"
 
 STATUS_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_formal_pipeline_status.json"
 PREPROCESS_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_preprocess_validation.json"
 TRANSE_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_transe_formal_validation.json"
 POLICY_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_policy_formal_validation.json"
 INFERENCE_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_policy_inference_formal.json"
+STREAMING_EXPORT_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_streaming_export_formal.json"
 PATHS_PKL="$RUN_ROOT/pgpr_amazon_book_kgat_policy_paths_${AGENT_TOPK_TAG}.pkl"
 EXPORT_SUMMARY_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_export_validation.json"
 ACCURACY_JSON="$RUN_ROOT/pgpr_amazon_book_kgat_accuracy.json"
@@ -87,6 +89,8 @@ summary = {
         "agent_topk_tag": "$AGENT_TOPK_TAG",
         "paths_pkl": "$PATHS_PKL",
         "paths_dir": "$PATHS_DIR",
+        "streaming_export": "$STREAMING_EXPORT_JSON",
+        "streaming_export_enabled": "$PGPR_USE_STREAMING_EXPORT",
         "export_validation": "$EXPORT_SUMMARY_JSON",
         "accuracy": "$ACCURACY_JSON",
     },
@@ -107,7 +111,7 @@ echo "runtime=$RUNTIME"
 echo "gpu=${PHYSICAL_GPU:-CPU}"
 echo "transe=$TRANSE_RUN_NAME epochs=$TRANSE_EPOCHS embed=$TRANSE_EMBED_SIZE batch=$TRANSE_BATCH_SIZE neg=$TRANSE_NEG_SAMPLES"
 echo "policy=$POLICY_RUN_NAME epochs=$POLICY_EPOCHS batch=$POLICY_BATCH_SIZE max_acts=$POLICY_MAX_ACTS hidden=${POLICY_HIDDEN[*]}"
-echo "export tag=$AGENT_TOPK_TAG topk=${FORMAL_TOPK[*]} inference_batch=$INFERENCE_BATCH_SIZE"
+echo "export tag=$AGENT_TOPK_TAG topk=${FORMAL_TOPK[*]} inference_batch=$INFERENCE_BATCH_SIZE streaming=$PGPR_USE_STREAMING_EXPORT"
 write_status "RUNNING" "prepare_runtime" "Preparing isolated PGPR Amazon formal runtime"
 
 mkdir -p "$RUNTIME/models/PGPR" "$RUNTIME/datasets/amazon_book_kgat_v1"
@@ -187,29 +191,48 @@ fi
   --summary-json "$POLICY_JSON"
 
 write_status "RUNNING" "inference_export" "Running full-user PGPR Amazon inference and strict export validation"
-if [ "${PGPR_FORCE_INFERENCE:-0}" = "1" ] || [ ! -f "$PATHS_PKL" ]; then
-  "$PGPR_PY" "$ROOT/scripts/validation/run_pgpr_policy_inference_smoke.py" \
-    --runtime-root "$RUNTIME" \
-    --dataset amazon_book_kgat_v1 \
-    --run-name "$POLICY_RUN_NAME" \
-    --epoch "$POLICY_EPOCHS" \
-    --summary-json "$INFERENCE_JSON" \
-    --max-acts "$POLICY_MAX_ACTS" \
-    --num-users 0 \
-    --beam-batch-size "$INFERENCE_BATCH_SIZE" \
-    --hidden "${POLICY_HIDDEN[@]}" \
-    --topk "${FORMAL_TOPK[@]}" \
-    --paths-pkl "$PATHS_PKL"
-fi
+if [ "$PGPR_USE_STREAMING_EXPORT" = "1" ]; then
+  if [ "${PGPR_FORCE_INFERENCE:-0}" = "1" ] || [ ! -f "$PATHS_DIR/pred_paths.csv" ] || [ ! -f "$PATHS_DIR/uid_topk.csv" ] || [ ! -f "$PATHS_DIR/uid_pid_explanation.csv" ]; then
+    "$PGPR_PY" "$ROOT/scripts/validation/export_pgpr_streaming.py" \
+      --runtime-root "$RUNTIME" \
+      --dataset amazon_book_kgat_v1 \
+      --run-name "$POLICY_RUN_NAME" \
+      --epoch "$POLICY_EPOCHS" \
+      --embedding-pkl "$RUNTIME/models/PGPR/tmp/amazon_book_kgat_v1/transe_embed.pkl" \
+      --labels-dir "$CANONICAL_ROOT/labels" \
+      --paths-dir "$PATHS_DIR" \
+      --summary-json "$STREAMING_EXPORT_JSON" \
+      --max-acts "$POLICY_MAX_ACTS" \
+      --beam-batch-size "$INFERENCE_BATCH_SIZE" \
+      --hidden "${POLICY_HIDDEN[@]}" \
+      --topk "${FORMAL_TOPK[@]}" \
+      --recommendation-topk 10
+  fi
+else
+  if [ "${PGPR_FORCE_INFERENCE:-0}" = "1" ] || [ ! -f "$PATHS_PKL" ]; then
+    "$PGPR_PY" "$ROOT/scripts/validation/run_pgpr_policy_inference_smoke.py" \
+      --runtime-root "$RUNTIME" \
+      --dataset amazon_book_kgat_v1 \
+      --run-name "$POLICY_RUN_NAME" \
+      --epoch "$POLICY_EPOCHS" \
+      --summary-json "$INFERENCE_JSON" \
+      --max-acts "$POLICY_MAX_ACTS" \
+      --num-users 0 \
+      --beam-batch-size "$INFERENCE_BATCH_SIZE" \
+      --hidden "${POLICY_HIDDEN[@]}" \
+      --topk "${FORMAL_TOPK[@]}" \
+      --paths-pkl "$PATHS_PKL"
+  fi
 
-"$PGPR_PY" "$ROOT/adapters/pgpr_adapter.py" \
-  --pkl "$PATHS_PKL" \
-  --embedding-pkl "$RUNTIME/models/PGPR/tmp/amazon_book_kgat_v1/transe_embed.pkl" \
-  --dataset amazon_book_kgat_v1 \
-  --xrecsys-dir "$ROOT/xrecsys" \
-  --topk 10 \
-  --agent-topk-tag "$AGENT_TOPK_TAG" \
-  --labels-dir "$CANONICAL_ROOT/labels"
+  "$PGPR_PY" "$ROOT/adapters/pgpr_adapter.py" \
+    --pkl "$PATHS_PKL" \
+    --embedding-pkl "$RUNTIME/models/PGPR/tmp/amazon_book_kgat_v1/transe_embed.pkl" \
+    --dataset amazon_book_kgat_v1 \
+    --xrecsys-dir "$ROOT/xrecsys" \
+    --topk 10 \
+    --agent-topk-tag "$AGENT_TOPK_TAG" \
+    --labels-dir "$CANONICAL_ROOT/labels"
+fi
 
 "$EVAL_PY" "$ROOT/scripts/validation/validate_xrecsys_export.py" \
   --paths-dir "$PATHS_DIR" \

@@ -163,6 +163,21 @@ def main() -> None:
         path = runtime_root / relative
         statuses.append((patch_text_once(path, pretrain_old, pretrain_new), path))
 
+    adam_old = "    optimizer = optim.Adam(model.parameters(), lr=args.lr)\n"
+    adam_new = (
+        "    # Canonical Amazon-book KGAT has a large UCPR parameter set; "
+        "PyTorch's foreach Adam path materializes a large temporary tensor "
+        "during the first optimizer step and OOMs on 24GB GPUs.  The scalar "
+        "Adam path preserves optimizer semantics while avoiding that temporary.\n"
+        "    optimizer = optim.Adam(model.parameters(), lr=args.lr, foreach=False)\n"
+    )
+    for relative in [
+        "models/UCPR/train.py",
+        "models/UCPR/src/train.py",
+    ]:
+        path = runtime_root / relative
+        statuses.append((patch_text_once(path, adam_old, adam_new), path))
+
     for status, path in statuses:
         print(f"{status}: {path}")
 

@@ -57,7 +57,7 @@ status_md = root / "reports" / "tables" / "canonical_native_path_status_matrix.m
 rows = list(csv.DictReader(status_csv.open()))
 assert len(rows) == 18, f"expected 18 status rows, found {len(rows)}"
 complete_rows = [row for row in rows if row["stage"].startswith("Complete")]
-assert len(complete_rows) == 14, f"expected 14 complete rows, found {len(complete_rows)}"
+assert len(complete_rows) == 15, f"expected 15 complete rows, found {len(complete_rows)}"
 for row in complete_rows:
     assert row["export_validation"] == "PASS", row
     assert row["export_evidence"].endswith(".json"), row
@@ -75,6 +75,7 @@ for dataset, directory in {
 markdown = status_md.read_text()
 assert "Amazon classic-port acceptance criteria" in markdown
 assert "Amazon-Book KGAT | PEARLM | Complete" in markdown
+assert "Amazon-Book KGAT | PGPR | Complete" in markdown
 
 readiness_path = root / "reports" / "tables" / "amazon_classic_port_readiness.json"
 assert readiness_path.exists(), readiness_path
