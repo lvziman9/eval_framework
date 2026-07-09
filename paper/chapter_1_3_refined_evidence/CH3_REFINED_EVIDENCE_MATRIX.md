@@ -24,7 +24,7 @@ Evidence pack for Chapter 3 only. Keep final result interpretation for Chapter 5
 | remap evidence | UCPR and CAFE view folders include `user_remap.tsv` and `product_remap.tsv` where internal ids differ. PGPR view metadata records identity mapping back to canonical uid/pid. Evidence: `runs/debug_compare/2026-04-14_canonical_dataset/lastfm_v1/model_views/ucpr/preprocessed/user_remap.tsv`; `runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1/model_views/ucpr/preprocessed/product_remap.tsv`; `runs/debug_compare/2026-04-14_canonical_dataset/lastfm_v1/model_views/pgpr/pgpr_view_metadata.json`; `runs/debug_compare/2026-06-20_native_path_expansion/ml1m_v1/model_views/pgpr/pgpr_view_metadata.json`. |
 | LastFM / ML-1M / Amazon role evidence | `thesis_analysis_pack/dataset_summary_table.md`: LastFM and ML-1M are main complete datasets; Amazon-Book KGAT is a secondary stress-test/boundary dataset; Beauty legacy is historical/reference only. |
 
-Suggested Table 3.1 content:
+### Suggested Table 3.1 Content
 
 | Dataset | Role | Canonical product entity | Split/label evidence | Model-view evidence | Caveat |
 | --- | --- | --- | --- | --- | --- |
@@ -44,7 +44,7 @@ Suggested Table 3.1 content:
 | completed model-dataset output evidence | `reports/tables/canonical_export_validation/manifest.json` records `exports=15`, `status=PASS`. Completed rows: LastFM six models, ML-1M six models, Amazon-Book KGAT KGGLM/PEARLM/PGPR. Per-row JSONs are under `reports/tables/canonical_export_validation/`. |
 | non-native path exclusion evidence | `docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md`; `docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md`; `thesis_analysis_pack/model_scope_table.md`. Non-native models such as KGIN, KGAT, LightGCN are accuracy-only/appendix references unless a faithful native path contract exists. |
 
-Suggested Table 3.2 content:
+### Suggested Table 3.2 Content
 
 | Export file | Required columns | Purpose | Validation checks | Evidence path |
 | --- | --- | --- | --- | --- |
@@ -66,7 +66,7 @@ Suggested Table 3.2 content:
 | ETD definition and implementation evidence | Definition in `docs/guides/PATH_METRICS_GUIDE.md`: diversity of explanation path types in top-k recommendations. Implementation: `xrecsys/metrics.py` functions `topk_ETD`, `avg_ETD`; denominator in `xrecsys/myutils.py` `TOTAL_PATH_TYPES`. Trade-off evidence: `*_ETD_*_models.csv` in canonical bundles. |
 | strict accuracy vs alpha-sweep distinction evidence | Strict accuracy values come from per-row `accuracy.json` files and final accuracy table. Alpha-sweep CSVs contain `model,alpha,<accuracy metric>,<explanation metric>` and are trade-off evidence. The distinction is explicitly noted in `thesis_analysis_pack/final_explanation_summary_table.md` and `thesis_analysis_pack/generated_figure_captions.md`. |
 
-Suggested Table 3.3 content:
+### Suggested Table 3.3 Content
 
 | Metric | Family | Computed from | Primary implementation/evidence | Use in dissertation |
 | --- | --- | --- | --- | --- |
@@ -89,7 +89,7 @@ Suggested Table 3.3 content:
 | framework feasibility evidence | 15 formal rows pass export validation: LastFM six models, ML-1M six models, Amazon-Book KGAT KGGLM/PEARLM/PGPR. Evidence: `thesis_analysis_pack/validation_status_table.md`. |
 | Amazon boundary case evidence | Amazon formal comparison has KGGLM, PEARLM, PGPR complete with strict export/accuracy PASS, while UCPR/CAFE/TPRec are blocked. Amazon alpha-sweeps are N/A because there is no approved timestamp/SEP/ETD denominator. Evidence: `reports/tables/canonical_native_path_status_matrix.md`; `reports/tables/amazon_classic_port_readiness.json`. |
 
-Suggested Table 3.4 content:
+### Suggested Table 3.4 Content
 
 | Gate | What it prevents | Script/artifact | Result evidence |
 | --- | --- | --- | --- |
@@ -116,7 +116,7 @@ Suggested Table 3.4 content:
 | suggested Figure 3.2 | New diagram: Validated native-path export -> original top-k ranking at alpha=0 -> alpha grid 0.00 to 1.00 -> optimize LIR/SEP/ETD separately -> compute HR/NDCG/Precision/Recall plus LIR/SEP/ETD -> output trade-off curves and endpoint summaries. |
 | caveats about what belongs in Chapter 3 vs Chapter 5 | Chapter 3 should define the alpha-sweep and ablation protocol and cite available CSV/figure evidence. Chapter 5 should interpret curves, compare models, and discuss trade-offs. Do not place final model ranking or Amazon limitation interpretation in Chapter 3 except as protocol boundaries. |
 
-Suggested Table 3.5 content:
+### Suggested Table 3.5 Content
 
 | Experiment design element | Dataset scope | Models | Output files | Evidence role | Caveat |
 | --- | --- | --- | --- | --- | --- |

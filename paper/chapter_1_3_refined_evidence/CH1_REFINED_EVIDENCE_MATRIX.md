@@ -45,7 +45,7 @@ Scope rules:
 | output contract evidence | Required native-path files: `uid_topk.csv`, `pred_paths.csv`, `uid_pid_explanation.csv`. Evidence: `docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md`; `docs/guides/CANONICAL_DATASET_STANDARD.md`; formal export examples under `xrecsys/paths/{lastfm,ml1m,amazon_book_kgat_v1}/agent_topk=*/`. |
 | trade-off experiment evidence | Alpha range `0.0000` to `1.0000` in 0.05 steps appears in canonical trade-off CSVs, for example `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_LIR_ndcg_models.csv` and `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_LIR_ndcg_models.csv`. |
 
-Recommended specification table:
+### Recommended Specification Table
 
 | Specification dimension | Dissertation wording anchor | Evidence path | Evidence type |
 | --- | --- | --- | --- |
