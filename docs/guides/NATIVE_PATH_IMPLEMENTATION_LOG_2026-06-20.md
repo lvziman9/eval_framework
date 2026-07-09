@@ -5040,3 +5040,41 @@ bash scripts/analysis/regenerate_canonical_native_path_reports.sh --status-only
   - blocked rows: `3`;
   - export-validation manifest: `status=PASS`, `exports=15`;
   - Amazon formal comparison now includes KGGLM, PEARLM, and PGPR.
+
+2026-07-01 strict PGPR/UCPR path-module ablation correction:
+
+- corrected the PGPR/UCPR ablation protocol so `alpha=0` is strictly
+  baseline-preserving:
+  - the module now operates only on the frozen original top-k item set;
+  - `alpha=0` exactly preserves both original top-k ranking and original
+    explanation paths;
+  - candidate-pool replacement items are excluded from the main ablation;
+- switched the main ablation from legacy xrecsys alpha-sweep CSVs to a
+  regenerated strict canonical sweep from frozen `uid_topk.csv`,
+  `uid_pid_explanation.csv`, `pred_paths.csv`, export validation JSON, and
+  strict accuracy JSON;
+- added explicit validation artifact:
+  `reports/tables/ablation/pgpr_ucpr_path_module/alpha0_baseline_preservation.csv`;
+- validation result:
+  - all `12/12` dataset-model-target alpha=0 checks are `PASS`;
+  - exact top-k preservation is `100%`;
+  - exact explanation-path preservation is `100%`;
+  - max metric delta vs Original at alpha=0 is `0.0`;
+- strict baseline accuracy now matches the validated accuracy JSON exactly:
+  - LastFM PGPR NDCG@10: `0.03090466256434531`;
+  - LastFM UCPR NDCG@10: `0.037376792696135475`;
+  - ML-1M PGPR NDCG@10: `0.10189633102321971`;
+  - ML-1M UCPR NDCG@10: `0.08621536338059343`;
+- regenerated ablation outputs:
+  - `reports/summaries/pgpr_ucpr_path_module_ablation.md`;
+  - `reports/tables/ablation/pgpr_ucpr_path_module/main_ablation_table_95pct_ndcg.csv`;
+  - `reports/tables/ablation/pgpr_ucpr_path_module/tradeoff_summary_95pct_ndcg.csv`;
+  - `reports/tables/ablation/pgpr_ucpr_path_module/tradeoff_curves_long.csv`;
+  - `reports/tables/ablation/pgpr_ucpr_path_module/endpoint_comparison.csv`;
+  - `reports/tables/ablation/pgpr_ucpr_path_module/provenance_validation.csv`;
+  - `reports/figures/ablation/pgpr_ucpr_path_module/lastfm_ndcg_tradeoff.svg`;
+  - `reports/figures/ablation/pgpr_ucpr_path_module/ml1m_ndcg_tradeoff.svg`;
+  - `reports/cases/ablation/pgpr_ucpr_path_module_cases.md`;
+  - `reports/cases/ablation/pgpr_ucpr_path_module_cases.json`;
+- Amazon-Book remains excluded from this ablation and is documented only as
+  auxiliary large-dataset evidence from the main experiment.

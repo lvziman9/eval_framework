@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1180" height="480" viewBox="0 0 1180 480">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="32" y="36" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#212121">LastFM: Performance-explainability tradeoff</text>
-<text x="32" y="60" font-family="Arial, sans-serif" font-size="13" fill="#555">Y axis: within-sweep NDCG retention vs Original. X axis: optimized explanation gain. Markers show alpha=0 and alpha=1.</text>
-<text x="32" y="76" font-family="Arial, sans-serif" font-size="12" fill="#777">LastFM uses sweep-internal legacy NDCG for retention only; strict main-experiment accuracy NDCG is reported separately in provenance.</text>
+<text x="32" y="60" font-family="Arial, sans-serif" font-size="13" fill="#555">Y axis: strict canonical NDCG retention vs Original. X axis: optimized explanation gain. Markers show alpha=0 and alpha=1.</text>
+<text x="32" y="76" font-family="Arial, sans-serif" font-size="12" fill="#777">LastFM legacy sweep NDCG is excluded; this figure uses the strict canonical baseline-preserving protocol.</text>
 <rect x="72.00" y="96" width="323.33" height="285" fill="#fafafa" stroke="#dddddd"/>
 <text x="233.67" y="78" font-family="Arial, sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#212121">LIR</text>
 <line x1="72.00" y1="96" x2="72.00" y2="381" stroke="#e6e6e6" stroke-width="1"/>
@@ -15,19 +15,19 @@
 <line x1="72.00" y1="309.75" x2="395.33" y2="309.75" stroke="#e6e6e6" stroke-width="1"/>
 <line x1="395.33" y1="96" x2="395.33" y2="381" stroke="#e6e6e6" stroke-width="1"/>
 <line x1="72.00" y1="381.00" x2="395.33" y2="381.00" stroke="#e6e6e6" stroke-width="1"/>
-<line x1="72.00" y1="151.78" x2="395.33" y2="151.78" stroke="#777" stroke-width="1.2" stroke-dasharray="5 4"/>
-<text x="391.33" y="146.78" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#555">95%</text>
-<polyline points="94.30,121.68 361.65,121.51 367.49,121.25 370.11,121.23 372.51,120.75 372.51,122.09 372.51,123.24 372.39,124.76 372.49,125.50 372.53,126.20 372.59,126.60 372.67,126.72 372.76,126.66 372.86,126.83 372.76,126.90 372.85,127.27 372.88,127.05 372.91,127.05 372.94,127.03 373.01,127.50 373.03,361.34" fill="none" stroke="#1565C0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="94.30" cy="121.68" r="4.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
-<rect x="368.23" y="356.54" width="9.6" height="9.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
-<polyline points="123.33,121.68 246.44,122.14 282.94,122.17 296.61,121.69 305.22,121.59 310.70,121.37 312.06,121.28 312.75,121.14 312.73,121.01 312.76,121.17 312.70,121.17 312.89,121.14 312.89,121.14 312.89,121.14 313.06,121.25 313.08,121.37 313.25,121.37 313.25,121.36 313.26,121.32 313.26,121.32 313.26,133.61" fill="none" stroke="#C62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="123.33" cy="121.68" r="4.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
-<rect x="308.46" y="128.81" width="9.6" height="9.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
-<text x="72.00" y="409" font-family="Arial, sans-serif" font-size="12" fill="#444">-34.5%</text>
-<text x="395.33" y="409" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">208%</text>
+<line x1="72.00" y1="360.64" x2="395.33" y2="360.64" stroke="#777" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="391.33" y="355.64" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#555">95%</text>
+<polyline points="94.30,157.07 373.03,157.07 373.03,157.93 373.03,157.28 373.03,157.53 373.03,157.95 373.03,158.81 373.03,159.56 373.03,160.84 373.03,158.64 373.03,157.38 373.03,157.58 373.03,158.26 373.03,158.25 373.03,157.51 373.03,158.14 373.03,158.09 373.03,158.43 373.03,158.78 373.03,158.55 373.03,159.42" fill="none" stroke="#1565C0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="94.30" cy="157.07" r="4.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
+<rect x="368.23" y="154.62" width="9.6" height="9.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
+<polyline points="94.30,157.07 163.55,157.07 163.55,157.02 163.55,157.11 163.55,157.23 163.55,157.20 163.55,156.47 163.55,156.69 163.55,156.62 163.55,156.26 163.55,156.83 163.55,157.01 163.55,158.30 163.55,158.34 163.55,158.45 163.55,159.01 163.55,158.96 163.55,158.96 163.55,158.99 163.55,158.78 163.55,158.78" fill="none" stroke="#C62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="94.30" cy="157.07" r="4.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
+<rect x="158.75" y="153.98" width="9.6" height="9.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
+<text x="72.00" y="409" font-family="Arial, sans-serif" font-size="12" fill="#444">-40.2%</text>
+<text x="395.33" y="409" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">542%</text>
 <text x="233.67" y="425" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#444">LIR gain (%)</text>
-<text x="62.00" y="381.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">56.9%</text>
-<text x="62.00" y="100.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">104%</text>
+<text x="62.00" y="381.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">94.5%</text>
+<text x="62.00" y="100.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">102%</text>
 <text x="22" y="238.50" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#444" transform="rotate(-90 22 238.50)">NDCG retention (%)</text>
 <rect x="443.33" y="96" width="323.33" height="285" fill="#fafafa" stroke="#dddddd"/>
 <text x="605.00" y="78" font-family="Arial, sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#212121">SEP</text>
@@ -41,19 +41,19 @@
 <line x1="443.33" y1="309.75" x2="766.67" y2="309.75" stroke="#e6e6e6" stroke-width="1"/>
 <line x1="766.67" y1="96" x2="766.67" y2="381" stroke="#e6e6e6" stroke-width="1"/>
 <line x1="443.33" y1="381.00" x2="766.67" y2="381.00" stroke="#e6e6e6" stroke-width="1"/>
-<line x1="443.33" y1="168.40" x2="766.67" y2="168.40" stroke="#777" stroke-width="1.2" stroke-dasharray="5 4"/>
-<text x="762.67" y="163.40" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#555">95%</text>
-<polyline points="465.63,140.92 615.82,142.41 638.87,142.79 655.48,151.20 666.87,156.68 675.06,163.26 681.52,167.18 687.13,169.93 691.92,173.72 696.08,177.26 699.80,184.11 703.38,190.12 706.96,205.77 710.19,235.66 712.63,251.99 714.61,258.63 716.26,264.65 717.67,277.01 718.89,294.52 719.94,319.68 720.39,361.34" fill="none" stroke="#1565C0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="465.63" cy="140.92" r="4.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
-<rect x="715.59" y="356.54" width="9.6" height="9.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
-<polyline points="465.63,140.92 632.88,140.03 653.66,136.80 671.79,133.57 686.59,131.16 697.90,126.61 706.69,124.99 713.51,125.97 718.93,124.82 723.59,122.23 727.49,122.13 730.81,123.59 733.65,122.36 736.10,121.36 738.16,120.20 739.92,118.54 741.45,115.66 742.66,123.67 743.57,129.45 744.16,138.76 744.37,148.70" fill="none" stroke="#C62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="465.63" cy="140.92" r="4.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
-<rect x="739.57" y="143.90" width="9.6" height="9.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
-<text x="443.33" y="409" font-family="Arial, sans-serif" font-size="12" fill="#444">-6.45%</text>
-<text x="766.67" y="409" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">87.0%</text>
+<line x1="443.33" y1="245.79" x2="766.67" y2="245.79" stroke="#777" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="762.67" y="240.79" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#555">95%</text>
+<polyline points="465.63,141.57 703.41,141.57 703.41,150.27 703.41,150.94 703.41,158.24 703.41,157.10 703.41,160.10 703.41,154.98 703.41,173.70 703.41,184.04 703.41,191.08 703.41,199.05 703.41,208.60 703.41,219.77 703.41,228.87 703.41,243.17 703.41,259.30 703.41,274.91 703.41,290.08 703.41,311.55 703.41,361.34" fill="none" stroke="#1565C0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="465.63" cy="141.57" r="4.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
+<rect x="698.61" y="356.54" width="9.6" height="9.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
+<polyline points="465.63,141.57 744.37,141.57 744.37,141.18 744.37,141.19 744.37,141.16 744.37,136.88 744.37,133.30 744.37,132.11 744.37,125.77 744.37,124.51 744.37,122.53 744.37,123.47 744.37,119.30 744.37,121.04 744.37,119.82 744.37,115.66 744.37,120.12 744.37,121.31 744.37,118.61 744.37,127.47 744.37,154.87" fill="none" stroke="#C62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="465.63" cy="141.57" r="4.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
+<rect x="739.57" y="150.07" width="9.6" height="9.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
+<text x="443.33" y="409" font-family="Arial, sans-serif" font-size="12" fill="#444">-3.29%</text>
+<text x="766.67" y="409" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">44.4%</text>
 <text x="605.00" y="425" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#444">SEP gain (%)</text>
-<text x="433.33" y="381.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">56.3%</text>
-<text x="433.33" y="100.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">108%</text>
+<text x="433.33" y="381.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">88.5%</text>
+<text x="433.33" y="100.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">102%</text>
 <rect x="814.67" y="96" width="323.33" height="285" fill="#fafafa" stroke="#dddddd"/>
 <text x="976.33" y="78" font-family="Arial, sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#212121">ETD</text>
 <line x1="814.67" y1="96" x2="814.67" y2="381" stroke="#e6e6e6" stroke-width="1"/>
@@ -66,19 +66,19 @@
 <line x1="814.67" y1="309.75" x2="1138.00" y2="309.75" stroke="#e6e6e6" stroke-width="1"/>
 <line x1="1138.00" y1="96" x2="1138.00" y2="381" stroke="#e6e6e6" stroke-width="1"/>
 <line x1="814.67" y1="381.00" x2="1138.00" y2="381.00" stroke="#e6e6e6" stroke-width="1"/>
-<line x1="814.67" y1="304.38" x2="1138.00" y2="304.38" stroke="#777" stroke-width="1.2" stroke-dasharray="5 4"/>
-<text x="1134.00" y="299.38" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#555">95%</text>
-<polyline points="836.97,212.08 893.48,215.00 911.65,217.71 929.08,224.03 947.80,232.37 966.40,242.01 987.17,254.05 1011.41,272.22 1037.78,294.84 1064.23,308.20 1088.69,331.14 1106.09,344.69 1113.73,353.70 1115.48,361.34 1115.65,359.68 1115.70,359.04 1115.70,359.04 1115.70,359.04 1115.70,359.04 1115.70,359.04 1115.70,359.04" fill="none" stroke="#1565C0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="836.97" cy="212.08" r="4.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
-<rect x="1110.90" y="354.24" width="9.6" height="9.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
-<polyline points="860.78,115.66 888.71,120.31 897.03,118.27 907.80,126.01 918.38,122.40 927.61,122.62 937.53,127.77 946.66,136.69 955.11,144.98 961.81,151.94 966.35,152.20 969.25,152.82 971.25,154.56 972.53,153.87 973.29,155.86 973.42,155.82 973.43,155.82 973.43,155.82 973.43,155.82 973.43,155.82 973.43,155.82" fill="none" stroke="#C62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="860.78" cy="115.66" r="4.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
-<rect x="968.63" y="151.02" width="9.6" height="9.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
-<text x="814.67" y="409" font-family="Arial, sans-serif" font-size="12" fill="#444">-23.5%</text>
-<text x="1138.00" y="409" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">133%</text>
+<line x1="814.67" y1="360.64" x2="1138.00" y2="360.64" stroke="#777" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="1134.00" y="355.64" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#555">95%</text>
+<polyline points="836.97,157.07 892.52,157.07 892.52,159.66 892.52,159.66 892.52,169.72 892.52,179.39 892.52,184.38 892.52,190.71 892.52,196.68 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69 892.52,203.69" fill="none" stroke="#1565C0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="836.97" cy="157.07" r="4.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
+<rect x="887.72" y="198.89" width="9.6" height="9.6" fill="#1565C0" stroke="#fff" stroke-width="1.4"/>
+<polyline points="836.97,157.07 1115.70,157.07 1115.70,157.95 1115.70,157.95 1115.70,159.95 1115.70,159.67 1115.70,160.43 1115.70,159.10 1115.70,159.11 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07 1115.70,161.07" fill="none" stroke="#C62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="836.97" cy="157.07" r="4.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
+<rect x="1110.90" y="156.27" width="9.6" height="9.6" fill="#C62828" stroke="#fff" stroke-width="1.4"/>
+<text x="814.67" y="409" font-family="Arial, sans-serif" font-size="12" fill="#444">-1.39%</text>
+<text x="1138.00" y="409" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">18.8%</text>
 <text x="976.33" y="425" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#444">ETD gain (%)</text>
-<text x="804.67" y="381.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">92.0%</text>
-<text x="804.67" y="100.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">103%</text>
+<text x="804.67" y="381.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">94.5%</text>
+<text x="804.67" y="100.00" font-family="Arial, sans-serif" font-size="12" text-anchor="end" fill="#444">102%</text>
 <line x1="430" y1="452" x2="456" y2="452" stroke="#1565C0" stroke-width="2.6"/>
 <circle cx="443" cy="452" r="4" fill="#1565C0" stroke="#fff" stroke-width="1"/>
 <text x="464" y="456" font-family="Arial, sans-serif" font-size="13" fill="#333">PGPR</text>

@@ -1,0 +1,14 @@
+# Model Scope Table
+
+| Model | Native path available? | Datasets completed | Accuracy metrics available? | Explanation metrics available? | Dissertation role | Evidence file paths |
+| --- | --- | --- | --- | --- | --- | --- |
+| PGPR | Yes | LastFM, ML-1M, Amazon-Book KGAT | Yes | Yes for LastFM/ML-1M; Amazon LIR/SEP/ETD N/A | Native RL/path reasoning baseline; main comparison model | reports/tables/canonical_native_path_status_matrix.md; docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md |
+| UCPR | Yes | LastFM, ML-1M | Yes | Yes for completed LastFM/ML-1M; blocked on Amazon | Native path baseline on LastFM/ML-1M; Amazon blocked | reports/tables/canonical_native_path_status_matrix.md; reports/tables/amazon_classic_port_readiness.json |
+| CAFE | Yes | LastFM, ML-1M | Yes | Yes for completed LastFM/ML-1M; blocked on Amazon | Native path baseline on LastFM/ML-1M; Amazon blocked pending port | reports/tables/canonical_native_path_status_matrix.md; reports/tables/amazon_classic_port_readiness.json |
+| TPRec | Yes where timestamps are valid | LastFM, ML-1M | Yes | Yes for completed LastFM/ML-1M; blocked on Amazon | Temporal native-path baseline on LastFM/ML-1M; Amazon blocked by sentinel timestamps | docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md; reports/tables/amazon_classic_port_readiness.json |
+| KGGLM | Yes | LastFM, ML-1M, Amazon-Book KGAT | Yes | Yes for LastFM/ML-1M; Amazon LIR/SEP/ETD N/A | Path-language-model native-path baseline; main comparison model | docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md; reports/tables/canonical_native_path_status_matrix.md |
+| PEARLM | Yes | LastFM, ML-1M, Amazon-Book KGAT | Yes | Yes for LastFM/ML-1M; Amazon LIR/SEP/ETD N/A | KG-constrained path-language-model baseline; main comparison model | docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md; reports/tables/canonical_native_path_status_matrix.md |
+| KGIN | No native recommendation path | N/A | Deferred / N/A | No | Accuracy-only reference / optional appendix, not LIR/SEP/ETD | README.md; docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md; docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md |
+| KGAT | No native recommendation path in current protocol | N/A | Deferred / N/A | No | Accuracy-only reference / optional appendix | README.md; docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md; docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md |
+| LightGCN | No native KG path | N/A | Deferred / N/A | No | Accuracy-only reference / optional appendix | README.md; docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md; docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md |
+| TransE | No: embedding component | N/A | Deferred / N/A | No | Training/preprocessing component, not a recommender row | docs/guides/CANONICAL_NATIVE_PATH_HANDOFF_2026-06-27.md; reports/tables/amazon_classic_port_readiness.json |
