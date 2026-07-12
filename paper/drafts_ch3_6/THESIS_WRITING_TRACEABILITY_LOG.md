@@ -14,6 +14,7 @@ This file records the provenance of all internal evidence, external citations, f
 | Phase 1 External Citation Audit | Completed with caveats | `EXTERNAL_CITATION_AUDIT.md`; `BIBTEX_SEED.bib` | External search results from arXiv-facing pages and available primary-source search snippets. | Seeds created for PGPR/KPRN, CAFE, TPRec, KGAT, KGIN, LightGCN, PEARLM, surveys. | UCPR, KGGLM, and XRecSys/LIR/SEP/ETD primary citations not verified. Venue/DOI metadata requires manual check. |
 | Phase 2 Chapter 3 Draft | Completed draft pass and self-review pass | `chapter3_framework_implementation_and_verification_v2.md`; `chapter3_tables.md`; `chapter3_figure_specs.md`; `chapter3_evidence_used.md` | Canonical dataset guide, native-path architecture guide, path metric guide, validation table, accuracy table, explanation table. | External citations recorded as background seeds only. | Figure 3.1 and Figure 3.2 generated during cleanup pass. |
 | Formatting and Artifact Cleanup | Completed | `figures/figure_3_1_framework_overview.png`; `figures/figure_3_2_alpha_sweep_design.png`; `CLEANUP_STATUS.md` | Existing Phase 0-2 draft files and traceability log. | No citation facts changed. | No Chapter 4 drafting performed. |
+| Phase 3 Chapter 4 Draft | Completed draft pass and self-review pass | `chapter4_accuracy_explainability_tradeoff_results_v1.md`; `chapter4_tables.md`; `chapter4_figure_plan.md`; `chapter4_evidence_used.md`; `GOAL_3_STATUS.md` | Strict accuracy summary and accessible status matrix; explanation endpoint summary; canonical LastFM v4 and ML-1M v2 alpha-sweep CSVs; existing thesis figures. | No new external citation added; XRecSys/LIR/SEP/ETD primary publication still requires manual check. | Primary strict-accuracy JSON paths are absent from the current worktree and require manual check; mechanism analysis, ablation, Amazon boundary discussion, and causal interpretation remain deferred to Chapter 5. |
 
 ---
 
@@ -27,17 +28,20 @@ This file records the provenance of all internal evidence, external citations, f
 | INT-004 | `docs/guides/NATIVE_PATH_EXPERIMENT_ARCHITECTURE_2026-06-11.md` | methodology evidence | Ch.3.1, Ch.3.3 | Explainability scoring is limited to native-path models; non-path models are accuracy-only references. | Supports native/post-hoc separation. |
 | INT-005 | `docs/guides/PATH_METRICS_GUIDE.md` | methodology evidence | Ch.3.3, Ch.3.4 | LIR, SEP, and ETD depend on native path structure and different path positions. | Internal metric evidence. |
 | INT-006 | `thesis_analysis_pack/validation_status_table.md` | validation evidence | Ch.3.4, Ch.3.5 | LastFM/ML-1M six-model rows pass; Amazon has three pass and three blocked/N/A rows. | Validation summary. |
-| INT-007 | `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | Ch.3.5 | Strict accuracy values exist for completed rows. | Must not be mixed with alpha-sweep metrics. |
-| INT-008 | `thesis_analysis_pack/final_explanation_summary_table.md` | alpha-sweep evidence | Ch.3.5, Ch.3.6 | LIR/SEP/ETD alpha endpoints exist for LastFM and ML-1M; Amazon explanation metrics are N/A. | Endpoint evidence only. |
+| INT-007 | `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | Ch.3.5, Ch.4.2 | Strict accuracy values exist for completed rows. | Must not be mixed with alpha-sweep metrics. |
+| INT-008 | `thesis_analysis_pack/final_explanation_summary_table.md` | alpha-sweep evidence | Ch.3.5, Ch.3.6, Ch.4.3-4.7 | LIR/SEP/ETD alpha endpoints exist for LastFM and ML-1M; Amazon explanation metrics are N/A. | Endpoint evidence only. |
 | INT-009 | `reports/tables/ablation/pgpr_ucpr_path_module/` | ablation evidence | Ch.3.6, planned Ch.5 | Ablation evidence exists for later controllability and mechanism analysis. | Chapter 3 mentions setup only. |
-| INT-010 | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | figure evidence | Planned Ch.4 | LastFM strict accuracy figure exists. | Existing figure; not regenerated. |
-| INT-011 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | figure evidence | Planned Ch.4 | ML-1M strict accuracy figure exists. | Existing figure; not regenerated. |
-| INT-012 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | figure evidence | Planned Ch.4 | Explanation endpoint figure exists. | Existing figure; not regenerated. |
-| INT-013 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | figure evidence | Planned Ch.4 | LIR-NDCG trade-off figure exists. | Existing figure; not regenerated. |
+| INT-010 | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | figure evidence | Ch.4.2 | LastFM strict accuracy figure exists. | Existing figure; used without regeneration. |
+| INT-011 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | figure evidence | Ch.4.2 | ML-1M strict accuracy figure exists. | Existing figure; used without regeneration. |
+| INT-012 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | figure evidence | Ch.4.3 | Explanation endpoint figure exists. | Existing figure; used without regeneration. |
+| INT-013 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | figure evidence | Ch.4.4 | LIR-NDCG trade-off figure exists. | Existing figure; used without regeneration. |
 | INT-014 | `reports/figures/thesis_final/experiment_status_matrix.png` | figure evidence | Planned Ch.5 | Complete and blocked experiment rows are visualised. | Existing figure; not regenerated. |
 | INT-015 | `reports/tables/amazon_classic_port_readiness.json` | boundary-case evidence | Ch.3.5, planned Ch.5 | Amazon UCPR/CAFE/TPRec limitations are implementation/data-contract boundary cases. | Do not treat blocked rows as performance failures. |
 | INT-016 | `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png` | figure evidence | Ch.3 Figure 3.1 | Conceptual diagram of the implemented canonical native-path evaluation framework. | Generated during cleanup from INT-002, INT-003, and INT-004; no new experimental evidence. |
 | INT-017 | `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png` | figure evidence | Ch.3 Figure 3.2 | Conceptual diagram of the alpha-sweep trade-off design and strict-accuracy separation. | Generated during cleanup from INT-008 and trade-off source descriptions; no new experimental evidence. |
+| INT-018 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/` | alpha-sweep evidence | Ch.4.3-4.6 | LastFM LIR/SEP/ETD endpoints and paired ranking-metric curves across six native-path models. | Canonical promoted six-model trade-off bundle. |
+| INT-019 | `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/` | alpha-sweep evidence | Ch.4.3-4.6 | ML-1M LIR/SEP/ETD endpoints and paired ranking-metric curves across six native-path models. | Canonical promoted six-model trade-off bundle. |
+| INT-020 | `reports/tables/canonical_native_path_status_matrix.csv` | accessible strict accuracy evidence | Ch.4.2 | The same twelve LastFM and ML-1M strict accuracy rows reported in INT-007. | Present in the current worktree; primary per-row JSON paths recorded in this file are absent and require manual check. |
 
 ---
 
@@ -83,7 +87,14 @@ This file records the provenance of all internal evidence, external citations, f
 
 | Section | Claim | Evidence ID / Citation ID | Evidence type | Status |
 |---|---|---|---|---|
-| 4.1-4.7 | Chapter 4 not drafted in this pass. | N/A | N/A | Pending |
+| 4.1 | Chapter 4 reports main empirical results for six validated native-path models on LastFM and ML-1M; Amazon is excluded from the main trade-off analysis. | INT-001; INT-004; INT-006; INT-015 | methodology / validation / boundary evidence | Supported |
+| 4.2 | LastFM strict metric leaders are split between UCPR and TPRec, while CAFE leads all four strict metrics on ML-1M. | INT-007; INT-010; INT-011; INT-020 | strict accuracy / figure evidence | Supported with primary-path caveat |
+| 4.2 | No model is a universal strict-accuracy winner across both datasets. | INT-007; INT-020 | strict accuracy evidence | Supported with primary-path caveat |
+| 4.3 | LIR, SEP, and ETD endpoints vary by model and dataset and represent distinct explanation dimensions. | INT-005; INT-008; INT-012; INT-018; INT-019 | methodology / alpha-sweep / figure evidence | Supported |
+| 4.4 | LIR-oriented sweeps show model- and dataset-dependent changes in LIR and the paired NDCG sweep metric. | INT-013; INT-018; INT-019 | alpha-sweep / figure evidence | Supported |
+| 4.5 | SEP endpoint gains are accompanied by different levels of NDCG preservation or cost across models. | INT-008; INT-018; INT-019 | alpha-sweep evidence | Supported |
+| 4.6 | ETD endpoint movement differs substantially across models and datasets. | INT-008; INT-018; INT-019 | alpha-sweep evidence | Supported |
+| 4.7 | Trade-off behaviour and explanation-metric controllability are dataset- and model-dependent; no model dominates all reported dimensions. | INT-007; INT-008; INT-018; INT-019 | strict accuracy / alpha-sweep evidence | Supported |
 
 ### Chapter 5 Claim Map
 
@@ -106,10 +117,13 @@ This file records the provenance of all internal evidence, external citations, f
 | Figure 3.1 | 3 | `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png`, generated from INT-002, INT-003, INT-004 | methodology evidence / figure evidence | Generated black-and-white conceptual diagram during cleanup. |
 | Figure 3.2 | 3 | `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png`, generated from INT-008 and alpha-sweep source descriptions | alpha-sweep evidence / figure evidence | Generated black-and-white conceptual diagram during cleanup. |
 | Tables 3.1-3.7 | 3 | `chapter3_tables.md` generated from INT-002 to INT-009 | methodology / validation / strict accuracy / alpha-sweep / ablation evidence | Draft tables generated. |
-| Figure 4.1 | 4 | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | figure evidence | Existing figure; planned. |
-| Figure 4.2 | 4 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | figure evidence | Existing figure; planned. |
-| Figure 4.3 | 4 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | figure evidence | Existing figure; planned. |
-| Figure 4.4 | 4 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | figure evidence | Existing figure; planned. |
+| Table 4.1 | 4 | `chapter4_tables.md`, generated from `thesis_analysis_pack/final_accuracy_summary_table.md` and `reports/tables/canonical_native_path_status_matrix.csv` | strict accuracy evidence | Twelve complete LastFM and ML-1M rows; alpha-sweep values excluded; listed primary JSON paths are absent from the current worktree. |
+| Table 4.2 | 4 | `chapter4_tables.md`, generated from `thesis_analysis_pack/final_explanation_summary_table.md`, INT-018, and INT-019 | alpha-sweep evidence | Alpha=0 to alpha=1 LIR/SEP/ETD endpoints; not strict accuracy. |
+| Table 4.3 | 4 | `chapter4_tables.md`, generated from INT-010 to INT-013 and canonical SEP/ETD figure files in INT-018 and INT-019 | figure-provenance evidence | Core and optional figure inventory with evidence roles. |
+| Figure 4.1 | 4 | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | strict accuracy figure evidence | Existing figure; used without regeneration. |
+| Figure 4.2 | 4 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | strict accuracy figure evidence | Existing figure; used without regeneration. |
+| Figure 4.3 | 4 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | alpha-sweep figure evidence | Existing figure; endpoints are not strict accuracy. |
+| Figure 4.4 | 4 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | alpha-sweep figure evidence | Existing figure; paired NDCG sweep metric is separate from strict NDCG@10. |
 | Figure 5.1 | 5 | `reports/figures/ablation/pgpr_ucpr_path_module/` | ablation evidence | Existing figures; planned. |
 | Figure 5.2 | 5 | `reports/figures/thesis_final/experiment_status_matrix.png` | boundary-case evidence | Existing figure; planned. |
 
@@ -122,8 +136,10 @@ This file records the provenance of all internal evidence, external citations, f
 | Exact venue/DOI metadata for arXiv citation seeds. | Ch.3-6 | Search verified arXiv pages but not publisher metadata. | Manually check against ACM/IEEE/Springer/AAAI/WWW/KDD/SIGIR records. | Open |
 | UCPR model citation. | Ch.3/Ch.5 | Not found with available search. | Add only after primary source is verified. | Open |
 | KGGLM model citation. | Ch.3/Ch.5 | Not found with available search. | Add only after primary source is verified. | Open |
-| XRecSys/LIR/SEP/ETD primary publication. | Ch.3 | Not found with available search. | Use internal implementation docs unless verified. | Open |
+| XRecSys/LIR/SEP/ETD primary publication. | Ch.3/Ch.4 | Not found with available search. | Use internal implementation docs unless verified. | Requires manual check |
+| Direct inspection of the twelve primary LastFM and ML-1M strict-accuracy JSON files. | Ch.4 | Paths are recorded in the final accuracy summary and canonical status matrix, but the files are absent from the current worktree. | Use the two matching accessible summary tables for the draft; manually verify primary JSON provenance before final submission. | Requires manual check |
 | Any claim that Amazon-Book KGAT is a complete main trade-off experiment. | Ch.4/Ch.5 | Contradicted by current evidence. | Do not write this claim. | Blocked / excluded |
+| Causal or mechanism-level explanations for Chapter 4 curve shapes. | Ch.4/Ch.5 | Current Chapter 4 evidence establishes observed results but not causal mechanisms. | Keep Chapter 4 descriptive; evaluate mechanisms with ablation evidence in Chapter 5. | Deferred |
 
 ---
 
@@ -132,10 +148,12 @@ This file records the provenance of all internal evidence, external citations, f
 | Item | Source file | Evidence category | Can be used for | Must not be used for |
 |---|---|---|---|---|
 | Strict accuracy summary | `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | HR@10, NDCG@10, Precision@10, Recall@10 strict results. | Explanation endpoint claims or alpha-sweep trade-off curves. |
-| Accuracy JSON files | Paths listed in `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | Exact completed-row accuracy values. | LIR/SEP/ETD endpoint claims. |
+| Accuracy JSON files | Paths listed in `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | Exact completed-row accuracy values after primary files are restored or manually verified. | LIR/SEP/ETD endpoint claims; current draft must not imply the absent files were directly inspected. |
+| Accessible strict accuracy tables | `thesis_analysis_pack/final_accuracy_summary_table.md`; `reports/tables/canonical_native_path_status_matrix.csv` | strict accuracy evidence | Matching draft-level HR@10, NDCG@10, Precision@10, and Recall@10 values for the twelve main rows. | Explanation endpoint claims or concealment of the missing primary JSON caveat. |
 | Explanation summary table | `thesis_analysis_pack/final_explanation_summary_table.md` | alpha-sweep evidence | LIR/SEP/ETD alpha=0 -> alpha=1 endpoint summaries. | Strict accuracy replacement. |
 | Trade-off CSV bundles | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/` | alpha-sweep evidence | Trade-off curves and endpoint analysis. | Baseline strict accuracy reporting. |
 | PGPR/UCPR ablation tables | `reports/tables/ablation/pgpr_ucpr_path_module/` | ablation evidence | Chapter 5 controllability and mechanism analysis. | Main six-model result table. |
+| Chapter 4 separation audit | `chapter4_accuracy_explainability_tradeoff_results_v1.md`; `chapter4_tables.md`; `chapter4_evidence_used.md` | writing audit | Confirm that strict values appear only in Section 4.2/Table 4.1 and sweep values in Sections 4.3-4.6/Table 4.2. | Treat alpha-sweep NDCG as strict NDCG@10 or import ablation evidence into the main result comparison. |
 
 ---
 
@@ -153,8 +171,11 @@ This file records the provenance of all internal evidence, external citations, f
 
 ## 9. Final Audit Notes
 
-- Fully supported chapters: Chapter 3 draft package is supported at draft level.
-- Chapters needing manual citation check: Chapter 3 citation formatting; future Chapters 4-6 if they use model background citations.
+- Fully supported chapters: Chapter 3 and Chapter 4 draft packages are supported at draft level by the registered repository evidence.
+- Chapters needing manual citation check: Chapter 3 citation formatting; Chapter 4 XRecSys/LIR/SEP/ETD primary-source metadata; future Chapters 5-6 if they use model background citations.
 - Figures needing drawing: none for Chapter 3 conceptual figures; Figure 3.1 and Figure 3.2 were generated during cleanup.
-- Tables needing manual formatting: Tables 3.1-3.7 may need NTU template formatting later.
+- Chapter 4 figures: Figures 4.1-4.4 already exist and were not regenerated; optional SEP/ETD figures are retained as chapter or appendix candidates.
+- Tables needing manual formatting: Tables 3.1-3.7 and Tables 4.1-4.3 may need NTU template formatting later.
 - Claims to remove if evidence cannot be verified: UCPR external citation claims, KGGLM external citation claims, XRecSys primary-publication claims, and any Amazon complete-trade-off claim.
+- Primary evidence caveat: the twelve strict-accuracy JSON paths recorded by the two matching summary tables are absent from the current worktree and require manual verification before final submission.
+- Phase 3 audit result: strict accuracy, alpha-sweep trade-off, and ablation evidence remain separated; Amazon is excluded from the main Chapter 4 analysis; Chapter 5 was not drafted.
