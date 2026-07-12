@@ -12,7 +12,8 @@ This file records the provenance of all internal evidence, external citations, f
 |---|---|---|---|---|---|
 | Phase 0 Global Plan and Boundary Audit | Completed | `PHASE_0_GLOBAL_PLAN.md`; `CHAPTER_BOUNDARY_MAP.md`; `FIGURE_TABLE_MASTER_PLAN.md`; `CITATION_NEEDS_INITIAL.md`; `THESIS_WRITING_TRACEABILITY_LOG.md` | Thesis handoff, Chapter 3 material pack, result summaries, validation table, guides, figure inventory. | Initial citation needs listed. | Later phases must continue claim mapping. |
 | Phase 1 External Citation Audit | Completed with caveats | `EXTERNAL_CITATION_AUDIT.md`; `BIBTEX_SEED.bib` | External search results from arXiv-facing pages and available primary-source search snippets. | Seeds created for PGPR/KPRN, CAFE, TPRec, KGAT, KGIN, LightGCN, PEARLM, surveys. | UCPR, KGGLM, and XRecSys/LIR/SEP/ETD primary citations not verified. Venue/DOI metadata requires manual check. |
-| Phase 2 Chapter 3 Draft | Completed draft pass and self-review pass | `chapter3_framework_implementation_and_verification_v2.md`; `chapter3_tables.md`; `chapter3_figure_specs.md`; `chapter3_evidence_used.md` | Canonical dataset guide, native-path architecture guide, path metric guide, validation table, accuracy table, explanation table. | External citations recorded as background seeds only. | Figure 3.1 and Figure 3.2 are planned, not generated. |
+| Phase 2 Chapter 3 Draft | Completed draft pass and self-review pass | `chapter3_framework_implementation_and_verification_v2.md`; `chapter3_tables.md`; `chapter3_figure_specs.md`; `chapter3_evidence_used.md` | Canonical dataset guide, native-path architecture guide, path metric guide, validation table, accuracy table, explanation table. | External citations recorded as background seeds only. | Figure 3.1 and Figure 3.2 generated during cleanup pass. |
+| Formatting and Artifact Cleanup | Completed | `figures/figure_3_1_framework_overview.png`; `figures/figure_3_2_alpha_sweep_design.png`; `CLEANUP_STATUS.md` | Existing Phase 0-2 draft files and traceability log. | No citation facts changed. | No Chapter 4 drafting performed. |
 
 ---
 
@@ -35,6 +36,8 @@ This file records the provenance of all internal evidence, external citations, f
 | INT-013 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | figure evidence | Planned Ch.4 | LIR-NDCG trade-off figure exists. | Existing figure; not regenerated. |
 | INT-014 | `reports/figures/thesis_final/experiment_status_matrix.png` | figure evidence | Planned Ch.5 | Complete and blocked experiment rows are visualised. | Existing figure; not regenerated. |
 | INT-015 | `reports/tables/amazon_classic_port_readiness.json` | boundary-case evidence | Ch.3.5, planned Ch.5 | Amazon UCPR/CAFE/TPRec limitations are implementation/data-contract boundary cases. | Do not treat blocked rows as performance failures. |
+| INT-016 | `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png` | figure evidence | Ch.3 Figure 3.1 | Conceptual diagram of the implemented canonical native-path evaluation framework. | Generated during cleanup from INT-002, INT-003, and INT-004; no new experimental evidence. |
+| INT-017 | `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png` | figure evidence | Ch.3 Figure 3.2 | Conceptual diagram of the alpha-sweep trade-off design and strict-accuracy separation. | Generated during cleanup from INT-008 and trade-off source descriptions; no new experimental evidence. |
 
 ---
 
@@ -100,8 +103,8 @@ This file records the provenance of all internal evidence, external citations, f
 
 | Figure/Table | Chapter | Source file / generated from | Evidence type | Notes |
 |---|---|---|---|---|
-| Figure 3.1 | 3 | Planned conceptual figure from INT-002, INT-003, INT-004 | methodology evidence | Not generated in this phase. |
-| Figure 3.2 | 3 | Planned conceptual figure from INT-007 and alpha-sweep CSV bundles | alpha-sweep evidence | Not generated in this phase. |
+| Figure 3.1 | 3 | `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png`, generated from INT-002, INT-003, INT-004 | methodology evidence / figure evidence | Generated black-and-white conceptual diagram during cleanup. |
+| Figure 3.2 | 3 | `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png`, generated from INT-008 and alpha-sweep source descriptions | alpha-sweep evidence / figure evidence | Generated black-and-white conceptual diagram during cleanup. |
 | Tables 3.1-3.7 | 3 | `chapter3_tables.md` generated from INT-002 to INT-009 | methodology / validation / strict accuracy / alpha-sweep / ablation evidence | Draft tables generated. |
 | Figure 4.1 | 4 | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | figure evidence | Existing figure; planned. |
 | Figure 4.2 | 4 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | figure evidence | Existing figure; planned. |
@@ -152,7 +155,6 @@ This file records the provenance of all internal evidence, external citations, f
 
 - Fully supported chapters: Chapter 3 draft package is supported at draft level.
 - Chapters needing manual citation check: Chapter 3 citation formatting; future Chapters 4-6 if they use model background citations.
-- Figures needing drawing: Figure 3.1 and Figure 3.2 are planned conceptual figures, not generated.
+- Figures needing drawing: none for Chapter 3 conceptual figures; Figure 3.1 and Figure 3.2 were generated during cleanup.
 - Tables needing manual formatting: Tables 3.1-3.7 may need NTU template formatting later.
 - Claims to remove if evidence cannot be verified: UCPR external citation claims, KGGLM external citation claims, XRecSys primary-publication claims, and any Amazon complete-trade-off claim.
-

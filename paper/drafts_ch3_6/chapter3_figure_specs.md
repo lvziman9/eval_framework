@@ -4,7 +4,11 @@
 
 Type: Conceptual pipeline diagram.
 
-Status: Planned, not generated in this phase.
+Status: Generated.
+
+Generated file:
+
+- `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png`
 
 Evidence basis:
 
@@ -32,7 +36,11 @@ Figure 3.1 shows the implemented canonical native-path evaluation framework. The
 
 Type: Conceptual experiment-design diagram.
 
-Status: Planned, not generated in this phase.
+Status: Generated.
+
+Generated file:
+
+- `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png`
 
 Evidence basis:
 
@@ -53,4 +61,3 @@ Required content:
 Caption draft:
 
 Figure 3.2 illustrates the alpha-sweep design used for trade-off analysis. Strict accuracy values are kept separate from alpha-sweep evidence, which is used to inspect how explanation-oriented objectives affect ranking and path properties.
-
