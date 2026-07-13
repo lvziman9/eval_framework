@@ -17,7 +17,7 @@
 | ML-1M | KGGLM | 0.168874 | 0.033649 | 0.019305 | 0.010506 | `reports/tables/canonical_native_path_status_matrix.csv` |
 | ML-1M | PEARLM | 0.214735 | 0.035303 | 0.027119 | 0.011040 | `reports/tables/canonical_native_path_status_matrix.csv` |
 
-*Caption:* Strict top-10 accuracy results for the six validated native-path model rows on LastFM and ML-1M. Values are present in both `thesis_analysis_pack/final_accuracy_summary_table.md` and the accessible canonical status matrix; they are not alpha-sweep values.
+**Table 4.1.** Strict top-10 accuracy results for the six validated native-path model rows on LastFM and ML-1M. Values are present in both `thesis_analysis_pack/final_accuracy_summary_table.md` and the accessible canonical status matrix; they are not alpha-sweep values.
 
 The source summary records a primary per-row accuracy JSON path for each model. Those JSON files are not present in the current worktree and require manual checking before final submission.
 
@@ -38,7 +38,7 @@ The source summary records a primary per-row accuracy JSON path for each model. 
 | ML-1M | KGGLM | 0.3161 -> 0.3161 | 0.4791 -> 0.4791 | 0.0950 -> 0.0950 | `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/` |
 | ML-1M | PEARLM | 0.4225 -> 0.4272 | 0.5094 -> 0.5266 | 0.0984 -> 0.0989 | `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/` |
 
-*Caption:* Explanation-metric endpoints from the canonical NDCG alpha-sweep CSVs. Each cell reports alpha=0 followed by alpha=1. These values are trade-off evidence and do not replace strict accuracy results.
+**Table 4.2.** Explanation-metric endpoints from the canonical NDCG alpha-sweep CSVs. Each cell reports alpha=0 followed by alpha=1. These values are trade-off evidence and do not replace strict accuracy results.
 
 The LastFM directory contains `tradeoff_lastfm_LIR_ndcg_models.csv`, `tradeoff_lastfm_SEP_ndcg_models.csv`, and `tradeoff_lastfm_ETD_ndcg_models.csv`. The ML-1M directory contains `tradeoff_ml1m_LIR_ndcg_models.csv`, `tradeoff_ml1m_SEP_ndcg_models.csv`, and `tradeoff_ml1m_ETD_ndcg_models.csv`.
 
@@ -50,7 +50,7 @@ The LastFM directory contains `tradeoff_lastfm_LIR_ndcg_models.csv`, `tradeoff_l
 | Figure 4.2 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | ML-1M | HR@10 and NDCG@10 | 4.2 | ML-1M HR@10 and NDCG@10 comparison for six validated native-path model rows under the strict canonical evaluation protocol. | Strict accuracy figure |
 | Figure 4.3 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | LastFM and ML-1M | LIR, SEP, and ETD endpoints | 4.3 | Endpoint comparison of LIR, SEP, and ETD at alpha=0 and alpha=1 for the six native-path models on LastFM and ML-1M. | Alpha-sweep figure |
 | Figure 4.4 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | LastFM and ML-1M | LIR versus NDCG sweep metric | 4.4 | LIR-oriented alpha-sweep trade-off curves against the NDCG sweep metric on LastFM and ML-1M. | Alpha-sweep figure |
-| Optional Figure 4.5 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_SEP_ndcg_models.png`<br>`reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_SEP_ndcg_models.png` | LastFM and ML-1M | SEP versus NDCG sweep metric | 4.5 or appendix | SEP-oriented alpha-sweep trade-off curves against the NDCG sweep metric on LastFM and ML-1M. | Alpha-sweep figures |
-| Optional Figure 4.6 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_ETD_ndcg_models.png`<br>`reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_ETD_ndcg_models.png` | LastFM and ML-1M | ETD versus NDCG sweep metric | 4.6 or appendix | ETD-oriented alpha-sweep trade-off curves against the NDCG sweep metric on LastFM and ML-1M. | Alpha-sweep figures |
+| Optional Figure 4.5 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_SEP_ndcg_models.png`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_SEP_ndcg_models.png` | LastFM and ML-1M | SEP versus NDCG sweep metric | 4.5 or appendix | SEP-oriented alpha-sweep trade-off curves against the NDCG sweep metric on LastFM and ML-1M. | Alpha-sweep figures |
+| Optional Figure 4.6 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_ETD_ndcg_models.png`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_ETD_ndcg_models.png` | LastFM and ML-1M | ETD versus NDCG sweep metric | 4.6 or appendix | ETD-oriented alpha-sweep trade-off curves against the NDCG sweep metric on LastFM and ML-1M. | Alpha-sweep figures |
 
-*Caption:* Inventory and provenance of the core and optional figures used to support Chapter 4.
+**Table 4.3.** Inventory and provenance of the core and optional figures used to support Chapter 4.
