@@ -1,0 +1,36 @@
+# Figure and Table Integration Plan
+
+| Item | Chapter | Title / purpose | Source path | Main text or appendix | Status | Required action |
+| --- | --- | --- | --- | --- | --- | --- |
+| Table 1.1 | 1 | Objectives, specifications, and chapter evidence | `CHAPTER1_INTRODUCTION_DRAFT_V1.md`, Section 1.3 | Main text | Integrated as an unnumbered Markdown table | Assign the final NTU table number and caption during formatting. |
+| Figure 1.x | 1 | No figure required | -- | -- | Not required | Keep Chapter 1 focused unless the supervisor requests a dissertation overview diagram. |
+| Optional Table 2.1 | 2 | Literature-area, gap, and dissertation-response synthesis | `paper/literature/review_outputs/CHAPTER2_GAP_MAP.md` | Appendix candidate | Not included in v2 | Add only if the final literature review needs a compact synthesis table; do not duplicate Section 2.6 prose. |
+| Figure 2.x | 2 | No literature taxonomy figure required | -- | -- | Not required | Avoid a decorative taxonomy figure unless it improves the final argument. |
+| Table 3.1 | 3 | Canonical dataset and model-view design requirements | `paper/drafts_ch3_6/chapter3_tables.md` | Main text | Existing Markdown table | Place after Section 3.2 and preserve evidence paths. |
+| Table 3.2 | 3 | Native-path export contract | `paper/drafts_ch3_6/chapter3_tables.md` | Main text | Existing Markdown table | Place after the export artifact list in Section 3.3. |
+| Table 3.3 | 3 | Evaluation metrics and interpretation boundaries | `paper/drafts_ch3_6/chapter3_tables.md` | Main text | Existing Markdown table | Update the caption to cite XRecSys conceptually and the internal guide for exact LIR/SEP/ETD implementation. |
+| Table 3.4 | 3 | Validation checks | `paper/drafts_ch3_6/chapter3_tables.md` | Main text | Existing Markdown table | Place in Section 3.4. |
+| Table 3.5 | 3 | Framework verification summary | `paper/drafts_ch3_6/chapter3_tables.md` | Main text | Existing Markdown table | Place in Section 3.5; keep Amazon partial. |
+| Table 3.6 | 3 | Trade-off and ablation evidence design | `paper/drafts_ch3_6/chapter3_tables.md` | Main text | Existing Markdown table; provenance wording needs refresh | Replace “accuracy JSONs” as an accessible source with the canonical status matrix plus matching summary and retain the `0/12` caveat. |
+| Table 3.7 | 3 | Representative alpha-sweep endpoints | `paper/drafts_ch3_6/chapter3_tables.md` | Appendix candidate | Existing Markdown table | Use only as verification examples; omit from the main text if it duplicates Chapter 4. |
+| Figure 3.1 | 3 | Implemented canonical native-path evaluation framework | `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png` | Main text | Existing asset | Place in Section 3.1 with the registered caption; no regeneration. |
+| Figure 3.2 | 3 | Alpha-sweep experiment design and evidence separation | `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png` | Main text | Existing asset | Place in Section 3.4 or 3.6; caption must distinguish strict accuracy, sweep, and ablation. |
+| Table 4.1 | 4 | Strict accuracy on LastFM and ML-1M | `paper/drafts_ch3_6/chapter4_tables.md` | Main text | Existing Markdown table | Retain exact values and the missing-primary-JSON note. |
+| Table 4.2 | 4 | LIR, SEP, and ETD alpha endpoints | `paper/drafts_ch3_6/chapter4_tables.md` | Main text | Existing Markdown table | Retain as alpha-sweep evidence; never label as strict accuracy. |
+| Table 4.3 | 4 | Figure inventory and provenance | `paper/drafts_ch3_6/chapter4_tables.md` | Appendix or integration record | Existing Markdown table | Exclude from the final narrative if the dedicated figure plan is sufficient. |
+| Figure 4.1 | 4 | LastFM HR@10 and NDCG@10 comparison | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | Main text | Existing asset | Place in Section 4.2; strict-accuracy caption. |
+| Figure 4.2 | 4 | ML-1M HR@10 and NDCG@10 comparison | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | Main text | Existing asset | Place in Section 4.2; strict-accuracy caption. |
+| Figure 4.3 | 4 | Explanation metric alpha endpoints | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | Main text | Existing asset | Place in Section 4.3; label as alpha-sweep endpoints. |
+| Figure 4.4 | 4 | LIR–NDCG alpha-sweep trade-off | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | Main text | Existing asset | Place in Section 4.4; NDCG is the sweep metric, not strict NDCG@10. |
+| Optional Figure 4.5 | 4 | SEP–NDCG alpha-sweep trajectories | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_SEP_ndcg_models.png`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_SEP_ndcg_models.png` | Appendix candidate | Existing assets | Assemble as dataset panels only if main-text space permits. |
+| Optional Figure 4.6 | 4 | ETD–NDCG alpha-sweep trajectories | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_ETD_ndcg_models.png`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_ETD_ndcg_models.png` | Appendix candidate | Existing assets | Assemble as dataset panels only if main-text space permits. |
+| Table 5.1 | 5 | PGPR/UCPR ablation evidence summary | `paper/drafts_ch3_6/chapter5_tables.md` | Main text | Existing Markdown table | Keep frozen-item-set, alpha=0, and 95% NDCG-retention boundaries in the caption. |
+| Table 5.2 | 5 | Mechanism comparison and evidence grade | `paper/drafts_ch3_6/chapter5_tables.md` | Main text | Existing table; citation statuses are stale | Before insertion, update UCPR, CAFE, TPRec, KGGLM, and XRecSys statuses from the verified register; keep PEARLM partial and causal claims descriptive. |
+| Table 5.3 | 5 | Amazon-Book KGAT evidence boundary | `paper/drafts_ch3_6/chapter5_tables.md` | Main text | Existing Markdown table | Keep three PASS and three BLOCKED/N/A rows; do not rank blocked rows. |
+| Table 5.4 | 5 | Limitations and implications | `paper/drafts_ch3_6/chapter5_tables.md` | Main text | Existing table; citation-status row is stale | Replace old unverified-source wording with the current PEARLM/“Measuring Why” and repository-implementation caveats. |
+| Figure 5.1(a) | 5 | LastFM PGPR/UCPR ablation trade-offs | `reports/figures/ablation/pgpr_ucpr_path_module/lastfm_ndcg_tradeoff.svg` | Main text | Existing asset | Pair with Figure 5.1(b); keep separate from Chapter 4 sweeps and strict accuracy. |
+| Figure 5.1(b) | 5 | ML-1M PGPR/UCPR ablation trade-offs | `reports/figures/ablation/pgpr_ucpr_path_module/ml1m_ndcg_tradeoff.svg` | Main text | Existing asset | Pair with Figure 5.1(a); no regeneration. |
+| Figure 5.2 | 5 | Validation status and Amazon boundary matrix | `reports/figures/thesis_final/experiment_status_matrix.png` | Main text | Existing asset | Place in Section 5.4; status visualisation, not model ranking. |
+| Table/Figure 6.x | 6 | No new result table or figure | -- | -- | Not required | Chapter 6 synthesises earlier evidence only. |
+
+The current Markdown integration registers numbering, source paths, evidence roles, and intended placement. Final table insertion, composite-panel assembly, caption styling, sizing, pagination, and appendix selection belong to the later NTU formatting goal.
