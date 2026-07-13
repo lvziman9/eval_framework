@@ -3,7 +3,7 @@
 ## Evidence Register
 
 | Evidence ID | Repo-relative path | Evidence type | Used in section | Claim supported | Notes |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | INT-CH4-001 | `paper/drafts_ch3_6/CHAPTER_BOUNDARY_MAP.md` | Chapter-boundary evidence | 4.1, 4.7 | Chapter 4 contains main results; mechanism, ablation, limitations, and the Amazon boundary case belong to Chapter 5. | Boundary retained. |
 | INT-CH4-002 | `paper/drafts_ch3_6/FIGURE_TABLE_MASTER_PLAN.md` | Figure/table planning evidence | 4.2-4.4 | Core Chapter 4 figure numbering and intended evidence roles. | Existing figures only. |
 | INT-CH4-003 | `paper/drafts_ch3_6/chapter3_framework_implementation_and_verification_v2.md` | Methodology context | 4.1 | LastFM and ML-1M provide complete six-model native-path comparisons; evidence streams are separated. | Referenced for continuity, not changed. |
@@ -43,7 +43,7 @@ All files and directories explicitly required by Goal 3 were present and read. T
 ## Unsupported or Uncertain Claims
 
 | Claim | Problem | Action taken | Status |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | A primary external publication for the XRecSys LIR/SEP/ETD definitions. | The citation remains unverified in the existing citation audit. | Metric definitions are attributed only to the repository implementation guide; no external citation was invented. | Requires manual check |
 | Direct inspection of the twelve primary LastFM and ML-1M strict-accuracy JSON files. | The paths are recorded in the final accuracy summary and status matrix, but the JSON files are absent from the current worktree. | Values were matched between the required summary table and the accessible canonical status matrix; primary JSON provenance still requires manual check. | Requires manual check |
 | A complete Amazon-Book KGAT six-model trade-off comparison. | Current evidence contains only three complete rows and no reportable explanation alpha sweeps. | Amazon is excluded from the main Chapter 4 analysis and reserved for Chapter 5. | Unsupported and excluded |

@@ -9,7 +9,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 1. Phase Progress Log
 
 | Phase | Status | Files generated | Evidence used | Citation work | Open issues |
-|---|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Phase 0 Global Plan and Boundary Audit | Completed | `PHASE_0_GLOBAL_PLAN.md`; `CHAPTER_BOUNDARY_MAP.md`; `FIGURE_TABLE_MASTER_PLAN.md`; `CITATION_NEEDS_INITIAL.md`; `THESIS_WRITING_TRACEABILITY_LOG.md` | Thesis handoff, Chapter 3 material pack, result summaries, validation table, guides, figure inventory. | Initial citation needs listed. | Later phases must continue claim mapping. |
 | Phase 1 External Citation Audit | Completed with caveats | `EXTERNAL_CITATION_AUDIT.md`; `BIBTEX_SEED.bib` | External search results from arXiv-facing pages and available primary-source search snippets. | Seeds created for PGPR/KPRN, CAFE, TPRec, KGAT, KGIN, LightGCN, PEARLM, surveys. | UCPR, KGGLM, and XRecSys/LIR/SEP/ETD primary citations not verified. Venue/DOI metadata requires manual check. |
 | Phase 2 Chapter 3 Draft | Completed draft pass and self-review pass | `chapter3_framework_implementation_and_verification_v2.md`; `chapter3_tables.md`; `chapter3_figure_specs.md`; `chapter3_evidence_used.md` | Canonical dataset guide, native-path architecture guide, path metric guide, validation table, accuracy table, explanation table. | External citations recorded as background seeds only. | Figure 3.1 and Figure 3.2 generated during cleanup pass. |
@@ -22,7 +22,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 2. Internal Repository Evidence Register
 
 | Evidence ID | Repo-relative path | Evidence type | Used in chapter / section | Claim supported | Notes |
-|---|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | INT-001 | `thesis_analysis_pack/FINAL_THESIS_HANDOFF.md` | methodology evidence | Ch.3-6 planning | Dissertation is an evaluation framework, not a new recommender model; LastFM/ML-1M complete; Amazon partial stress test. | Source-of-truth handoff. |
 | INT-002 | `thesis_analysis_pack/goal_12_chapter_3_material_pack.md` | methodology evidence | Ch.3 | Chapter 3 pipeline: canonical layer, model views, export contract, validation gate, metrics, report layer. | Main Chapter 3 source. |
 | INT-003 | `docs/guides/CANONICAL_DATASET_STANDARD.md` | methodology evidence | Ch.3.2 | Canonical datasets define shared users, products, splits, labels, KG provenance, and mapping requirements. | Primary canonical standard. |
@@ -49,7 +49,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 3. External Citation Register
 
 | Citation ID | Citation key | Claim supported | Paper title | Authors | Year | Venue / source | URL / DOI / arXiv | Used in chapter | Confidence | Notes |
-|---|---|---|---|---|---|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | EXT-001 | `wang2018pgpr` | KG path reasoning can produce recommendation paths used as explanations. | Explainable Reasoning over Knowledge Graphs for Recommendation | Xiang Wang et al. | 2018 | arXiv | https://arxiv.org/abs/1811.04540 | Ch.3 background; planned Ch.5 | Medium | Venue/DOI and exact PGPR naming require manual check. |
 | EXT-002 | `xian2020cafe` | CAFE uses coarse-to-fine neural symbolic reasoning for explainable recommendation. | CAFE: Coarse-to-Fine Neural Symbolic Reasoning for Explainable Recommendation | Yikun Xian et al. | 2020 | arXiv | https://arxiv.org/abs/2010.15620 | Ch.3 model context | Medium | Venue/DOI require manual check. |
 | EXT-003 | `zhao2021tprec` | TPRec is time-aware path reasoning for KG recommendation. | Time-aware Path Reasoning on Knowledge Graph for Recommendation | Yuyue Zhao et al. | 2021 | arXiv | https://arxiv.org/abs/2108.02634 | Ch.3 model context | Medium | Venue/DOI require manual check. |
@@ -71,7 +71,7 @@ This file records the provenance of all internal evidence, external citations, f
 ### Chapter 3 Claim Map
 
 | Section | Claim | Evidence ID / Citation ID | Evidence type | Status |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | 3.1 | The dissertation contributes an evaluation framework, not a new recommender model. | INT-001; INT-002 | methodology evidence | Supported |
 | 3.1 | The framework separates canonical dataset truth, model views, exports, validation, and reporting. | INT-002; INT-003; INT-004 | methodology evidence | Supported |
 | 3.2 | Canonical datasets define shared identifiers, splits, labels, KG provenance, and mapping requirements. | INT-003 | methodology evidence | Supported |
@@ -87,7 +87,7 @@ This file records the provenance of all internal evidence, external citations, f
 ### Chapter 4 Claim Map
 
 | Section | Claim | Evidence ID / Citation ID | Evidence type | Status |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | 4.1 | Chapter 4 reports main empirical results for six validated native-path models on LastFM and ML-1M; Amazon is excluded from the main trade-off analysis. | INT-001; INT-004; INT-006; INT-015 | methodology / validation / boundary evidence | Supported |
 | 4.2 | LastFM strict metric leaders are split between UCPR and TPRec, while CAFE leads all four strict metrics on ML-1M. | INT-007; INT-010; INT-011; INT-020 | strict accuracy / figure evidence | Supported with primary-path caveat |
 | 4.2 | No model is a universal strict-accuracy winner across both datasets. | INT-007; INT-020 | strict accuracy evidence | Supported with primary-path caveat |
@@ -100,13 +100,13 @@ This file records the provenance of all internal evidence, external citations, f
 ### Chapter 5 Claim Map
 
 | Section | Claim | Evidence ID / Citation ID | Evidence type | Status |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | 5.1-5.5 | Chapter 5 not drafted in this pass. | N/A | N/A | Pending |
 
 ### Chapter 6 Claim Map
 
 | Section | Claim | Evidence ID / Citation ID | Evidence type | Status |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | 6.1-6.2 | Chapter 6 not drafted in this pass. | N/A | N/A | Pending |
 
 ---
@@ -114,7 +114,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 5. Figure and Table Provenance
 
 | Figure/Table | Chapter | Source file / generated from | Evidence type | Notes |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | Figure 3.1 | 3 | `paper/drafts_ch3_6/figures/figure_3_1_framework_overview.png`, generated from INT-002, INT-003, INT-004 | methodology evidence / figure evidence | Generated black-and-white conceptual diagram during cleanup. |
 | Figure 3.2 | 3 | `paper/drafts_ch3_6/figures/figure_3_2_alpha_sweep_design.png`, generated from INT-008 and alpha-sweep source descriptions | alpha-sweep evidence / figure evidence | Generated black-and-white conceptual diagram during cleanup. |
 | Tables 3.1-3.7 | 3 | `chapter3_tables.md` generated from INT-002 to INT-009 | methodology / validation / strict accuracy / alpha-sweep / ablation evidence | Draft tables generated. |
@@ -133,7 +133,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 6. Unsupported or Uncertain Claims
 
 | Claim | Intended chapter | Problem | Required action | Status |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | Exact venue/DOI metadata for arXiv citation seeds. | Ch.3-6 | Search verified arXiv pages but not publisher metadata. | Manually check against ACM/IEEE/Springer/AAAI/WWW/KDD/SIGIR records. | Open |
 | UCPR model citation. | Ch.3/Ch.5 | Not found with available search. | Add only after primary source is verified. | Open |
 | KGGLM model citation. | Ch.3/Ch.5 | Not found with available search. | Add only after primary source is verified. | Open |
@@ -147,7 +147,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 7. Strict Accuracy vs Alpha-Sweep Separation Log
 
 | Item | Source file | Evidence category | Can be used for | Must not be used for |
-|---|---|---|---|---|
+| :--- | :--- | :--- | :--- | :--- |
 | Strict accuracy summary | `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | HR@10, NDCG@10, Precision@10, Recall@10 strict results. | Explanation endpoint claims or alpha-sweep trade-off curves. |
 | Accuracy JSON files | Paths listed in `thesis_analysis_pack/final_accuracy_summary_table.md` | strict accuracy evidence | Exact completed-row accuracy values after primary files are restored or manually verified. | LIR/SEP/ETD endpoint claims; current draft must not imply the absent files were directly inspected. |
 | Accessible strict accuracy tables | `thesis_analysis_pack/final_accuracy_summary_table.md`; `reports/tables/canonical_native_path_status_matrix.csv` | strict accuracy evidence | Matching draft-level HR@10, NDCG@10, Precision@10, and Recall@10 values for the twelve main rows. | Explanation endpoint claims or concealment of the missing primary JSON caveat. |
@@ -161,7 +161,7 @@ This file records the provenance of all internal evidence, external citations, f
 ## 8. Amazon-Book KGAT Boundary Log
 
 | Claim | Evidence path | Status | How to phrase in thesis |
-|---|---|---|---|
+| :--- | :--- | :--- | :--- |
 | Amazon-Book KGAT has complete rows for KGGLM, PEARLM, and PGPR. | `thesis_analysis_pack/validation_status_table.md`; `thesis_analysis_pack/final_accuracy_summary_table.md` | Supported | "Amazon-Book KGAT provides a partial stress test with three complete rows." |
 | Amazon-Book KGAT UCPR is blocked. | `reports/tables/amazon_classic_port_readiness.json`; `thesis_analysis_pack/validation_status_table.md` | Supported | "UCPR remains blocked for strict full-user export/accuracy under the current formal pipeline evidence." |
 | Amazon-Book KGAT CAFE is blocked. | `reports/tables/amazon_classic_port_readiness.json`; `thesis_analysis_pack/validation_status_table.md` | Supported | "CAFE requires additional Amazon schema/data-builder support before it can be treated as a complete row." |

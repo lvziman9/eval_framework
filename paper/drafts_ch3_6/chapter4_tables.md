@@ -3,7 +3,7 @@
 ## Table 4.1 Strict Accuracy Results on LastFM and ML-1M
 
 | Dataset | Model | HR@10 | NDCG@10 | Precision@10 | Recall@10 | Evidence path |
-| --- | --- | ---: | ---: | ---: | ---: | --- |
+| :--- | :--- | ---: | ---: | ---: | ---: | :--- |
 | LastFM | PGPR | 0.186389 | 0.030905 | 0.025356 | 0.017731 | `reports/tables/canonical_native_path_status_matrix.csv` |
 | LastFM | UCPR | 0.216416 | 0.037377 | 0.031129 | 0.023155 | `reports/tables/canonical_native_path_status_matrix.csv` |
 | LastFM | CAFE | 0.180233 | 0.030214 | 0.025718 | 0.018639 | `reports/tables/canonical_native_path_status_matrix.csv` |
@@ -24,7 +24,7 @@ The source summary records a primary per-row accuracy JSON path for each model. 
 ## Table 4.2 Explanation Metric Endpoint Summary
 
 | Dataset | Model | LIR alpha=0 -> alpha=1 | SEP alpha=0 -> alpha=1 | ETD alpha=0 -> alpha=1 | Evidence path |
-| --- | --- | ---: | ---: | ---: | --- |
+| :--- | :--- | ---: | ---: | ---: | :--- |
 | LastFM | PGPR | 0.0062 -> 0.0219 | 0.5688 -> 0.9877 | 0.1396 -> 0.3552 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/` |
 | LastFM | UCPR | 0.0050 -> 0.0118 | 0.5170 -> 0.9336 | 0.1196 -> 0.1856 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/` |
 | LastFM | CAFE | 0.0012 -> 0.0042 | 0.7308 -> 0.9890 | 0.2314 -> 0.3728 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/` |
@@ -45,7 +45,7 @@ The LastFM directory contains `tradeoff_lastfm_LIR_ndcg_models.csv`, `tradeoff_l
 ## Table 4.3 Trade-off Figure Inventory Used in Chapter 4
 
 | Figure | File path | Dataset | Metric focus | Used in section | Caption draft | Evidence type |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Figure 4.1 | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | LastFM | HR@10 and NDCG@10 | 4.2 | LastFM HR@10 and NDCG@10 comparison for six validated native-path model rows under the strict canonical evaluation protocol. | Strict accuracy figure |
 | Figure 4.2 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | ML-1M | HR@10 and NDCG@10 | 4.2 | ML-1M HR@10 and NDCG@10 comparison for six validated native-path model rows under the strict canonical evaluation protocol. | Strict accuracy figure |
 | Figure 4.3 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | LastFM and ML-1M | LIR, SEP, and ETD endpoints | 4.3 | Endpoint comparison of LIR, SEP, and ETD at alpha=0 and alpha=1 for the six native-path models on LastFM and ML-1M. | Alpha-sweep figure |

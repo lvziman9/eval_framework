@@ -3,7 +3,7 @@
 ## Core Figures
 
 | Figure | Title | Existing file | Data source | Intended section | Status | Caveat |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Figure 4.1 | LastFM accuracy comparison | `reports/figures/thesis_final/lastfm_accuracy_hr_ndcg.png` | Strict per-row accuracy evidence indexed by `reports/tables/canonical_native_path_status_matrix.csv` | 4.2 | Existing; use without regeneration | Displays HR@10 and NDCG@10 only; Table 4.1 supplies Precision@10 and Recall@10. |
 | Figure 4.2 | ML-1M accuracy comparison | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | Strict per-row accuracy evidence indexed by `reports/tables/canonical_native_path_status_matrix.csv` | 4.2 | Existing; use without regeneration | Displays HR@10 and NDCG@10 only; Table 4.1 supplies Precision@10 and Recall@10. |
 | Figure 4.3 | Explanation metric alpha endpoints | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | Canonical LastFM v4 six-model and ML-1M v2 LIR/SEP/ETD NDCG alpha-sweep CSVs | 4.3 | Existing; use without regeneration | Endpoints are alpha-sweep evidence, not strict accuracy. |
@@ -12,7 +12,7 @@
 ## Optional or Appendix Figures
 
 | Figure | Title | Existing files | Intended section | Status | Selection note |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Optional Figure 4.5 | SEP-oriented trade-off results | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_SEP_ndcg_models.png`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_SEP_ndcg_models.png` | 4.5 or appendix | Existing; no composite figure generated | Use as two dataset panels if the final chapter has space; otherwise retain as appendix candidates. |
 | Optional Figure 4.6 | ETD-oriented trade-off results | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/tradeoff_lastfm_ETD_ndcg_models.png`; `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/tradeoff_ml1m_ETD_ndcg_models.png` | 4.6 or appendix | Existing; no composite figure generated | Use as two dataset panels if the final chapter has space; otherwise retain as appendix candidates. |
 
