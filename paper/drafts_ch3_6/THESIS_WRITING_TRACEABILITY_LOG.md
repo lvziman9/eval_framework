@@ -18,6 +18,7 @@ This file records the provenance of all internal evidence, external citations, f
 | Goal 3 Chapter 4 Cleanup | Completed | `GOAL_3_CLEANUP_STATUS.md`; formatting audit of the Chapter 4 draft package | Existing Chapter 4 draft files and traceability records only. | No citation status changed. | Formatting-only cleanup; existing missing-evidence caveats and claim statuses remain unchanged; Chapter 5 not entered. |
 | Goal 4 Chapter 5 Draft | Completed draft pass and self-review pass | `chapter5_ablation_mechanism_boundary_cases_v1.md`; `chapter5_tables.md`; `chapter5_figure_plan.md`; `chapter5_evidence_used.md`; `GOAL_4_STATUS.md` | PGPR/UCPR ablation tables and figures; native-path mechanism audits; Chapter 4 synthesis; validation status; Amazon readiness; limitation register. | No citation confidence was upgraded. Medium-confidence seeds remain provisional; UCPR, KGGLM, and LIR/SEP/ETD primary sources require manual check. | No user-study or statistical-significance artifact identified; causal mechanism claims beyond the registered PGPR/UCPR ablation remain unsupported; Amazon explanation sweeps remain N/A. |
 | Goal 5 Chapter 6 Draft | Completed draft pass and self-review pass | `chapter6_conclusion_and_recommendations_v1.md`; `chapter6_evidence_used.md`; `GOAL_5_STATUS.md` | Chapter 3 framework conclusions; Chapter 4 strict-accuracy and alpha-sweep synthesis; Chapter 5 ablation, boundary, and limitation findings; final handoff. | No new citation added or citation confidence upgraded. Existing manual-check requirements were retained. | No Chapter 6 table or figure generated; recommendations are future work only; Goal 6 not entered. |
+| Unified Chapter 3-6 Consistency and Story Revision | Completed review, rewrite, and self-review pass | `CONSISTENCY_REVIEW_CH3_6.md`; `UNSUPPORTED_CLAIMS_CHECK.md`; `STORYTELLING_DIAGNOSIS_CH3_6.md`; `NARRATIVE_SPINE_CH3_6.md`; `NARRATIVE_REVISION_PLAN_CH3_6.md`; `chapter3_story_revised_v1.md`; `chapter4_story_revised_v1.md`; `chapter5_story_revised_v1.md`; `chapter6_story_revised_v1.md`; `STORY_REVISION_CHANGELOG.md`; `REVISION_TODO.md`; `UNIFIED_GOAL_CH3_6_STATUS.md` | Existing Chapter 3-6 drafts, evidence maps, tables, figure plans, registered analysis artifacts, citation audits, and status files. | No new citation added and no citation confidence changed. Existing manual-check requirements were preserved. | Original Chapter 3-6 drafts remain unchanged; Chapter 1-2 integration, citation closure, primary strict-accuracy provenance, and final formatting remain outstanding. |
 
 ---
 
@@ -60,6 +61,13 @@ This file records the provenance of all internal evidence, external citations, f
 | INT-033 | `paper/drafts_ch3_6/chapter6_conclusion_and_recommendations_v1.md` | Chapter 6 draft artifact | Ch.6.1-6.2 | Records the conclusion and recommendations derived from registered Chapter 3-5 evidence. | Contains no new experiment, result value, figure, citation, or mechanism claim. |
 | INT-034 | `paper/drafts_ch3_6/chapter6_evidence_used.md` | Chapter 6 evidence map | Ch.6.1-6.2 | Maps each conclusion to prior evidence and each recommendation to a registered limitation or boundary. | Confirms evidence-stream and Amazon boundary constraints. |
 | INT-035 | `paper/drafts_ch3_6/GOAL_5_STATUS.md` | Goal 5 audit evidence | Ch.6.1-6.2 | Records Goal 5 completion, artifact decisions, caveats, and ten-item self-review. | Confirms that Goal 6 was not entered. |
+| INT-036 | `paper/drafts_ch3_6/CONSISTENCY_REVIEW_CH3_6.md`; `paper/drafts_ch3_6/UNSUPPORTED_CLAIMS_CHECK.md` | cross-chapter audit evidence | Ch.3-6 revision audit | Records chapter-boundary, evidence-separation, figure/table, citation, provenance, significance, user-study, causal, and Amazon boundary checks. | Introduces no new experimental claim or citation. |
+| INT-037 | `paper/drafts_ch3_6/STORYTELLING_DIAGNOSIS_CH3_6.md`; `paper/drafts_ch3_6/NARRATIVE_SPINE_CH3_6.md`; `paper/drafts_ch3_6/NARRATIVE_REVISION_PLAN_CH3_6.md` | narrative planning evidence | Ch.3-6 story revision | Defines the cumulative argument, chapter functions, section-level revision instructions, and evidence-preservation rules. | Narrative guidance only; does not change claim status. |
+| INT-038 | `paper/drafts_ch3_6/chapter3_story_revised_v1.md` | story-revised draft artifact | Ch.3.1-3.6 | Reframes canonicalisation, native export, validation, and verification around the comparability problem. | Same evidence scope, values, paths, boundaries, and citation status as the original Chapter 3 draft. |
+| INT-039 | `paper/drafts_ch3_6/chapter4_story_revised_v1.md` | story-revised draft artifact | Ch.4.1-4.7 | Reframes strict accuracy and LIR/SEP/ETD results as model-, dataset-, and metric-specific trade-off profiles. | Strict accuracy and alpha-sweep evidence remain separate; no value or figure/table number changed. |
+| INT-040 | `paper/drafts_ch3_6/chapter5_story_revised_v1.md` | story-revised draft artifact | Ch.5.1-5.5 | Reframes ablation, mechanism interpretation, metric interaction, Amazon boundary, and limitations as graded evidence. | Direct claims remain limited to registered PGPR/UCPR ablation; other mechanism interpretations remain non-causal. |
+| INT-041 | `paper/drafts_ch3_6/chapter6_story_revised_v1.md` | story-revised draft artifact | Ch.6.1-6.2 | Synthesises comparability, multidimensional measurement, bounded interpretation, auditability, and recommendations. | Adds no experiment, result, citation, figure, table, or completed-contribution claim. |
+| INT-042 | `paper/drafts_ch3_6/STORY_REVISION_CHANGELOG.md`; `paper/drafts_ch3_6/REVISION_TODO.md`; `paper/drafts_ch3_6/UNIFIED_GOAL_CH3_6_STATUS.md` | revision audit and status evidence | Ch.3-6 package | Records files created, unchanged-original hashes, preservation checks, remaining risks, readiness, and next steps. | Confirms that Chapter 1-2 integration and final formatting were not performed. |
 
 ---
 
@@ -142,6 +150,15 @@ This file records the provenance of all internal evidence, external citations, f
 | 6.1 | Amazon-Book KGAT is a partial validation-first boundary case rather than a complete main experiment. | INT-006; INT-008; INT-028; INT-031; INT-033; INT-034 | validation / boundary synthesis | Supported |
 | 6.2 | Further research should address Amazon ports, dataset coverage, significance, human evaluation, language generation, post-hoc baselines, metric robustness, short lists, citation verification, and reproducibility packaging. | INT-001; INT-004; INT-005; INT-023; INT-027; INT-028; INT-031; INT-032; INT-033; INT-034; INT-035 | limitation-to-recommendation synthesis | Supported as recommendations; not completed-result claims |
 
+### Story-Revised Chapter 3-6 Claim Preservation Map
+
+| Revised artifact | Claim scope | Evidence ID | Preservation status | Audit result |
+| :--- | :--- | :--- | :--- | :--- |
+| `chapter3_story_revised_v1.md` | Existing Sections 3.1-3.6 framework implementation and verification claims | INT-001 to INT-009; INT-016; INT-017; INT-038 | Existing claims and boundaries preserved | Supported; original draft unchanged |
+| `chapter4_story_revised_v1.md` | Existing Sections 4.1-4.7 strict accuracy and alpha-sweep result claims | INT-007; INT-008; INT-010 to INT-013; INT-018 to INT-020; INT-039 | Existing values, evidence roles, and figure/table identifiers preserved | Supported with existing primary-JSON caveat |
+| `chapter5_story_revised_v1.md` | Existing Sections 5.1-5.5 ablation, mechanism, interaction, boundary, and limitation claims | INT-021 to INT-028; INT-040 | Existing ablation scope, causal limits, and Amazon boundary preserved | Supported within registered evidence boundaries |
+| `chapter6_story_revised_v1.md` | Existing Sections 6.1-6.2 conclusion and recommendation claims | INT-029 to INT-035; INT-041 | Existing synthesis and prospective recommendation status preserved | Supported; no new result claim |
+
 ---
 
 ## 5. Figure and Table Provenance
@@ -164,6 +181,7 @@ This file records the provenance of all internal evidence, external citations, f
 | Table 5.4 | 5 | `chapter5_tables.md`, generated from INT-005, INT-006, INT-023, INT-026, INT-027, and INT-028 | methodology / validation / limitation evidence | Includes unsupported user-study and significance claims as explicit limitations. |
 | Figure 5.1 | 5 | `reports/figures/ablation/pgpr_ucpr_path_module/lastfm_ndcg_tradeoff.svg`; `reports/figures/ablation/pgpr_ucpr_path_module/ml1m_ndcg_tradeoff.svg` | ablation figure evidence | Existing two-panel figure assets; used without regeneration. |
 | Figure 5.2 | 5 | `reports/figures/thesis_final/experiment_status_matrix.png` | boundary-case evidence | Existing figure; used without regeneration. |
+| Unified story-revised drafts | 3-6 | Existing registered Chapter 3-5 figures and tables only; INT-038 to INT-041 | writing audit | No new figure, table, caption claim, source path, or artifact number was created by the storytelling rewrite. |
 
 ---
 
@@ -184,6 +202,7 @@ This file records the provenance of all internal evidence, external citations, f
 | Statistical significance of reported model or trade-off differences. | Ch.4/Ch.5/Ch.6 | No registered statistical-significance artifact was identified. | Treat comparisons as descriptive unless evidence is added; manually confirm final status. | Requires manual check |
 | Chapter 6 recommendations for natural-language explanations, post-hoc baselines, human evaluation, or statistical analysis are completed contributions. | Ch.6 | These items are proposed future work and have no completed-result evidence in the current pack. | Keep them explicitly prospective and do not describe benefits as observed results. | Unsupported as completed work; not claimed |
 | Chapter 6 introduces a new external citation or resolves existing citation gaps. | Ch.6 | No new citation verification was performed in Goal 5. | Use prior internal evidence for the conclusion and retain all manual-check statuses. | Unsupported; not claimed |
+| Story-revised Chapters 3-6 resolve citation, primary-JSON, significance, user-study, or non-targeted causal evidence gaps. | Ch.3-6 revised drafts | The rewrite changes narrative structure only and supplies no new external or experimental evidence. | Retain every open item in `UNSUPPORTED_CLAIMS_CHECK.md` and `REVISION_TODO.md`. | Unsupported; not claimed |
 
 ---
 
@@ -199,6 +218,7 @@ This file records the provenance of all internal evidence, external citations, f
 | PGPR/UCPR ablation tables | `reports/tables/ablation/pgpr_ucpr_path_module/` | ablation evidence | Chapter 5 controllability and mechanism analysis. | Main six-model result table. |
 | Chapter 4 separation audit | `chapter4_accuracy_explainability_tradeoff_results_v1.md`; `chapter4_tables.md`; `chapter4_evidence_used.md` | writing audit | Confirm that strict values appear only in Section 4.2/Table 4.1 and sweep values in Sections 4.3-4.6/Table 4.2. | Treat alpha-sweep NDCG as strict NDCG@10 or import ablation evidence into the main result comparison. |
 | Chapter 6 separation audit | `paper/drafts_ch3_6/chapter6_conclusion_and_recommendations_v1.md`; `paper/drafts_ch3_6/chapter6_evidence_used.md`; INT-033; INT-034; INT-035 | writing audit | Confirms that Chapter 6 summarises strict accuracy, six-model alpha sweeps, and PGPR/UCPR ablation as distinct prior findings. | Introduce new values, merge evidence roles, or present recommendations as completed results. |
+| Story-revised Chapter 3-6 separation audit | `paper/drafts_ch3_6/chapter3_story_revised_v1.md`; `paper/drafts_ch3_6/chapter4_story_revised_v1.md`; `paper/drafts_ch3_6/chapter5_story_revised_v1.md`; `paper/drafts_ch3_6/chapter6_story_revised_v1.md`; INT-038 to INT-041 | writing audit | Confirms that validation, strict accuracy, six-model alpha sweeps, and PGPR/UCPR ablation retain distinct evidence roles throughout the revised narrative. | Merge evidence categories, substitute sweep or ablation NDCG for strict NDCG@10, or upgrade descriptive mechanism context to causal evidence. |
 
 ---
 
@@ -213,12 +233,13 @@ This file records the provenance of all internal evidence, external citations, f
 | Amazon-Book KGAT explanation alpha sweeps are available. | `thesis_analysis_pack/final_explanation_summary_table.md` | Unsupported | Do not claim; phrase as "Amazon explanation alpha sweeps are N/A under current evidence." |
 | Chapter 5 uses Amazon as a validation-first boundary case rather than a complete comparison. | `thesis_analysis_pack/validation_status_table.md`; `reports/tables/amazon_classic_port_readiness.json`; `reports/figures/thesis_final/experiment_status_matrix.png` | Supported | "Amazon-Book KGAT exposes model-port, temporal-data, and explanation-protocol boundaries before comparative reporting." |
 | Chapter 6 summarises Amazon only as a partial boundary case and recommends completion of blocked ports. | `paper/drafts_ch3_6/chapter6_conclusion_and_recommendations_v1.md`; `paper/drafts_ch3_6/chapter6_evidence_used.md`; INT-006; INT-028; INT-031; INT-033; INT-034 | Supported | "Amazon-Book KGAT remains a partial stress test; completing UCPR, CAFE, and TPRec is future work." |
+| Story-revised Chapters 3, 5, and 6 preserve Amazon as a partial boundary case. | `paper/drafts_ch3_6/chapter3_story_revised_v1.md`; `paper/drafts_ch3_6/chapter5_story_revised_v1.md`; `paper/drafts_ch3_6/chapter6_story_revised_v1.md`; INT-038; INT-040; INT-041 | Supported | "Amazon-Book KGAT is a partial stress test with three passing and three blocked or not-applicable rows; no complete explanation alpha sweep is claimed." |
 
 ---
 
 ## 9. Final Audit Notes
 
-- Draft-package status: the Chapter 3-6 draft package is complete at draft level, with Chapter 6 conclusions and recommendations mapped to registered Chapter 3-5 evidence.
+- Draft-package status: the Chapter 3-6 package is complete at story-revised draft level, with original drafts retained unchanged and all revised chapters mapped to the existing evidence register.
 - Chapters needing manual citation check: Chapter 3 citation formatting; Chapter 4 XRecSys/LIR/SEP/ETD primary-source metadata; Chapter 5 model-mechanism and metric-origin citations. Chapter 6 adds no citation but retains these unresolved requirements.
 - Figures needing drawing: none for Chapter 3 conceptual figures; Figure 3.1 and Figure 3.2 were generated during cleanup.
 - Chapter 4 figures: Figures 4.1-4.4 already exist and were not regenerated; optional SEP/ETD figures are retained as chapter or appendix candidates.
@@ -230,4 +251,6 @@ This file records the provenance of all internal evidence, external citations, f
 - Phase 3 audit result: strict accuracy, alpha-sweep trade-off, and ablation evidence remain separated; Amazon is excluded from the main Chapter 4 analysis; Chapter 5 was not drafted.
 - Goal 4 audit result: Chapter 5 does not repeat the complete Chapter 4 result tables; strict accuracy, six-model alpha sweeps, and PGPR/UCPR ablation remain separated; Amazon is a partial boundary case; mechanism causality and missing citations are explicitly constrained.
 - Goal 5 audit result: Chapter 6 contains only Sections 6.1 and 6.2; introduces no new experiment, experimental value, figure, citation, or mechanism claim; keeps Amazon partial; and presents all recommendations as future work tied to registered limitations.
-- Next writing step: Goal 6 consistency review across Chapters 3-6 and generation of the final revision TODO; Goal 6 has not been entered in this pass.
+- Unified review audit result: the revised drafts preserve Sections 3.1-3.6, 4.1-4.7, 5.1-5.5, and 6.1-6.2; retained experimental values, evidence paths, figure/table identifiers, citation statuses, evidence separation, causal limits, and Amazon boundaries remain unchanged. Exhaustive values reduced from Chapter 4 prose remain in registered tables, figures, and source artifacts. No new figure or table was generated.
+- Storytelling audit result: Chapter 3 now frames comparability and validation as evidence conditions; Chapter 4 synthesises metric-specific trade-off profiles; Chapter 5 uses graded evidence for ablation and mechanism interpretation; Chapter 6 closes the argument through comparability, multidimensional measurement, bounded interpretation, and auditability.
+- Next writing step: close citation and primary strict-accuracy provenance gaps. Chapter 1-2 integration, final bibliography work, appendix decisions, and NTU template formatting remain separate later stages and were not entered in this pass.
