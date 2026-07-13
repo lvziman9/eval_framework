@@ -16,6 +16,7 @@ This file records the provenance of all internal evidence, external citations, f
 | Formatting and Artifact Cleanup | Completed | `figures/figure_3_1_framework_overview.png`; `figures/figure_3_2_alpha_sweep_design.png`; `CLEANUP_STATUS.md` | Existing Phase 0-2 draft files and traceability log. | No citation facts changed. | No Chapter 4 drafting performed. |
 | Phase 3 Chapter 4 Draft | Completed draft pass and self-review pass | `chapter4_accuracy_explainability_tradeoff_results_v1.md`; `chapter4_tables.md`; `chapter4_figure_plan.md`; `chapter4_evidence_used.md`; `GOAL_3_STATUS.md` | Strict accuracy summary and accessible status matrix; explanation endpoint summary; canonical LastFM v4 and ML-1M v2 alpha-sweep CSVs; existing thesis figures. | No new external citation added; XRecSys/LIR/SEP/ETD primary publication still requires manual check. | Primary strict-accuracy JSON paths are absent from the current worktree and require manual check; mechanism analysis, ablation, Amazon boundary discussion, and causal interpretation remain deferred to Chapter 5. |
 | Goal 3 Chapter 4 Cleanup | Completed | `GOAL_3_CLEANUP_STATUS.md`; formatting audit of the Chapter 4 draft package | Existing Chapter 4 draft files and traceability records only. | No citation status changed. | Formatting-only cleanup; existing missing-evidence caveats and claim statuses remain unchanged; Chapter 5 not entered. |
+| Goal 4 Chapter 5 Draft | Completed draft pass and self-review pass | `chapter5_ablation_mechanism_boundary_cases_v1.md`; `chapter5_tables.md`; `chapter5_figure_plan.md`; `chapter5_evidence_used.md`; `GOAL_4_STATUS.md` | PGPR/UCPR ablation tables and figures; native-path mechanism audits; Chapter 4 synthesis; validation status; Amazon readiness; limitation register. | No citation confidence was upgraded. Medium-confidence seeds remain provisional; UCPR, KGGLM, and LIR/SEP/ETD primary sources require manual check. | No user-study or statistical-significance artifact identified; causal mechanism claims beyond the registered PGPR/UCPR ablation remain unsupported; Amazon explanation sweeps remain N/A. |
 
 ---
 
@@ -43,6 +44,14 @@ This file records the provenance of all internal evidence, external citations, f
 | INT-018 | `reports/figures/tradeoff/canonical_lastfm_native_paths_v4_six_model/` | alpha-sweep evidence | Ch.4.3-4.6 | LastFM LIR/SEP/ETD endpoints and paired ranking-metric curves across six native-path models. | Canonical promoted six-model trade-off bundle. |
 | INT-019 | `reports/figures/tradeoff/canonical_ml1m_native_paths_v2/` | alpha-sweep evidence | Ch.4.3-4.6 | ML-1M LIR/SEP/ETD endpoints and paired ranking-metric curves across six native-path models. | Canonical promoted six-model trade-off bundle. |
 | INT-020 | `reports/tables/canonical_native_path_status_matrix.csv` | accessible strict accuracy evidence | Ch.4.2 | The same twelve LastFM and ML-1M strict accuracy rows reported in INT-007. | Present in the current worktree; primary per-row JSON paths recorded in this file are absent and require manual check. |
+| INT-021 | `reports/tables/ablation/pgpr_ucpr_path_module/alpha0_baseline_preservation.csv` | ablation validation evidence | Ch.5.1 | PGPR and UCPR exactly preserve top-k rankings and explanation pairs at alpha=0 for LIR, SEP, and ETD on LastFM and ML-1M; maximum metric absolute difference is 0.0. | PGPR is the main ablation model; UCPR is auxiliary. |
+| INT-022 | `reports/tables/ablation/pgpr_ucpr_path_module/main_ablation_table_95pct_ndcg.csv` | ablation result evidence | Ch.5.1, Ch.5.3 | Selected explanation-oriented operating points satisfy the rule of maximum explanation gain with NDCG retention greater than or equal to 95%. | Strict baseline-preserving ablation over a frozen original top-k item set; not the Chapter 4 strict or six-model sweep table. |
+| INT-023 | `reports/tables/ablation/pgpr_ucpr_path_module/provenance_validation.csv` | ablation provenance evidence | Ch.5.1, Ch.5.5 | Export, accuracy, alpha=0 preservation, slot coverage, protocol, and source directories are registered for four dataset-model rows. | Supports protocol audit and short-list caveats. |
+| INT-024 | `reports/tables/ablation/pgpr_ucpr_path_module/endpoint_comparison.csv` | ablation endpoint evidence | Ch.5.1, Ch.5.3 | Objective-specific endpoint movement differs across PGPR/UCPR, datasets, and LIR/SEP/ETD. | Ablation evidence only. |
+| INT-025 | `reports/figures/ablation/pgpr_ucpr_path_module/lastfm_ndcg_tradeoff.svg`; `reports/figures/ablation/pgpr_ucpr_path_module/ml1m_ndcg_tradeoff.svg` | ablation figure evidence | Ch.5 Figure 5.1 | Existing LastFM and ML-1M PGPR/UCPR ablation trade-off figures. | Used as a two-panel figure without regeneration. |
+| INT-026 | `docs/guides/NATIVE_PATH_MODEL_CANDIDATE_AUDIT_2026-06-21.md` | mechanism and scope evidence | Ch.5.2, Ch.5.5 | Native-path gate and repository mechanism-family classification for PGPR, UCPR, CAFE, TPRec, KGGLM, and PEARLM. | Provides mechanism context, not causal proof for curve shapes. |
+| INT-027 | `thesis_analysis_pack/goal_13_limitations_and_risks.md` | limitation evidence | Ch.5.4-5.5 | Registers Amazon incompleteness, unavailable sweeps, native/post-hoc scope, evidence-stream separation, short-list handling, and source-of-truth risks. | Used with primary validation and implementation evidence. |
+| INT-028 | `reports/tables/amazon_classic_port_readiness.json` | boundary-case evidence | Ch.5.4-5.5 | Detailed PGPR readiness and UCPR, CAFE, and TPRec blocking conditions on Amazon-Book KGAT. | BLOCKED indicates an incomplete experimental contract, not failed recommender performance. |
 
 ---
 
@@ -50,13 +59,13 @@ This file records the provenance of all internal evidence, external citations, f
 
 | Citation ID | Citation key | Claim supported | Paper title | Authors | Year | Venue / source | URL / DOI / arXiv | Used in chapter | Confidence | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| EXT-001 | `wang2018pgpr` | KG path reasoning can produce recommendation paths used as explanations. | Explainable Reasoning over Knowledge Graphs for Recommendation | Xiang Wang et al. | 2018 | arXiv | https://arxiv.org/abs/1811.04540 | Ch.3 background; planned Ch.5 | Medium | Venue/DOI and exact PGPR naming require manual check. |
-| EXT-002 | `xian2020cafe` | CAFE uses coarse-to-fine neural symbolic reasoning for explainable recommendation. | CAFE: Coarse-to-Fine Neural Symbolic Reasoning for Explainable Recommendation | Yikun Xian et al. | 2020 | arXiv | https://arxiv.org/abs/2010.15620 | Ch.3 model context | Medium | Venue/DOI require manual check. |
-| EXT-003 | `zhao2021tprec` | TPRec is time-aware path reasoning for KG recommendation. | Time-aware Path Reasoning on Knowledge Graph for Recommendation | Yuyue Zhao et al. | 2021 | arXiv | https://arxiv.org/abs/2108.02634 | Ch.3 model context | Medium | Venue/DOI require manual check. |
-| EXT-004 | `wang2019kgat` | KGAT models high-order KG connectivity through attention. | KGAT: Knowledge Graph Attention Network for Recommendation | Xiang Wang et al. | 2019 | arXiv | https://arxiv.org/abs/1905.07854 | Planned Ch.5 boundary context | Medium | Venue/DOI require manual check. |
+| EXT-001 | `wang2018pgpr` | KG path reasoning can produce recommendation paths used as explanations. | Explainable Reasoning over Knowledge Graphs for Recommendation | Xiang Wang et al. | 2018 | arXiv | https://arxiv.org/abs/1811.04540 | Ch.3 background; Ch.5 provisional mechanism context | Medium | Not used as a final verified citation; venue/DOI and exact PGPR naming require manual check. |
+| EXT-002 | `xian2020cafe` | CAFE uses coarse-to-fine neural symbolic reasoning for explainable recommendation. | CAFE: Coarse-to-Fine Neural Symbolic Reasoning for Explainable Recommendation | Yikun Xian et al. | 2020 | arXiv | https://arxiv.org/abs/2010.15620 | Ch.3 model context; Ch.5 provisional mechanism context | Medium | Not used as a final verified citation; venue/DOI require manual check. |
+| EXT-003 | `zhao2021tprec` | TPRec is time-aware path reasoning for KG recommendation. | Time-aware Path Reasoning on Knowledge Graph for Recommendation | Yuyue Zhao et al. | 2021 | arXiv | https://arxiv.org/abs/2108.02634 | Ch.3 model context; Ch.5 provisional mechanism context | Medium | Not used as a final verified citation; venue/DOI require manual check. |
+| EXT-004 | `wang2019kgat` | KGAT models high-order KG connectivity through attention. | KGAT: Knowledge Graph Attention Network for Recommendation | Xiang Wang et al. | 2019 | arXiv | https://arxiv.org/abs/1905.07854 | Ch.5 provisional boundary context | Medium | Not required for internal experimental claims; venue/DOI require manual check. |
 | EXT-005 | `wang2021kgin` | KGIN models user intents and relational paths over a KG. | Learning Intents behind Interactions with Knowledge Graph for Recommendation | Xiang Wang et al. | 2021 | arXiv | https://arxiv.org/abs/2102.07057 | Background only | Medium | Venue/DOI require manual check. |
 | EXT-006 | `he2020lightgcn` | LightGCN is a graph collaborative filtering reference model. | LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation | Xiangnan He et al. | 2020 | arXiv | https://arxiv.org/abs/2002.02126 | Background only | Medium | Venue/DOI require manual check. |
-| EXT-007 | `balloccu2023pearlm` | PEARLM uses language modelling and KG-constrained decoding for faithful paths. | Faithful Path Language Modeling for Explainable Recommendation over Knowledge Graph | Giacomo Balloccu et al. | 2023 | arXiv | https://arxiv.org/abs/2310.16452 | Ch.3 model context | Medium | Venue/DOI require manual check. |
+| EXT-007 | `balloccu2023pearlm` | PEARLM uses language modelling and KG-constrained decoding for faithful paths. | Faithful Path Language Modeling for Explainable Recommendation over Knowledge Graph | Giacomo Balloccu et al. | 2023 | arXiv | https://arxiv.org/abs/2310.16452 | Ch.3 model context; Ch.5 provisional mechanism context | Medium | Not used as a final verified citation; venue/DOI require manual check. |
 | EXT-008 | `zhang2018explainableSurvey` | Explainable recommendation includes model-intrinsic and post-hoc explanation settings. | Explainable Recommendation: A Survey and New Perspectives | Yongfeng Zhang; Xu Chen | 2018 | arXiv | https://arxiv.org/abs/1804.11192 | Background only | Medium | Use for general framing only. |
 | EXT-009 | `chen2022measuringWhy` | Explanation evaluation requires explicit evaluation methods and perspectives. | Measuring "Why" in Recommender Systems | Xu Chen et al. | 2022 | arXiv | https://arxiv.org/abs/2202.06466 | Metric context | Medium | Use for evaluation framing only. |
 | EXT-010 | `guo2020kgsurvey` | KG recommender systems use KGs for recommendation and explanation. | A Survey on Knowledge Graph-Based Recommender Systems | Qingyu Guo et al. | 2020 | arXiv | https://arxiv.org/abs/2003.00911 | Background only | Medium | Use for background only. |
@@ -101,7 +110,16 @@ This file records the provenance of all internal evidence, external citations, f
 
 | Section | Claim | Evidence ID / Citation ID | Evidence type | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| 5.1-5.5 | Chapter 5 not drafted in this pass. | N/A | N/A | Pending |
+| 5.1 | The PGPR/UCPR ablation exactly preserves the registered ranking and explanation pairs at alpha=0 across both datasets and all three objectives. | INT-021; INT-023 | ablation validation / provenance evidence | Supported |
+| 5.1 | All twelve selected ablation operating points satisfy the 95% NDCG-retention rule and demonstrate framework controllability rather than recommender improvement. | INT-022; INT-024 | ablation result evidence | Supported |
+| 5.2 | Native-path models belong to different repository-audited path-generation and path-selection mechanism families. | INT-004; INT-026 | methodology / mechanism audit evidence | Supported as repository classification; external citation metadata requires manual check |
+| 5.2 | Causal attribution of non-PGPR/UCPR curve shapes to model mechanisms is established. | N/A | missing targeted ablation evidence | Unsupported; not claimed |
+| 5.3 | Accuracy and explanation movement are not linearly aligned, and LIR, SEP, and ETD are not interchangeable. | INT-005; INT-007; INT-008; INT-018; INT-019; INT-022; INT-024 | methodology / strict accuracy / alpha-sweep / ablation evidence | Supported |
+| 5.3 | Explanation controllability is model- and dataset-dependent. | INT-018; INT-019; INT-022; INT-024 | alpha-sweep / ablation evidence | Supported |
+| 5.4 | Amazon-Book KGAT is a partial stress test with PASS rows for KGGLM, PEARLM, and PGPR and BLOCKED / N/A rows for UCPR, CAFE, and TPRec. | INT-006; INT-014; INT-028 | validation / figure / boundary evidence | Supported |
+| 5.4 | Amazon explanation alpha sweeps form a complete main experiment. | INT-008; INT-027; INT-028 | boundary evidence | Unsupported; explicitly excluded |
+| 5.5 | Complete six-model coverage is limited to LastFM and ML-1M; metric assumptions, native-path candidate exhaustion, model ports, exports, and citation gaps limit interpretation. | INT-001; INT-005; INT-006; INT-023; INT-026; INT-027; INT-028 | methodology / validation / limitation evidence | Supported |
+| 5.5 | The current evidence includes a user study or registered statistical-significance analysis. | N/A | missing evidence | Unsupported; significance status requires manual check |
 
 ### Chapter 6 Claim Map
 
@@ -125,8 +143,12 @@ This file records the provenance of all internal evidence, external citations, f
 | Figure 4.2 | 4 | `reports/figures/thesis_final/ml1m_accuracy_hr_ndcg.png` | strict accuracy figure evidence | Existing figure; used without regeneration. |
 | Figure 4.3 | 4 | `reports/figures/thesis_final/explanation_metric_alpha_endpoints.png` | alpha-sweep figure evidence | Existing figure; endpoints are not strict accuracy. |
 | Figure 4.4 | 4 | `reports/figures/thesis_final/lir_ndcg_tradeoff_lastfm_ml1m.png` | alpha-sweep figure evidence | Existing figure; paired NDCG sweep metric is separate from strict NDCG@10. |
-| Figure 5.1 | 5 | `reports/figures/ablation/pgpr_ucpr_path_module/` | ablation evidence | Existing figures; planned. |
-| Figure 5.2 | 5 | `reports/figures/thesis_final/experiment_status_matrix.png` | boundary-case evidence | Existing figure; planned. |
+| Table 5.1 | 5 | `chapter5_tables.md`, generated from INT-021 to INT-024 | ablation validation / result / provenance evidence | PGPR main and UCPR auxiliary ablation; alpha=0 and 95% NDCG-retention evidence; not a model-improvement table. |
+| Table 5.2 | 5 | `chapter5_tables.md`, generated from INT-004, INT-018, INT-019, INT-026, and external citation audit statuses | mechanism / alpha-sweep / citation-status evidence | Separates observed behaviour from provisional mechanism interpretation. |
+| Table 5.3 | 5 | `chapter5_tables.md`, generated from INT-006 and INT-028 | validation / boundary-case evidence | Amazon PASS and BLOCKED / N/A rows; blocked rows are not ranked. |
+| Table 5.4 | 5 | `chapter5_tables.md`, generated from INT-005, INT-006, INT-023, INT-026, INT-027, and INT-028 | methodology / validation / limitation evidence | Includes unsupported user-study and significance claims as explicit limitations. |
+| Figure 5.1 | 5 | `reports/figures/ablation/pgpr_ucpr_path_module/lastfm_ndcg_tradeoff.svg`; `reports/figures/ablation/pgpr_ucpr_path_module/ml1m_ndcg_tradeoff.svg` | ablation figure evidence | Existing two-panel figure assets; used without regeneration. |
+| Figure 5.2 | 5 | `reports/figures/thesis_final/experiment_status_matrix.png` | boundary-case evidence | Existing figure; used without regeneration. |
 
 ---
 
@@ -141,6 +163,10 @@ This file records the provenance of all internal evidence, external citations, f
 | Direct inspection of the twelve primary LastFM and ML-1M strict-accuracy JSON files. | Ch.4 | Paths are recorded in the final accuracy summary and canonical status matrix, but the files are absent from the current worktree. | Use the two matching accessible summary tables for the draft; manually verify primary JSON provenance before final submission. | Requires manual check |
 | Any claim that Amazon-Book KGAT is a complete main trade-off experiment. | Ch.4/Ch.5 | Contradicted by current evidence. | Do not write this claim. | Blocked / excluded |
 | Causal or mechanism-level explanations for Chapter 4 curve shapes. | Ch.4/Ch.5 | Current Chapter 4 evidence establishes observed results but not causal mechanisms. | Keep Chapter 4 descriptive; evaluate mechanisms with ablation evidence in Chapter 5. | Deferred |
+| Causal mechanism explanations for CAFE, TPRec, KGGLM, or PEARLM curve shapes. | Ch.5 | No targeted mechanism ablation is registered for these models. | Present only as provisional context; targeted ablation or stronger evidence is required. | Unsupported / requires manual check |
+| Candidate-path flexibility directly explains small endpoint movement. | Ch.5 | Candidate-path flexibility was not independently measured. | Retain only as a hypothesis marked `requires manual check`. | Unsupported |
+| User-perceived explanation usefulness, clarity, or persuasiveness. | Ch.5 | No user study was identified in the evidence pack. | Do not make human-centred effectiveness claims. | Unsupported |
+| Statistical significance of reported model or trade-off differences. | Ch.4/Ch.5 | No registered significance-test artifact was identified. | Treat comparisons as descriptive unless evidence is added; manually confirm final status. | Requires manual check |
 
 ---
 
@@ -167,16 +193,19 @@ This file records the provenance of all internal evidence, external citations, f
 | Amazon-Book KGAT CAFE is blocked. | `reports/tables/amazon_classic_port_readiness.json`; `thesis_analysis_pack/validation_status_table.md` | Supported | "CAFE requires additional Amazon schema/data-builder support before it can be treated as a complete row." |
 | Amazon-Book KGAT TPRec is blocked. | `reports/tables/amazon_classic_port_readiness.json`; `thesis_analysis_pack/validation_status_table.md` | Supported | "TPRec remains blocked because the temporal path requirement is not satisfied by the current sentinel timestamp setting." |
 | Amazon-Book KGAT explanation alpha sweeps are available. | `thesis_analysis_pack/final_explanation_summary_table.md` | Unsupported | Do not claim; phrase as "Amazon explanation alpha sweeps are N/A under current evidence." |
+| Chapter 5 uses Amazon as a validation-first boundary case rather than a complete comparison. | `thesis_analysis_pack/validation_status_table.md`; `reports/tables/amazon_classic_port_readiness.json`; `reports/figures/thesis_final/experiment_status_matrix.png` | Supported | "Amazon-Book KGAT exposes model-port, temporal-data, and explanation-protocol boundaries before comparative reporting." |
 
 ---
 
 ## 9. Final Audit Notes
 
-- Fully supported chapters: Chapter 3 and Chapter 4 draft packages are supported at draft level by the registered repository evidence.
-- Chapters needing manual citation check: Chapter 3 citation formatting; Chapter 4 XRecSys/LIR/SEP/ETD primary-source metadata; future Chapters 5-6 if they use model background citations.
+- Fully supported chapters: Chapter 3, Chapter 4, and the empirical/boundary claims in the Chapter 5 draft package are supported at draft level by the registered repository evidence.
+- Chapters needing manual citation check: Chapter 3 citation formatting; Chapter 4 XRecSys/LIR/SEP/ETD primary-source metadata; Chapter 5 model-mechanism and metric-origin citations; future Chapter 6 if it uses these sources.
 - Figures needing drawing: none for Chapter 3 conceptual figures; Figure 3.1 and Figure 3.2 were generated during cleanup.
 - Chapter 4 figures: Figures 4.1-4.4 already exist and were not regenerated; optional SEP/ETD figures are retained as chapter or appendix candidates.
-- Tables needing manual formatting: Tables 3.1-3.7 and Tables 4.1-4.3 may need NTU template formatting later.
-- Claims to remove if evidence cannot be verified: UCPR external citation claims, KGGLM external citation claims, XRecSys primary-publication claims, and any Amazon complete-trade-off claim.
+- Chapter 5 figures: Figure 5.1 reuses two existing ablation SVGs and Figure 5.2 reuses the existing experiment-status matrix; no figure was regenerated.
+- Tables needing manual formatting: Tables 3.1-3.7, Tables 4.1-4.3, and Tables 5.1-5.4 may need NTU template formatting later.
+- Claims to remove if evidence cannot be verified: UCPR external citation claims, KGGLM external citation claims, XRecSys primary-publication claims, causal mechanism claims without targeted ablation, statistical-significance claims, user-study claims, and any Amazon complete-trade-off claim.
 - Primary evidence caveat: the twelve strict-accuracy JSON paths recorded by the two matching summary tables are absent from the current worktree and require manual verification before final submission.
 - Phase 3 audit result: strict accuracy, alpha-sweep trade-off, and ablation evidence remain separated; Amazon is excluded from the main Chapter 4 analysis; Chapter 5 was not drafted.
+- Goal 4 audit result: Chapter 5 does not repeat the complete Chapter 4 result tables; strict accuracy, six-model alpha sweeps, and PGPR/UCPR ablation remain separated; Amazon is a partial boundary case; mechanism causality and missing citations are explicitly constrained.
