@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="55.00" y="48.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" fill="#20242A" text-anchor="start">Amazon-Book KGAT boundary decision flow</text>
+<rect x="480.00" y="90.00" width="440.00" height="65.00" rx="5" fill="#EAF1F4" stroke="#245A73" stroke-width="1.6"/>
+<text x="700.00" y="128.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Amazon-Book KGAT model row</text>
+<polygon points="700.00,195.00 895.00,245.00 700.00,295.00 505.00,245.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="700.00" y="240.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">Native-path export</text>
+<text x="700.00" y="261.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">complete?</text>
+<polygon points="700.00,350.00 895.00,400.00 700.00,450.00 505.00,400.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="700.00" y="395.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">Validation gates</text>
+<text x="700.00" y="416.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">pass?</text>
+<polygon points="700.00,505.00 895.00,555.00 700.00,605.00 505.00,555.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="700.00" y="550.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">Explanation sweep</text>
+<text x="700.00" y="571.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">available?</text>
+<line x1="700.00" y1="155.00" x2="700.00" y2="190.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="700.00,190.00 694.11,180.71 705.89,180.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<line x1="700.00" y1="295.00" x2="700.00" y2="345.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="700.00,345.00 694.11,335.71 705.89,335.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="700.00" y="313.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<line x1="700.00" y1="450.00" x2="700.00" y2="500.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="700.00,500.00 694.11,490.71 705.89,490.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="700.00" y="468.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<rect x="90.00" y="320.00" width="315.00" height="80.00" rx="5" fill="#F4EEE6" stroke="#8A5A20" stroke-width="1.6"/>
+<text x="247.50" y="354.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Boundary case</text>
+<text x="247.50" y="378.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">BLOCKED / N/A</text>
+<line x1="505.00" y1="245.00" x2="415.00" y2="345.00" stroke="#8A5A20" stroke-width="1.8"/>
+<polygon points="415.00,345.00 416.83,334.15 425.59,342.04" fill="#8A5A20" stroke="#8A5A20" stroke-width="1"/>
+<text x="460.00" y="288.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<line x1="505.00" y1="400.00" x2="415.00" y2="370.00" stroke="#8A5A20" stroke-width="1.8"/>
+<polygon points="415.00,370.00 425.67,367.35 421.95,378.53" fill="#8A5A20" stroke="#8A5A20" stroke-width="1"/>
+<text x="460.00" y="378.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<rect x="180.00" y="650.00" width="350.00" height="82.00" rx="5" fill="#F4EEE6" stroke="#8A5A20" stroke-width="1.6"/>
+<text x="355.00" y="685.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Partial evidence only</text>
+<text x="355.00" y="709.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">no complete sweep protocol</text>
+<line x1="600.00" y1="555.00" x2="500.00" y2="640.00" stroke="#8A5A20" stroke-width="1.8"/>
+<polygon points="500.00,640.00 503.26,629.49 510.89,638.48" fill="#8A5A20" stroke="#8A5A20" stroke-width="1"/>
+<text x="550.00" y="590.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<rect x="875.00" y="650.00" width="365.00" height="82.00" rx="5" fill="#EAF1F4" stroke="#245A73" stroke-width="1.6"/>
+<text x="1057.50" y="685.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Eligible for main-style</text>
+<text x="1057.50" y="709.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">analysis</text>
+<line x1="800.00" y1="555.00" x2="900.00" y2="640.00" stroke="#245A73" stroke-width="1.8"/>
+<polygon points="900.00,640.00 889.11,638.48 896.74,629.49" fill="#245A73" stroke="#245A73" stroke-width="1"/>
+<text x="850.00" y="590.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#245A73" text-anchor="middle">Yes</text>
+<rect x="495.00" y="790.00" width="410.00" height="65.00" rx="5" fill="#FFFFFF" stroke="#5D6670" stroke-width="1.6"/>
+<text x="700.00" y="828.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Boundary discussion; no blocked-row ranking</text>
+<line x1="355.00" y1="732.00" x2="570.00" y2="780.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="570.00,780.00 559.65,783.73 562.22,772.22" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<line x1="1058.00" y1="732.00" x2="830.00" y2="780.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="830.00,780.00 837.87,772.32 840.30,783.85" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+</svg>

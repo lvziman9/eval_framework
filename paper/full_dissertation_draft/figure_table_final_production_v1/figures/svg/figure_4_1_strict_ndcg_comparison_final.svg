@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="95.00" y="145.00" width="650.00" height="510.00" rx="0" fill="#FAFBFC" stroke="none" stroke-width="0"/>
+<line x1="95.00" y1="655.00" x2="745.00" y2="655.00" stroke="#D9DEE5" stroke-width="1"/>
+<text x="85.00" y="660.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.00</text>
+<line x1="95.00" y1="527.50" x2="745.00" y2="527.50" stroke="#D9DEE5" stroke-width="1"/>
+<text x="85.00" y="532.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.01</text>
+<line x1="95.00" y1="400.00" x2="745.00" y2="400.00" stroke="#D9DEE5" stroke-width="1"/>
+<text x="85.00" y="405.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.02</text>
+<line x1="95.00" y1="272.50" x2="745.00" y2="272.50" stroke="#D9DEE5" stroke-width="1"/>
+<text x="85.00" y="277.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.04</text>
+<line x1="95.00" y1="145.00" x2="745.00" y2="145.00" stroke="#D9DEE5" stroke-width="1"/>
+<text x="85.00" y="150.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.05</text>
+<line x1="95.00" y1="145.00" x2="95.00" y2="655.00" stroke="#20242A" stroke-width="1.4"/>
+<line x1="95.00" y1="655.00" x2="745.00" y2="655.00" stroke="#20242A" stroke-width="1.4"/>
+<line x1="157.90" y1="655.00" x2="157.90" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="157.90" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">PGPR</text>
+<line x1="262.74" y1="655.00" x2="262.74" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="262.74" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">UCPR</text>
+<line x1="367.58" y1="655.00" x2="367.58" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="367.58" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">CAFE</text>
+<line x1="472.42" y1="655.00" x2="472.42" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="472.42" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">TPRec</text>
+<line x1="577.26" y1="655.00" x2="577.26" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="577.26" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">KGGLM</text>
+<line x1="682.10" y1="655.00" x2="682.10" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="682.10" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">PEARLM</text>
+<text x="95.00" y="132.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#5D6670" text-anchor="start">Strict NDCG@10</text>
+<text x="420.00" y="708.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Model</text>
+<text x="95.00" y="102.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="700" fill="#20242A" text-anchor="start">(a) LastFM</text>
+<rect x="125.40" y="323.57" width="65.00" height="331.43" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="157.90" y="314.57" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0309</text>
+<rect x="230.24" y="254.17" width="65.00" height="400.83" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="262.74" y="245.17" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0374</text>
+<rect x="335.08" y="330.98" width="65.00" height="324.02" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="367.58" y="321.98" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0302</text>
+<rect x="439.92" y="236.97" width="65.00" height="418.03" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="472.42" y="227.97" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0390</text>
+<rect x="544.76" y="426.37" width="65.00" height="228.63" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="577.26" y="417.37" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0213</text>
+<rect x="649.60" y="483.84" width="65.00" height="171.16" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="682.10" y="474.84" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0160</text>
+<rect x="855.00" y="145.00" width="650.00" height="510.00" rx="0" fill="#FAFBFC" stroke="none" stroke-width="0"/>
+<line x1="855.00" y1="655.00" x2="1505.00" y2="655.00" stroke="#D9DEE5" stroke-width="1"/>
+<text x="845.00" y="660.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.00</text>
+<line x1="855.00" y1="527.50" x2="1505.00" y2="527.50" stroke="#D9DEE5" stroke-width="1"/>
+<text x="845.00" y="532.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.04</text>
+<line x1="855.00" y1="400.00" x2="1505.00" y2="400.00" stroke="#D9DEE5" stroke-width="1"/>
+<text x="845.00" y="405.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.07</text>
+<line x1="855.00" y1="272.50" x2="1505.00" y2="272.50" stroke="#D9DEE5" stroke-width="1"/>
+<text x="845.00" y="277.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.11</text>
+<line x1="855.00" y1="145.00" x2="1505.00" y2="145.00" stroke="#D9DEE5" stroke-width="1"/>
+<text x="845.00" y="150.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="end">0.14</text>
+<line x1="855.00" y1="145.00" x2="855.00" y2="655.00" stroke="#20242A" stroke-width="1.4"/>
+<line x1="855.00" y1="655.00" x2="1505.00" y2="655.00" stroke="#20242A" stroke-width="1.4"/>
+<line x1="917.90" y1="655.00" x2="917.90" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="917.90" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">PGPR</text>
+<line x1="1022.74" y1="655.00" x2="1022.74" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="1022.74" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">UCPR</text>
+<line x1="1127.58" y1="655.00" x2="1127.58" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="1127.58" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">CAFE</text>
+<line x1="1232.42" y1="655.00" x2="1232.42" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="1232.42" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">TPRec</text>
+<line x1="1337.26" y1="655.00" x2="1337.26" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="1337.26" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">KGGLM</text>
+<line x1="1442.10" y1="655.00" x2="1442.10" y2="660.00" stroke="#20242A" stroke-width="1"/>
+<text x="1442.10" y="680.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#5D6670" text-anchor="middle">PEARLM</text>
+<text x="855.00" y="132.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#5D6670" text-anchor="start">Strict NDCG@10</text>
+<text x="1180.00" y="708.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Model</text>
+<text x="855.00" y="102.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="700" fill="#20242A" text-anchor="start">(b) ML-1M</text>
+<rect x="885.40" y="289.86" width="65.00" height="365.14" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="917.90" y="280.86" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.1019</text>
+<rect x="990.24" y="346.05" width="65.00" height="308.95" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="1022.74" y="337.05" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0862</text>
+<rect x="1095.08" y="236.97" width="65.00" height="418.03" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="1127.58" y="227.97" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.1167</text>
+<rect x="1199.92" y="317.36" width="65.00" height="337.64" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="1232.42" y="308.36" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0942</text>
+<rect x="1304.76" y="534.42" width="65.00" height="120.58" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="1337.26" y="525.42" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0336</text>
+<rect x="1409.60" y="528.49" width="65.00" height="126.51" rx="0" fill="#4E7890" stroke="#36576A" stroke-width="1"/>
+<text x="1442.10" y="519.49" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#20242A" text-anchor="middle">0.0353</text>
+<text x="95.00" y="75.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#5D6670" text-anchor="start">Strict accuracy evidence stream</text>
+<text x="95.00" y="770.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#5D6670" text-anchor="start">Values are strict NDCG@10; alpha-sweep NDCG is not shown in this figure.</text>
+</svg>

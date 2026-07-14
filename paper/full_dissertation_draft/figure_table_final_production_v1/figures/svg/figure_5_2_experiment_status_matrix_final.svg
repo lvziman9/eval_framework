@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="650" viewBox="0 0 1600 650">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="80.00" y="55.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" fill="#20242A" text-anchor="start">Validation status matrix</text>
+<text x="80.00" y="90.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#5D6670" text-anchor="start">Status and reportability only - not comparative recommendation performance</text>
+<text x="372.50" y="135.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PGPR</text>
+<text x="577.50" y="135.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">UCPR</text>
+<text x="782.50" y="135.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">CAFE</text>
+<text x="987.50" y="135.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">TPRec</text>
+<text x="1192.50" y="135.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">KGGLM</text>
+<text x="1397.50" y="135.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PEARLM</text>
+<text x="245.00" y="217.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#20242A" text-anchor="end">LastFM</text>
+<rect x="274.00" y="159.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="372.50" y="218.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="479.00" y="159.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="577.50" y="218.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="684.00" y="159.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="782.50" y="218.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="889.00" y="159.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="987.50" y="218.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="1094.00" y="159.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="1192.50" y="218.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="1299.00" y="159.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="1397.50" y="218.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<text x="245.00" y="329.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#20242A" text-anchor="end">ML-1M</text>
+<rect x="274.00" y="271.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="372.50" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="479.00" y="271.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="577.50" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="684.00" y="271.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="782.50" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="889.00" y="271.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="987.50" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="1094.00" y="271.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="1192.50" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="1299.00" y="271.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="1397.50" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<text x="245.00" y="441.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#20242A" text-anchor="end">Amazon-Book KGAT</text>
+<rect x="274.00" y="383.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="372.50" y="442.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="479.00" y="383.00" width="197.00" height="104.00" rx="3" fill="#F1E5CF" stroke="#8A672D" stroke-width="1.4"/>
+<text x="577.50" y="442.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">BLOCKED</text>
+<rect x="684.00" y="383.00" width="197.00" height="104.00" rx="3" fill="#F1E5CF" stroke="#8A672D" stroke-width="1.4"/>
+<text x="782.50" y="442.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">BLOCKED</text>
+<rect x="889.00" y="383.00" width="197.00" height="104.00" rx="3" fill="#F1E5CF" stroke="#8A672D" stroke-width="1.4"/>
+<text x="987.50" y="442.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">BLOCKED</text>
+<rect x="1094.00" y="383.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="1192.50" y="442.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<rect x="1299.00" y="383.00" width="197.00" height="104.00" rx="3" fill="#DCEBE4" stroke="#477A61" stroke-width="1.4"/>
+<text x="1397.50" y="442.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#20242A" text-anchor="middle">PASS</text>
+<text x="270.00" y="565.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#5D6670" text-anchor="start">LastFM and ML-1M: complete six-model scope</text>
+<text x="930.00" y="565.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#8A5A20" text-anchor="start">Amazon-Book KGAT: partial boundary case</text>
+</svg>

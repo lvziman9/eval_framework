@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="55.00" y="48.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" fill="#20242A" text-anchor="start">Canonical evaluation dataflow</text>
+<rect x="45.00" y="95.00" width="235.00" height="86.00" rx="5" fill="#EAF1F4" stroke="#20242A" stroke-width="1.6"/>
+<text x="162.50" y="132.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Canonical dataset</text>
+<text x="162.50" y="156.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">truth and mappings</text>
+<rect x="305.00" y="95.00" width="235.00" height="86.00" rx="5" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="422.50" y="132.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Model-specific</text>
+<text x="422.50" y="156.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">execution views</text>
+<rect x="565.00" y="95.00" width="235.00" height="86.00" rx="5" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="682.50" y="132.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Model execution or</text>
+<text x="682.50" y="156.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">imported outputs</text>
+<rect x="825.00" y="95.00" width="235.00" height="86.00" rx="5" fill="#EAF1F4" stroke="#20242A" stroke-width="1.6"/>
+<text x="942.50" y="132.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Native-path</text>
+<text x="942.50" y="156.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">export contract</text>
+<line x1="280.00" y1="138.00" x2="295.00" y2="138.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="295.00,138.00 285.71,143.89 285.71,132.11" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<line x1="540.00" y1="138.00" x2="555.00" y2="138.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="555.00,138.00 545.71,143.89 545.71,132.11" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<line x1="800.00" y1="138.00" x2="815.00" y2="138.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="815.00,138.00 805.71,143.89 805.71,132.11" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="800.00" y="235.00" width="235.00" height="68.00" rx="5" fill="#FFFFFF" stroke="#5D6670" stroke-width="1.6"/>
+<text x="917.50" y="275.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">uid_topk.csv</text>
+<line x1="942.00" y1="181.00" x2="910.00" y2="225.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="910.00,225.00 910.70,214.02 920.23,220.96" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="1050.00" y="235.00" width="235.00" height="68.00" rx="5" fill="#FFFFFF" stroke="#5D6670" stroke-width="1.6"/>
+<text x="1167.50" y="275.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">pred_paths.csv</text>
+<line x1="942.00" y1="181.00" x2="1160.00" y2="225.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1160.00,225.00 1149.73,228.94 1152.06,217.38" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="1300.00" y="235.00" width="235.00" height="68.00" rx="5" fill="#FFFFFF" stroke="#5D6670" stroke-width="1.6"/>
+<text x="1417.50" y="263.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">uid_pid_</text>
+<text x="1417.50" y="287.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#20242A" text-anchor="middle">explanation.csv</text>
+<line x1="942.00" y1="181.00" x2="1410.00" y2="225.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1410.00,225.00 1400.20,230.00 1401.30,218.26" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<polygon points="1180.00,332.50 1317.50,395.00 1180.00,457.50 1042.50,395.00" fill="#EAF1F4" stroke="#20242A" stroke-width="1.6"/>
+<text x="1180.00" y="390.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">Validation</text>
+<text x="1180.00" y="411.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="500" fill="#20242A" text-anchor="middle">gates</text>
+<line x1="917.00" y1="303.00" x2="1150.00" y2="338.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1150.00,338.00 1139.94,342.45 1141.69,330.79" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<line x1="1167.00" y1="303.00" x2="1150.00" y2="338.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1150.00,338.00 1148.76,327.07 1159.36,332.22" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<line x1="1417.00" y1="303.00" x2="1150.00" y2="338.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1150.00,338.00 1158.44,330.95 1159.97,342.64" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="885.00" y="515.00" width="250.00" height="72.00" rx="5" fill="#EAF1F4" stroke="#20242A" stroke-width="1.6"/>
+<text x="1010.00" y="545.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Reportable</text>
+<text x="1010.00" y="569.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">model-dataset row</text>
+<rect x="1250.00" y="515.00" width="280.00" height="72.00" rx="5" fill="#F4EEE6" stroke="#8A5A20" stroke-width="1.6"/>
+<text x="1390.00" y="545.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">BLOCKED / PARTIAL</text>
+<text x="1390.00" y="569.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">boundary record</text>
+<line x1="1130.00" y1="450.00" x2="1030.00" y2="505.00" stroke="#245A73" stroke-width="1.8"/>
+<polygon points="1030.00,505.00 1035.30,495.36 1040.98,505.69" fill="#245A73" stroke="#245A73" stroke-width="1"/>
+<text x="1080.00" y="470.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#245A73" text-anchor="middle">PASS</text>
+<line x1="1230.00" y1="450.00" x2="1365.00" y2="505.00" stroke="#8A5A20" stroke-width="1.8"/>
+<polygon points="1365.00,505.00 1354.17,506.95 1358.62,496.04" fill="#8A5A20" stroke="#8A5A20" stroke-width="1"/>
+<text x="1297.50" y="470.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#8A5A20" text-anchor="middle">BLOCKED / PARTIAL</text>
+<rect x="80.00" y="680.00" width="255.00" height="83.00" rx="5" fill="#FFFFFF" stroke="#245A73" stroke-width="1.6"/>
+<text x="207.50" y="715.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Strict accuracy</text>
+<text x="207.50" y="739.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">HR / NDCG / P / R</text>
+<line x1="1010.00" y1="587.00" x2="205.00" y2="670.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="205.00,670.00 213.63,663.18 214.84,674.91" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="385.00" y="680.00" width="255.00" height="83.00" rx="5" fill="#FFFFFF" stroke="#245A73" stroke-width="1.6"/>
+<text x="512.50" y="715.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Explanation endpoints</text>
+<text x="512.50" y="739.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">LIR / SEP / ETD</text>
+<line x1="1010.00" y1="587.00" x2="510.00" y2="670.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="510.00,670.00 518.20,662.66 520.13,674.29" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="690.00" y="680.00" width="255.00" height="83.00" rx="5" fill="#FFFFFF" stroke="#245A73" stroke-width="1.6"/>
+<text x="817.50" y="715.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Alpha-sweep</text>
+<text x="817.50" y="739.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">trade-off outputs</text>
+<line x1="1010.00" y1="587.00" x2="815.00" y2="670.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="815.00,670.00 821.24,660.94 825.85,671.79" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="995.00" y="680.00" width="255.00" height="83.00" rx="5" fill="#FFFFFF" stroke="#245A73" stroke-width="1.6"/>
+<text x="1122.50" y="715.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">PGPR/UCPR</text>
+<text x="1122.50" y="739.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">ablation outputs</text>
+<line x1="1010.00" y1="587.00" x2="1120.00" y2="670.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1120.00,670.00 1109.04,669.11 1116.14,659.70" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<rect x="1310.00" y="680.00" width="235.00" height="83.00" rx="5" fill="#F4EEE6" stroke="#8A5A20" stroke-width="1.6"/>
+<text x="1427.50" y="715.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Chapter 5</text>
+<text x="1427.50" y="739.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">boundary analysis</text>
+<line x1="1390.00" y1="587.00" x2="1425.00" y2="670.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="1425.00,670.00 1415.96,663.73 1426.82,659.15" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="80.00" y="840.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#5D6670" text-anchor="start">Only validated rows enter quantitative reporting; boundary states remain visible but are not ranked.</text>
+<text x="80.00" y="888.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#5D6670" text-anchor="start">Evaluation framework only - no new recommender architecture is defined.</text>
+</svg>

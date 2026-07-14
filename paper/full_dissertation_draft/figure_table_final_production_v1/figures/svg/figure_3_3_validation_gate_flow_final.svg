@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="55.00" y="48.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" fill="#20242A" text-anchor="start">Validation gate for a model-dataset export package</text>
+<rect x="560.00" y="82.00" width="470.00" height="68.00" rx="5" fill="#EAF1F4" stroke="#245A73" stroke-width="1.6"/>
+<text x="795.00" y="122.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">Export package for model m on dataset d</text>
+<polygon points="690.00,184.00 845.00,225.00 690.00,266.00 535.00,225.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="690.00" y="220.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Coverage</text>
+<text x="690.00" y="241.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">complete?</text>
+<line x1="795.00" y1="150.00" x2="690.00" y2="179.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="690.00,179.00 697.38,170.85 700.52,182.21" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<polygon points="690.00,294.00 845.00,335.00 690.00,376.00 535.00,335.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="690.00" y="330.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Duplicate top-k</text>
+<text x="690.00" y="351.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">items?</text>
+<line x1="690.00" y1="267.00" x2="690.00" y2="289.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="690.00,289.00 684.11,279.71 695.89,279.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="690.00" y="271.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<polygon points="690.00,404.00 845.00,445.00 690.00,486.00 535.00,445.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="690.00" y="440.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Seen-item</text>
+<text x="690.00" y="461.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">leakage?</text>
+<line x1="690.00" y1="377.00" x2="690.00" y2="399.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="690.00,399.00 684.11,389.71 695.89,389.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="690.00" y="381.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">No</text>
+<polygon points="690.00,514.00 845.00,555.00 690.00,596.00 535.00,555.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="690.00" y="550.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Canonical uid / pid</text>
+<text x="690.00" y="571.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">consistent?</text>
+<line x1="690.00" y1="487.00" x2="690.00" y2="509.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="690.00,509.00 684.11,499.71 695.89,499.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="690.00" y="491.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">No</text>
+<polygon points="930.00,624.00 1085.00,665.00 930.00,706.00 775.00,665.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="930.00" y="660.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Path endpoints align</text>
+<text x="930.00" y="681.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">with user-item pair?</text>
+<line x1="690.00" y1="597.00" x2="930.00" y2="619.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="930.00,619.00 920.21,624.02 921.29,612.28" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="810.00" y="601.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<polygon points="930.00,734.00 1085.00,775.00 930.00,816.00 775.00,775.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="930.00" y="770.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Top-k and explanations</text>
+<text x="930.00" y="791.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">aligned?</text>
+<line x1="930.00" y1="707.00" x2="930.00" y2="729.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="930.00,729.00 924.11,719.71 935.89,719.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="930.00" y="711.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<polygon points="930.00,844.00 1085.00,885.00 930.00,926.00 775.00,885.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="930.00" y="880.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Candidate paths</text>
+<text x="930.00" y="901.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">consistent?</text>
+<line x1="930.00" y1="817.00" x2="930.00" y2="839.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="930.00,839.00 924.11,829.71 935.89,829.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="930.00" y="821.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<polygon points="930.00,954.00 1085.00,995.00 930.00,1036.00 775.00,995.00" fill="#FFFFFF" stroke="#20242A" stroke-width="1.6"/>
+<text x="930.00" y="990.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">Scores</text>
+<text x="930.00" y="1011.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="500" fill="#20242A" text-anchor="middle">sane?</text>
+<line x1="930.00" y1="927.00" x2="930.00" y2="949.00" stroke="#20242A" stroke-width="1.8"/>
+<polygon points="930.00,949.00 924.11,939.71 935.89,939.71" fill="#20242A" stroke="#20242A" stroke-width="1"/>
+<text x="930.00" y="931.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#20242A" text-anchor="middle">Yes</text>
+<rect x="80.00" y="470.00" width="350.00" height="100.00" rx="5" fill="#F4EEE6" stroke="#8A5A20" stroke-width="1.6"/>
+<text x="255.00" y="502.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">BLOCKED or PARTIAL</text>
+<text x="255.00" y="526.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">evidence record</text>
+<text x="255.00" y="550.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">not a performance result</text>
+<line x1="445.00" y1="225.00" x2="445.00" y2="995.00" stroke="#8A5A20" stroke-width="1.2"/>
+<line x1="445.00" y1="520.00" x2="435.00" y2="520.00" stroke="#8A5A20" stroke-width="1.8"/>
+<polygon points="435.00,520.00 444.29,514.11 444.29,525.89" fill="#8A5A20" stroke="#8A5A20" stroke-width="1"/>
+<line x1="535.00" y1="225.00" x2="445.00" y2="225.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="217.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<line x1="535.00" y1="335.00" x2="445.00" y2="335.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="327.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">Yes</text>
+<line x1="535.00" y1="445.00" x2="445.00" y2="445.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="437.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">Yes</text>
+<line x1="535.00" y1="555.00" x2="445.00" y2="555.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="547.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<line x1="775.00" y1="665.00" x2="445.00" y2="665.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="657.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<line x1="775.00" y1="775.00" x2="445.00" y2="775.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="767.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<line x1="775.00" y1="885.00" x2="445.00" y2="885.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="877.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<line x1="775.00" y1="995.00" x2="445.00" y2="995.00" stroke="#8A5A20" stroke-width="1.2"/>
+<text x="520.00" y="987.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="600" fill="#8A5A20" text-anchor="middle">No</text>
+<rect x="1160.00" y="940.00" width="340.00" height="100.00" rx="5" fill="#EAF1F4" stroke="#245A73" stroke-width="1.6"/>
+<text x="1330.00" y="984.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#20242A" text-anchor="middle">PASS</text>
+<text x="1330.00" y="1008.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#20242A" text-anchor="middle">reportable evidence row</text>
+<line x1="1085.00" y1="995.00" x2="1150.00" y2="990.00" stroke="#245A73" stroke-width="1.8"/>
+<polygon points="1150.00,990.00 1141.19,996.59 1140.29,984.84" fill="#245A73" stroke="#245A73" stroke-width="1"/>
+<text x="1117.50" y="985.50" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#245A73" text-anchor="middle">Yes</text>
+<text x="80.00" y="1085.00" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#5D6670" text-anchor="start">Decision branches establish evidence eligibility only; they do not rank recommendation performance.</text>
+</svg>
