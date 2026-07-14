@@ -1,0 +1,15 @@
+# Minor Consistency Fix Log
+
+| Location | Issue | Fix | Content risk | Verification |
+| --- | --- | --- | --- | --- |
+| Chapter 1 objective map | Valid table lacked a standalone descriptor. | Added a descriptive line before the table. | None; no objective or specification changed. | Eight numbered objectives and eight O1–O8 table rows remain. |
+| Chapter 3 display formulas | Raw absolute-value bars could be parsed ambiguously beside Markdown tables. | Replaced them with equivalent `\lvert` and `\rvert` LaTeX delimiters. | Low; notation only. | Formula structure, variables, operators, and numerical content are unchanged. |
+| Chapter 3 figures and tables | Figure references and existing tables lacked one consistent Markdown presentation. | Added standalone text-only placeholders, frozen captions, and unnumbered table descriptors. | Low; captions restate existing evidence roles. | Figure 3.1 remains framework-only; Figure 3.2 keeps strict, sweep, and ablation evidence separate. |
+| Chapter 4 table and figure references | Referenced assets were implicit in prose and captions were not standalone. | Added consistent text-only placeholders and source-controlled captions for Tables 4.1–4.2 and Figures 4.1–4.6. | Low; no asset or data row was inserted. | Strict figures retain the JSON caveat; sweep figures identify paired NDCG as non-strict. |
+| Chapter 4.5 SEP discussion | Correct strong-trend and weak-semantic statements repeated the same controllability point. | Compressed the repeated discussion into two paragraphs after the unchanged LastFM and ML-1M result paragraphs. | Medium; required semantic edit. | Strong trend, model-dependent paired cost, framework controllability, main-text Figure 4.5, and non-user-perception boundary all remain explicit. |
+| Chapter 4 empirical-pattern table | Valid table lacked a standalone descriptor. | Added a descriptive line before the pipe table. | None. | Seven empirical-pattern rows and all evidence limits remain unchanged. |
+| Chapter 5 table and figure references | Referenced assets lacked consistent standalone placeholders and captions. | Added placeholders and evidence-bounded captions for Tables 5.1–5.4 and Figures 5.1–5.2. | Low; no result table or image was inserted. | Ablation remains PGPR/UCPR-only; Amazon remains a partial boundary; validation status is not performance. |
+| Chapter 6 objective-closure table | Mechanism/ablation and boundary analysis appeared as two separate O8 rows. | Merged them into `O8. Mechanism, ablation, and boundary analysis`. | Low; required consistency fix. | No O9 was added; the eight-objective structure in Chapter 1 is unchanged, and both O8 evidence boundaries remain in the merged row. |
+| Chapters 1–6 | Markdown block boundaries required final validation. | Checked heading separation, blank lines, lists, display math, placeholders, captions, and pipe-table row widths. | None. | No compressed heading, single-line pipe table, unbalanced display block, trailing whitespace, or repeated blank-line run remains. |
+
+No experimental value, result, citation key, evidence path, chapter boundary, or evidence status was changed. No caveat was removed.
