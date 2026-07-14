@@ -1,0 +1,1355 @@
+{
+  "page_count": 84,
+  "expected_dimensions": [
+    1020,
+    1320
+  ],
+  "dimension_mismatches": [],
+  "blank_pages": [
+    13
+  ],
+  "edge_touch_pages": [],
+  "replacement_character_pages": [],
+  "image_error_marker_pages": [],
+  "chapter_pages": {
+    "1": [
+      8,
+      14
+    ],
+    "2": [
+      12,
+      14,
+      23
+    ],
+    "3": [
+      11,
+      12,
+      15,
+      16,
+      18,
+      22,
+      23,
+      43,
+      67,
+      74,
+      76
+    ],
+    "4": [
+      12,
+      23,
+      37,
+      42,
+      43,
+      52,
+      56,
+      58,
+      64,
+      65,
+      66,
+      67,
+      72,
+      74,
+      76
+    ],
+    "5": [
+      11,
+      12,
+      23,
+      42,
+      43,
+      52,
+      55,
+      56,
+      57,
+      58,
+      67,
+      74,
+      75,
+      76
+    ],
+    "6": [
+      12,
+      22,
+      42,
+      72,
+      74
+    ]
+  },
+  "references_pages": [
+    79
+  ],
+  "appendices_pages": [
+    82
+  ],
+  "figure_caption_pages": {
+    "3.1": [
+      24
+    ],
+    "3.2": [
+      36
+    ],
+    "3.3": [
+      36
+    ],
+    "4.1": [
+      46
+    ],
+    "4.2": [
+      50
+    ],
+    "4.3": [
+      51
+    ],
+    "4.4": [
+      53
+    ],
+    "4.5": [
+      54
+    ],
+    "5.1": [
+      63
+    ],
+    "5.2": [
+      70
+    ],
+    "C.1": [
+      83
+    ]
+  },
+  "table_caption_pages": {
+    "1.1": [
+      11
+    ],
+    "2.1": [
+      21
+    ],
+    "3.1": [
+      27
+    ],
+    "3.2": [
+      29
+    ],
+    "3.3": [
+      30
+    ],
+    "3.4": [
+      33
+    ],
+    "3.5": [
+      40
+    ],
+    "3.6": [
+      42
+    ],
+    "4.1": [
+      46,
+      47
+    ],
+    "4.2": [
+      50
+    ],
+    "4.3": [
+      57
+    ],
+    "5.1": [
+      62
+    ],
+    "5.2": [
+      65
+    ],
+    "5.3": [
+      70
+    ],
+    "5.4": [
+      73
+    ],
+    "6.1": [
+      77
+    ]
+  },
+  "contact_sheets": [
+    "paper/docx_build/reports/contact_sheets/pages_001_020.png",
+    "paper/docx_build/reports/contact_sheets/pages_021_040.png",
+    "paper/docx_build/reports/contact_sheets/pages_041_060.png",
+    "paper/docx_build/reports/contact_sheets/pages_061_080.png",
+    "paper/docx_build/reports/contact_sheets/pages_081_084.png"
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "file": "paper/docx_build/rendered_pages/page-01.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.968286,
+      "content_bbox": [
+        170,
+        100,
+        788,
+        624
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 2,
+      "file": "paper/docx_build/rendered_pages/page-02.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.996867,
+      "content_bbox": [
+        172,
+        96,
+        620,
+        159
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 3,
+      "file": "paper/docx_build/rendered_pages/page-03.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.996694,
+      "content_bbox": [
+        170,
+        96,
+        477,
+        159
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 4,
+      "file": "paper/docx_build/rendered_pages/page-04.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.995841,
+      "content_bbox": [
+        171,
+        96,
+        745,
+        159
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 5,
+      "file": "paper/docx_build/rendered_pages/page-05.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.996309,
+      "content_bbox": [
+        171,
+        96,
+        722,
+        159
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 6,
+      "file": "paper/docx_build/rendered_pages/page-06.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.99549,
+      "content_bbox": [
+        170,
+        96,
+        788,
+        183
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 7,
+      "file": "paper/docx_build/rendered_pages/page-07.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.91416,
+      "content_bbox": [
+        170,
+        96,
+        788,
+        1004
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 8,
+      "file": "paper/docx_build/rendered_pages/page-08.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.908755,
+      "content_bbox": [
+        171,
+        96,
+        788,
+        1075
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 9,
+      "file": "paper/docx_build/rendered_pages/page-09.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.926846,
+      "content_bbox": [
+        170,
+        95,
+        788,
+        853
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 10,
+      "file": "paper/docx_build/rendered_pages/page-10.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.968268,
+      "content_bbox": [
+        170,
+        559,
+        775,
+        1132
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 11,
+      "file": "paper/docx_build/rendered_pages/page-11.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.925971,
+      "content_bbox": [
+        170,
+        89,
+        788,
+        1110
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 12,
+      "file": "paper/docx_build/rendered_pages/page-12.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.912177,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1115
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 13,
+      "file": "paper/docx_build/rendered_pages/page-13.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.999079,
+      "content_bbox": [
+        170,
+        86,
+        788,
+        90
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 14,
+      "file": "paper/docx_build/rendered_pages/page-14.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.896683,
+      "content_bbox": [
+        171,
+        96,
+        788,
+        1135
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 15,
+      "file": "paper/docx_build/rendered_pages/page-15.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.903838,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1114
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 16,
+      "file": "paper/docx_build/rendered_pages/page-16.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.899756,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1135
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 17,
+      "file": "paper/docx_build/rendered_pages/page-17.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.907705,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1104
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 18,
+      "file": "paper/docx_build/rendered_pages/page-18.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.902447,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1114
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 19,
+      "file": "paper/docx_build/rendered_pages/page-19.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.907101,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1101
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 20,
+      "file": "paper/docx_build/rendered_pages/page-20.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.986299,
+      "content_bbox": [
+        636,
+        305,
+        767,
+        1117
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 21,
+      "file": "paper/docx_build/rendered_pages/page-21.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.93984,
+      "content_bbox": [
+        170,
+        126,
+        787,
+        1097
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 22,
+      "file": "paper/docx_build/rendered_pages/page-22.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.948183,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        656
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 23,
+      "file": "paper/docx_build/rendered_pages/page-23.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.933417,
+      "content_bbox": [
+        170,
+        96,
+        788,
+        785
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 24,
+      "file": "paper/docx_build/rendered_pages/page-24.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.916366,
+      "content_bbox": [
+        170,
+        97,
+        799,
+        1120
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 25,
+      "file": "paper/docx_build/rendered_pages/page-25.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.930176,
+      "content_bbox": [
+        171,
+        90,
+        788,
+        994
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 26,
+      "file": "paper/docx_build/rendered_pages/page-26.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.989724,
+      "content_bbox": [
+        681,
+        162,
+        767,
+        1118
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 27,
+      "file": "paper/docx_build/rendered_pages/page-27.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.959381,
+      "content_bbox": [
+        170,
+        126,
+        785,
+        1046
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 28,
+      "file": "paper/docx_build/rendered_pages/page-28.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.985034,
+      "content_bbox": [
+        170,
+        413,
+        766,
+        1126
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 29,
+      "file": "paper/docx_build/rendered_pages/page-29.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.952186,
+      "content_bbox": [
+        171,
+        89,
+        705,
+        1057
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 30,
+      "file": "paper/docx_build/rendered_pages/page-30.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.957215,
+      "content_bbox": [
+        170,
+        90,
+        787,
+        1134
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 31,
+      "file": "paper/docx_build/rendered_pages/page-31.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.944893,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1079
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 32,
+      "file": "paper/docx_build/rendered_pages/page-32.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.941777,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1129
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 33,
+      "file": "paper/docx_build/rendered_pages/page-33.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.960727,
+      "content_bbox": [
+        170,
+        126,
+        767,
+        1105
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 34,
+      "file": "paper/docx_build/rendered_pages/page-34.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.939641,
+      "content_bbox": [
+        171,
+        90,
+        788,
+        1116
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 35,
+      "file": "paper/docx_build/rendered_pages/page-35.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.945555,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        876
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 36,
+      "file": "paper/docx_build/rendered_pages/page-36.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.920256,
+      "content_bbox": [
+        175,
+        100,
+        797,
+        1037
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 37,
+      "file": "paper/docx_build/rendered_pages/page-37.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.924587,
+      "content_bbox": [
+        170,
+        94,
+        788,
+        891
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 38,
+      "file": "paper/docx_build/rendered_pages/page-38.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.984664,
+      "content_bbox": [
+        636,
+        234,
+        767,
+        1118
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 39,
+      "file": "paper/docx_build/rendered_pages/page-39.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.963623,
+      "content_bbox": [
+        170,
+        126,
+        767,
+        1135
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 40,
+      "file": "paper/docx_build/rendered_pages/page-40.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.928879,
+      "content_bbox": [
+        170,
+        89,
+        788,
+        1056
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 41,
+      "file": "paper/docx_build/rendered_pages/page-41.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.957712,
+      "content_bbox": [
+        171,
+        341,
+        776,
+        1127
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 42,
+      "file": "paper/docx_build/rendered_pages/page-42.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.944736,
+      "content_bbox": [
+        170,
+        89,
+        788,
+        750
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 43,
+      "file": "paper/docx_build/rendered_pages/page-43.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.921284,
+      "content_bbox": [
+        170,
+        96,
+        788,
+        1073
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 44,
+      "file": "paper/docx_build/rendered_pages/page-44.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.986731,
+      "content_bbox": [
+        171,
+        90,
+        788,
+        1127
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 45,
+      "file": "paper/docx_build/rendered_pages/page-45.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.984978,
+      "content_bbox": [
+        171,
+        90,
+        754,
+        1123
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 46,
+      "file": "paper/docx_build/rendered_pages/page-46.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.918658,
+      "content_bbox": [
+        171,
+        90,
+        801,
+        1133
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 47,
+      "file": "paper/docx_build/rendered_pages/page-47.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.981368,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        288
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 48,
+      "file": "paper/docx_build/rendered_pages/page-48.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.987352,
+      "content_bbox": [
+        171,
+        784,
+        771,
+        1121
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 49,
+      "file": "paper/docx_build/rendered_pages/page-49.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.973053,
+      "content_bbox": [
+        171,
+        90,
+        769,
+        1132
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 50,
+      "file": "paper/docx_build/rendered_pages/page-50.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.937354,
+      "content_bbox": [
+        171,
+        89,
+        801,
+        1113
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 51,
+      "file": "paper/docx_build/rendered_pages/page-51.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.928263,
+      "content_bbox": [
+        171,
+        90,
+        801,
+        1114
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 52,
+      "file": "paper/docx_build/rendered_pages/page-52.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.925035,
+      "content_bbox": [
+        170,
+        90,
+        789,
+        920
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 53,
+      "file": "paper/docx_build/rendered_pages/page-53.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.928187,
+      "content_bbox": [
+        171,
+        93,
+        801,
+        1046
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 54,
+      "file": "paper/docx_build/rendered_pages/page-54.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.92289,
+      "content_bbox": [
+        170,
+        94,
+        801,
+        1101
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 55,
+      "file": "paper/docx_build/rendered_pages/page-55.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.924455,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        953
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 56,
+      "file": "paper/docx_build/rendered_pages/page-56.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.940656,
+      "content_bbox": [
+        171,
+        234,
+        779,
+        1133
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 57,
+      "file": "paper/docx_build/rendered_pages/page-57.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.98834,
+      "content_bbox": [
+        170,
+        89,
+        788,
+        247
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 58,
+      "file": "paper/docx_build/rendered_pages/page-58.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.944364,
+      "content_bbox": [
+        170,
+        96,
+        787,
+        820
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 59,
+      "file": "paper/docx_build/rendered_pages/page-59.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.992814,
+      "content_bbox": [
+        702,
+        269,
+        767,
+        1132
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 60,
+      "file": "paper/docx_build/rendered_pages/page-60.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.990638,
+      "content_bbox": [
+        702,
+        126,
+        767,
+        1131
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 61,
+      "file": "paper/docx_build/rendered_pages/page-61.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.988055,
+      "content_bbox": [
+        170,
+        126,
+        767,
+        1125
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 62,
+      "file": "paper/docx_build/rendered_pages/page-62.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.969608,
+      "content_bbox": [
+        171,
+        89,
+        788,
+        1112
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 63,
+      "file": "paper/docx_build/rendered_pages/page-63.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.932356,
+      "content_bbox": [
+        171,
+        90,
+        801,
+        969
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 64,
+      "file": "paper/docx_build/rendered_pages/page-64.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.967025,
+      "content_bbox": [
+        171,
+        390,
+        784,
+        1124
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 65,
+      "file": "paper/docx_build/rendered_pages/page-65.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.911391,
+      "content_bbox": [
+        171,
+        89,
+        788,
+        1132
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 66,
+      "file": "paper/docx_build/rendered_pages/page-66.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.909175,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        1080
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 67,
+      "file": "paper/docx_build/rendered_pages/page-67.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.922612,
+      "content_bbox": [
+        170,
+        90,
+        789,
+        1085
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 68,
+      "file": "paper/docx_build/rendered_pages/page-68.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.974628,
+      "content_bbox": [
+        170,
+        90,
+        787,
+        1128
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 69,
+      "file": "paper/docx_build/rendered_pages/page-69.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.968903,
+      "content_bbox": [
+        171,
+        126,
+        786,
+        1073
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 70,
+      "file": "paper/docx_build/rendered_pages/page-70.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.8828,
+      "content_bbox": [
+        170,
+        90,
+        798,
+        1089
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 71,
+      "file": "paper/docx_build/rendered_pages/page-71.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.944261,
+      "content_bbox": [
+        170,
+        90,
+        787,
+        1116
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 72,
+      "file": "paper/docx_build/rendered_pages/page-72.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.969517,
+      "content_bbox": [
+        170,
+        126,
+        777,
+        1104
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 73,
+      "file": "paper/docx_build/rendered_pages/page-73.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.962813,
+      "content_bbox": [
+        170,
+        89,
+        788,
+        570
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 74,
+      "file": "paper/docx_build/rendered_pages/page-74.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.91106,
+      "content_bbox": [
+        170,
+        96,
+        788,
+        1117
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 75,
+      "file": "paper/docx_build/rendered_pages/page-75.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.918507,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        951
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 76,
+      "file": "paper/docx_build/rendered_pages/page-76.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.9533,
+      "content_bbox": [
+        170,
+        234,
+        787,
+        1125
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 77,
+      "file": "paper/docx_build/rendered_pages/page-77.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.906598,
+      "content_bbox": [
+        171,
+        90,
+        788,
+        1126
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 78,
+      "file": "paper/docx_build/rendered_pages/page-78.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.932263,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        873
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 79,
+      "file": "paper/docx_build/rendered_pages/page-79.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.898439,
+      "content_bbox": [
+        170,
+        96,
+        786,
+        1129
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 80,
+      "file": "paper/docx_build/rendered_pages/page-80.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.889463,
+      "content_bbox": [
+        170,
+        90,
+        786,
+        1119
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 81,
+      "file": "paper/docx_build/rendered_pages/page-81.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.916757,
+      "content_bbox": [
+        170,
+        90,
+        788,
+        891
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 82,
+      "file": "paper/docx_build/rendered_pages/page-82.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.953941,
+      "content_bbox": [
+        170,
+        96,
+        778,
+        681
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 83,
+      "file": "paper/docx_build/rendered_pages/page-83.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.925567,
+      "content_bbox": [
+        170,
+        93,
+        796,
+        1067
+      ],
+      "edge_touch": false
+    },
+    {
+      "page": 84,
+      "file": "paper/docx_build/rendered_pages/page-84.png",
+      "width": 1020,
+      "height": 1320,
+      "near_white_ratio": 0.986245,
+      "content_bbox": [
+        170,
+        94,
+        787,
+        235
+      ],
+      "edge_touch": false
+    }
+  ]
+}
