@@ -1,0 +1,31 @@
+# Paper Archive Manifest
+
+| Original path | Archived path | Reason | Status |
+| --- | --- | --- | --- |
+| paper/full_dissertation_draft/batch1_ch4_findings_ch3_config | paper/_archive/full_dissertation_draft_batches/batch1_ch4_findings_ch3_config | Completed dissertation batch output superseded by V4 | Moved; 8 file(s); hashes preserved |
+| paper/full_dissertation_draft/batch1b_method_formalisation_evidence_refresh | paper/_archive/full_dissertation_draft_batches/batch1b_method_formalisation_evidence_refresh | Completed dissertation batch output superseded by V4 | Moved; 10 file(s); hashes preserved |
+| paper/full_dissertation_draft/batch1c_sep_reconciliation_diagrams | paper/_archive/full_dissertation_draft_batches/batch1c_sep_reconciliation_diagrams | Completed dissertation batch output superseded by V4 | Moved; 16 file(s); hashes preserved |
+| paper/full_dissertation_draft/sep_wording_freeze_trend_preservation | paper/_archive/full_dissertation_draft_batches/sep_wording_freeze_trend_preservation | Completed dissertation batch output superseded by V4 | Moved; 10 file(s); hashes preserved |
+| paper/full_dissertation_draft/batch2a_full_dissertation_audit | paper/_archive/full_dissertation_draft_batches/batch2a_full_dissertation_audit | Completed dissertation batch output superseded by V4 | Moved; 12 file(s); hashes preserved |
+| paper/full_dissertation_draft/batch2b_critical_claim_evidence_fixes | paper/_archive/full_dissertation_draft_batches/batch2b_critical_claim_evidence_fixes | Completed dissertation batch output superseded by V4 | Moved; 13 file(s); hashes preserved |
+| paper/full_dissertation_draft/batch2c_markdown_cleanup_table_formatting | paper/_archive/full_dissertation_draft_batches/batch2c_markdown_cleanup_table_formatting | Completed dissertation batch output superseded by V4 | Moved; 12 file(s); hashes preserved |
+| paper/full_dissertation_draft/full_dissertation_assembly_v1 | paper/_archive/old_assembly_outputs/full_dissertation_assembly_v1 | Superseded assembly or figure-production package; current files verified before move | Moved; 12 file(s); hashes preserved |
+| paper/full_dissertation_draft/figure_table_final_production_v1 | paper/_archive/old_assembly_outputs/figure_table_final_production_v1 | Superseded assembly or figure-production package; current files verified before move | Moved; 31 file(s); hashes preserved |
+| paper/full_dissertation_draft/figure_table_final_production_v2 | paper/_archive/old_assembly_outputs/figure_table_final_production_v2 | Superseded assembly or figure-production package; current files verified before move | Moved; 27 file(s); hashes preserved |
+| paper/full_dissertation_draft/FULL_DISSERTATION_DRAFT_V1.md | paper/_archive/old_full_drafts/FULL_DISSERTATION_DRAFT_V1.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER1_INTRODUCTION_DRAFT_V1.md | paper/_archive/old_full_drafts/CHAPTER1_INTRODUCTION_DRAFT_V1.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER2_LITERATURE_REVIEW_INTEGRATED_V2.md | paper/_archive/old_full_drafts/CHAPTER2_LITERATURE_REVIEW_INTEGRATED_V2.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER3_FRAMEWORK_IMPLEMENTATION_INTEGRATED_V1.md | paper/_archive/old_full_drafts/CHAPTER3_FRAMEWORK_IMPLEMENTATION_INTEGRATED_V1.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER4_TRADEOFF_RESULTS_INTEGRATED_V1.md | paper/_archive/old_full_drafts/CHAPTER4_TRADEOFF_RESULTS_INTEGRATED_V1.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER5_ANALYSIS_BOUNDARY_LIMITATIONS_INTEGRATED_V1.md | paper/_archive/old_full_drafts/CHAPTER5_ANALYSIS_BOUNDARY_LIMITATIONS_INTEGRATED_V1.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER6_CONCLUSION_RECOMMENDATIONS_INTEGRATED_V1.md | paper/_archive/old_full_drafts/CHAPTER6_CONCLUSION_RECOMMENDATIONS_INTEGRATED_V1.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/FULL_DISSERTATION_STATUS.md | paper/_archive/old_full_drafts/FULL_DISSERTATION_STATUS.md | Superseded root-level dissertation draft or status | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/DISSERTATION_INTEGRATION_REPORT.md | paper/_archive/old_integration_reports/DISSERTATION_INTEGRATION_REPORT.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/RESEARCH_OBJECTIVES_AND_CONTRIBUTIONS_MAP.md | paper/_archive/old_integration_reports/RESEARCH_OBJECTIVES_AND_CONTRIBUTIONS_MAP.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CHAPTER_TRANSITION_MAP.md | paper/_archive/old_integration_reports/CHAPTER_TRANSITION_MAP.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/TERMINOLOGY_CONSISTENCY_MAP.md | paper/_archive/old_integration_reports/TERMINOLOGY_CONSISTENCY_MAP.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/CITATION_USAGE_MAP.md | paper/_archive/old_integration_reports/CITATION_USAGE_MAP.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/FIGURE_TABLE_INTEGRATION_PLAN.md | paper/_archive/old_integration_reports/FIGURE_TABLE_INTEGRATION_PLAN.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+| paper/full_dissertation_draft/INTEGRATION_REVISION_TODO.md | paper/_archive/old_integration_reports/INTEGRATION_REVISION_TODO.md | Superseded root-level integration report or map | Moved; 1 file(s); hashes preserved |
+
+Total top-level move operations: 25. Total files moved: 166.
