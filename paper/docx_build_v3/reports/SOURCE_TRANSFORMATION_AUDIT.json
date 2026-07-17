@@ -1,0 +1,76 @@
+{
+  "source": "paper/current_dissertation/FULL_DISSERTATION_CURRENT.md",
+  "source_sha256": "90e782afa0d7d400bd45c7b80cda6fbe5a0ac67e1dfd79ccdf1b514df1dadb7c",
+  "bibliography": "paper/current_dissertation/references/REFERENCES_CURRENT.bib",
+  "bibliography_sha256": "3c05b30da758ea8f60ceef4f68c9f73753818f90057d3955ec113fd6a02baf82",
+  "prepared_sha256": "b5adfd32e54f66169f06850c8c203fe04788692206e0b3f01803b17124fa53e3",
+  "numeric_sha256": "c866e9441dc89230f793e287ad7ec5880486c16b84e476ac7e38ab91fc6d65be",
+  "simplified_sha256": "4d96d1bd81adacf706ec0b382fc995118c6fd680f5d2db78b897560fb51ccff3",
+  "polished_sha256": "4ef215902b5c894ba199ec1d2676f39b8555c1090b1e159d846ae5ede683ecdc",
+  "source_citation_keys": 29,
+  "citation_keys_preserved": true,
+  "numeric_changes": 240,
+  "long_decimals_remaining": 0,
+  "table_source_count": 16,
+  "final_table_count": 17,
+  "prose_changes": 22,
+  "images": [
+    {
+      "source": "figures/png/figure_3_1_framework_overview_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_3_1_framework_overview_final.png",
+      "sha256": "53fc649d6618c059f12e424513306bf68d2569f4b5a28190b8d9f32cfb2bd662"
+    },
+    {
+      "source": "figures/png/figure_3_2_alpha_sweep_design_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_3_2_alpha_sweep_design_final.png",
+      "sha256": "fb7b5a399f674f1343869da9a55a7ea82d0df1de0e8d0e2d3d0aa6186269f928"
+    },
+    {
+      "source": "figures/png/figure_3_3_validation_gate_flow_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_3_3_validation_gate_flow_final.png",
+      "sha256": "c35deb64c1b2b741f20858bd8367ed374995107297d7d01a1d9de24687ad3673"
+    },
+    {
+      "source": "figures/png/figure_4_1_strict_ndcg_comparison_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_4_1_strict_ndcg_comparison_final.png",
+      "sha256": "77b2c5d0a193d88f26d02dd1d6999da12bf76569a4f4b72a640b756be1f089cf"
+    },
+    {
+      "source": "figures/png/figure_4_2_explanation_endpoint_summary_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_4_2_explanation_endpoint_summary_final.png",
+      "sha256": "51413ef4d453ba77917de8daa818fb9198e6573b8188c90d55d3e7e89910ed8e"
+    },
+    {
+      "source": "figures/png/figure_4_3_lir_tradeoff_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_4_3_lir_tradeoff_final.png",
+      "sha256": "b832abe2f87dba6d6b501107f9e2bf10eeb291d28a95fb91027e107278f863b6"
+    },
+    {
+      "source": "figures/png/figure_4_4_sep_tradeoff_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_4_4_sep_tradeoff_final.png",
+      "sha256": "8355d9ada55a48958d2d31bec4028294404f07e865fdb527dd397c7d3a47891e"
+    },
+    {
+      "source": "figures/png/figure_4_5_etd_tradeoff_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_4_5_etd_tradeoff_final.png",
+      "sha256": "a4286797a22f997648f107e6d683c80d3cb1753ed86aedc3abd18a9e08bbc393"
+    },
+    {
+      "source": "figures/png/figure_5_1_pgpr_ucpr_ablation_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_5_1_pgpr_ucpr_ablation_final.png",
+      "sha256": "f83d3d2d2ec222651d91bbf6e41aa559800b68400a485e5bfbd45bb8a6d56625"
+    },
+    {
+      "source": "figures/png/figure_5_2_experiment_status_matrix_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_5_2_experiment_status_matrix_final.png",
+      "sha256": "518701866ef336c710973bdcefb27b9a914f78f8c6fec586080d2b36813ff765"
+    },
+    {
+      "source": "figures/png/figure_c_1_amazon_boundary_flow_final.png",
+      "prepared": "paper/current_dissertation/figures/png/figure_c_1_amazon_boundary_flow_final.png",
+      "sha256": "260f8d18732dabf740cc204904ebc9c5856f8156d8e02fdfdcaec3bd734fb9fa"
+    }
+  ],
+  "source_markdown_modified": false,
+  "bibliography_modified": false
+}

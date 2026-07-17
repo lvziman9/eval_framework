@@ -1,0 +1,37 @@
+{
+  "body": "paper/docx_build_v3/intermediate/BODY_V3_IEEE.docx",
+  "body_sha256": "c5c6309cdf4134b486e8aa2c164615172fc85c6a1b5d27d9232770fe9815244f",
+  "bibliography_sha256": "3c05b30da758ea8f60ceef4f68c9f73753818f90057d3955ec113fd6a02baf82",
+  "ieee_csl": "paper/styles/ieee.csl",
+  "ieee_csl_sha256": "b4c7619fc16c45a31e4cc3271eab94ffe83192d3b4c7fc729470a3b459448de3",
+  "checks": {
+    "numbered_citations_present": true,
+    "author_year_patterns_remaining": 0,
+    "unresolved_citation_markers": 0,
+    "references_heading_count": 1,
+    "reference_entries": 29,
+    "references_numbered_contiguously": true,
+    "display_formula_source_count": 31,
+    "display_formula_omml_count": 31,
+    "inline_formula_omml_count": 57,
+    "empty_omml_blocks": 0,
+    "broken_formula_markers": 0,
+    "tables": 17,
+    "figures": 11
+  },
+  "first_five_references": [
+    "[1] \tQ. Guo et al., \u201cA survey on knowledge graph-based recommender systems,\u201d IEEE Transactions on Knowledge and Data Engineering, vol. 34, no. 8, pp. 3549\u20133568, 2022, doi: 10.1109/TKDE.2020.3028705.",
+    "[2] \tY. Zhang and X. Chen, \u201cExplainable recommendation: A survey and new perspectives,\u201d Foundations and Trends in Information Retrieval, vol. 14, no. 1, pp. 1\u2013101, 2020, doi: 10.1561/1500000066.",
+    "[3] \tY. Xian, Z. Fu, S. Muthukrishnan, G. de Melo, and Y. Zhang, \u201cReinforcement knowledge graph reasoning for explainable recommendation,\u201d in Proceedings of the 42nd international ACM SIGIR conference on research and development in information retrieval, Association for Computing Machinery, 2019, pp. 285\u2013294. doi: 10.1145/3331184.3331203.",
+    "[4] \tY. Xian et al., \u201cCAFE: Coarse-to-fine neural symbolic reasoning for explainable recommendation,\u201d in Proceedings of the 29th ACM international conference on information and knowledge management, Association for Computing Machinery, 2020, pp. 1645\u20131654. doi: 10.1145/3340531.3412038.",
+    "[5] \tG. Balloccu, L. Boratto, G. Fenu, and M. Marras, \u201cPost processing recommender systems with knowledge graphs for recency, popularity, and diversity of explanations,\u201d in Proceedings of the 45th international ACM SIGIR conference on research and development in information retrieval, Association for Computing Machinery, 2022, pp. 646\u2013656. doi: 10.1145/3477495.3532041."
+  ],
+  "last_reference": "[29] \tO. D. Rossiiev, N. N. Shapovalova, O. H. Rybalchenko, and A. M. Striuk, \u201cA comprehensive survey on reinforcement learning-based recommender systems: State-of-the-art, challenges, and future perspectives,\u201d in Proceedings of the 7th workshop for young scientists in computer science and software engineering, in CEUR workshop proceedings, vol. 3917. 2025, pp. 428\u2013440. Available: https://ceur-ws.org/Vol-3917/paper62.pdf",
+  "formula_omml_samples": [
+    "\u03d5Um,d:Um,d\u2192Ud",
+    "\u03d5Im,d:Im,d\u2192Id.",
+    "RuK,m,d=[iu,1,iu,2,\u2026,iu,K],\u2001iu,j\u2208Id.",
+    "pu,im,d=(r0,t0,e0),(r1,t1,e1),\u2026,(rL,tL,eL),",
+    "(r0,t0,e0)=(self_loop,user,u)"
+  ]
+}

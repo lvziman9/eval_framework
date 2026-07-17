@@ -1,0 +1,307 @@
+{
+  "render_source": "paper/docx_build_v2/intermediate/render_final/DISSERTATION_NTU_TEMPLATE_DRAFT_V2.txt",
+  "front_physical_start": 6,
+  "body_physical_start": 13,
+  "display_pages": {
+    "Abstract": "iii",
+    "Acknowledgements": "v",
+    "List of Figures": "vi",
+    "List of Tables": "vii",
+    "Chapter 1 Introduction": "1",
+    "1.1 Background": "1",
+    "1.2 Motivation": "2",
+    "1.3 Objectives and Specifications": "3",
+    "1.4 Major Contribution": "4",
+    "1.5 Organisation": "5",
+    "Chapter 2 Literature Review": "7",
+    "2.1 Knowledge Graph Recommendation": "7",
+    "2.2 Path Reasoning and Native-Path Explainability": "8",
+    "2.3 Explainable Recommendation and Explanation Quality": "10",
+    "2.4 Accuracy\u2013Explainability Trade-off in Recommendation": "12",
+    "2.5 Evaluation Protocols, Reproducibility, and Fair Comparison": "13",
+    "2.6 Research Gap and Positioning of This Dissertation": "14",
+    "Chapter 3 Framework Implementation and Verification": "18",
+    "3.1 Overview of the Implemented Framework": "18",
+    "3.2 Canonical Dataset and Model View Construction": "20",
+    "3.3 Native-Path Export Contract and Implementation": "26",
+    "3.4 Evaluation and Validation Pipeline": "29",
+    "3.5 Framework Verification Results": "34",
+    "3.6 Trade-off and Ablation Experiment Setup": "34",
+    "Chapter 4 Accuracy\u2013Explainability Trade-off Results": "40",
+    "4.1 Experimental Scope and Result Organisation": "40",
+    "4.2 Strict Accuracy Results": "41",
+    "4.3 Explanation Metric Endpoint Results": "44",
+    "4.4 LIR-oriented Trade-off Results": "47",
+    "4.5 SEP-oriented Trade-off Results": "48",
+    "4.6 ETD-oriented Trade-off Results": "50",
+    "4.7 Cross-Dataset Comparison": "51",
+    "Chapter 5 Ablation, Mechanism Analysis, and Boundary Cases": "55",
+    "5.1 Ablation Analysis of Framework Controllability": "55",
+    "5.2 Mechanism-Level Comparison of Native-Path Models": "59",
+    "5.3 Accuracy\u2013Explainability Interaction Patterns": "62",
+    "5.4 Amazon-Book KGAT as a Boundary Case": "63",
+    "5.5 Limitations of the Current Framework and Experiments": "66",
+    "Chapter 6 Conclusion and Recommendations": "69",
+    "6.1 Conclusion": "69",
+    "6.2 Recommendations for Further Research": "73",
+    "References": "76",
+    "Appendices": "78",
+    "Appendix A: Canonical Export Contract and Validation Details": "78",
+    "Appendix B: Full Metric Definitions and Notation": "78",
+    "Appendix C: Additional Trade-off Curves": "78",
+    "Appendix D: Ablation Supplementary Tables": "79",
+    "Appendix E: Boundary-Case and Reproducibility Caveats": "79",
+    "Appendix F: Citation and Provenance Notes": "80",
+    "Figure 3.1": "19",
+    "Figure 3.2": "33",
+    "Figure 3.3": "33",
+    "Figure 4.1": "43",
+    "Figure 4.2": "46",
+    "Figure 4.3": "47",
+    "Figure 4.4": "49",
+    "Figure 4.5": "50",
+    "Figure 5.1": "59",
+    "Figure 5.2": "66",
+    "Figure C.1": "79",
+    "Table 1.1": "4",
+    "Table 2.1": "16",
+    "Table 3.1": "22",
+    "Table 3.2": "24",
+    "Table 3.3": "27",
+    "Table 3.4": "30",
+    "Table 3.5": "36",
+    "Table 3.6": "38",
+    "Table 4.1": "42",
+    "Table 4.2": "45",
+    "Table 4.3": "53",
+    "Table 5.1": "57",
+    "Table 5.2": "60",
+    "Table 5.3": "65",
+    "Table 5.4": "68",
+    "Table 6.1": "72"
+  },
+  "heading_candidates": {
+    "Chapter 1 Introduction": [
+      13
+    ],
+    "1.1 Background": [
+      13
+    ],
+    "1.2 Motivation": [
+      14
+    ],
+    "1.3 Objectives and Specifications": [
+      15
+    ],
+    "1.4 Major Contribution": [
+      16
+    ],
+    "1.5 Organisation": [
+      17
+    ],
+    "Chapter 2 Literature Review": [
+      19
+    ],
+    "2.1 Knowledge Graph Recommendation": [
+      19
+    ],
+    "2.2 Path Reasoning and Native-Path Explainability": [
+      20
+    ],
+    "2.3 Explainable Recommendation and Explanation Quality": [
+      22
+    ],
+    "2.4 Accuracy\u2013Explainability Trade-off in Recommendation": [
+      24
+    ],
+    "2.5 Evaluation Protocols, Reproducibility, and Fair Comparison": [
+      25
+    ],
+    "2.6 Research Gap and Positioning of This Dissertation": [
+      26
+    ],
+    "Chapter 3 Framework Implementation and Verification": [
+      30
+    ],
+    "3.1 Overview of the Implemented Framework": [
+      30
+    ],
+    "3.2 Canonical Dataset and Model View Construction": [
+      32
+    ],
+    "3.3 Native-Path Export Contract and Implementation": [
+      38
+    ],
+    "3.4 Evaluation and Validation Pipeline": [
+      41
+    ],
+    "3.5 Framework Verification Results": [
+      46
+    ],
+    "3.6 Trade-off and Ablation Experiment Setup": [
+      46
+    ],
+    "Chapter 4 Accuracy\u2013Explainability Trade-off Results": [
+      52
+    ],
+    "4.1 Experimental Scope and Result Organisation": [
+      52
+    ],
+    "4.2 Strict Accuracy Results": [
+      53
+    ],
+    "4.3 Explanation Metric Endpoint Results": [
+      56
+    ],
+    "4.4 LIR-oriented Trade-off Results": [
+      59
+    ],
+    "4.5 SEP-oriented Trade-off Results": [
+      60
+    ],
+    "4.6 ETD-oriented Trade-off Results": [
+      62
+    ],
+    "4.7 Cross-Dataset Comparison": [
+      63
+    ],
+    "Chapter 5 Ablation, Mechanism Analysis, and Boundary Cases": [
+      67
+    ],
+    "5.1 Ablation Analysis of Framework Controllability": [
+      67
+    ],
+    "5.2 Mechanism-Level Comparison of Native-Path Models": [
+      71
+    ],
+    "5.3 Accuracy\u2013Explainability Interaction Patterns": [
+      74
+    ],
+    "5.4 Amazon-Book KGAT as a Boundary Case": [
+      75
+    ],
+    "5.5 Limitations of the Current Framework and Experiments": [
+      78
+    ],
+    "Chapter 6 Conclusion and Recommendations": [
+      81
+    ],
+    "6.1 Conclusion": [
+      81
+    ],
+    "6.2 Recommendations for Further Research": [
+      85
+    ],
+    "References": [
+      88
+    ],
+    "Appendices": [
+      90
+    ],
+    "Appendix A: Canonical Export Contract and Validation Details": [
+      90
+    ],
+    "Appendix B: Full Metric Definitions and Notation": [
+      90
+    ],
+    "Appendix C: Additional Trade-off Curves": [
+      90
+    ],
+    "Appendix D: Ablation Supplementary Tables": [
+      91
+    ],
+    "Appendix E: Boundary-Case and Reproducibility Caveats": [
+      91
+    ],
+    "Appendix F: Citation and Provenance Notes": [
+      92
+    ]
+  },
+  "caption_candidates": {
+    "Figure 3.1": [
+      31
+    ],
+    "Figure 3.2": [
+      45
+    ],
+    "Figure 3.3": [
+      45
+    ],
+    "Figure 4.1": [
+      55
+    ],
+    "Figure 4.2": [
+      58
+    ],
+    "Figure 4.3": [
+      59
+    ],
+    "Figure 4.4": [
+      61
+    ],
+    "Figure 4.5": [
+      62
+    ],
+    "Figure 5.1": [
+      71
+    ],
+    "Figure 5.2": [
+      78
+    ],
+    "Figure C.1": [
+      91
+    ],
+    "Table 1.1": [
+      16
+    ],
+    "Table 2.1": [
+      28
+    ],
+    "Table 3.1": [
+      34
+    ],
+    "Table 3.2": [
+      36
+    ],
+    "Table 3.3": [
+      39
+    ],
+    "Table 3.4": [
+      42
+    ],
+    "Table 3.5": [
+      48
+    ],
+    "Table 3.6": [
+      50
+    ],
+    "Table 4.1": [
+      54,
+      56
+    ],
+    "Table 4.2": [
+      57
+    ],
+    "Table 4.3": [
+      65
+    ],
+    "Table 5.1": [
+      69
+    ],
+    "Table 5.2": [
+      72
+    ],
+    "Table 5.3": [
+      77
+    ],
+    "Table 5.4": [
+      80
+    ],
+    "Table 6.1": [
+      84
+    ]
+  },
+  "mapped_heading_count": 49,
+  "mapped_figure_count": 11,
+  "mapped_table_count": 16
+}
